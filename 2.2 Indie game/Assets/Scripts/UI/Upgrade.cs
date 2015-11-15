@@ -10,7 +10,11 @@ public class Upgrade :MonoBehaviour {
 	public string text;
 
 	public int Cost;
-	// Use this for initialization
+
+	public Image buttonImage;
+
+	void Start () {
+	}
 
 	void Initialize (bool drawable){
 

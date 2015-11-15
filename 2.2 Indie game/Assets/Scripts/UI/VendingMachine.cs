@@ -18,17 +18,23 @@ public class VendingMachine : MonoBehaviour {
 
 	Upgrade selectedUpgrade;
 
+	void Start(){
+		FindButtons ();
+	}
+
 	void Update () {
-//		if (Input.GetKeyDown (KeyCode.I)) {
-//			ActivateStation ();
-//		}
+		if (Input.GetKeyDown (KeyCode.I)) {
+			ActivateStation ();
+		}
 	}
 
 	public void ActivateStation (){
 		foreach (Upgrade upgrade in allUpgrades) {
 
 			if (upgrade.Cost > 100) {
-				Debug.Log("hello");
+				upgrade.buttonImage.color = Color.gray;
+				//upgrade.buttonImage.GetComponent<Button>().interactable = false;
+
 			}
 		}
 	}
@@ -39,11 +45,19 @@ public class VendingMachine : MonoBehaviour {
 
 	public void SelectUpgrade (Upgrade upgrade) {
 		selectedUpgrade = upgrade;
+		upgrade.buttonImage.color = Color.red;
+
 		buyMenuImage.sprite = upgrade.upGradeImage;
 		buyText.text = upgrade.text;
 	}
 
 	public void BuyUpgrade1 () {
 		selectedUpgrade.Apply ();
+	}
+
+	void FindButtons () {
+		foreach (Upgrade upgrade in allUpgrades) {
+			upgrade.buttonImage = GameObject.Find (upgrade.name).GetComponent<Image> ();
+		}
 	}
 }

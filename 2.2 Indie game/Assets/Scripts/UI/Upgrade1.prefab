@@ -23,7 +23,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 137332}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 449.612579, y: 416.835663, z: -555.815735}
+  m_LocalPosition: {x: 441.672211, y: 415.152222, z: -605.3172}
   m_LocalScale: {x: .803541183, y: .764878035, z: 1.14874995}
   m_Children: []
   m_Father: {fileID: 0}
@@ -42,6 +42,7 @@ MonoBehaviour:
   upGradeImage: {fileID: 21300000, guid: 3104ab85840c9bc42a93001a09014dd6, type: 3}
   text: Increases DMG by 20
   Cost: 200
+  buttonImage: {fileID: 0}
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1
