@@ -5,10 +5,15 @@ using UnityEngine.UI;
 
 public class VendingMachine : MonoBehaviour {
 
+	[SerializeField]
+	GameManagerScript gameManager;
+
 	//functionality
 	[SerializeField]
 	List<Upgrade> allUpgrades;
 	List<Upgrade> ownedUpgrades;
+
+	Upgrade selectedUpgrade;
 
 	//menuVisuals
     [SerializeField]
@@ -20,9 +25,10 @@ public class VendingMachine : MonoBehaviour {
     [SerializeField]
     Button buyButton;
 
-	Upgrade selectedUpgrade;
+
 
 	void Start(){
+		ownedUpgrades = new List<Upgrade> ();
 		FindButtons ();
         DisableBuyScreen();
 	}
@@ -33,33 +39,47 @@ public class VendingMachine : MonoBehaviour {
 	}
 
 	public void DeActivateStation () {
+		gameManager.ChangeState (GameManagerScript.GameState.InGame);
+		ChangeSelectedButton(Color.white);
+		buyButton.gameObject.SetActive(false);
+		SetImageAndText ();
         DisableBuyScreen();
+		selectedUpgrade = null;
 	}
 
 	public void SelectUpgrade (Upgrade upgrade) {
         if (selectedUpgrade != null) {
-            selectedUpgrade.buttonImage.color = Color.white;
+			ChangeSelectedButton(Color.white);
         }
+		if (!buyButton.gameObject.activeInHierarchy) {
+			buyButton.gameObject.SetActive( true);
+		}
 
 		selectedUpgrade = upgrade;
-		upgrade.buttonImage.color = Color.red;
+		ChangeSelectedButton(Color.red);
 
-		buyMenuImage.sprite = upgrade.upGradeImage;
-		buyText.text = upgrade.text;
+		SetImageAndText (selectedUpgrade);
+
         CheckUpgrade();
 	}
 
 	public void BuyUpgrade () {
 		selectedUpgrade.Apply ();
+		allUpgrades.Remove (selectedUpgrade);
+		ownedUpgrades.Add (selectedUpgrade);
+		ChangeBuyButton("Allready have",false);
 	}
 
     void CheckUpgrade() {
-        if (selectedUpgrade.Cost> 100){
-            buyButton.GetComponentInChildren<Text>().text = "no Money";
-        }
-        else {
-            buyButton.GetComponentInChildren<Text>().text = "Buy Upgrade";
-        }
+		if (ownedUpgrades.Contains (selectedUpgrade)) {
+			ChangeBuyButton("Allready have",false);
+		} else {
+			if (selectedUpgrade.Cost > 100) {
+				ChangeBuyButton("no Money",false);
+			} else {
+				ChangeBuyButton("Buy Upgrade",true);
+			}
+		}
     }
 
 	void FindButtons () {
@@ -71,4 +91,23 @@ public class VendingMachine : MonoBehaviour {
     void DisableBuyScreen() {
         buyscreen.SetActive(false);
     }
+
+	void ChangeBuyButton (string text, bool active){
+		buyButton.GetComponentInChildren<Text>().text = text;
+			buyButton.interactable = active;
+	}
+
+	void ChangeSelectedButton (Color color) {
+		selectedUpgrade.buttonImage.color = color;
+	}
+
+	void SetImageAndText (Upgrade upgrade = null) {
+		if (upgrade == null) {
+			buyMenuImage.sprite = null;
+			buyText.text = null;
+		} else {
+			buyMenuImage.sprite = upgrade.upGradeImage;
+			buyText.text = upgrade.text;
+		}
+	}
 }

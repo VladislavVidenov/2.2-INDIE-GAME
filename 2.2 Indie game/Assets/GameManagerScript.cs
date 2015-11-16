@@ -3,7 +3,7 @@ using System.Collections;
 
 public class GameManagerScript : MonoBehaviour {
 
-    enum GameState{
+    public enum GameState{
         InMenu,InGame,InBuyScreen,InPauseMenu
     }
 
@@ -24,7 +24,7 @@ public class GameManagerScript : MonoBehaviour {
         }
     }
 
-    void ChangeState(GameState newGameState) {
+    public void ChangeState(GameState newGameState) {
 
         DisablePreviousState(currentState);
 
@@ -34,6 +34,8 @@ public class GameManagerScript : MonoBehaviour {
                 break;
 
             case GameState.InGame:
+				Time.timeScale = 1;
+				SetSensitivity(2);
                 break;
 
             case GameState.InBuyScreen:
