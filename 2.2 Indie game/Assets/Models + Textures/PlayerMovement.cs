@@ -32,8 +32,9 @@ public class PlayerMovement : MonoBehaviour {
     void FixedUpdate()
     {
         input = new Vector3(Input.GetAxis("Horizontal"),0,Input.GetAxis("Vertical"));
-        input *= (input.x == 1 && input.z == 1) ? 0.7f : 1.0f;
+        input *= (Mathf.Abs(input.x) == 1 && Mathf.Abs(input.z) == 1) ? 0.707f : 1.0f;
 
+        Debug.Log("VELOCITY->> " + rigidBody.velocity.sqrMagnitude);
         if (grounded)
         {
             targetVel = input;
