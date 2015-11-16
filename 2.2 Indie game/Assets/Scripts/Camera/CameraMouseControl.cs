@@ -4,7 +4,7 @@ using System.Collections;
 public class CameraMouseControl : MonoBehaviour {
 
 
-    public enum RotateAxis { X , Y };
+    public enum RotateAxis { X , Y};
     public RotateAxis axis;
 
 
@@ -18,8 +18,8 @@ public class CameraMouseControl : MonoBehaviour {
     float rotationY;
 
     //Maybe let the user select his sensitivity in the controls ? :P
-    [SerializeField, Range(0,5)]
-    float camSensitivity;
+    [Range(0,5)]
+    public float camSensitivity;
 
     // Min and max rotation, so we cant do a 360 rotation with Y axis  :)
     [SerializeField]
