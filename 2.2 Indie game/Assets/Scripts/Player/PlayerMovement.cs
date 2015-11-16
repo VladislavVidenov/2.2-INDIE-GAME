@@ -4,9 +4,10 @@ using System.Collections;
 public class PlayerMovement : MonoBehaviour {
  
     
+
+
     //Components
     Rigidbody rigidBody;
-    
 
     //Variables
     [SerializeField]
@@ -34,19 +35,22 @@ public class PlayerMovement : MonoBehaviour {
         input = new Vector3(Input.GetAxis("Horizontal"),0,Input.GetAxis("Vertical"));
         input *= (Mathf.Abs(input.x) == 1 && Mathf.Abs(input.z) == 1) ? 0.707f : 1.0f;
 
-        Debug.Log("VELOCITY->> " + rigidBody.velocity.sqrMagnitude);
         if (grounded)
         {
+
             targetVel = input;
             targetVel = transform.TransformDirection(targetVel);
             targetVel *= speed;
 
             Vector3 currVel = rigidBody.velocity;
             Vector3 newVel = targetVel - currVel;
+
             newVel.x = Mathf.Clamp(newVel.x, -maxVelocityClamp, maxVelocityClamp);
             newVel.y = 0;
             newVel.z = Mathf.Clamp(newVel.z, -maxVelocityClamp, maxVelocityClamp);
+
             rigidBody.AddForce(newVel, ForceMode.VelocityChange);
+
         }
 
 
