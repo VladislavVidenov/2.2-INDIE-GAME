@@ -26,7 +26,6 @@ public class PlayerMovement : MonoBehaviour {
     // Use this for initialization
     void Start()
     {
-        Cursor.lockState = CursorLockMode.Locked;
         rigidBody = GetComponent<Rigidbody>();
     }
 

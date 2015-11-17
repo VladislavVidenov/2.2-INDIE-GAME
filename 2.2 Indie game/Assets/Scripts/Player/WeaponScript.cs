@@ -13,6 +13,11 @@ public class WeaponScript : MonoBehaviour {
     GameObject player;
     [SerializeField]
     GameObject recoilEffectGO;
+
+    //---SHOOT DECALS-------
+    [SerializeField]
+    GameObject normalDecal;
+    //----------------------
     //Variables
     
     //---Aiming---
@@ -108,9 +113,12 @@ public class WeaponScript : MonoBehaviour {
 
             Vector3 hitPoint = hit.point;
             Quaternion hitPointDecalPos = Quaternion.FromToRotation(Vector3.up, hit.normal);
+            Debug.Log(hit.transform.gameObject.name);
             if (hit.transform.CompareTag("Ground"))
             {
-                //instantitate decal of the shot.
+            
+                GameObject go = Instantiate(normalDecal,new Vector3(hitPoint.x,hitPoint.y + 0.00001f,hitPoint.z),hitPointDecalPos) as GameObject;
+                go.transform.parent = hit.transform;
             }
         }
 

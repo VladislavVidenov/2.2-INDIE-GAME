@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 
 public class GameManager : MonoBehaviour {
-
+    //Singleton for game manager.
     private static GameManager _instance;
     public static GameManager Instance
     {
@@ -37,7 +37,7 @@ public class GameManager : MonoBehaviour {
         currentState = GameState.InMenu;
     }
     void Update() {
-        Debug.Log(currentState);
+        
     }
 
     // Use this for initialization
