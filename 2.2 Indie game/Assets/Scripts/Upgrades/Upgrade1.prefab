@@ -41,7 +41,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   upGradeImage: {fileID: 21300000, guid: 3104ab85840c9bc42a93001a09014dd6, type: 3}
   text: Increases DMG by 20
-  Cost: 200
+  Cost: 50
   buttonImage: {fileID: 0}
 --- !u!1001 &100100000
 Prefab:
@@ -52,7 +52,7 @@ Prefab:
     m_Modifications:
     - target: {fileID: 0}
       propertyPath: Cost
-      value: 200
+      value: 50
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}

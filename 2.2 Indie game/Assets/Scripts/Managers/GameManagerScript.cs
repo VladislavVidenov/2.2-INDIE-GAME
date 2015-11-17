@@ -10,18 +10,41 @@ public class GameManagerScript : MonoBehaviour {
     GameState currentState;
 
     VendingMachine vendingMachine;
+    PauseMenuScript pauseMenu;
+
     CameraMouseControl[] cmc;
 
 
 	void Start () {
         currentState = GameState.InGame;
         vendingMachine = GameObject.Find("VendingMachine").GetComponent<VendingMachine>();
+        pauseMenu = GameObject.Find("PauseMenuManager").GetComponent<PauseMenuScript>();
+        
 	}
 
     void Update() {
         if (Input.GetKeyDown(KeyCode.B)) {
             ChangeState(GameState.InBuyScreen);
         }
+
+        if (Input.GetKeyDown(KeyCode.Escape)) {
+            switch(currentState){
+            
+                case GameState.InBuyScreen:
+                    ChangeState(GameState.InGame);
+                    break;
+
+                case GameState.InGame:
+                    ChangeState(GameState.InPauseMenu);
+                    break;
+
+                case GameState.InPauseMenu:
+                    ChangeState(GameState.InGame);
+                    break;
+            }
+            
+        }
+
     }
 
     public void ChangeState(GameState newGameState) {
@@ -45,10 +68,14 @@ public class GameManagerScript : MonoBehaviour {
                 break;
 
             case GameState.InPauseMenu:
+                Time.timeScale = 0;
+                pauseMenu.ActivatePauseMenu();
+                SetSensitivity(0);
+
                 break;
-
-
         }
+        currentState = newGameState;
+
     }
 
     void DisablePreviousState(GameState previousState) {
@@ -61,9 +88,11 @@ public class GameManagerScript : MonoBehaviour {
                 break;
 
             case GameState.InBuyScreen:
+                vendingMachine.DeActivateStation();
                 break;
 
             case GameState.InPauseMenu:
+                pauseMenu.DeActivatePauseMenu();
                 break;
         }
     }
@@ -74,4 +103,8 @@ public class GameManagerScript : MonoBehaviour {
             cmc[i].camSensitivity = sensitivity;
         }
     }
+
+    public void ChangeToInGame() {
+        ChangeState(GameManagerScript.GameState.InGame);
+    } 
 }

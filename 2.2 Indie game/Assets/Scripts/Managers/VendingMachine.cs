@@ -39,8 +39,7 @@ public class VendingMachine : MonoBehaviour {
 	}
 
 	public void DeActivateStation () {
-		gameManager.ChangeState (GameManagerScript.GameState.InGame);
-		ChangeSelectedButton(Color.white);
+		if(selectedUpgrade != null) ChangeSelectedButton(Color.white);
 		buyButton.gameObject.SetActive(false);
 		SetImageAndText ();
         DisableBuyScreen();
@@ -100,6 +99,10 @@ public class VendingMachine : MonoBehaviour {
 	void ChangeSelectedButton (Color color) {
 		selectedUpgrade.buttonImage.color = color;
 	}
+
+    public List<Upgrade> GetOwndedList() {
+            return ownedUpgrades;
+    }
 
 	void SetImageAndText (Upgrade upgrade = null) {
 		if (upgrade == null) {
