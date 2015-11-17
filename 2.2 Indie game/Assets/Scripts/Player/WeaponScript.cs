@@ -3,8 +3,8 @@ using System.Collections;
 
 public class WeaponScript : MonoBehaviour {
 
-    enum WeaponMode { None,SemiFire,Auto };
-    WeaponMode currentWeaponMode;
+    public enum WeaponMode { None,SemiFire,Auto };
+    public WeaponMode currentWeaponMode;
 
     //Components
     [SerializeField]
@@ -24,15 +24,15 @@ public class WeaponScript : MonoBehaviour {
     //-----------
 
     //---Shooting---
-    int bulletsLeft = 0;
+    int bulletsLeft = 12222;
     bool isReloading = false;
     bool isFiring = false;
     bool weaponSelected = false;
-    float damage = 20;
-    float fireRate = 0.1f;
-    float reloadTime = 3.0f;
-    float nextFireTime;
-    float delayFire = 0.6f;
+    public float damage = 20;
+    public float fireRate = 0.1f;
+    public float reloadTime = 3.0f;
+    public float nextFireTime;
+
     //--------------
 
 
@@ -54,11 +54,11 @@ public class WeaponScript : MonoBehaviour {
 	
 	
 	void Update () {
-        if (Input.GetButton("Fire"))
+        if (Input.GetButtonDown("Fire"))
         {
             if (currentWeaponMode == WeaponMode.SemiFire)
             {
-
+                SemiFireMode();
             }
         }
 	}
@@ -99,14 +99,16 @@ public class WeaponScript : MonoBehaviour {
             return;
         }
 
-        Vector3 shootDirection = gameObject.transform.TransformDirection(1, 1, 1);
+        Vector3 shootDirection = gameObject.transform.TransformDirection(new Vector3(Random.Range(-0.01f,0.01f), Random.Range(-0.01f, 0.01f),1));
         RaycastHit hit;
         Vector3 shootingPos = transform.parent.position;
+        Debug.DrawRay(shootingPos, shootDirection * 100f, Color.red, 2);
         if(Physics.Raycast(shootingPos,shootDirection, out hit, 100f))
         {
+
             Vector3 hitPoint = hit.point;
             Quaternion hitPointDecalPos = Quaternion.FromToRotation(Vector3.up, hit.normal);
-            if (hit.transform.CompareTag("TestGround"))
+            if (hit.transform.CompareTag("Ground"))
             {
                 //instantitate decal of the shot.
             }
@@ -114,7 +116,7 @@ public class WeaponScript : MonoBehaviour {
 
         //play sound
         //play animations
-
+        Debug.Log("Shooting");
         //apply kickback affect
         RecoilEffect();
         bulletsLeft--;
@@ -126,11 +128,8 @@ public class WeaponScript : MonoBehaviour {
 
     }
 
-    public bool canShoot()
-    {
-        if (Time.time < nextFireTime) { return false; }
-        else { return true; }
-    }
+
+
 
     void RecoilEffect()
     {
