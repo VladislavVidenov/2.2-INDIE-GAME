@@ -5,13 +5,10 @@ using UnityEngine.UI;
 
 public class VendingMachine : MonoBehaviour {
 
-	[SerializeField]
-	SceneChangeManager gameManager;
-
 	//functionality
 	[SerializeField]
 	List<Upgrade> allUpgrades;
-	List<Upgrade> ownedUpgrades;
+    List<Upgrade> ownedUpgrades;
 
 	Upgrade selectedUpgrade;
 
@@ -28,14 +25,15 @@ public class VendingMachine : MonoBehaviour {
 
 
 	void Start(){
-		ownedUpgrades = new List<Upgrade> ();
+		ownedUpgrades = GameManager.Instance.OwnedUpgrades;
+        ApplyUpgrades();
+
 		FindButtons ();
         DisableBuyScreen();
 	}
 
 	public void ActivateStation (){
         buyscreen.SetActive(true);
-       
 	}
 
 	public void DeActivateStation () {
@@ -55,6 +53,7 @@ public class VendingMachine : MonoBehaviour {
 		}
 
 		selectedUpgrade = upgrade;
+
 		ChangeSelectedButton(Color.red);
 
 		SetImageAndText (selectedUpgrade);
@@ -64,7 +63,6 @@ public class VendingMachine : MonoBehaviour {
 
 	public void BuyUpgrade () {
 		selectedUpgrade.Apply ();
-		allUpgrades.Remove (selectedUpgrade);
 		ownedUpgrades.Add (selectedUpgrade);
 		ChangeBuyButton("Allready have",false);
 	}
@@ -113,4 +111,10 @@ public class VendingMachine : MonoBehaviour {
 			buyText.text = upgrade.text;
 		}
 	}
+
+    void ApplyUpgrades() {
+        foreach (Upgrade upgrade in ownedUpgrades) {
+            upgrade.Apply();
+        }
+    }
 }

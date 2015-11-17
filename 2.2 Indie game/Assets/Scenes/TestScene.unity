@@ -1807,8 +1807,8 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1841682745}
   m_HandleRect: {fileID: 1841682744}
   m_Direction: 2
-  m_Value: .558445334
-  m_Size: .895327628
+  m_Value: .558445215
+  m_Size: .30909887
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -2574,7 +2574,18 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1134824679}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 5488440}
+        m_MethodName: SwitchToMainMenu
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
 --- !u!114 &1134824679
@@ -2990,7 +3001,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ada68bb6663268241a5ab890411d3518, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gameManager: {fileID: 5488440}
   allUpgrades:
   - {fileID: 11464300, guid: 2e4e5d1f22b86004f835fb8f400529d2, type: 2}
   - {fileID: 11493912, guid: 4ca3a18af1ecc944bb422602ed09b2ca, type: 2}
@@ -3328,7 +3338,18 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1387959755}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 5488440}
+        m_MethodName: ChangeToInGame
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
 --- !u!114 &1387959755
@@ -3714,7 +3735,7 @@ RectTransform:
   m_RootOrder: 0
   m_AnchorMin: {x: .5, y: .5}
   m_AnchorMax: {x: .5, y: .5}
-  m_AnchoredPosition: {x: -3.05175781e-05, y: -3.93362427}
+  m_AnchoredPosition: {x: -3.05175781e-05, y: -25.9642944}
   m_SizeDelta: {x: 674, y: 643}
   m_Pivot: {x: .5, y: .5}
 --- !u!114 &1493592924
@@ -4614,7 +4635,18 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1811998117}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 5488440}
+        m_MethodName: CloseApllication
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
 --- !u!114 &1811998117

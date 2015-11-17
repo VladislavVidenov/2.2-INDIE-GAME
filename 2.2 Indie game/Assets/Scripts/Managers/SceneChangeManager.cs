@@ -1,11 +1,11 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class SceneChangeManager : MonoBehaviour {
+public enum GameState {
+    InMenu, InGame, InBuyScreen, InPauseMenu
+}
 
-    public enum GameState{
-        InMenu,InGame,InBuyScreen,InPauseMenu
-    }
+public class SceneChangeManager : MonoBehaviour {
 
     GameState currentState;
 
@@ -16,12 +16,12 @@ public class SceneChangeManager : MonoBehaviour {
 
     
 	void Start () {
+        ChangeState(GameManager.Instance.GetCurrentState());
 
-        
-        currentState = GameState.InGame;
-        vendingMachine = GameObject.Find("VendingMachine").GetComponent<VendingMachine>();
-        pauseMenu = GameObject.Find("PauseMenuManager").GetComponent<PauseMenuScript>();
-        
+        if (currentState == GameState.InGame) {
+            vendingMachine = GameObject.Find("VendingMachine").GetComponent<VendingMachine>();
+            pauseMenu = GameObject.Find("PauseMenuManager").GetComponent<PauseMenuScript>();
+        }
 	}
 
     void Update() {
@@ -107,7 +107,22 @@ public class SceneChangeManager : MonoBehaviour {
         cmc = null;
     }
 
+    public void SwitchToLevel(int index) {
+        GameManager.Instance.SetCurrentState(GameState.InGame);
+        Application.LoadLevel(index);
+    }
+
+    public void SwitchToMainMenu() {
+        GameManager.Instance.SetCurrentState(GameState.InMenu);
+        GameManager.Instance.ResetGameManager();
+        Application.LoadLevel(0);
+    }
+
+    public void CloseApllication() {
+        Application.Quit();
+    }
+
     public void ChangeToInGame() {
-        ChangeState(SceneChangeManager.GameState.InGame);
+        ChangeState(GameState.InGame);
     } 
 }

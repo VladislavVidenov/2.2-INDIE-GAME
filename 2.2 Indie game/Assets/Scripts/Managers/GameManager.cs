@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 
 
 public class GameManager : MonoBehaviour {
@@ -26,15 +27,38 @@ public class GameManager : MonoBehaviour {
             return _player;
         }
     }
-    bool InMenu;
-    
+
+    GameState currentState;
+    List<Upgrade> ownedUpgrades;
+
+
+    void Start() {
+        ownedUpgrades = new List<Upgrade>();
+        currentState = GameState.InMenu;
+    }
+    void Update() {
+        Debug.Log(currentState);
+    }
+
     // Use this for initialization
-    void Start () {
-	
-	}
-	
-	// Update is called once per frame
-	void Update () {
-	
-	}
+    public void SetCurrentState(GameState state) {
+        currentState = state;
+    }
+    public GameState GetCurrentState() {
+        return currentState;
+    }
+
+    public List<Upgrade> OwnedUpgrades{
+        get {
+            return ownedUpgrades;
+        }
+        set {
+            ownedUpgrades = value;
+        }
+    }
+
+    public void ResetGameManager() {
+        ownedUpgrades.Clear(); 
+    }
+
 }
