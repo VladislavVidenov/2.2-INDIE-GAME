@@ -12,7 +12,7 @@ GameObject:
   - 65: {fileID: 6547312}
   - 23: {fileID: 2300226}
   m_Layer: 9
-  m_Name: VendingMachine1
+  m_Name: VendorMachine
   m_TagString: VendingMachine
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

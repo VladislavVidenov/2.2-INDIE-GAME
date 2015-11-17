@@ -688,6 +688,7 @@ MonoBehaviour:
   currentWeaponMode: 1
   weaponCamera: {fileID: 148530}
   recoilEffectGO: {fileID: 106084}
+  normalDecal: {fileID: 132896, guid: e101da6a7ebafb6478cab46d5ca66492, type: 2}
   damage: 20
   fireRate: .100000001
   reloadTime: 2
