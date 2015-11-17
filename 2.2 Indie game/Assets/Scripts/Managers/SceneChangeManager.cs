@@ -25,10 +25,7 @@ public class SceneChangeManager : MonoBehaviour {
 	}
 
     void Update() {
-        if (Input.GetKeyDown(KeyCode.B)) {
-            ChangeState(GameState.InBuyScreen);
-        }
-
+     
         if (Input.GetKeyDown(KeyCode.Escape)) {
             switch(currentState){
             
@@ -56,20 +53,24 @@ public class SceneChangeManager : MonoBehaviour {
         switch (newGameState) {
 
             case GameState.InMenu:
+                Cursor.lockState = CursorLockMode.None;
                 break;
 
             case GameState.InGame:
+                Cursor.lockState = CursorLockMode.Locked;
 				Time.timeScale = 1;
 				SetSensitivity(2);
                 break;
 
             case GameState.InBuyScreen:
+                Cursor.lockState = CursorLockMode.None;
                 Time.timeScale = 0;
                 vendingMachine.ActivateStation();
                 SetSensitivity(0);
                 break;
 
             case GameState.InPauseMenu:
+                Cursor.lockState = CursorLockMode.None;
                 Time.timeScale = 0;
                 pauseMenu.ActivatePauseMenu();
                 SetSensitivity(0);
