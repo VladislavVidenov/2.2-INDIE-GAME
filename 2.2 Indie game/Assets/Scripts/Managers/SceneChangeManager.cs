@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class GameManagerScript : MonoBehaviour {
+public class SceneChangeManager : MonoBehaviour {
 
     public enum GameState{
         InMenu,InGame,InBuyScreen,InPauseMenu
@@ -14,8 +14,10 @@ public class GameManagerScript : MonoBehaviour {
 
     CameraMouseControl[] cmc;
 
-
+    
 	void Start () {
+
+        
         currentState = GameState.InGame;
         vendingMachine = GameObject.Find("VendingMachine").GetComponent<VendingMachine>();
         pauseMenu = GameObject.Find("PauseMenuManager").GetComponent<PauseMenuScript>();
@@ -50,7 +52,7 @@ public class GameManagerScript : MonoBehaviour {
     public void ChangeState(GameState newGameState) {
 
         DisablePreviousState(currentState);
-
+        
         switch (newGameState) {
 
             case GameState.InMenu:
@@ -102,9 +104,10 @@ public class GameManagerScript : MonoBehaviour {
         for (int i = 0; i < cmc.Length; i++) {
             cmc[i].camSensitivity = sensitivity;
         }
+        cmc = null;
     }
 
     public void ChangeToInGame() {
-        ChangeState(GameManagerScript.GameState.InGame);
+        ChangeState(SceneChangeManager.GameState.InGame);
     } 
 }

@@ -6,7 +6,7 @@ using UnityEngine.UI;
 public class VendingMachine : MonoBehaviour {
 
 	[SerializeField]
-	GameManagerScript gameManager;
+	SceneChangeManager gameManager;
 
 	//functionality
 	[SerializeField]
