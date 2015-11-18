@@ -19,7 +19,7 @@ public class EnemySightScript : MonoBehaviour {
     void Awake() {
         navMeshAgent = GetComponent<NavMeshAgent>();
         sphereCollider = GetComponent<SphereCollider>();
-        lastPlayerSighting = GameObject.FindGameObjectWithTag(Tags.gameController).GetComponent<LastPlayerSightingScript>();
+        lastPlayerSighting = GameManager.Instance.GetComponent<LastPlayerSightingScript>();
         player = GameObject.FindGameObjectWithTag(Tags.player);
 
         // Set the personal sighting and the previous sighting to the reset position.
