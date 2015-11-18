@@ -14,8 +14,6 @@ public class EnemyScript : MonoBehaviour {
 
     [SerializeField] int health;
     [SerializeField] int creditsDropAmount = 5;
-    [SerializeField] float visionAngle = 180;
-    [SerializeField] float visionRange = 5.0f;
 
     //Patrolling
     [SerializeField] float patrolSpeed = 2.0f;
@@ -54,14 +52,10 @@ public class EnemyScript : MonoBehaviour {
         //Getting the references
         agent = GetComponent<NavMeshAgent>();
         enemySight = GetComponent<EnemySightScript>();
-        lastPlayerSighting = GameObject.FindGameObjectWithTag(Tags.gameController).GetComponent<LastPlayerSightingScript>();
-
-
+        lastPlayerSighting = GameManager.Instance.GetComponent<LastPlayerSightingScript>();
 
         if (target == null) target = GameObject.FindWithTag(Tags.player).transform;
         InvokeRepeating("StateLogic", 0, 0.01f);
-
-        PickNewDestination();
 
         StartCoroutine("StateMachine");
 	}
@@ -126,10 +120,11 @@ public class EnemyScript : MonoBehaviour {
     }
 
     void Shooting() {
-        //agent.Stop(); // Let the agent stand still to shoot.
+        agent.Stop(); // Let the agent stand still to shoot.
     }
 
     void Chasing() {
+        agent.Resume(); //Resume movement
         // Create a vector from the enemy to the last sighting of the player.
         Vector3 sightingDeltaPos = enemySight.personalLastSighting - transform.position;
 
@@ -145,7 +140,6 @@ public class EnemyScript : MonoBehaviour {
         if (agent.remainingDistance <= agent.stoppingDistance) {
             // ... increment the timer.
             chaseTimer += Time.deltaTime;
-            Debug.Log(chaseTimer);
 
             // If the timer exceeds the wait time...
             if (chaseTimer >= chaseWaitTime) {
@@ -191,21 +185,6 @@ public class EnemyScript : MonoBehaviour {
         Debug.Log("ok");
     }
 
-
-    void PickNewDestination() {
-
-    }
-
-    void RotateToward(Vector3 targetPosition, float rotationSpeed) {
-        targetPosition.y = transform.position.y; // set Y to be equal to its own to prevent some weird stuff.
-        rotation = Quaternion.LookRotation(targetPosition - transform.position);
-        transform.rotation = Quaternion.Slerp(transform.rotation, rotation, Time.deltaTime * rotationSpeed);
-    }
-
-    void MoveForward(float moveSpeed) {
-        transform.Translate(Vector3.forward * Time.deltaTime * moveSpeed);
-    }
-
     void Die() {
         DropCredits(creditsDropAmount);
         GameObject.Destroy(this.gameObject);  //debug
@@ -222,17 +201,4 @@ public class EnemyScript : MonoBehaviour {
     void DropCredits(int amount) {
         //instantiate creditsdropprefab?
     }
-
-    private bool CanSeePlayer() {
-        RaycastHit hit;
-        rayDirection = target.position - transform.position;
-
-        if ((Vector3.Angle(rayDirection, transform.forward)) <= visionAngle * 0.5f) {
-            if (Physics.Raycast(transform.position, rayDirection, out hit, visionRange)) {
-                return (hit.transform.CompareTag(Tags.player));
-            }
-        }
-        return false;
-    }
-
 }
