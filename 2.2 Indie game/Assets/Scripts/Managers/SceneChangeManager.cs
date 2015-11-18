@@ -2,7 +2,7 @@
 using System.Collections;
 
 public enum GameState {
-    InMenu, InGame, InBuyScreen, InPauseMenu
+    InMenu, InGame, InBuyScreen, InPauseMenu, PlayerDied
 }
 
 public class SceneChangeManager : MonoBehaviour {
@@ -70,6 +70,11 @@ public class SceneChangeManager : MonoBehaviour {
                 GameManager.Instance.pauseMenu.ActivatePauseMenu();
                 SetSensitivity(0);
                 break;
+
+            case GameState.PlayerDied:
+                Cursor.lockState = CursorLockMode.Locked;
+                SetSensitivity(0);
+                break;
         }
         currentState = newGameState;
 
@@ -91,10 +96,13 @@ public class SceneChangeManager : MonoBehaviour {
             case GameState.InPauseMenu:
                 GameManager.Instance.pauseMenu.DeActivatePauseMenu();
                 break;
+
+            case GameState.PlayerDied:
+                break;
         }
     }
 
-    void SetSensitivity(int sensitivity) {
+    public void SetSensitivity(int sensitivity) {
         cmc = FindObjectsOfType(typeof(CameraMouseControl)) as CameraMouseControl[];
         for (int i = 0; i < cmc.Length; i++) {
             cmc[i].camSensitivity = sensitivity;

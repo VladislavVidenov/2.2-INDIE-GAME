@@ -37,35 +37,18 @@ public class GameManager : MonoBehaviour {
         }
     }
 
-    int maxHealth = 100;
-    int health = 100;
-    int scrap = 0;
-
-    public int MaxHealth{
+    PlayerScript playerScript {
         get {
-            return maxHealth;
-        }
-        set {
-            maxHealth = value;
+            return _player.GetComponent<PlayerScript>();
         }
     }
 
-    public int Health {
-        get {
-            return health;
-        }
-        set {
-            Health = value;
-        }
-    }
-    public int Scrap {
-        get {
-            return scrap;
-        }
-        set {
-            scrap = value;
-        }
-    }
+    [HideInInspector]
+    public int maxHealth = 100;
+    [HideInInspector]
+    public int health = 100;
+    [HideInInspector]
+    public int scrap = 1000;
 
     //endPlayer
 
@@ -128,6 +111,10 @@ public class GameManager : MonoBehaviour {
 
         vendingMachine = GameObject.Find("VendingMachine").GetComponent<VendingMachine>();
         pauseMenu = GameObject.Find("PauseMenuManager").GetComponent<PauseMenuScript>();
+    }
+
+    public void SavePlayerStats() {
+        playerScript.GetStats(out health, out maxHealth, out scrap);
     }
 
 }
