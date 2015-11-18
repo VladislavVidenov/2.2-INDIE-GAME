@@ -14,13 +14,16 @@ public class GameManager : MonoBehaviour {
     {
         get
         {
-            if (_instance == null)
+            if (_instance == null) {
                 _instance = new GameObject("Game Manager").AddComponent<GameManager>();
+                _instance.tag = Tags.gameController;
+            }
+
             return _instance;
         }
     }
     
-    
+    // Player
     private GameObject _player;
     [HideInInspector]
     public GameObject Player
@@ -32,6 +35,38 @@ public class GameManager : MonoBehaviour {
             return _player;
         }
     }
+
+    int maxHealth = 100;
+    int health = 100;
+    int scrap = 0;
+
+    public int MaxHealth{
+        get {
+            return maxHealth;
+        }
+        set {
+            maxHealth = value;
+        }
+    }
+
+    public int Health {
+        get {
+            return health;
+        }
+        set {
+            Health = value;
+        }
+    }
+    public int Scrap {
+        get {
+            return scrap;
+        }
+        set {
+            scrap = value;
+        }
+    }
+
+    //endPlayer
 
     GameState currentState;
     List<Upgrade> ownedUpgrades;
