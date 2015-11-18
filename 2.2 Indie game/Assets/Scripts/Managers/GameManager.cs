@@ -16,6 +16,7 @@ public class GameManager : MonoBehaviour {
         {
             if (_instance == null) {
                 _instance = new GameObject("Game Manager").AddComponent<GameManager>();
+                _instance.gameObject.AddComponent<LastPlayerSightingScript>();
                 _instance.tag = Tags.gameController;
             }
 
