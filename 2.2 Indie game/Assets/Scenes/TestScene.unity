@@ -392,10 +392,10 @@ RectTransform:
   - {fileID: 695123173}
   m_Father: {fileID: 527506035}
   m_RootOrder: 2
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 1}
+  m_AnchorMin: {x: 0, y: .5}
+  m_AnchorMax: {x: 0, y: .5}
   m_AnchoredPosition: {x: 100.100006, y: 36}
-  m_SizeDelta: {x: 160, y: -282}
+  m_SizeDelta: {x: 160, y: 44}
   m_Pivot: {x: .5, y: .5}
 --- !u!114 &102331376
 MonoBehaviour:
@@ -1745,8 +1745,8 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1841682745}
   m_HandleRect: {fileID: 1841682744}
   m_Direction: 2
-  m_Value: .565969467
-  m_Size: .471970111
+  m_Value: .575812638
+  m_Size: .283603042
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -2369,10 +2369,10 @@ RectTransform:
   - {fileID: 1974977581}
   m_Father: {fileID: 527506035}
   m_RootOrder: 0
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 85, y: 1}
-  m_SizeDelta: {x: -245, y: -91}
+  m_AnchorMin: {x: 0, y: .5}
+  m_AnchorMax: {x: 0, y: .5}
+  m_AnchoredPosition: {x: 485, y: 1}
+  m_SizeDelta: {x: 555, y: 235}
   m_Pivot: {x: .5, y: .5}
 --- !u!114 &1115795873
 MonoBehaviour:
@@ -2511,10 +2511,10 @@ RectTransform:
   - {fileID: 476477391}
   m_Father: {fileID: 527506035}
   m_RootOrder: 3
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 1}
+  m_AnchorMin: {x: 0, y: .5}
+  m_AnchorMax: {x: 0, y: .5}
   m_AnchoredPosition: {x: 100.100006, y: -29}
-  m_SizeDelta: {x: 160, y: -282}
+  m_SizeDelta: {x: 160, y: 44}
   m_Pivot: {x: .5, y: .5}
 --- !u!114 &1134824678
 MonoBehaviour:
@@ -3235,10 +3235,10 @@ RectTransform:
   - {fileID: 405870190}
   m_Father: {fileID: 527506035}
   m_RootOrder: 1
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 1}
+  m_AnchorMin: {x: 0, y: .5}
+  m_AnchorMax: {x: 0, y: .5}
   m_AnchoredPosition: {x: 100.100006, y: 95}
-  m_SizeDelta: {x: 160, y: -282}
+  m_SizeDelta: {x: 160, y: 44}
   m_Pivot: {x: .5, y: .5}
 --- !u!114 &1387959754
 MonoBehaviour:
@@ -3257,7 +3257,7 @@ MonoBehaviour:
     m_SelectOnDown: {fileID: 0}
     m_SelectOnLeft: {fileID: 0}
     m_SelectOnRight: {fileID: 0}
-  m_Transition: 1
+  m_Transition: 2
   m_Colors:
     m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
     m_HighlightedColor: {r: .960784316, g: .960784316, b: .960784316, a: 1}
@@ -3266,7 +3266,8 @@ MonoBehaviour:
     m_ColorMultiplier: 1
     m_FadeDuration: .100000001
   m_SpriteState:
-    m_HighlightedSprite: {fileID: 0}
+    m_HighlightedSprite: {fileID: 21300000, guid: 3104ab85840c9bc42a93001a09014dd6,
+      type: 3}
     m_PressedSprite: {fileID: 0}
     m_DisabledSprite: {fileID: 0}
   m_AnimationTriggers:
@@ -3618,7 +3619,7 @@ GameObject:
   - 222: {fileID: 1493592925}
   - 114: {fileID: 1493592924}
   m_Layer: 5
-  m_Name: Image
+  m_Name: UpgradeButtons
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3647,7 +3648,7 @@ RectTransform:
   m_RootOrder: 0
   m_AnchorMin: {x: .5, y: .5}
   m_AnchorMax: {x: .5, y: .5}
-  m_AnchoredPosition: {x: -3.05175781e-05, y: -22.3981323}
+  m_AnchoredPosition: {x: -3.05175781e-05, y: -34.9225769}
   m_SizeDelta: {x: 674, y: 643}
   m_Pivot: {x: .5, y: .5}
 --- !u!114 &1493592924
@@ -4401,10 +4402,10 @@ RectTransform:
   - {fileID: 1109942687}
   m_Father: {fileID: 527506035}
   m_RootOrder: 4
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 1}
+  m_AnchorMin: {x: 0, y: .5}
+  m_AnchorMax: {x: 0, y: .5}
   m_AnchoredPosition: {x: 100.100006, y: -97}
-  m_SizeDelta: {x: 160, y: -282}
+  m_SizeDelta: {x: 160, y: 44}
   m_Pivot: {x: .5, y: .5}
 --- !u!114 &1811998116
 MonoBehaviour:
