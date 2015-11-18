@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Ground
   - VendingMachine
+  - Enemy
   layers:
   - Default
   - TransparentFX
