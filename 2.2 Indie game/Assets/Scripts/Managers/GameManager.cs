@@ -46,8 +46,7 @@ public class GameManager : MonoBehaviour {
         if (Application.loadedLevel != 0)
         {
             currentState = GameState.InGame;
-            vendingMachine = GameObject.Find("VendingMachine").GetComponent<VendingMachine>();
-            pauseMenu = GameObject.Find("PauseMenuManager").GetComponent<PauseMenuScript>();
+            FindGameObjects();
         }
         Debug.Log("---State is set to " + CurrentState + " by default---");
     }
@@ -63,7 +62,7 @@ public class GameManager : MonoBehaviour {
 
         if(currentState == GameState.InGame)
         {
-           
+            FindGameObjects();
         }
     }
     public GameState CurrentState
@@ -87,6 +86,12 @@ public class GameManager : MonoBehaviour {
     public void ResetGameManager()
     {
         ownedUpgrades.Clear();
+    }
+
+    public void FindGameObjects() {
+
+        vendingMachine = GameObject.Find("VendingMachine").GetComponent<VendingMachine>();
+        pauseMenu = GameObject.Find("PauseMenuManager").GetComponent<PauseMenuScript>();
     }
 
 }
