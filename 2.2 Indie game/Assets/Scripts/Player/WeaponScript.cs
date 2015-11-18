@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
+[RequireComponent(typeof(AudioSource))]
 public class WeaponScript : MonoBehaviour {
 
     public enum WeaponMode { None,SemiFire,Auto };
@@ -13,6 +14,15 @@ public class WeaponScript : MonoBehaviour {
     GameObject player;
     [SerializeField]
     GameObject recoilEffectGO;
+    AudioSource audio;
+    #region Sounds
+    [SerializeField]
+    AudioClip dryFireSound;
+    [SerializeField]
+    AudioClip reloadSound;
+    [SerializeField]
+    AudioClip fireSound;
+    #endregion
 
     //---SHOOT DECALS-------
     [SerializeField]
@@ -29,10 +39,14 @@ public class WeaponScript : MonoBehaviour {
     //-----------
 
     //---Shooting---
-    int bulletsLeft = 12222;
+    
+    public int bulletsInMagazine = 6;
+    public int totalBulletCount = 24;
+    int maxBulletsPerMag;
     bool isReloading = false;
     bool isFiring = false;
     bool weaponSelected = false;
+    bool outOfAmmoSoundPlaying = false;
     public float damage = 20;
     public float fireRate = 0.1f;
     public float reloadTime = 3.0f;
@@ -52,62 +66,64 @@ public class WeaponScript : MonoBehaviour {
     //-----------
 
     void Start () {
+        audio = GetComponent<AudioSource>();
         mainCamera = Camera.main.gameObject;
         player = GameManager.Instance.Player;
-
-	}
+        maxBulletsPerMag = bulletsInMagazine;
+    }
 	
 	
 	void Update () {
         if (Input.GetButtonDown("Fire"))
         {
+          
             if (currentWeaponMode == WeaponMode.SemiFire)
             {
                 SemiFireMode();
             }
         }
+
+        if (Input.GetKeyDown(KeyCode.R))
+        {
+            Reload();
+        }
 	}
 
 
+
+    void OnGUI()
+    {
+        GUI.contentColor = Color.red;
+        GUI.Label(new Rect(10, 10, 100, 50), "mag" + bulletsInMagazine);
+        GUI.Label(new Rect(10, 25, 100, 50), "total" + totalBulletCount);
+    }
+    IEnumerator waitSound()
+    {
+        yield return new WaitForSeconds(0.2f);
+        outOfAmmoSoundPlaying = false;
+    }
+ 
     void SemiFireMode()
     {
-        if (isReloading || bulletsLeft <= 0)
+        if (isReloading || bulletsInMagazine <= 0)
         {
-            if (bulletsLeft == 0)
+            if (bulletsInMagazine <= 0)
             {
-                // OutOfAmmo();
-                Debug.Log("IM OUT OF AMMO BISH!");
+                DryFire();
             }
             return;
         }
 
-        if (Time.time - fireRate > nextFireTime)
-            nextFireTime = Time.time - Time.deltaTime;
-
-        while (nextFireTime < Time.time)
-        {
-            FireOneBullet();
-            nextFireTime = Time.time + fireRate;
-        }
-
-
+        if (CanFire()) FireOneBullet();
     }
  
     void FireOneBullet()
     {
-        if (nextFireTime > Time.time)
-        {
-            if (bulletsLeft <= 0)
-            {
-                Debug.Log("IM OUT OF AMMO BISH!");
-            }
-            return;
-        }
-
         Vector3 shootDirection = gameObject.transform.TransformDirection(new Vector3(Random.Range(-0.01f,0.01f), Random.Range(-0.01f, 0.01f),1));
         RaycastHit hit;
         Vector3 shootingPos = transform.parent.position;
         Debug.DrawRay(shootingPos, shootDirection * 100f, Color.red, 2);
+        audio.PlayOneShot(fireSound);
         if(Physics.Raycast(shootingPos,shootDirection, out hit, 100f))
         {
 
@@ -127,20 +143,60 @@ public class WeaponScript : MonoBehaviour {
         Debug.Log("Shooting");
         //apply kickback affect
         RecoilEffect();
-        bulletsLeft--;
+        bulletsInMagazine--;
 
+    }
+
+
+
+
+    #region Reloading 
+    IEnumerator ReloadTime(float time)
+    {
+        yield return new WaitForSeconds(time);
+        int bulletsToLoad = maxBulletsPerMag - bulletsInMagazine;
+        totalBulletCount -= bulletsToLoad;
+        bulletsInMagazine += bulletsToLoad;
+        isReloading = false;
     }
 
     void Reload()
     {
+        //if we are already reloading or we are already on full ammo in mag-> return;
+        if (isReloading || bulletsInMagazine == maxBulletsPerMag) return;
+
+        if (bulletsInMagazine >= 0 && totalBulletCount > 0)
+        {
+            isReloading = true;
+            //--- set animation reload speed
+            //--- play reload gun animation
+            audio.PlayOneShot(reloadSound);
+            StartCoroutine(ReloadTime(reloadTime));
+        }
 
     }
-
-
-
-
+    #endregion
+    void DryFire()
+    {
+        if (isReloading || outOfAmmoSoundPlaying) return;
+        outOfAmmoSoundPlaying = true;
+        audio.PlayOneShot(dryFireSound);
+        StartCoroutine(waitSound());
+    }
     void RecoilEffect()
     {
         recoilEffectGO.transform.localRotation = Quaternion.Euler(recoilEffectGO.transform.localRotation.eulerAngles - new Vector3(1, Random.Range(-1, 1), 0));
+    }
+    bool CanFire()
+    {
+        if (Time.time - fireRate > nextFireTime)
+            nextFireTime = Time.time - Time.deltaTime;
+
+        while (nextFireTime < Time.time)
+        {
+            nextFireTime = Time.time + fireRate;
+            return true;
+        }
+        return false;
     }
 }

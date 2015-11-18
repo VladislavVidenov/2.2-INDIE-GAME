@@ -964,7 +964,8 @@ Prefab:
       propertyPath: camSensitivity
       value: 2
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 11413640, guid: 9d6040898dddac64195218c736f468a6, type: 2}
   m_ParentPrefab: {fileID: 100100000, guid: 9d6040898dddac64195218c736f468a6, type: 2}
   m_IsPrefabParent: 0
 --- !u!1 &433163920 stripped
@@ -1753,8 +1754,8 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1841682745}
   m_HandleRect: {fileID: 1841682744}
   m_Direction: 2
-  m_Value: .958055139
-  m_Size: .283603042
+  m_Value: .733573258
+  m_Size: .524217665
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -3040,6 +3041,104 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1250064621}
+--- !u!1 &1266180856 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 135004, guid: 9d6040898dddac64195218c736f468a6, type: 2}
+  m_PrefabInternal: {fileID: 433163919}
+--- !u!114 &1266180857
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1266180856}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d916e65ea86bf51438ec16f8b2bfc249, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  currentWeaponMode: 1
+  weaponCamera: {fileID: 2099636687}
+  recoilEffectGO: {fileID: 1768008723}
+  dryFireSound: {fileID: 8300000, guid: cdfa13deb02ab7047a288843c8b51202, type: 3}
+  reloadSound: {fileID: 8300000, guid: f5665b51f15a29f408f36094524c51aa, type: 3}
+  fireSound: {fileID: 8300000, guid: ea8d17b9cab6bd54d96aa29f2114c9bf, type: 3}
+  normalDecal: {fileID: 132896, guid: e101da6a7ebafb6478cab46d5ca66492, type: 2}
+  bulletsInMagazine: 6
+  totalBulletCount: 24
+  damage: 20
+  fireRate: .100000001
+  reloadTime: 2
+  nextFireTime: 0
+--- !u!82 &1266180858
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1266180856}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 0}
+  m_PlayOnAwake: 1
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    - time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
 --- !u!1 &1299916987
 GameObject:
   m_ObjectHideFlags: 0
@@ -3656,7 +3755,7 @@ RectTransform:
   m_RootOrder: 0
   m_AnchorMin: {x: .5, y: .5}
   m_AnchorMax: {x: .5, y: .5}
-  m_AnchoredPosition: {x: -3.05175781e-05, y: -211}
+  m_AnchoredPosition: {x: -3.05175781e-05, y: -71.456604}
   m_SizeDelta: {x: 674, y: 643}
   m_Pivot: {x: .5, y: .5}
 --- !u!114 &1493592924
@@ -4159,6 +4258,10 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1752806671}
+--- !u!1 &1768008723 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 106084, guid: 9d6040898dddac64195218c736f468a6, type: 2}
+  m_PrefabInternal: {fileID: 433163919}
 --- !u!1 &1799872920
 GameObject:
   m_ObjectHideFlags: 0
@@ -5515,6 +5618,10 @@ Transform:
   - {fileID: 470017827}
   m_Father: {fileID: 0}
   m_RootOrder: 3
+--- !u!1 &2099636687 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 148530, guid: 9d6040898dddac64195218c736f468a6, type: 2}
+  m_PrefabInternal: {fileID: 433163919}
 --- !u!1 &2137862843
 GameObject:
   m_ObjectHideFlags: 0
