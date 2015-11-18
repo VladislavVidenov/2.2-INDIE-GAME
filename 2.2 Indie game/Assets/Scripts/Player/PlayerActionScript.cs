@@ -23,7 +23,7 @@ public class PlayerActionScript : MonoBehaviour {
             if (Input.GetKeyDown(KeyCode.E)) {
                 GameObject target = hit.collider.gameObject;
                 if (hit.collider.CompareTag("VendingMachine")) {
-                    GameObject.Find("SceneManager").GetComponent<SceneChangeManager>().ChangeState(GameState.InBuyScreen);
+                    GameObject.Find("SceneManager").GetComponent<SceneChangeManager>().SetState(GameState.InBuyScreen);
                 }
                 //do action
             }

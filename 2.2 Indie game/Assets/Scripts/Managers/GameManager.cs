@@ -2,6 +2,10 @@
 using System.Collections;
 using System.Collections.Generic;
 
+/// <summary>
+/// This class has only one instance and REMAINS between all scene / menu switching.
+/// This class is used to store DATA between scene changing.
+/// </summary>
 
 public class GameManager : MonoBehaviour {
     //Singleton for game manager.
@@ -31,35 +35,58 @@ public class GameManager : MonoBehaviour {
 
     GameState currentState;
     List<Upgrade> ownedUpgrades;
+    [HideInInspector]
+    public VendingMachine vendingMachine;
+    [HideInInspector]
+    public PauseMenuScript pauseMenu;
 
+    void Awake()
+    {
+       
+        if (Application.loadedLevel != 0)
+        {
+            currentState = GameState.InGame;
+            vendingMachine = GameObject.Find("VendingMachine").GetComponent<VendingMachine>();
+            pauseMenu = GameObject.Find("PauseMenuManager").GetComponent<PauseMenuScript>();
+        }
+        Debug.Log("---State is set to " + CurrentState + " by default---");
+    }
 
-    void Start() {
+    void Start()
+    {
         ownedUpgrades = new List<Upgrade>();
-        currentState = GameState.InMenu;
     }
-    void Update() {
-        
+   
+    void OnLevelWasLoaded()
+    {
+        Debug.Log("SOME LEVEL WAS LOADED!" + Application.loadedLevel);
+
+        if(currentState == GameState.InGame)
+        {
+           
+        }
+    }
+    public GameState CurrentState
+    {
+        get { return currentState; }
+        set { currentState = value; }
     }
 
-    // Use this for initialization
-    public void SetCurrentState(GameState state) {
-        currentState = state;
-    }
-    public GameState GetCurrentState() {
-        return currentState;
-    }
-
-    public List<Upgrade> OwnedUpgrades{
-        get {
+    public List<Upgrade> OwnedUpgrades
+    {
+        get
+        {
             return ownedUpgrades;
         }
-        set {
+        set
+        {
             ownedUpgrades = value;
         }
     }
 
-    public void ResetGameManager() {
-        ownedUpgrades.Clear(); 
+    public void ResetGameManager()
+    {
+        ownedUpgrades.Clear();
     }
 
 }

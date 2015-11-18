@@ -8,37 +8,32 @@ public enum GameState {
 public class SceneChangeManager : MonoBehaviour {
 
     GameState currentState;
-
-    VendingMachine vendingMachine;
-    PauseMenuScript pauseMenu;
-
     CameraMouseControl[] cmc;
 
-    
-	void Start () {
-        ChangeState(GameManager.Instance.GetCurrentState());
-
-        if (currentState == GameState.InGame) {
-            vendingMachine = GameObject.Find("VendingMachine").GetComponent<VendingMachine>();
-            pauseMenu = GameObject.Find("PauseMenuManager").GetComponent<PauseMenuScript>();
-        }
-	}
-
+    void Awake()
+    {
+        DontDestroyOnLoad(GameManager.Instance); //DIRTY FIX SO WE CAN START ANY SCENE.
+       
+    }
+    void Start()
+    {
+        currentState = GameManager.Instance.CurrentState;
+    }
     void Update() {
      
         if (Input.GetKeyDown(KeyCode.Escape)) {
             switch(currentState){
             
                 case GameState.InBuyScreen:
-                    ChangeState(GameState.InGame);
+                    SetState(GameState.InGame);
                     break;
 
                 case GameState.InGame:
-                    ChangeState(GameState.InPauseMenu);
+                    SetState(GameState.InPauseMenu);
                     break;
 
                 case GameState.InPauseMenu:
-                    ChangeState(GameState.InGame);
+                    SetState(GameState.InGame);
                     break;
             }
             
@@ -46,10 +41,10 @@ public class SceneChangeManager : MonoBehaviour {
 
     }
 
-    public void ChangeState(GameState newGameState) {
+    public void SetState(GameState newGameState) {
 
         DisablePreviousState(currentState);
-        
+
         switch (newGameState) {
 
             case GameState.InMenu:
@@ -65,16 +60,15 @@ public class SceneChangeManager : MonoBehaviour {
             case GameState.InBuyScreen:
                 Cursor.lockState = CursorLockMode.None;
                 Time.timeScale = 0;
-                vendingMachine.ActivateStation();
+                GameManager.Instance.vendingMachine.ActivateStation();
                 SetSensitivity(0);
                 break;
 
             case GameState.InPauseMenu:
                 Cursor.lockState = CursorLockMode.None;
                 Time.timeScale = 0;
-                pauseMenu.ActivatePauseMenu();
+                GameManager.Instance.pauseMenu.ActivatePauseMenu();
                 SetSensitivity(0);
-
                 break;
         }
         currentState = newGameState;
@@ -91,11 +85,11 @@ public class SceneChangeManager : MonoBehaviour {
                 break;
 
             case GameState.InBuyScreen:
-                vendingMachine.DeActivateStation();
+                GameManager.Instance.vendingMachine.DeActivateStation();
                 break;
 
             case GameState.InPauseMenu:
-                pauseMenu.DeActivatePauseMenu();
+                GameManager.Instance.pauseMenu.DeActivatePauseMenu();
                 break;
         }
     }
@@ -109,12 +103,12 @@ public class SceneChangeManager : MonoBehaviour {
     }
 
     public void SwitchToLevel(int index) {
-        GameManager.Instance.SetCurrentState(GameState.InGame);
+        GameManager.Instance.CurrentState = GameState.InGame;
         Application.LoadLevel(index);
     }
 
     public void SwitchToMainMenu() {
-        GameManager.Instance.SetCurrentState(GameState.InMenu);
+        GameManager.Instance.CurrentState = GameState.InMenu;
         GameManager.Instance.ResetGameManager();
         Application.LoadLevel(0);
     }
@@ -124,6 +118,6 @@ public class SceneChangeManager : MonoBehaviour {
     }
 
     public void ChangeToInGame() {
-        ChangeState(GameState.InGame);
+        SetState(GameState.InGame);
     } 
 }

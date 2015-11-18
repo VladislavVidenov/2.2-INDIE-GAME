@@ -4,10 +4,8 @@ using System.Collections;
 public class MainMenuScript : MonoBehaviour {
     void Start()
     {
-        DontDestroyOnLoad(GameManager.Instance);
+        Debug.Log("I am menu script and i am useless af. atm.");
     }
 
-    public void StartLevel(int level) {
-        Application.LoadLevel(level);
-    }
+  
 }
