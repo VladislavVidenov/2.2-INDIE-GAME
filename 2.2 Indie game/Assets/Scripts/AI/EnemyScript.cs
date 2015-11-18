@@ -14,12 +14,15 @@ public class EnemyScript : MonoBehaviour {
 
     [SerializeField] int health;
     [SerializeField] int creditsDropAmount = 5;
-    [SerializeField] float visionRange;
-    [SerializeField] float visionWidth;
+    [SerializeField] float visionAngle = 180;
+    [SerializeField] float visionRange = 5.0f;
 
     //Patrolling
-    [SerializeField] float patrolSpeed = 5.0f;
-                     Vector3 currentDestination;
+    [SerializeField] float patrolSpeed = 2.0f;
+    [SerializeField] float patrolWaitTime = 1.0f;
+    Vector3 currentDestination;
+    float patrolTimer;
+    int waypointIndex;
 
     //Attacking
     [SerializeField] float attackDistance = 3.0f;
@@ -29,22 +32,37 @@ public class EnemyScript : MonoBehaviour {
     [SerializeField] float chaseDistance = 10.0f;
     [SerializeField] float chaseSpeed = 3.0f;
     [SerializeField] float chaseRotationSpeed = 5.0f;
+    [SerializeField] float chaseWaitTime = 5f;
+    float chaseTimer;
 
     float distanceToTarget;
 
     NavMeshAgent agent;
-    public Transform[] waypoints;
+    public Transform[] patrolWaypoints;
     Transform target; //player
 
     //Used for RotateToward
     Quaternion rotation;
 
+    EnemySightScript enemySight;
+    LastPlayerSightingScript lastPlayerSighting;
 
-    void Start () {
+    Vector3 rayDirection;
+
+
+    void Awake () {
+        //Getting the references
         agent = GetComponent<NavMeshAgent>();
+        enemySight = GetComponent<EnemySightScript>();
+        lastPlayerSighting = GameObject.FindGameObjectWithTag(Tags.gameController).GetComponent<LastPlayerSightingScript>();
 
-        if (target == null) target = GameObject.FindWithTag("Player").transform;
-        InvokeRepeating("StateLogic", 0, 0.1f);
+
+
+        if (target == null) target = GameObject.FindWithTag(Tags.player).transform;
+        InvokeRepeating("StateLogic", 0, 0.01f);
+
+        PickNewDestination();
+
         StartCoroutine("StateMachine");
 	}
 
@@ -52,9 +70,6 @@ public class EnemyScript : MonoBehaviour {
     void Update() {
         if (Input.GetKeyDown(KeyCode.Q)) {
             TakeDamage(10);
-        }
-        if (Input.GetKeyDown(KeyCode.E)) {
-            agent.SetDestination(waypoints[1].position);
         }
     }
     //------------
@@ -67,8 +82,7 @@ public class EnemyScript : MonoBehaviour {
                     Debug.Log("Idle");
                     break;
                 case AIState.patrolling:
-                    Debug.Log("Patrolling");
-                    //RotateToward()
+                    Patrolling();
                     break;
                 case AIState.lowAlert:
                     //magic
@@ -84,10 +98,11 @@ public class EnemyScript : MonoBehaviour {
                     break;
                 case AIState.chasing:
                     //magic
+                    Chasing();
                     Debug.Log("Chasing");
                     break;
                 case AIState.attacking:
-                    //magic
+                    Shooting();
                     Debug.Log("Attacking");
                     break;
             }
@@ -98,15 +113,87 @@ public class EnemyScript : MonoBehaviour {
     void StateLogic() {
         distanceToTarget = (target.position - transform.position).sqrMagnitude;
 
-        if (distanceToTarget <= attackDistance * attackDistance) {
+        if (enemySight.playerInSight /*and player == alive*/) {
             state = AIState.attacking;
         }
-        else if (distanceToTarget <= chaseDistance * chaseDistance) {
+        // If player has been sighted by any of the enemies and isnt dead.
+        else if (enemySight.personalLastSighting != lastPlayerSighting.resetPosition /*And player == alive*/) {
             state = AIState.chasing;
         }
         else {
             state = AIState.patrolling;
         }
+    }
+
+    void Shooting() {
+        //agent.Stop(); // Let the agent stand still to shoot.
+    }
+
+    void Chasing() {
+        // Create a vector from the enemy to the last sighting of the player.
+        Vector3 sightingDeltaPos = enemySight.personalLastSighting - transform.position;
+
+        // If the the last personal sighting of the player is not close...
+        if (sightingDeltaPos.sqrMagnitude > 4f)
+            // ... set the destination for the NavMeshAgent to the last personal sighting of the player.
+            agent.destination = enemySight.personalLastSighting;
+
+        // Set the appropriate speed for the NavMeshAgent.
+        agent.speed = chaseSpeed;
+
+        // If near the last personal sighting...
+        if (agent.remainingDistance <= agent.stoppingDistance) {
+            // ... increment the timer.
+            chaseTimer += Time.deltaTime;
+            Debug.Log(chaseTimer);
+
+            // If the timer exceeds the wait time...
+            if (chaseTimer >= chaseWaitTime) {
+                // ... reset last global sighting, the last personal sighting and the timer.
+                lastPlayerSighting.position = lastPlayerSighting.resetPosition;
+                enemySight.personalLastSighting = lastPlayerSighting.resetPosition;
+                chaseTimer = 0f;
+                Debug.Log("GOT RESET");
+            }
+        }
+        else
+            // If not near the last sighting personal sighting of the player, reset the timer.
+            chaseTimer = 0f;
+    }
+
+    void Patrolling() {
+        // Set an appropriate speed for the NavMeshAgent.
+        agent.speed = patrolSpeed;
+
+        // If near the next waypoint or there is no destination...
+        if (agent.destination == lastPlayerSighting.resetPosition || agent.remainingDistance <= agent.stoppingDistance) {
+            // ... increment the timer.
+            patrolTimer += Time.deltaTime;
+
+            // If the timer exceeds the wait time...
+            if (patrolTimer >= patrolWaitTime) {
+                // ... increment the wayPointIndex.
+                if (waypointIndex == patrolWaypoints.Length - 1)
+                    waypointIndex = 0;
+                else
+                    waypointIndex++;
+
+                // Reset the timer.
+                patrolTimer = 0;
+            }
+        }
+        else
+            // If not near a destination, reset the timer.
+            patrolTimer = 0;
+
+        // Set the destination to the patrolWayPoint.
+        agent.destination = patrolWaypoints[waypointIndex].position;
+        Debug.Log("ok");
+    }
+
+
+    void PickNewDestination() {
+
     }
 
     void RotateToward(Vector3 targetPosition, float rotationSpeed) {
@@ -134,6 +221,18 @@ public class EnemyScript : MonoBehaviour {
 
     void DropCredits(int amount) {
         //instantiate creditsdropprefab?
+    }
+
+    private bool CanSeePlayer() {
+        RaycastHit hit;
+        rayDirection = target.position - transform.position;
+
+        if ((Vector3.Angle(rayDirection, transform.forward)) <= visionAngle * 0.5f) {
+            if (Physics.Raycast(transform.position, rayDirection, out hit, visionRange)) {
+                return (hit.transform.CompareTag(Tags.player));
+            }
+        }
+        return false;
     }
 
 }
