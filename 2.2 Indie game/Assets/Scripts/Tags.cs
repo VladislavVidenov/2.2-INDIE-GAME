@@ -12,4 +12,6 @@ public class Tags : MonoBehaviour {
 
     //Custom Tags
     public const string enemy = "Enemy";
+    public const string ground = "Ground";
+    public const string vendingMachine = "VendingMachine";
 }
