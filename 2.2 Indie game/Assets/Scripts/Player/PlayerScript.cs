@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using UnityEngine.UI;
 
 public class PlayerScript : MonoBehaviour {
 
@@ -11,8 +12,14 @@ public class PlayerScript : MonoBehaviour {
 
     SceneChangeManager sceneManager;
 
+    [SerializeField]
+    GameObject scrapHud;
+    Text scrapText;
+
+
 	// Use this for initialization
 	void Start () {
+        scrapText = scrapHud.GetComponentInChildren<Text>();
         camera = Camera.main;
         sceneManager = GameObject.Find("SceneManager").GetComponent<SceneChangeManager>();
         GetPlayerStatsFromGameManager();
@@ -57,5 +64,27 @@ public class PlayerScript : MonoBehaviour {
         maxHealth =pMaxHealth;
         health = pHealth;
         scrap = pScrap;
+    }
+
+    public void IncreasePlayerStats(int pHealth, int pMaxHealth, int pScrap) {
+        if(pScrap>0) IncreaseScrapHud(pScrap);
+        maxHealth += pMaxHealth;
+        health += pHealth;
+        scrap += pScrap;
+    }
+
+    void IncreaseScrapHud(int Amount) {
+        StartCoroutine(IncreaseHud(scrap,Amount));
+        scrapHud.SetActive(true);
+        
+    }
+        
+    IEnumerator IncreaseHud(int text, int Amount) {
+        float time = 0.001f;
+        for (int i = 0; i < Amount+1; i++) {
+            yield return new WaitForSeconds(time);
+            scrapText.text = (text + i).ToString();
+            time += 0.001f;
+        }
     }
 }

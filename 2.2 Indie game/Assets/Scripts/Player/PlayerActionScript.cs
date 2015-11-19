@@ -19,13 +19,28 @@ public class PlayerActionScript : MonoBehaviour {
         Vector3 direction = gameObject.transform.TransformDirection(Vector3.forward);
         Vector3 position = transform.position;
         if (Physics.Raycast(position, direction, out hit, maxRayDistance, layerMask.value)) {
-            showGuiSkin = true;
-            if (Input.GetKeyDown(KeyCode.E)) {
-                GameObject target = hit.collider.gameObject;
-                if (hit.collider.CompareTag("VendingMachine")) {
+            GameObject target = hit.collider.gameObject;
+            switch (hit.collider.tag) {
+
+                case "VendingMachine":
+                    showGuiSkin = true;
+                    if (Input.GetKeyDown(KeyCode.E))
                     GameObject.Find("SceneManager").GetComponent<SceneChangeManager>().SetState(GameState.InBuyScreen);
-                }
-                //do action
+                    break;
+
+                case "LootableBox":
+                    LootableBoxScript lootBox = hit.collider.gameObject.GetComponent<LootableBoxScript>();
+                    if (!lootBox.isLooted) {
+                        showGuiSkin = true;
+                        if (Input.GetKeyDown(KeyCode.E))
+                            lootBox.Loot();
+                    }
+                    else {
+                        showGuiSkin = false;
+                    }
+
+                   
+                    break;
             }
         }
         else {
