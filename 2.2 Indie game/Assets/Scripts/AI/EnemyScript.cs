@@ -60,10 +60,11 @@ public class EnemyScript : MonoBehaviour {
         StartCoroutine("StateMachine");
 	}
 
+    int timeBetweenSteps = 1;
     //debug update
     void Update() {
         if (Input.GetKeyDown(KeyCode.Q)) {
-            TakeDamage(10);
+            //TakeDamage(10);
         }
     }
     //------------
@@ -181,7 +182,7 @@ public class EnemyScript : MonoBehaviour {
             patrolTimer = 0;
 
         // Set the destination to the patrolWayPoint.
-        agent.destination = patrolWaypoints[waypointIndex].position;
+        if (patrolWaypoints != null) agent.destination = patrolWaypoints[waypointIndex].position;
         Debug.Log("ok");
     }
 
