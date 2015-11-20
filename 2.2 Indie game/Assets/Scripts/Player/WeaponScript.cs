@@ -14,14 +14,13 @@ public class WeaponScript : MonoBehaviour {
     GameObject player;
     [SerializeField]
     GameObject recoilEffectGO;
-    AudioSource audio;
+    AudioSource audioSource;
     #region Sounds
-    [SerializeField]
-    AudioClip dryFireSound;
-    [SerializeField]
-    AudioClip reloadSound;
-    [SerializeField]
-    AudioClip fireSound;
+    [SerializeField] AudioClip dryFireSound;
+    [SerializeField] AudioClip reloadSound;
+    [SerializeField] AudioClip fireSound;
+    [SerializeField] AudioClip pullOutSound;
+
     #endregion
 
     //---SHOOT DECALS-------
@@ -51,6 +50,7 @@ public class WeaponScript : MonoBehaviour {
     public float fireRate = 0.1f;
     public float reloadTime = 3.0f;
     public float nextFireTime;
+    bool reloadInfo = false;
 
     //--------------
 
@@ -66,7 +66,7 @@ public class WeaponScript : MonoBehaviour {
     //-----------
 
     void Start () {
-        audio = GetComponent<AudioSource>();
+        audioSource = GetComponent<AudioSource>();
         mainCamera = Camera.main.gameObject;
         player = GameManager.Instance.Player;
         maxBulletsPerMag = bulletsInMagazine;
@@ -78,6 +78,13 @@ public class WeaponScript : MonoBehaviour {
         {
           
             if (currentWeaponMode == WeaponMode.SemiFire)
+            {
+                SemiFireMode();
+            }
+
+        }else if (Input.GetButton("Fire"))
+        {
+            if(currentWeaponMode == WeaponMode.Auto)
             {
                 SemiFireMode();
             }
@@ -96,6 +103,7 @@ public class WeaponScript : MonoBehaviour {
         GUI.contentColor = Color.red;
         GUI.Label(new Rect(10, 10, 100, 50), "mag" + bulletsInMagazine);
         GUI.Label(new Rect(10, 25, 100, 50), "total" + totalBulletCount);
+        if (reloadInfo) GUI.Label(new Rect(Screen.width / 2, Screen.height / 2, 150, 50), "You have no bullets left");
     }
     IEnumerator waitSound()
     {
@@ -104,7 +112,7 @@ public class WeaponScript : MonoBehaviour {
     }
  
     void SemiFireMode()
-    {
+    {//If we are currently reloading / or we ran out of ammo -> return and play dry fire sound:).
         if (isReloading || bulletsInMagazine <= 0)
         {
             if (bulletsInMagazine <= 0)
@@ -123,7 +131,7 @@ public class WeaponScript : MonoBehaviour {
         RaycastHit hit;
         Vector3 shootingPos = transform.parent.position;
         Debug.DrawRay(shootingPos, shootDirection * 100f, Color.red, 2);
-        audio.PlayOneShot(fireSound);
+       
         if(Physics.Raycast(shootingPos,shootDirection, out hit, 100f))
         {
 
@@ -138,7 +146,7 @@ public class WeaponScript : MonoBehaviour {
             }
         }
 
-        //play sound
+        audioSource.PlayOneShot(fireSound);
         //play animations
         Debug.Log("Shooting");
         //apply kickback affect
@@ -154,23 +162,32 @@ public class WeaponScript : MonoBehaviour {
     IEnumerator ReloadTime(float time)
     {
         yield return new WaitForSeconds(time);
-        int bulletsToLoad = maxBulletsPerMag - bulletsInMagazine;
-        totalBulletCount -= bulletsToLoad;
-        bulletsInMagazine += bulletsToLoad;
+        int bulletsShot = maxBulletsPerMag - bulletsInMagazine;
+        int tBCcopy = totalBulletCount;
+        totalBulletCount -= bulletsShot;
+        if (totalBulletCount < 0) totalBulletCount = 0;
+        int delta = tBCcopy - totalBulletCount;
+        bulletsInMagazine += delta;
         isReloading = false;
     }
-
+    IEnumerator shutReloadInfo()
+    {
+        yield return new WaitForSeconds(2f);
+        reloadInfo = false;
+    }
     void Reload()
     {
         //if we are already reloading or we are already on full ammo in mag-> return;
         if (isReloading || bulletsInMagazine == maxBulletsPerMag) return;
+        reloadInfo = (totalBulletCount <= 0) ? true : false;
+        if (reloadInfo) StartCoroutine(shutReloadInfo());
 
         if (bulletsInMagazine >= 0 && totalBulletCount > 0)
         {
             isReloading = true;
             //--- set animation reload speed
             //--- play reload gun animation
-            audio.PlayOneShot(reloadSound);
+            audioSource.PlayOneShot(reloadSound);
             StartCoroutine(ReloadTime(reloadTime));
         }
 
@@ -180,8 +197,13 @@ public class WeaponScript : MonoBehaviour {
     {
         if (isReloading || outOfAmmoSoundPlaying) return;
         outOfAmmoSoundPlaying = true;
-        audio.PlayOneShot(dryFireSound);
+        audioSource.PlayOneShot(dryFireSound);
         StartCoroutine(waitSound());
+    }
+    void PullOutWeapon()
+    {
+      //  audioSource.PlayOneShot(pullOutSound);
+
     }
     void RecoilEffect()
     {
