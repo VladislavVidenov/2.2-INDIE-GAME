@@ -11,8 +11,8 @@ public class WeaponManager : MonoBehaviour {
     Transform dropWeaponPosition;
 
     //GameObject currentWeapon;
-    int currentSlot;
-    int previousSlot;
+   // int currentSlot;
+   
 
 
     RaycastHit hit;
@@ -27,6 +27,7 @@ public class WeaponManager : MonoBehaviour {
     //int hitSlotIndex;
     //int hitWepIndex;
     WeaponIndex currentWeapon;
+    WeaponIndex previousWeapon;
     WeaponIndex[] inventory;
     WeaponIndex hitWeaponIndex;
     [SerializeField]
@@ -156,28 +157,30 @@ public class WeaponManager : MonoBehaviour {
 
     void lastWeaponUsed()
     {   //---------
-        if(previousSlot == 0) { Debug.Log("No prev weapon , not switching !!"); return; }
-        int previousSlotCopy = previousSlot;
+        if(previousWeapon != null && previousWeapon.slotID == 0 || currentWeapon.slotID == previousWeapon.slotID) { Debug.Log("No prev weapon , not switching !!"); return; }
+        int previousSlotIdCopy = previousWeapon.slotID;
+        int previousWwepIdcopy = previousWeapon.weaponID;
         DisableWeapon(currentWeapon.slotID,currentWeapon.weaponID);
-        EnableWeapon(previousSlotCopy);
+        EnableWeapon(previousSlotIdCopy,previousWwepIdcopy);
        
     }
 
     void SetSlot(int newSlotID, int newWeaponID = 1,bool swapWeapons = false)
     {
-        
-        if (newSlotID == currentSlot && !swapWeapons)
-        {
-            Debug.Log("Slot weapon already selected - return !");
-            return;
-        }
-        //if it is the right slot.
-        if (inventory[newSlotID - 1] != null && inventory[newSlotID - 1].slotID == newSlotID && inventory[newSlotID - 1].weaponID == newWeaponID)
-        {
-            if(currentWeapon != null) DisableWeapon(currentWeapon.slotID, currentWeapon.weaponID);
-            EnableWeapon(newSlotID,newWeaponID);
 
-        }
+            if (currentWeapon != null && newSlotID == currentWeapon.slotID && !swapWeapons)
+            {
+                Debug.Log("Slot weapon already selected - return !");
+                return;
+            }
+            //if it is the right slot.
+            if (inventory[newSlotID - 1] != null && inventory[newSlotID - 1].slotID == newSlotID && inventory[newSlotID - 1].weaponID == newWeaponID)
+            {
+                if(currentWeapon != null)DisableWeapon(currentWeapon.slotID, currentWeapon.weaponID);
+                EnableWeapon(newSlotID, newWeaponID);
+
+            }
+        
     }
 
     void DropWeapon(int slotIndex,int wepIndex)
@@ -203,7 +206,7 @@ public class WeaponManager : MonoBehaviour {
             WeaponIndex temp = weaponsOnPlayer[i].GetComponent<WeaponIndex>();
             if (temp.slotID == slot && temp.weaponID == wepId)
             {
-                previousSlot = temp.slotID;
+                previousWeapon = temp;
                 Debug.Log("DISABLED WEAPON --> " + temp.gameObject.name);
                 weaponsOnPlayer[i].SetActive(false);
 
@@ -219,7 +222,7 @@ public class WeaponManager : MonoBehaviour {
             if (temp.slotID == slot && temp.weaponID == wepId)
             {
          
-                currentSlot = temp.slotID;
+               
                 currentWeapon = temp;
                 Debug.Log("ENABLED WEAPON --> " + temp.gameObject.name);
                 weaponsOnPlayer[i].SetActive(true);
