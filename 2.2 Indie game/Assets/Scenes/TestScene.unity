@@ -1622,8 +1622,8 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1841682745}
   m_HandleRect: {fileID: 1841682744}
   m_Direction: 2
-  m_Value: .499999911
-  m_Size: .410558283
+  m_Value: .5
+  m_Size: .71130693
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -5359,6 +5359,10 @@ Prefab:
     - target: {fileID: 490878, guid: 9d6040898dddac64195218c736f468a6, type: 2}
       propertyPath: m_RootOrder
       value: 12
+      objectReference: {fileID: 0}
+    - target: {fileID: 180752, guid: 9d6040898dddac64195218c736f468a6, type: 2}
+      propertyPath: m_TagString
+      value: Player
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 9d6040898dddac64195218c736f468a6, type: 2}

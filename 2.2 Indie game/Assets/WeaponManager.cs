@@ -76,21 +76,17 @@ public class WeaponManager : MonoBehaviour {
             if (inventory[1] == null) return;
             SetSlot(2,inventory[1].weaponID);
         }
-
         if (Input.GetKeyDown(KeyCode.Alpha3))
         {
             if (inventory[2] == null) return;
             SetSlot(3,inventory[2].weaponID);
         }
-
         if (Input.GetKeyDown(KeyCode.E))
         {
             lastWeaponUsed();
         }
-
         //Debug.Log("Previous weapon -> " + previousWeaponIndex);
         //Debug.Log("Current weapon  -> " + currentWeaponIndex);
-
         Vector3 position = transform.parent.position;
         Vector3 direction = transform.TransformDirection(Vector3.forward);
 
@@ -124,16 +120,12 @@ public class WeaponManager : MonoBehaviour {
                     }
                     else
                     {
-                      //  not tested if working.
-                     
                         DropWeapon(hitWeaponIndex.slotID,inventory[hitWeaponIndex.slotID - 1].weaponID);
                         inventory[hitWeaponIndex.slotID - 1] = hitWeaponIndex;
                         SetSlot(hitWeaponIndex.slotID, hitWeaponIndex.weaponID,true);
                         inventory[hitWeaponIndex.slotID - 1] = currentWeapon;
                         Destroy(hit.transform.gameObject);
-
                     }
-
                 }
                 else
                 {
@@ -146,7 +138,6 @@ public class WeaponManager : MonoBehaviour {
                     /// ^^^problem.
                 }
             }
-
         }
         else
         {
@@ -161,13 +152,11 @@ public class WeaponManager : MonoBehaviour {
         int previousSlotIdCopy = previousWeapon.slotID;
         int previousWwepIdcopy = previousWeapon.weaponID;
         DisableWeapon(currentWeapon.slotID,currentWeapon.weaponID);
-        EnableWeapon(previousSlotIdCopy,previousWwepIdcopy);
-       
+        EnableWeapon(previousSlotIdCopy,previousWwepIdcopy);       
     }
 
     void SetSlot(int newSlotID, int newWeaponID = 1,bool swapWeapons = false)
     {
-
             if (currentWeapon != null && newSlotID == currentWeapon.slotID && !swapWeapons)
             {
                 Debug.Log("Slot weapon already selected - return !");
@@ -178,13 +167,10 @@ public class WeaponManager : MonoBehaviour {
             {
                 if(currentWeapon != null)DisableWeapon(currentWeapon.slotID, currentWeapon.weaponID);
                 EnableWeapon(newSlotID, newWeaponID);
-
             }
-        
     }
 
     void DropWeapon(int slotIndex,int wepIndex)
-
     {
         Debug.Log("Slot ind" + slotIndex + "Wep ind" + wepIndex);
         for (int i = 0; i < weaponPrefabs.Length; i++)
@@ -200,7 +186,6 @@ public class WeaponManager : MonoBehaviour {
     }
     void DisableWeapon(int slot, int wepId)
     {
-        
         for (int i = 0; i < weaponsOnPlayer.Length; i++)
         {
             WeaponIndex temp = weaponsOnPlayer[i].GetComponent<WeaponIndex>();
@@ -209,7 +194,6 @@ public class WeaponManager : MonoBehaviour {
                 previousWeapon = temp;
                 Debug.Log("DISABLED WEAPON --> " + temp.gameObject.name);
                 weaponsOnPlayer[i].SetActive(false);
-
                 break;
             }
         }
@@ -221,8 +205,6 @@ public class WeaponManager : MonoBehaviour {
             WeaponIndex temp = weaponsOnPlayer[i].GetComponent<WeaponIndex>();
             if (temp.slotID == slot && temp.weaponID == wepId)
             {
-         
-               
                 currentWeapon = temp;
                 Debug.Log("ENABLED WEAPON --> " + temp.gameObject.name);
                 weaponsOnPlayer[i].SetActive(true);
