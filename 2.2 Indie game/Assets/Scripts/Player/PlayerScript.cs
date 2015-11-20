@@ -80,11 +80,17 @@ public class PlayerScript : MonoBehaviour {
     }
         
     IEnumerator IncreaseHud(int text, int Amount) {
-        float time = 0.001f;
-        for (int i = 0; i < Amount+1; i++) {
-            yield return new WaitForSeconds(time);
-            scrapText.text = (text + i).ToString();
-            time += 0.001f;
+
+        float stepTime = 0.02f;
+        float addAmount = (float)Amount / 100;
+        
+        for (int i = 0; i < 100+1; i++) {
+            yield return new WaitForSeconds(stepTime);
+            float scrapAmount = i * addAmount;
+            scrapText.text = (text + Mathf.Floor(scrapAmount)).ToString();
+            if (i > 60) stepTime = 0.03f;
+            if (i > 70) stepTime = 0.04f;
+            if (i > 80) stepTime = 0.05f;
         }
     }
 }

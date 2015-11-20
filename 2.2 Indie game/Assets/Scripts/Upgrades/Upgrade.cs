@@ -4,8 +4,6 @@ using UnityEngine.UI;
 
 public class Upgrade :MonoBehaviour {
 
-	bool isDrawable = true;
-
 	public Sprite upGradeImage;
 	public string text;
 
