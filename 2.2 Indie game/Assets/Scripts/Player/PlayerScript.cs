@@ -20,6 +20,7 @@ public class PlayerScript : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
         scrapText = scrapHud.GetComponentInChildren<Text>();
+        DeactiveScrapHud();
         camera = Camera.main;
         sceneManager = GameObject.Find("SceneManager").GetComponent<SceneChangeManager>();
         GetPlayerStatsFromGameManager();
@@ -74,9 +75,13 @@ public class PlayerScript : MonoBehaviour {
     }
 
     void IncreaseScrapHud(int Amount) {
-        StartCoroutine(IncreaseHud(scrap,Amount));
         scrapHud.SetActive(true);
-        
+        StartCoroutine(IncreaseHud(scrap,Amount));
+        Invoke("DeactiveScrapHud", 5);
+    }
+
+    void DeactiveScrapHud() {
+        scrapHud.SetActive(false);
     }
         
     IEnumerator IncreaseHud(int text, int Amount) {
