@@ -20,11 +20,24 @@ public class VendingMachine : MonoBehaviour {
 	[SerializeField]
 	Text buyText;
     [SerializeField]
+    Text healthText;
+    [SerializeField]
+    Text scrapText;
+    [SerializeField]
     Button buyButton;
+
+    //player
+    PlayerScript player;
+    int playerHealth;
+    int playerScrap;
+    int playerMaxHealth;
+
 
 
 
 	void Start(){
+        player = GameObject.FindGameObjectWithTag(Tags.player).GetComponent<PlayerScript>() ;
+
 		ownedUpgrades = GameManager.Instance.OwnedUpgrades;
         ApplyUpgrades();
 
@@ -33,10 +46,13 @@ public class VendingMachine : MonoBehaviour {
 	}
 
 	public void ActivateStation (){
+        GetPlayerStats();
+        ChangePlayerStatsText();
         buyscreen.SetActive(true);
 	}
 
 	public void DeActivateStation () {
+        SetPlayerStats();
 		if(selectedUpgrade != null) ChangeSelectedButton(Color.white);
 		buyButton.gameObject.SetActive(false);
 		SetImageAndText ();
@@ -65,13 +81,15 @@ public class VendingMachine : MonoBehaviour {
 		selectedUpgrade.Apply ();
 		ownedUpgrades.Add (selectedUpgrade);
 		ChangeBuyButton("Allready have",false);
+        playerScrap -= selectedUpgrade.Cost;
+        ChangePlayerStatsText();
 	}
 
     void CheckUpgrade() {
 		if (ownedUpgrades.Contains (selectedUpgrade)) {
 			ChangeBuyButton("Allready have",false);
 		} else {
-			if (selectedUpgrade.Cost > 100) {
+			if (selectedUpgrade.Cost > playerScrap) {
 				ChangeBuyButton("no Money",false);
 			} else {
 				ChangeBuyButton("Buy Upgrade",true);
@@ -116,5 +134,18 @@ public class VendingMachine : MonoBehaviour {
         foreach (Upgrade upgrade in ownedUpgrades) {
             upgrade.Apply();
         }
+    }
+
+    void GetPlayerStats() {
+        player.GetStats(out playerHealth,out playerMaxHealth, out playerScrap);
+    }
+
+    void SetPlayerStats() {
+        player.SetStats(playerHealth, playerMaxHealth, playerScrap);
+    }
+
+    void ChangePlayerStatsText() {
+        scrapText.text = "Scrap:"+ playerScrap.ToString();
+        healthText.text ="health"+ playerHealth.ToString() + "/" + playerMaxHealth.ToString();
     }
 }

@@ -52,7 +52,8 @@ public class EnemySightScript : MonoBehaviour {
                 RaycastHit hit;
 
                 // ... and if a raycast towards the player hits something...
-                if (Physics.Raycast(transform.position + transform.up, direction.normalized, out hit, sphereCollider.radius)) {
+                if (Physics.Raycast(transform.position + transform.up/3, direction.normalized, out hit, sphereCollider.radius)) {
+                    Debug.DrawRay(transform.position + transform.up/3, direction, Color.red);
                     // ... and if the raycast hits the player...
                     if (hit.collider.gameObject == player) {
                         // ... the player is in sight.
