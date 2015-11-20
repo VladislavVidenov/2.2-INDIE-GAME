@@ -51,7 +51,7 @@ public class WeaponScript : MonoBehaviour {
     public float reloadTime = 3.0f;
     public float nextFireTime;
     bool reloadInfo = false;
-
+    bool reloadInfoStarted = false;
     //--------------
 
 
@@ -74,6 +74,7 @@ public class WeaponScript : MonoBehaviour {
 	
 	
 	void Update () {
+       // Debug.Log(isReloading);
         if (Input.GetButtonDown("Fire"))
         {
           
@@ -174,13 +175,14 @@ public class WeaponScript : MonoBehaviour {
     {
         yield return new WaitForSeconds(2f);
         reloadInfo = false;
+        reloadInfoStarted = false;
     }
     void Reload()
     {
         //if we are already reloading or we are already on full ammo in mag-> return;
         if (isReloading || bulletsInMagazine == maxBulletsPerMag) return;
         reloadInfo = (totalBulletCount <= 0) ? true : false;
-        if (reloadInfo) StartCoroutine(shutReloadInfo());
+        if (reloadInfo && !reloadInfoStarted) { reloadInfoStarted = true; StartCoroutine(shutReloadInfo()); }
 
         if (bulletsInMagazine >= 0 && totalBulletCount > 0)
         {
@@ -205,6 +207,10 @@ public class WeaponScript : MonoBehaviour {
       //  audioSource.PlayOneShot(pullOutSound);
 
     }
+    void HolsterWeapon()
+    {
+
+    }
     void RecoilEffect()
     {
         recoilEffectGO.transform.localRotation = Quaternion.Euler(recoilEffectGO.transform.localRotation.eulerAngles - new Vector3(1, Random.Range(-1, 1), 0));
@@ -221,4 +227,7 @@ public class WeaponScript : MonoBehaviour {
         }
         return false;
     }
+
+
+
 }

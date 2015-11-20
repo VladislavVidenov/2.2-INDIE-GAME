@@ -70,7 +70,6 @@ public class WeaponManager : MonoBehaviour {
             if (inventory[0] == null) return;
             SetSlot(1,inventory[0].weaponID);
         }
-
         if (Input.GetKeyDown(KeyCode.Alpha2))
         {
             if (inventory[1] == null) return;
@@ -107,14 +106,14 @@ public class WeaponManager : MonoBehaviour {
                 isSlotTaken = false;
                 isWeaponOwned = false;
             }
-            Debug.Log("Weapon owned ?" + isWeaponOwned + " Slot taken ? " + isSlotTaken);
+          //  Debug.Log("Weapon owned ?" + isWeaponOwned + " Slot taken ? " + isSlotTaken);
             if (Input.GetKeyDown(KeyCode.F))
             {
                 if (isSlotTaken)
                 {
                     if (isWeaponOwned)
                     {
-                        Debug.Log("shit happens brah.");
+                       // Debug.Log("shit happens brah.");
                        //just notify the player that he already owns the weapon
                        //-->maybe replace ? to do.
                     }
@@ -129,11 +128,12 @@ public class WeaponManager : MonoBehaviour {
                 }
                 else
                 {
+                    Debug.Log("THIS SHOULD HAPPEN 3 TIMES :)))))");
                     // assign the weapon index to the Inventory
                     inventory[hitWeaponIndex.slotID - 1] = hitWeaponIndex;
                     SetSlot(hitWeaponIndex.slotID,hitWeaponIndex.weaponID); //enable the weapon
                     inventory[hitWeaponIndex.slotID - 1] = currentWeapon;
-                    Debug.Log("DESTROOOYING -------> " + hit.transform.gameObject.name);
+                  //  Debug.Log("DESTROOOYING -------> " + hit.transform.gameObject.name);
                     Destroy(hit.transform.gameObject); //destroy the picked item/weapon.
                     /// ^^^problem.
                 }
@@ -150,16 +150,15 @@ public class WeaponManager : MonoBehaviour {
     {   //---------
         if(previousWeapon != null && previousWeapon.slotID == 0 || currentWeapon.slotID == previousWeapon.slotID) { Debug.Log("No prev weapon , not switching !!"); return; }
         int previousSlotIdCopy = previousWeapon.slotID;
-        int previousWwepIdcopy = previousWeapon.weaponID;
-        DisableWeapon(currentWeapon.slotID,currentWeapon.weaponID);
-        EnableWeapon(previousSlotIdCopy,previousWwepIdcopy);       
+        int previousWwepIdcopy = previousWeapon.weaponID;    
+        SetSlot(previousSlotIdCopy, previousWwepIdcopy);
     }
 
     void SetSlot(int newSlotID, int newWeaponID = 1,bool swapWeapons = false)
     {
             if (currentWeapon != null && newSlotID == currentWeapon.slotID && !swapWeapons)
             {
-                Debug.Log("Slot weapon already selected - return !");
+               // Debug.Log("Slot weapon already selected - return !");
                 return;
             }
             //if it is the right slot.
@@ -172,14 +171,14 @@ public class WeaponManager : MonoBehaviour {
 
     void DropWeapon(int slotIndex,int wepIndex)
     {
-        Debug.Log("Slot ind" + slotIndex + "Wep ind" + wepIndex);
+       // Debug.Log("Slot ind" + slotIndex + "Wep ind" + wepIndex);
         for (int i = 0; i < weaponPrefabs.Length; i++)
         {
             WeaponIndex temp = weaponPrefabs[i].GetComponent<WeaponIndex>();
             if (temp.slotID == slotIndex && temp.weaponID == wepIndex)
             {
                 Rigidbody dropWeapon = Instantiate(weaponPrefabs[i], dropWeaponPosition.position, Quaternion.identity) as Rigidbody;
-                Debug.Log("DROPPED WEAPON ----> " + dropWeapon.gameObject.name);
+                //Debug.Log("DROPPED WEAPON ----> " + dropWeapon.gameObject.name);
                 dropWeapon.AddRelativeForce(0, 50, Random.Range(50, 150));
             }
         }
@@ -192,8 +191,11 @@ public class WeaponManager : MonoBehaviour {
             if (temp.slotID == slot && temp.weaponID == wepId)
             {
                 previousWeapon = temp;
-                Debug.Log("DISABLED WEAPON --> " + temp.gameObject.name);
+                //Debug.Log("DISABLED WEAPON --> " + temp.gameObject.name);
                 weaponsOnPlayer[i].SetActive(false);
+                weaponsOnPlayer[i].GetComponent<WeaponIndex>().enabled = false;
+                weaponsOnPlayer[i].GetComponent<WeaponScript>().enabled = false;
+                Debug.Log("------DISABLE HAPPENED ------ !");
                 break;
             }
         }
@@ -206,11 +208,16 @@ public class WeaponManager : MonoBehaviour {
             if (temp.slotID == slot && temp.weaponID == wepId)
             {
                 currentWeapon = temp;
-                Debug.Log("ENABLED WEAPON --> " + temp.gameObject.name);
+                //Debug.Log("ENABLED WEAPON --> " + temp.gameObject.name);
                 weaponsOnPlayer[i].SetActive(true);
+                weaponsOnPlayer[i].GetComponent<WeaponIndex>().enabled = true;
+                weaponsOnPlayer[i].GetComponent<WeaponScript>().enabled = true;
+                Debug.Log("------ENABLE HAPPENED ------ !");
                 break;
             }
         }
     }
+
+    
    
 }
