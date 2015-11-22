@@ -3,26 +3,31 @@ using System.Collections;
 
 public class WeaponManager : MonoBehaviour {
 
-   // [SerializeField]
-   // GameObject[] weaponsOnGround; //JUST weapons available for picking up
+    // [SerializeField]
+    // GameObject[] weaponsOnGround; //JUST weapons available for picking up
     [SerializeField]
     Rigidbody[] weaponPrefabs;
     [SerializeField]
     Transform dropWeaponPosition;
 
     //GameObject currentWeapon;
-   // int currentSlot;
-   
+    // int currentSlot;
+
 
 
     RaycastHit hit;
+    float timer = 0;
+    float waitTime = 5f;
     float pickDistance = 2.0f;
+    float weaponSwitchTime = 0.5f;
     public LayerMask layerWeapons;
+
     bool showWeaponText = false;
 
     bool isWeaponOwned = false;
     bool isSlotTaken = false;
-
+    [HideInInspector]
+    public bool canSwitchWeapon = true;
 
     //int hitSlotIndex;
     //int hitWepIndex;
@@ -35,7 +40,7 @@ public class WeaponManager : MonoBehaviour {
     void Start()
     {
         inventory = new WeaponIndex[3];
-        
+
     }
 
     void OnGUI()
@@ -50,11 +55,11 @@ public class WeaponManager : MonoBehaviour {
                     GUI.Label(new Rect(Screen.width / 2, Screen.height / 2, 150, 100), "You already own this weapon!");
                 }
                 else
-                    //if the slot is taken but the weapon is NOT owned.
+                //if the slot is taken but the weapon is NOT owned.
                 {
                     GUI.Label(new Rect(Screen.width / 2, Screen.height / 2, 150, 100), "Press <F> to replace current weapon with this one");
                 }
-                
+
             }
             else
             {
@@ -65,113 +70,127 @@ public class WeaponManager : MonoBehaviour {
 
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Alpha1))
-        {
-            if (inventory[0] == null) return;
-            SetSlot(1,inventory[0].weaponID);
-        }
-        if (Input.GetKeyDown(KeyCode.Alpha2))
-        {
-            if (inventory[1] == null) return;
-            SetSlot(2,inventory[1].weaponID);
-        }
-        if (Input.GetKeyDown(KeyCode.Alpha3))
-        {
-            if (inventory[2] == null) return;
-            SetSlot(3,inventory[2].weaponID);
-        }
-        if (Input.GetKeyDown(KeyCode.E))
-        {
-            lastWeaponUsed();
-        }
-        //Debug.Log("Previous weapon -> " + previousWeaponIndex);
-        //Debug.Log("Current weapon  -> " + currentWeaponIndex);
-        Vector3 position = transform.parent.position;
-        Vector3 direction = transform.TransformDirection(Vector3.forward);
 
-        if (Physics.Raycast(position, direction, out hit, pickDistance, layerWeapons))
+        if (canSwitchWeapon)
         {
-            hitWeaponIndex = hit.transform.GetComponent<WeaponIndex>();
-            showWeaponText = true;
-            if (inventory[hitWeaponIndex.slotID - 1] != null)
+            if (Input.GetKeyDown(KeyCode.Alpha1))
             {
-                isSlotTaken = true;
-                if (inventory[hitWeaponIndex.slotID - 1].weaponID == hitWeaponIndex.weaponID)
-                    isWeaponOwned = true;
-                else
-                    isWeaponOwned = false;
+                if (inventory[0] == null) return;
+                SetSlot(1, inventory[0].weaponID);
             }
-            else
+            if (Input.GetKeyDown(KeyCode.Alpha2))
             {
-                isSlotTaken = false;
-                isWeaponOwned = false;
+                if (inventory[1] == null) return;
+                SetSlot(2, inventory[1].weaponID);
             }
-          //  Debug.Log("Weapon owned ?" + isWeaponOwned + " Slot taken ? " + isSlotTaken);
-            if (Input.GetKeyDown(KeyCode.F))
+            if (Input.GetKeyDown(KeyCode.Alpha3))
             {
-                if (isSlotTaken)
+                if (inventory[2] == null) return;
+                SetSlot(3, inventory[2].weaponID);
+            }
+            if (Input.GetKeyDown(KeyCode.E))
+            {
+                lastWeaponUsed();
+            }
+        }
+            //Debug.Log("Previous weapon -> " + previousWeaponIndex);
+            //Debug.Log("Current weapon  -> " + currentWeaponIndex);
+            Vector3 position = transform.parent.position;
+            Vector3 direction = transform.TransformDirection(Vector3.forward);
+
+            if (Physics.Raycast(position, direction, out hit, pickDistance, layerWeapons) && canSwitchWeapon)
+            {
+                hitWeaponIndex = hit.transform.GetComponent<WeaponIndex>();
+                showWeaponText = true;
+                if (inventory[hitWeaponIndex.slotID - 1] != null)
                 {
-                    if (isWeaponOwned)
+                    isSlotTaken = true;
+                    if (inventory[hitWeaponIndex.slotID - 1].weaponID == hitWeaponIndex.weaponID)
+                        isWeaponOwned = true;
+                    else
+                        isWeaponOwned = false;
+                }
+                else
+                {
+                    isSlotTaken = false;
+                    isWeaponOwned = false;
+                }
+                if (Input.GetKeyDown(KeyCode.F) && canSwitchWeapon)
+                {
+                    if (isSlotTaken)
                     {
-                       // Debug.Log("shit happens brah.");
-                       //just notify the player that he already owns the weapon
-                       //-->maybe replace ? to do.
+                        if (isWeaponOwned)
+                        {
+                            // Debug.Log("shit happens brah.");
+                            //just notify the player that he already owns the weapon
+                            //-->maybe replace ? to do.
+                        }
+                        else
+                        {
+                            DropWeapon(hitWeaponIndex.slotID, inventory[hitWeaponIndex.slotID - 1].weaponID);
+                            // inventory[hitWeaponIndex.slotID - 1] = hitWeaponIndex;
+                            SetSlot(hitWeaponIndex.slotID, hitWeaponIndex.weaponID, true);
+
+                            Destroy(hit.transform.gameObject);
+
+                        }
                     }
                     else
                     {
-                        DropWeapon(hitWeaponIndex.slotID,inventory[hitWeaponIndex.slotID - 1].weaponID);
-                        inventory[hitWeaponIndex.slotID - 1] = hitWeaponIndex;
-                        SetSlot(hitWeaponIndex.slotID, hitWeaponIndex.weaponID,true);
-                        inventory[hitWeaponIndex.slotID - 1] = currentWeapon;
+
+                        SetSlot(hitWeaponIndex.slotID, hitWeaponIndex.weaponID); //enable the weapon
+                                                                                 //  inventory[hitWeaponIndex.slotID - 1] = currentWeapon;
+
                         Destroy(hit.transform.gameObject);
+
+
                     }
                 }
-                else
-                {
-                    Debug.Log("THIS SHOULD HAPPEN 3 TIMES :)))))");
-                    // assign the weapon index to the Inventory
-                    inventory[hitWeaponIndex.slotID - 1] = hitWeaponIndex;
-                    SetSlot(hitWeaponIndex.slotID,hitWeaponIndex.weaponID); //enable the weapon
-                    inventory[hitWeaponIndex.slotID - 1] = currentWeapon;
-                  //  Debug.Log("DESTROOOYING -------> " + hit.transform.gameObject.name);
-                    Destroy(hit.transform.gameObject); //destroy the picked item/weapon.
-                    /// ^^^problem.
-                }
             }
-        }
-        else
-        {
-            showWeaponText = false;
-        }
+            else
+            {
+                showWeaponText = false;
+            }
+            Debug.Log("UPDATE HAPPENED ~!");
+        
+
     }
 
 
     void lastWeaponUsed()
     {   //---------
-        if(previousWeapon != null && previousWeapon.slotID == 0 || currentWeapon.slotID == previousWeapon.slotID) { Debug.Log("No prev weapon , not switching !!"); return; }
+        if (previousWeapon != null && previousWeapon.slotID == 0 || currentWeapon.slotID == previousWeapon.slotID) { Debug.Log("No prev weapon , not switching !!"); return; }
         int previousSlotIdCopy = previousWeapon.slotID;
-        int previousWwepIdcopy = previousWeapon.weaponID;    
+        int previousWwepIdcopy = previousWeapon.weaponID;
         SetSlot(previousSlotIdCopy, previousWwepIdcopy);
     }
 
-    void SetSlot(int newSlotID, int newWeaponID = 1,bool swapWeapons = false)
+    void SetSlot(int newSlotID, int newWeaponID = 1, bool swapWeapons = false)
     {
-            if (currentWeapon != null && newSlotID == currentWeapon.slotID && !swapWeapons)
-            {
-               // Debug.Log("Slot weapon already selected - return !");
-                return;
-            }
-            //if it is the right slot.
-            if (inventory[newSlotID - 1] != null && inventory[newSlotID - 1].slotID == newSlotID && inventory[newSlotID - 1].weaponID == newWeaponID)
-            {
-                if(currentWeapon != null)DisableWeapon(currentWeapon.slotID, currentWeapon.weaponID);
-                EnableWeapon(newSlotID, newWeaponID);
-            }
+        if (currentWeapon != null && newSlotID == currentWeapon.slotID && !swapWeapons)
+        {
+            // Debug.Log("Slot weapon already selected - return !");
+            return;
+        }
+        //if (currentWeapon != null) DisableWeapon(currentWeapon.slotID, currentWeapon.weaponID);
+        //EnableWeapon(newSlotID, newWeaponID);
+        StartCoroutine(SwitchWeaponWait(newSlotID, newWeaponID, weaponSwitchTime));
     }
 
-    void DropWeapon(int slotIndex,int wepIndex)
+    IEnumerator SwitchWeaponWait(int newSlotID, int newWeaponID, float weaponSwitchTime)
     {
-       // Debug.Log("Slot ind" + slotIndex + "Wep ind" + wepIndex);
+        canSwitchWeapon = false;
+        if (currentWeapon != null) DisableWeapon(currentWeapon.slotID, currentWeapon.weaponID);
+
+        yield return new WaitForSeconds(weaponSwitchTime);
+        EnableWeapon(newSlotID, newWeaponID);
+        yield return new WaitForSeconds(weaponSwitchTime);
+        canSwitchWeapon = true;
+
+    }
+    void DropWeapon(int slotIndex, int wepIndex)
+    {
+        // Debug.Log("Slot ind" + slotIndex + "Wep ind" + wepIndex);
         for (int i = 0; i < weaponPrefabs.Length; i++)
         {
             WeaponIndex temp = weaponPrefabs[i].GetComponent<WeaponIndex>();
@@ -185,6 +204,7 @@ public class WeaponManager : MonoBehaviour {
     }
     void DisableWeapon(int slot, int wepId)
     {
+        canSwitchWeapon = false;
         for (int i = 0; i < weaponsOnPlayer.Length; i++)
         {
             WeaponIndex temp = weaponsOnPlayer[i].GetComponent<WeaponIndex>();
@@ -192,6 +212,8 @@ public class WeaponManager : MonoBehaviour {
             {
                 previousWeapon = temp;
                 //Debug.Log("DISABLED WEAPON --> " + temp.gameObject.name);
+
+                weaponsOnPlayer[i].gameObject.SendMessage("HolsterWeapon", SendMessageOptions.DontRequireReceiver);
                 weaponsOnPlayer[i].SetActive(false);
                 weaponsOnPlayer[i].GetComponent<WeaponIndex>().enabled = false;
                 weaponsOnPlayer[i].GetComponent<WeaponScript>().enabled = false;
@@ -208,16 +230,19 @@ public class WeaponManager : MonoBehaviour {
             if (temp.slotID == slot && temp.weaponID == wepId)
             {
                 currentWeapon = temp;
+                inventory[hitWeaponIndex.slotID - 1] = currentWeapon;
                 //Debug.Log("ENABLED WEAPON --> " + temp.gameObject.name);
                 weaponsOnPlayer[i].SetActive(true);
                 weaponsOnPlayer[i].GetComponent<WeaponIndex>().enabled = true;
                 weaponsOnPlayer[i].GetComponent<WeaponScript>().enabled = true;
+                weaponsOnPlayer[i].gameObject.SendMessage("PullOutWeapon", SendMessageOptions.DontRequireReceiver);
                 Debug.Log("------ENABLE HAPPENED ------ !");
                 break;
             }
         }
     }
 
-    
-   
+
+
+
 }

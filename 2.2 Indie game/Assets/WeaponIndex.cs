@@ -18,4 +18,10 @@ public class WeaponIndex : MonoBehaviour {
         else if (slotID == 1) weaponType = "Handgun";
         else if (slotID == 2) weaponType = "Shotgun";
     }
+
+    void FakeDisable()
+    {
+        GetComponent<Collider>().enabled = false;
+        gameObject.SetActive(false);
+    }
 }

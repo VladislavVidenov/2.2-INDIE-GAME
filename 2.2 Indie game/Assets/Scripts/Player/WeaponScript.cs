@@ -3,7 +3,7 @@ using System.Collections;
 
 [RequireComponent(typeof(AudioSource))]
 public class WeaponScript : MonoBehaviour {
-
+    WeaponManager weaponManager;
     public enum WeaponMode { None,SemiFire,Auto };
     public WeaponMode currentWeaponMode;
 
@@ -42,14 +42,16 @@ public class WeaponScript : MonoBehaviour {
     public int bulletsInMagazine = 6;
     public int totalBulletCount = 24;
     int maxBulletsPerMag;
+
+    public float damage = 20;
+    public float fireRate = 0.1f;
+    public float reloadTime = 3.0f;
+    public float pullOutWeaponTime;
+    public float nextFireTime;
     bool isReloading = false;
     bool isFiring = false;
     bool weaponSelected = false;
     bool outOfAmmoSoundPlaying = false;
-    public float damage = 20;
-    public float fireRate = 0.1f;
-    public float reloadTime = 3.0f;
-    public float nextFireTime;
     bool reloadInfo = false;
     bool reloadInfoStarted = false;
     //--------------
@@ -70,6 +72,7 @@ public class WeaponScript : MonoBehaviour {
         mainCamera = Camera.main.gameObject;
         player = GameManager.Instance.Player;
         maxBulletsPerMag = bulletsInMagazine;
+        weaponManager = FindObjectOfType<WeaponManager>();
     }
 	
 	
@@ -204,12 +207,27 @@ public class WeaponScript : MonoBehaviour {
     }
     void PullOutWeapon()
     {
-      //  audioSource.PlayOneShot(pullOutSound);
+        //play draw weapon sound
+        //play "pullout wep animation" with playmode.stopall
+        //play "pull out animation" by crossfade.
+        StartCoroutine(waitPullOut(pullOutWeaponTime));
+
+    }
+    IEnumerator waitPullOut(float waittime)
+    {
+        yield return new WaitForSeconds(waittime);
+        isReloading = false;
+        weaponSelected = true;
+        Debug.Log("Pull out wep called !");
+        //enable crosshair 
 
     }
     void HolsterWeapon()
     {
-
+        Debug.Log("HolsterWeapon called!");
+        weaponSelected = false;
+    //change field of view.
+        //set a bool that crossshair is = false;
     }
     void RecoilEffect()
     {
