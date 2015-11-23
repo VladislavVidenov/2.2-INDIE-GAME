@@ -8,6 +8,8 @@ TagManager:
   - VendingMachine
   - Enemy
   - LootableBox
+  - WeaponCamera
+  - New Tag
   layers:
   - Default
   - TransparentFX

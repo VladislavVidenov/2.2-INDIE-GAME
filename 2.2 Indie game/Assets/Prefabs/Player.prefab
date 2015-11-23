@@ -344,7 +344,7 @@ GameObject:
   - 114: {fileID: 11456850}
   m_Layer: 8
   m_Name: WeaponCamera
-  m_TagString: Untagged
+  m_TagString: WeaponCamera
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -601,9 +601,10 @@ GameObject:
   - 114: {fileID: 11428904}
   - 54: {fileID: 5416802}
   - 114: {fileID: 11407194}
+  - 114: {fileID: 11430582}
   m_Layer: 8
   m_Name: Player
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 5132851093641282708, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -616,7 +617,6 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 458750}
-  - 23: {fileID: 2359856}
   m_Layer: 8
   m_Name: WepDropPos
   m_TagString: Untagged
@@ -1424,30 +1424,6 @@ MeshRenderer:
   m_ProbeAnchor: {fileID: 0}
   m_ScaleInLightmap: 1
   m_PreserveUVs: 0
-  m_ImportantGI: 0
-  m_AutoUVMaxDistance: .5
-  m_AutoUVMaxAngle: 89
-  m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingOrder: 0
---- !u!23 &2359856
-MeshRenderer:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 192172}
-  m_Enabled: 0
-  m_CastShadows: 1
-  m_ReceiveShadows: 1
-  m_Materials:
-  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
-  m_SubsetIndices: 
-  m_StaticBatchRoot: {fileID: 0}
-  m_UseLightProbes: 1
-  m_ReflectionProbeUsage: 1
-  m_ProbeAnchor: {fileID: 0}
-  m_ScaleInLightmap: 1
-  m_PreserveUVs: 1
   m_ImportantGI: 0
   m_AutoUVMaxDistance: .5
   m_AutoUVMaxAngle: 89
@@ -2321,6 +2297,7 @@ MonoBehaviour:
   damage: 20
   fireRate: .100000001
   reloadTime: 2
+  pullOutWeaponTime: 0
   nextFireTime: 0
 --- !u!114 &11405206
 MonoBehaviour:
@@ -2347,8 +2324,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a093b6a3fa6dc1f4cba8b30aedab3a25, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  walkSpeed: 5
-  crouchSpeed: 0
+  walkSpeed: 10
+  crouchSpeed: 5
+  runSpeed: 15
+  inAirSpeed: .100000001
+  heightToJump: 5
 --- !u!114 &11416038
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2373,6 +2353,7 @@ MonoBehaviour:
   damage: 20
   fireRate: .100000001
   reloadTime: 2
+  pullOutWeaponTime: 0
   nextFireTime: 0
 --- !u!114 &11428904
 MonoBehaviour:
@@ -2391,6 +2372,18 @@ MonoBehaviour:
   maxRotationX: 360
   minRotationY: 0
   maxRotationY: 0
+--- !u!114 &11430582
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 180752}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6392295c164b25241b7c9f3eb699b4d2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  scrapHud: {fileID: 0}
 --- !u!114 &11434958
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2415,6 +2408,7 @@ MonoBehaviour:
   damage: 20
   fireRate: .100000001
   reloadTime: 2
+  pullOutWeaponTime: 0
   nextFireTime: 0
 --- !u!114 &11443728
 MonoBehaviour:
@@ -2455,6 +2449,7 @@ MonoBehaviour:
   damage: 20
   fireRate: .100000001
   reloadTime: 2
+  pullOutWeaponTime: 0
   nextFireTime: 0
 --- !u!114 &11456850
 MonoBehaviour:
@@ -2522,6 +2517,7 @@ MonoBehaviour:
   layerWeapons:
     serializedVersion: 2
     m_Bits: 1024
+  canSwitchWeapon: 1
   weaponsOnPlayer:
   - {fileID: 102978}
   - {fileID: 112094}
@@ -2583,6 +2579,7 @@ MonoBehaviour:
   damage: 20
   fireRate: .100000001
   reloadTime: 2
+  pullOutWeaponTime: 0
   nextFireTime: 0
 --- !u!114 &11480046
 MonoBehaviour:

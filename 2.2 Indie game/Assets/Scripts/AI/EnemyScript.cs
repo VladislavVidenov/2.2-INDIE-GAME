@@ -74,31 +74,31 @@ public class EnemyScript : MonoBehaviour {
         while (true) {
             switch (state) {
                 case AIState.idle:
-                    Debug.Log("Idle");
+                  //  Debug.Log("Idle");
                     break;
                 case AIState.patrolling:
                     Patrolling();
                     break;
                 case AIState.lowAlert:
                     //magic
-                    Debug.Log("Low Alert");
+                  //  Debug.Log("Low Alert");
                     break;
                 case AIState.mediumAlert:
                     //magic
-                    Debug.Log("Medium Alert");
+                //    Debug.Log("Medium Alert");
                     break;
                 case AIState.highAlert:
                     //magic
-                    Debug.Log("High Alert");
+                 //   Debug.Log("High Alert");
                     break;
                 case AIState.chasing:
                     //magic
                     Chasing();
-                    Debug.Log("Chasing");
+                //    Debug.Log("Chasing");
                     break;
                 case AIState.attacking:
                     Shooting();
-                    Debug.Log("Attacking");
+              //      Debug.Log("Attacking");
                     break;
             }
             yield return null;
@@ -148,7 +148,7 @@ public class EnemyScript : MonoBehaviour {
                 lastPlayerSighting.position = lastPlayerSighting.resetPosition;
                 enemySight.personalLastSighting = lastPlayerSighting.resetPosition;
                 chaseTimer = 0f;
-                Debug.Log("GOT RESET");
+             //   Debug.Log("GOT RESET");
             }
         }
         else
@@ -183,7 +183,7 @@ public class EnemyScript : MonoBehaviour {
 
         // Set the destination to the patrolWayPoint.
         if (patrolWaypoints != null) agent.destination = patrolWaypoints[waypointIndex].position;
-        Debug.Log("ok");
+     //   Debug.Log("ok");
     }
 
     void Die() {

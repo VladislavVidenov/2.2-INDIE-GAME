@@ -1,0 +1,198 @@
+fileFormatVersion: 2
+guid: 0e3df3e32f5d01b4cb7a36c9b34320d8
+timeCreated: 1448287809
+licenseType: Free
+ModelImporter:
+  serializedVersion: 18
+  fileIDToRecycleName:
+    100000: Arm_Mesh3
+    100002: FPS_Joints_01
+    100004: Head_joint_01
+    100006: LeftArm_joint_01
+    100008: LeftForeArm_joint_01
+    100010: LeftHand_joint_01
+    100012: LeftHandIndex_joint_01
+    100014: LeftHandIndex_joint_02
+    100016: LeftHandIndex_joint_03
+    100018: LeftHandIndex_joint_04
+    100020: LeftHandMiddle_joint_01
+    100022: LeftHandMiddle_joint_02
+    100024: LeftHandMiddle_joint_03
+    100026: LeftHandMiddle_joint_04
+    100028: LeftHandPinky_joint_01
+    100030: LeftHandPinky_joint_02
+    100032: LeftHandPinky_joint_03
+    100034: LeftHandPinky_joint_04
+    100036: LeftHandRing_joint_01
+    100038: LeftHandRing_joint_02
+    100040: LeftHandRing_joint_03
+    100042: LeftHandRing_joint_04
+    100044: LeftHandThumb_joint_01
+    100046: LeftHandThumb_joint_02
+    100048: LeftHandThumb_joint_03
+    100050: LeftHandThumb_joint_04
+    100052: LeftShoulder_joint_01
+    100054: Neck_joint_01
+    100056: pasted__GunRoot_joint_01
+    100058: pasted__Reload_joint_01
+    100060: pasted__Shoot_joint_01
+    100062: pasted__Trigger_joint_01
+    100064: Pistol_Mesh
+    100066: //RootNode
+    100068: RightArm_joint_01
+    100070: RightForeArm_joint_01
+    100072: RightHand_joint_01
+    100074: RightHandIndex_joint_01
+    100076: RightHandIndex_joint_02
+    100078: RightHandIndex_joint_03
+    100080: RightHandIndex_joint_04
+    100082: RightHandMiddle_joint_01
+    100084: RightHandMiddle_joint_02
+    100086: RightHandMiddle_joint_03
+    100088: RightHandMiddle_joint_04
+    100090: RightHandPinky_joint_01
+    100092: RightHandPinky_joint_02
+    100094: RightHandPinky_joint_03
+    100096: RightHandPinky_joint_04
+    100098: RightHandRing_joint_01
+    100100: RightHandRing_joint_02
+    100102: RightHandRing_joint_03
+    100104: RightHandRing_joint_04
+    100106: RightHandThumb_joint_01
+    100108: RightHandThumb_joint_02
+    100110: RightHandThumb_joint_03
+    100112: RightHandThumb_joint_04
+    100114: RightShoulder_joint_01
+    100116: Spine_joint_01
+    100118: transform3
+    400000: Arm_Mesh3
+    400002: FPS_Joints_01
+    400004: Head_joint_01
+    400006: LeftArm_joint_01
+    400008: LeftForeArm_joint_01
+    400010: LeftHand_joint_01
+    400012: LeftHandIndex_joint_01
+    400014: LeftHandIndex_joint_02
+    400016: LeftHandIndex_joint_03
+    400018: LeftHandIndex_joint_04
+    400020: LeftHandMiddle_joint_01
+    400022: LeftHandMiddle_joint_02
+    400024: LeftHandMiddle_joint_03
+    400026: LeftHandMiddle_joint_04
+    400028: LeftHandPinky_joint_01
+    400030: LeftHandPinky_joint_02
+    400032: LeftHandPinky_joint_03
+    400034: LeftHandPinky_joint_04
+    400036: LeftHandRing_joint_01
+    400038: LeftHandRing_joint_02
+    400040: LeftHandRing_joint_03
+    400042: LeftHandRing_joint_04
+    400044: LeftHandThumb_joint_01
+    400046: LeftHandThumb_joint_02
+    400048: LeftHandThumb_joint_03
+    400050: LeftHandThumb_joint_04
+    400052: LeftShoulder_joint_01
+    400054: Neck_joint_01
+    400056: pasted__GunRoot_joint_01
+    400058: pasted__Reload_joint_01
+    400060: pasted__Shoot_joint_01
+    400062: pasted__Trigger_joint_01
+    400064: Pistol_Mesh
+    400066: //RootNode
+    400068: RightArm_joint_01
+    400070: RightForeArm_joint_01
+    400072: RightHand_joint_01
+    400074: RightHandIndex_joint_01
+    400076: RightHandIndex_joint_02
+    400078: RightHandIndex_joint_03
+    400080: RightHandIndex_joint_04
+    400082: RightHandMiddle_joint_01
+    400084: RightHandMiddle_joint_02
+    400086: RightHandMiddle_joint_03
+    400088: RightHandMiddle_joint_04
+    400090: RightHandPinky_joint_01
+    400092: RightHandPinky_joint_02
+    400094: RightHandPinky_joint_03
+    400096: RightHandPinky_joint_04
+    400098: RightHandRing_joint_01
+    400100: RightHandRing_joint_02
+    400102: RightHandRing_joint_03
+    400104: RightHandRing_joint_04
+    400106: RightHandThumb_joint_01
+    400108: RightHandThumb_joint_02
+    400110: RightHandThumb_joint_03
+    400112: RightHandThumb_joint_04
+    400114: RightShoulder_joint_01
+    400116: Spine_joint_01
+    400118: transform3
+    4300000: Arm_Mesh3
+    4300002: Pistol_Mesh
+    7400000: Take 001
+    9500000: //RootNode
+    11100000: //RootNode
+    13700000: Arm_Mesh3
+    13700002: Pistol_Mesh
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    optimizeGameObjects: 0
+    motionNodeName: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    animationCompression: 1
+    animationRotationError: .5
+    animationPositionError: .5
+    animationScaleError: .5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    importBlendShapes: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    splitTangentsAcrossUV: 1
+    normalImportMode: 0
+    tangentImportMode: 1
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    human: []
+    skeleton: []
+    armTwist: .5
+    foreArmTwist: .5
+    upperLegTwist: .5
+    legTwist: .5
+    armStretch: .0500000007
+    legStretch: .0500000007
+    feetSpacing: 0
+    rootMotionBoneName: 
+    hasTranslationDoF: 0
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 1
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

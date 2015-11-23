@@ -15,7 +15,9 @@ public class LootableBoxScript : MonoBehaviour {
         GameManager.Instance.Player.GetComponent<PlayerScript>().IncreasePlayerStats(0, 0, scrap);
     }
     void Update() {
-        Debug.Log(isLooted);
+        //     
+
+        //(isLooted);
 
     }
 }

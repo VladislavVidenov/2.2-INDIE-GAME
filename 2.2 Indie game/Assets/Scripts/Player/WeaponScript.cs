@@ -141,7 +141,7 @@ public class WeaponScript : MonoBehaviour {
 
             Vector3 hitPoint = hit.point;
             Quaternion hitPointDecalPos = Quaternion.FromToRotation(Vector3.up, hit.normal);
-            Debug.Log(hit.transform.gameObject.name);
+           // Debug.Log(hit.transform.gameObject.name);
             if (hit.transform.CompareTag("Ground"))
             {
             
@@ -152,7 +152,7 @@ public class WeaponScript : MonoBehaviour {
 
         audioSource.PlayOneShot(fireSound);
         //play animations
-        Debug.Log("Shooting");
+      //  Debug.Log("Shooting");
         //apply kickback affect
         RecoilEffect();
         bulletsInMagazine--;
@@ -217,14 +217,15 @@ public class WeaponScript : MonoBehaviour {
     {
         yield return new WaitForSeconds(waittime);
         isReloading = false;
+    //    weaponManager.canSwitchWeapon = true;
         weaponSelected = true;
-        Debug.Log("Pull out wep called !");
+     //   Debug.Log("Pull out wep called !");
         //enable crosshair 
 
     }
     void HolsterWeapon()
     {
-        Debug.Log("HolsterWeapon called!");
+      //  Debug.Log("HolsterWeapon called!");
         weaponSelected = false;
     //change field of view.
         //set a bool that crossshair is = false;

@@ -1806,8 +1806,8 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1841682745}
   m_HandleRect: {fileID: 1841682744}
   m_Direction: 2
-  m_Value: 1
-  m_Size: .412719071
+  m_Value: .596625566
+  m_Size: .681728363
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -3786,7 +3786,7 @@ RectTransform:
   m_RootOrder: 0
   m_AnchorMin: {x: .5, y: .5}
   m_AnchorMax: {x: .5, y: .5}
-  m_AnchoredPosition: {x: -3.05175781e-05, y: -188.810852}
+  m_AnchoredPosition: {x: -3.05175781e-05, y: -19.774292}
   m_SizeDelta: {x: 674, y: 643}
   m_Pivot: {x: .5, y: .5}
 --- !u!114 &1493592924
@@ -5949,31 +5949,28 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 490878, guid: 9d6040898dddac64195218c736f468a6, type: 2}
       propertyPath: m_RootOrder
-      value: 12
+      value: 13
       objectReference: {fileID: 0}
-    - target: {fileID: 180752, guid: 9d6040898dddac64195218c736f468a6, type: 2}
-      propertyPath: m_TagString
-      value: Player
+    - target: {fileID: 11407194, guid: 9d6040898dddac64195218c736f468a6, type: 2}
+      propertyPath: walkSpeed
+      value: 5
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    - target: {fileID: 11407194, guid: 9d6040898dddac64195218c736f468a6, type: 2}
+      propertyPath: crouchSpeed
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 11407194, guid: 9d6040898dddac64195218c736f468a6, type: 2}
+      propertyPath: runSpeed
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 11407194, guid: 9d6040898dddac64195218c736f468a6, type: 2}
+      propertyPath: heightToJump
+      value: 3
+      objectReference: {fileID: 0}
+    m_RemovedComponents:
+    - {fileID: 11443728, guid: 9d6040898dddac64195218c736f468a6, type: 2}
   m_ParentPrefab: {fileID: 100100000, guid: 9d6040898dddac64195218c736f468a6, type: 2}
   m_IsPrefabParent: 0
---- !u!1 &2130027209 stripped
-GameObject:
-  m_PrefabParentObject: {fileID: 180752, guid: 9d6040898dddac64195218c736f468a6, type: 2}
-  m_PrefabInternal: {fileID: 2130027208}
---- !u!114 &2130027210
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 2130027209}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6392295c164b25241b7c9f3eb699b4d2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  scrapHud: {fileID: 0}
 --- !u!1 &2137862843
 GameObject:
   m_ObjectHideFlags: 0
