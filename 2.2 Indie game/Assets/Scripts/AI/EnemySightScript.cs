@@ -53,7 +53,7 @@ public class EnemySightScript : MonoBehaviour {
 
                 // ... and if a raycast towards the player hits something...
                 if (Physics.Raycast(transform.position + transform.up/3, direction.normalized, out hit, sphereCollider.radius)) {
-                    Debug.DrawRay(transform.position + transform.up/3, direction, Color.red);
+                  //  Debug.DrawRay(transform.position + transform.up/3, direction, Color.red);
                     // ... and if the raycast hits the player...
                     if (hit.collider.gameObject == player) {
                         // ... the player is in sight.
@@ -63,6 +63,10 @@ public class EnemySightScript : MonoBehaviour {
                         lastPlayerSighting.position = player.transform.position;
                     }
                 }
+            }
+
+            if (!player.GetComponent<PlayerMovement>().isCrouching) {
+                personalLastSighting = player.transform.position;
             }
         }
     }

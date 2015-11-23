@@ -26,6 +26,9 @@ public class EnemyScript : MonoBehaviour {
     [SerializeField] float attackDistance = 3.0f;
     [SerializeField] float attackRate = 1.0f;
 
+    [SerializeField]
+    float attackRotationSpeed = 1f;
+
     //Chasing
     [SerializeField] float chaseDistance = 10.0f;
     [SerializeField] float chaseSpeed = 3.0f;
@@ -48,7 +51,17 @@ public class EnemyScript : MonoBehaviour {
     Vector3 rayDirection;
 
 
+    float time;
+
+    int rotated = 0;
+
+    bool relocating = false;
+
+    public float maxDistance = 7f;
+
+
     void Awake () {
+        time = Time.time;
         //Getting the references
         agent = GetComponent<NavMeshAgent>();
         enemySight = GetComponent<EnemySightScript>();
@@ -121,7 +134,46 @@ public class EnemyScript : MonoBehaviour {
     }
 
     void Shooting() {
-        agent.Stop(); // Let the agent stand still to shoot.
+       // agent.Stop(); // Let the agent stand still to shoot.
+        if (!relocating) FindFightingPosition();
+        if (agent.remainingDistance <= agent.stoppingDistance) relocating = false;
+        this.transform.rotation = Quaternion.RotateTowards(this.transform.rotation, Quaternion.LookRotation(target.transform.position - this.transform.position), attackRotationSpeed);
+
+        if (Time.time - time > 2f) {
+            Shoot();
+            time = Time.time;
+        }
+        //else {
+        //    agent.Resume();
+        //}
+    }
+
+    void FindFightingPosition() {
+        if (Random.Range(0, 50) == 4) {
+            agent.Resume();
+            agent.updateRotation = false;
+
+            for (int i = 0; i < 100; i++) {
+                Vector3 direction = (this.transform.position - target.transform.position);
+                Vector3 point = target.transform.position + new Vector3(Random.Range(-7f, 7f), 0, Random.Range(-7f, 7f));
+
+                if (Vector3.Dot(direction, point) > 0) {
+                    Debug.Log("I FOUND IT");
+                    agent.SetDestination(point);
+                    relocating = true;
+                    i = 100;
+                }
+
+               // if (i == 100) relocating = false;
+            }
+
+
+
+        }
+        else {
+            agent.Stop();
+        }
+
     }
 
     void Chasing() {
@@ -140,6 +192,7 @@ public class EnemyScript : MonoBehaviour {
         // If near the last personal sighting...
         if (agent.remainingDistance <= agent.stoppingDistance) {
             // ... increment the timer.
+            LookAround();
             chaseTimer += Time.deltaTime;
 
             // If the timer exceeds the wait time...
@@ -148,7 +201,12 @@ public class EnemyScript : MonoBehaviour {
                 lastPlayerSighting.position = lastPlayerSighting.resetPosition;
                 enemySight.personalLastSighting = lastPlayerSighting.resetPosition;
                 chaseTimer = 0f;
+<<<<<<< HEAD
              //   Debug.Log("GOT RESET");
+=======
+                rotated = 0; // reset rotation amount 
+                Debug.Log("GOT RESET");
+>>>>>>> origin/master
             }
         }
         else
@@ -184,6 +242,38 @@ public class EnemyScript : MonoBehaviour {
         // Set the destination to the patrolWayPoint.
         if (patrolWaypoints != null) agent.destination = patrolWaypoints[waypointIndex].position;
      //   Debug.Log("ok");
+    }
+
+    void Shoot() {
+         Vector3 direction = target.transform.position - this.transform.position;
+         direction += new Vector3(Random.Range(-1f, 1f), Random.Range(-1f, 1f), Random.Range(-1f, 1f));
+         StartCoroutine(ShootRaycast(direction));
+    }
+
+    void LookAround() {
+        if (!(rotated > 270)) {
+            this.transform.Rotate(0, 1, 0);
+        } 
+        rotated++;
+        
+
+        Debug.Log("turning");
+    }
+
+    IEnumerator ShootRaycast(Vector3 direction) {
+        yield return new WaitForSeconds(0.1f);
+        RaycastHit hit;
+
+        if (Physics.Raycast(transform.position + transform.up / 3, direction.normalized, out hit, 100f)) {
+            Debug.DrawRay(transform.position + transform.up / 3, direction, Color.red);
+            if (hit.collider.CompareTag(Tags.player)) {
+
+                Debug.Log("i shot u");
+            }
+            else {
+                Debug.Log("i missed u");
+            }
+        }
     }
 
     void Die() {
