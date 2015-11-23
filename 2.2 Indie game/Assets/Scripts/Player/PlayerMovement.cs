@@ -124,7 +124,7 @@ public class PlayerMovement : MonoBehaviour {
                 if (Input.GetKeyDown(KeyCode.Space))
                     canJump = true;
                 break;
-            case PlayerStates.Crouch:
+            case PlayerStates.Crouch:                                       
                 isCrouching = true;
                 bodyCollider.height = 1.5f;
                 bodyCollider.center = new Vector3(0, -0.25f, 0);

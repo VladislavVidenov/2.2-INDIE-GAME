@@ -164,7 +164,8 @@ public class WeaponManager : MonoBehaviour {
 
     void lastWeaponUsed()
     {   //---------
-        if (previousWeapon != null && previousWeapon.slotID == 0 || currentWeapon.slotID == previousWeapon.slotID) { Debug.Log("No prev weapon , not switching !!"); return; }
+        if (previousWeapon == null) return;
+        if  (previousWeapon.slotID == 0 || currentWeapon.slotID == previousWeapon.slotID) { Debug.Log("No prev weapon , not switching !!"); return; }
         int previousSlotIdCopy = previousWeapon.slotID;
         int previousWwepIdcopy = previousWeapon.weaponID;
         SetSlot(previousSlotIdCopy, previousWwepIdcopy);
@@ -179,9 +180,6 @@ public class WeaponManager : MonoBehaviour {
             return;
         }
         canSwitchWeapon = false;
-        //if (currentWeapon != null) DisableWeapon(currentWeapon.slotID, currentWeapon.weaponID);
-        //EnableWeapon(newSlotID, newWeaponID);
-
         StartCoroutine(SwitchWeaponWait(newSlotID, newWeaponID, weaponSwitchTime));
         
     }
