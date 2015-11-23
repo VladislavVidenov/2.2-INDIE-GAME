@@ -3,15 +3,11 @@ using System.Collections;
 
 [RequireComponent(typeof(AudioSource))]
 public class WeaponScript : MonoBehaviour {
-    WeaponManager weaponManager;
     public enum WeaponMode { None,SemiFire,Auto };
     public WeaponMode currentWeaponMode;
 
-    //Components
-    [SerializeField]
-    GameObject weaponCamera;
-    GameObject mainCamera;
-    GameObject player;
+
+
     [SerializeField]
     GameObject recoilEffectGO;
     AudioSource audioSource;
@@ -30,10 +26,10 @@ public class WeaponScript : MonoBehaviour {
     //Variables
     
     //---Aiming---
-    Vector3 defaultPosition;
-    Vector3 aimPosition;
-    bool isAiming = false;
-    float aimSpeed = 0;
+    //Vector3 defaultPosition;
+    //Vector3 aimPosition;
+    //bool isAiming = false;
+    //float aimSpeed = 0;
     //bool animationRun = false;
     //-----------
 
@@ -49,7 +45,7 @@ public class WeaponScript : MonoBehaviour {
     public float pullOutWeaponTime;
     public float nextFireTime;
     bool isReloading = false;
-    bool isFiring = false;
+   // bool isFiring = false;
     bool weaponSelected = false;
     bool outOfAmmoSoundPlaying = false;
     bool reloadInfo = false;
@@ -69,37 +65,39 @@ public class WeaponScript : MonoBehaviour {
 
     void Start () {
         audioSource = GetComponent<AudioSource>();
-        mainCamera = Camera.main.gameObject;
-        player = GameManager.Instance.Player;
+     
         maxBulletsPerMag = bulletsInMagazine;
-        weaponManager = FindObjectOfType<WeaponManager>();
     }
-	
-	
-	void Update () {
-       // Debug.Log(isReloading);
-        if (Input.GetButtonDown("Fire"))
+
+
+    void Update()
+    {
+        // Debug.Log(isReloading);
+        if (weaponSelected)
         {
-          
-            if (currentWeaponMode == WeaponMode.SemiFire)
+            if (Input.GetButtonDown("Fire"))
             {
-                SemiFireMode();
+
+                if (currentWeaponMode == WeaponMode.SemiFire)
+                {
+                    SemiFireMode();
+                }
+
+            }
+            else if (Input.GetButton("Fire"))
+            {
+                if (currentWeaponMode == WeaponMode.Auto)
+                {
+                    SemiFireMode();
+                }
             }
 
-        }else if (Input.GetButton("Fire"))
-        {
-            if(currentWeaponMode == WeaponMode.Auto)
+            if (Input.GetKeyDown(KeyCode.R))
             {
-                SemiFireMode();
+                Reload();
             }
         }
-
-        if (Input.GetKeyDown(KeyCode.R))
-        {
-            Reload();
-        }
-	}
-
+    }
 
 
     void OnGUI()
@@ -217,9 +215,8 @@ public class WeaponScript : MonoBehaviour {
     {
         yield return new WaitForSeconds(waittime);
         isReloading = false;
-    //    weaponManager.canSwitchWeapon = true;
         weaponSelected = true;
-     //   Debug.Log("Pull out wep called !");
+      //  Debug.Log("Pull out wep called !");
         //enable crosshair 
 
     }

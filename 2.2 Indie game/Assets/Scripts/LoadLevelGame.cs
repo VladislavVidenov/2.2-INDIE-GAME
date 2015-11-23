@@ -22,7 +22,7 @@ public class LoadLevelGame : MonoBehaviour {
 	int rotationY;
 	int rotationZ;
 
-	int [,] array;
+	//int [,] array;
 
 	int x=0;
 	int z=0;
@@ -34,7 +34,7 @@ public class LoadLevelGame : MonoBehaviour {
 	
 	//start loading the level at the start
 	void Start () {
-		array = new int[width, height];
+		//array = new int[width, height];
 		LoadLevel();
 	}
 	

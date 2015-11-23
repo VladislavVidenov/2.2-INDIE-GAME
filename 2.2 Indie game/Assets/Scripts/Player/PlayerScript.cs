@@ -8,7 +8,7 @@ public class PlayerScript : MonoBehaviour {
     int health;
     int scrap;
 
-    Camera camera;
+    Camera mainCamera;
 
     SceneChangeManager sceneManager;
 
@@ -21,7 +21,7 @@ public class PlayerScript : MonoBehaviour {
 	void Start () {
         scrapText = scrapHud.GetComponentInChildren<Text>();
         DeactiveScrapHud();
-        camera = Camera.main;
+        mainCamera = Camera.main;
         sceneManager = GameObject.Find("SceneManager").GetComponent<SceneChangeManager>();
         GetPlayerStatsFromGameManager();
 	}
@@ -39,7 +39,7 @@ public class PlayerScript : MonoBehaviour {
 
     public void Died() {
         sceneManager.SetState(GameState.PlayerDied);
-        camera.GetComponent<Animation>().Play();
+        mainCamera.GetComponent<Animation>().Play();
         Invoke("Respawn", 2);
     }
 

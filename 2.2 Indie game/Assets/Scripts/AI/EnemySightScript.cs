@@ -8,7 +8,7 @@ public class EnemySightScript : MonoBehaviour {
     public bool playerInSight;
     public Vector3 personalLastSighting;
 
-    NavMeshAgent navMeshAgent;
+    //NavMeshAgent navMeshAgent;
     SphereCollider sphereCollider;
     LastPlayerSightingScript lastPlayerSighting;
 
@@ -17,7 +17,9 @@ public class EnemySightScript : MonoBehaviour {
     Vector3 previousSighting;
 
     void Awake() {
-        navMeshAgent = GetComponent<NavMeshAgent>();
+        //navMeshAgent = GetComponent<NavMeshAgent>();
+        
+
         sphereCollider = GetComponent<SphereCollider>();
         lastPlayerSighting = GameManager.Instance.GetComponent<LastPlayerSightingScript>();
         player = GameObject.FindGameObjectWithTag(Tags.player);

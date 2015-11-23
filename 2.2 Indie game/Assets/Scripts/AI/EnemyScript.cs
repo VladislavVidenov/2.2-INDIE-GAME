@@ -23,20 +23,20 @@ public class EnemyScript : MonoBehaviour {
     int waypointIndex;
 
     //Attacking
-    [SerializeField] float attackDistance = 3.0f;
-    [SerializeField] float attackRate = 1.0f;
+ //   [SerializeField] float attackDistance = 3.0f;
+ //   [SerializeField] float attackRate = 1.0f;
 
     [SerializeField]
     float attackRotationSpeed = 1f;
 
     //Chasing
-    [SerializeField] float chaseDistance = 10.0f;
+ //   [SerializeField] float chaseDistance = 10.0f;
     [SerializeField] float chaseSpeed = 3.0f;
-    [SerializeField] float chaseRotationSpeed = 5.0f;
+ //   [SerializeField] float chaseRotationSpeed = 5.0f;
     [SerializeField] float chaseWaitTime = 5f;
     float chaseTimer;
 
-    float distanceToTarget;
+   // float distanceToTarget;
 
     NavMeshAgent agent;
     public Transform[] patrolWaypoints;
@@ -61,6 +61,7 @@ public class EnemyScript : MonoBehaviour {
 
 
     void Awake () {
+
         time = Time.time;
         //Getting the references
         agent = GetComponent<NavMeshAgent>();
@@ -73,7 +74,7 @@ public class EnemyScript : MonoBehaviour {
         StartCoroutine("StateMachine");
 	}
 
-    int timeBetweenSteps = 1;
+   // int timeBetweenSteps = 1;
     //debug update
     void Update() {
         if (Input.GetKeyDown(KeyCode.Q)) {
@@ -119,7 +120,7 @@ public class EnemyScript : MonoBehaviour {
     }
 
     void StateLogic() {
-        distanceToTarget = (target.position - transform.position).sqrMagnitude;
+      //  distanceToTarget = (target.position - transform.position).sqrMagnitude; --> enable it when distance to target is used !!!!!
 
         if (enemySight.playerInSight /*and player == alive*/) {
             state = AIState.attacking;

@@ -15,7 +15,7 @@ public class PlayerMovement : MonoBehaviour {
     CapsuleCollider bodyCollider;
     GameObject mainCamera;
     GameObject weaponCamera;
-
+    GameObject recoilEffectGO;
 
 
     //Variables
@@ -44,11 +44,11 @@ public class PlayerMovement : MonoBehaviour {
 
     Vector3 input;
     Vector3 targetVel;
-    Vector3 mainCameraLocalPos;
 
     // Use this for initialization
     void Start()
     {
+        recoilEffectGO = GameObject.Find("Root");
         rigidBody = GetComponent<Rigidbody>();
         bodyCollider = GetComponent<CapsuleCollider>();
         mainCamera = Camera.main.gameObject;
@@ -104,6 +104,7 @@ public class PlayerMovement : MonoBehaviour {
 
         if (Input.GetKeyDown(KeyCode.C))
         {
+           
             if (currentState == 1)
                 state = PlayerStates.Crouch;
             else if (currentState == 2)
@@ -137,7 +138,7 @@ public class PlayerMovement : MonoBehaviour {
                     state = PlayerStates.Stand;
                 break;
         }
-        weaponCamera.transform.localPosition = mainCameraLocalPos; //sync wep cam with main cam.
+        weaponCamera.transform.localPosition = mainCamera.transform.localPosition; //sync wep cam with main cam.
         Debug.Log("State ->  " + state.ToString());
         Debug.Log("Speed ->  " + speed);
         Debug.Log("Grounded -> " + isGrounded);
@@ -153,6 +154,11 @@ public class PlayerMovement : MonoBehaviour {
                 isGrounded = true;
             }
         }
+    }
+
+    void crouchEffect(float amount)
+    {
+        recoilEffectGO.transform.localRotation = Quaternion.Euler(recoilEffectGO.transform.localRotation.eulerAngles - new Vector3(amount, 0, 0));
     }
 
 }

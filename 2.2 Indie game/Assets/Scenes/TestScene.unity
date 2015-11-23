@@ -1806,8 +1806,8 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1841682745}
   m_HandleRect: {fileID: 1841682744}
   m_Direction: 2
-  m_Value: .596625566
-  m_Size: .309098899
+  m_Value: .51392132
+  m_Size: .412719071
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -3786,7 +3786,7 @@ RectTransform:
   m_RootOrder: 0
   m_AnchorMin: {x: .5, y: .5}
   m_AnchorMax: {x: .5, y: .5}
-  m_AnchoredPosition: {x: -3.05175781e-05, y: -42.9258423}
+  m_AnchoredPosition: {x: -3.05175781e-05, y: -5.25698853}
   m_SizeDelta: {x: 674, y: 643}
   m_Pivot: {x: .5, y: .5}
 --- !u!114 &1493592924
@@ -5971,6 +5971,10 @@ Prefab:
       propertyPath: scrapHud
       value: 
       objectReference: {fileID: 1167575803}
+    - target: {fileID: 11407194, guid: 9d6040898dddac64195218c736f468a6, type: 2}
+      propertyPath: gravity
+      value: 5
+      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 11443728, guid: 9d6040898dddac64195218c736f468a6, type: 2}
   m_ParentPrefab: {fileID: 100100000, guid: 9d6040898dddac64195218c736f468a6, type: 2}

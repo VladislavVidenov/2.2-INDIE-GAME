@@ -19,7 +19,7 @@ public class PlayerActionScript : MonoBehaviour {
         Ray ray = Camera.main.ViewportPointToRay(new Vector3(0.5f, 0.5f, 0));
         Debug.DrawRay(ray.origin, ray.direction * maxRayDistance, Color.green);
         if (Physics.Raycast(ray,out hit, maxRayDistance, layerMask.value)) { 
-            GameObject target = hit.collider.gameObject;
+            
             switch (hit.collider.tag) {
 
                 case "VendingMachine":

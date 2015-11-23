@@ -16,8 +16,6 @@ public class WeaponManager : MonoBehaviour {
 
 
     RaycastHit hit;
-    float timer = 0;
-    float waitTime = 5f;
     float pickDistance = 2.0f;
     float weaponSwitchTime = 0.5f;
     public LayerMask layerWeapons;
