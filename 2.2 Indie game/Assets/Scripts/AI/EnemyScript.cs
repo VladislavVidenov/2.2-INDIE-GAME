@@ -201,12 +201,12 @@ public class EnemyScript : MonoBehaviour {
                 lastPlayerSighting.position = lastPlayerSighting.resetPosition;
                 enemySight.personalLastSighting = lastPlayerSighting.resetPosition;
                 chaseTimer = 0f;
-<<<<<<< HEAD
+
              //   Debug.Log("GOT RESET");
-=======
+
                 rotated = 0; // reset rotation amount 
                 Debug.Log("GOT RESET");
->>>>>>> origin/master
+
             }
         }
         else
