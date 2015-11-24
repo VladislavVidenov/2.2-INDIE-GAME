@@ -59,6 +59,8 @@ public class EnemyScript : MonoBehaviour {
 
     public float maxDistance = 7f;
 
+    Vector3 point;
+
 
     void Awake () {
 
@@ -112,7 +114,7 @@ public class EnemyScript : MonoBehaviour {
                     break;
                 case AIState.attacking:
                     Shooting();
-              //      Debug.Log("Attacking");
+                    Debug.Log("Attacking");
                     break;
             }
             yield return null;
@@ -135,7 +137,6 @@ public class EnemyScript : MonoBehaviour {
     }
 
     void Shooting() {
-       // agent.Stop(); // Let the agent stand still to shoot.
         if (!relocating) FindFightingPosition();
         if (agent.remainingDistance <= agent.stoppingDistance) relocating = false;
         this.transform.rotation = Quaternion.RotateTowards(this.transform.rotation, Quaternion.LookRotation(target.transform.position - this.transform.position), attackRotationSpeed);
@@ -144,9 +145,6 @@ public class EnemyScript : MonoBehaviour {
             Shoot();
             time = Time.time;
         }
-        //else {
-        //    agent.Resume();
-        //}
     }
 
     void FindFightingPosition() {
@@ -154,27 +152,39 @@ public class EnemyScript : MonoBehaviour {
             agent.Resume();
             agent.updateRotation = false;
 
-            for (int i = 0; i < 100; i++) {
-                Vector3 direction = (this.transform.position - target.transform.position);
-                Vector3 point = target.transform.position + new Vector3(Random.Range(-7f, 7f), 0, Random.Range(-7f, 7f));
+            //   for (int i = 0; i < 100; i++) {
+            Vector3 delta = (this.transform.position - target.transform.position);
 
-                if (Vector3.Dot(direction, point) > 0) {
-                    Debug.Log("I FOUND IT");
-                    agent.SetDestination(point);
-                    relocating = true;
-                    i = 100;
+            point = target.transform.position + new Vector3(Random.Range(-7f, 7f), 0, Random.Range(-7f, 7f));
+            Vector3 dirToPoint = point - target.transform.position;
+            if (Vector3.Dot(delta, dirToPoint) > 0) {
+
+                RaycastHit hit;
+                Vector3 dir = (target.transform.position -point);
+           
+                if (Physics.Raycast(point, dir, out hit, 11f)) {
+                    Debug.DrawRay(point, dir, Color.black,5f);
+                    if (hit.collider.CompareTag(Tags.player)) {
+                        Debug.Log("I FOUND IT");
+                        agent.SetDestination(point);
+                        relocating = true;
+                        // i = 100;
+                    }
                 }
 
-               // if (i == 100) relocating = false;
+                // if (i == 100) relocating = false;
             }
 
-
-
         }
+
         else {
             agent.Stop();
         }
 
+    }
+
+    void OnDrawGizmos() {
+        if (relocating) Gizmos.DrawCube(point, new Vector3(1, 1, 1));
     }
 
     void Chasing() {
@@ -256,9 +266,6 @@ public class EnemyScript : MonoBehaviour {
             this.transform.Rotate(0, 1, 0);
         } 
         rotated++;
-        
-
-        Debug.Log("turning");
     }
 
     IEnumerator ShootRaycast(Vector3 direction) {
