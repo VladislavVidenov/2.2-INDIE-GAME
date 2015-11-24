@@ -52,10 +52,13 @@ public class LoadLevelGame : MonoBehaviour {
 
 				case "tile":
 					if (xmlReader ["id"] != null) {
-						id = int.Parse (xmlReader ["id"]);
+						id = int.Parse (xmlReader ["id"]) -1;
+                        if (id == -1) {
+                            id = 0;
+                        }
 						Debug.Log (id);
 					} else{
-						int index = int.Parse(xmlReader["gid"]);
+						int index = int.Parse(xmlReader["gid"])-1;
 						InstatiateGameObject(xmlReader, index);
 					}
 
