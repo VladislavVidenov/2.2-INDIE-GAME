@@ -222,7 +222,7 @@ Prefab:
     m_Modifications:
     - target: {fileID: 11433208, guid: 755ec6cbd0effa246a65837af2112bcf, type: 2}
       propertyPath: tiles.Array.size
-      value: 3
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 484542, guid: 755ec6cbd0effa246a65837af2112bcf, type: 2}
       propertyPath: m_LocalPosition.x
@@ -263,7 +263,7 @@ Prefab:
     - target: {fileID: 11433208, guid: 755ec6cbd0effa246a65837af2112bcf, type: 2}
       propertyPath: tiles.Array.data[2]
       value: 
-      objectReference: {fileID: 100000, guid: 3e1cecba83f66974c83e1e2711ffd097, type: 3}
+      objectReference: {fileID: 100000, guid: 08ec4b37030291d46b5176a0a20d29a5, type: 3}
     - target: {fileID: 11433208, guid: 755ec6cbd0effa246a65837af2112bcf, type: 2}
       propertyPath: levelName
       value: GoneSilent
@@ -271,11 +271,11 @@ Prefab:
     - target: {fileID: 11433208, guid: 755ec6cbd0effa246a65837af2112bcf, type: 2}
       propertyPath: tiles.Array.data[0]
       value: 
-      objectReference: {fileID: 100000, guid: 08ec4b37030291d46b5176a0a20d29a5, type: 3}
+      objectReference: {fileID: 0}
     - target: {fileID: 11433208, guid: 755ec6cbd0effa246a65837af2112bcf, type: 2}
       propertyPath: tiles.Array.data[3]
       value: 
-      objectReference: {fileID: 100000, guid: 3e1cecba83f66974c83e1e2711ffd097, type: 3}
+      objectReference: {fileID: 100000, guid: 28c42d24fc7a379458e655a8700c7009, type: 3}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 755ec6cbd0effa246a65837af2112bcf, type: 2}
   m_IsPrefabParent: 0
