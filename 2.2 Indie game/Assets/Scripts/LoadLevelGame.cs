@@ -110,7 +110,7 @@ public class LoadLevelGame : MonoBehaviour {
 
 	void InstatiateGameObject (XmlReader xmlReader, int gameObjectIndex) {
 		if (int.Parse(xmlReader["gid"]) != 0){
-			GameObject go = GameObject.Instantiate(tiles[gameObjectIndex],new Vector3(width - x,tileHeight, z),tiles[gameObjectIndex].transform.rotation) as GameObject;
+            GameObject go = GameObject.Instantiate(tiles[gameObjectIndex], new Vector3((width - x) * 3.863f, tileHeight, z * 3.863f), tiles[gameObjectIndex].transform.rotation) as GameObject;
 			go.transform.SetParent(this.transform);
 			levelObjects.Add(go);
 		}
