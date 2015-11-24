@@ -91,7 +91,7 @@ public class LoadLevelGame : MonoBehaviour {
 
 					}
 
-					tiles[id].transform.rotation = Quaternion.Euler(rotationX,rotationY,rotationZ);
+					tiles[id + 1].transform.rotation = Quaternion.Euler(rotationX,rotationY,rotationZ);
 					break;
 
 				case "layer":
