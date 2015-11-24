@@ -38,11 +38,13 @@ public class WeaponManager : MonoBehaviour {
     void Start()
     {
         inventory = new WeaponIndex[3];
+        SetSlot(1, 1);
+
     }
 
     void OnGUI()
     {
-
+        GUI.contentColor = Color.red;
         if (showWeaponText)
         {
             if (isSlotTaken)
@@ -67,10 +69,6 @@ public class WeaponManager : MonoBehaviour {
 
     void Update()
     {
-        if(inventory[0] !=null && inventory[1] != null && inventory[2] != null)
-        {
-            //Debug.Log("S1->  " + inventory[0].weaponID + "  S2->  " + inventory[1].weaponID + "  S3->  " + inventory[2].weaponID);
-        }
         if (canSwitchWeapon)
         {
             if (Input.GetKeyDown(KeyCode.Alpha1))
@@ -199,8 +197,9 @@ public class WeaponManager : MonoBehaviour {
             if (temp.slotID == slotIndex && temp.weaponID == wepIndex)
             {
                 Rigidbody dropWeapon = Instantiate(weaponPrefabs[i], dropWeaponPosition.position, Quaternion.identity) as Rigidbody;
-               // Debug.Log("DROPPED WEAPON ----> " + dropWeapon.gameObject.GetComponent<WeaponIndex>().slotID + " - " + dropWeapon.gameObject.GetComponent<WeaponIndex>().weaponID);
-                dropWeapon.AddRelativeForce(0, 50, Random.Range(50, 150));
+                // Debug.Log("DROPPED WEAPON ----> " + dropWeapon.gameObject.GetComponent<WeaponIndex>().slotID + " - " + dropWeapon.gameObject.GetComponent<WeaponIndex>().weaponID);
+                      dropWeapon.AddRelativeForce(Random.Range(0,-35),Random.Range(120,200),Random.Range(1,10));
+               // dropWeapon.AddForce(-dropWeaponPosition.right * 25 + Vector3.up * 35 + Vector3.forward * 25);
             }
         }
     }

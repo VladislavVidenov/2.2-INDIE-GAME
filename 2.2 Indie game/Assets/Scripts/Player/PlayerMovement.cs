@@ -2,13 +2,13 @@
 using System.Collections;
 
 public class PlayerMovement : MonoBehaviour {
- 
+
     enum PlayerStates
     {
-        Stand = 1, Crouch = 2 
+        Stand = 1, Crouch = 2
     }
     PlayerStates state = PlayerStates.Stand;
-    int currentState { get { return state.GetHashCode(); } }
+    int stateID { get { return state.GetHashCode(); } }
 
     //Components
     Rigidbody rigidBody;
@@ -58,7 +58,7 @@ public class PlayerMovement : MonoBehaviour {
     // Update is called once per frame
     void FixedUpdate()
     {
-        input = new Vector3(Input.GetAxis("Horizontal"),0,Input.GetAxis("Vertical"));
+        input = new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical"));
         input *= (Mathf.Abs(input.x) == 1 && Mathf.Abs(input.z) == 1) ? 0.707f : 1.0f; //normalize input.
 
         if (isGrounded)
@@ -76,7 +76,7 @@ public class PlayerMovement : MonoBehaviour {
             newVel.z = Mathf.Clamp(newVel.z, -maxVelocityClamp, maxVelocityClamp);
 
             rigidBody.AddForce(newVel, ForceMode.VelocityChange);
-            if (currentState == 1 && canJump)
+            if (stateID == 1 && canJump)
             {
                 rigidBody.velocity = new Vector3(currentVel.x, GetJumpHeight, currentVel.z);
             }
@@ -90,7 +90,7 @@ public class PlayerMovement : MonoBehaviour {
         }
 
         //apply gravity
-        rigidBody.AddForce(new Vector3(0, (-gravity) * rigidBody.mass, 0));
+        rigidBody.AddForce(new Vector3(0, (-gravity * rigidBody.mass), 0));
 
         isGrounded = false;
         canJump = false;
@@ -98,50 +98,60 @@ public class PlayerMovement : MonoBehaviour {
 
     void Update()
     {
-        
+
         if (isGrounded) { /* play animations */ } else { /* play idle*/}
 
 
         if (Input.GetKeyDown(KeyCode.C))
         {
-           
-            if (currentState == 1)
+            if (stateID == 1)
                 state = PlayerStates.Crouch;
-            else if (currentState == 2)
+            else if (stateID == 2)
                 state = PlayerStates.Stand;
         }
 
         switch (state)
         {
             case PlayerStates.Stand:
-                isCrouching = false;
-                bodyCollider.height = 2.0f;
-                bodyCollider.center = Vector3.zero;
-                speed = (Input.GetKey(KeyCode.LeftShift) && Input.GetKey(KeyCode.W)) ? runSpeed : walkSpeed;
-                if (mainCamera.transform.localPosition.y < standingCamHeight.y)
-                {
-                    mainCamera.transform.localPosition = Vector3.Lerp(mainCamera.transform.localPosition, standingCamHeight, Time.deltaTime * 5);
-                }
-                if (Input.GetKeyDown(KeyCode.Space))
-                    canJump = true;
+                PlayerStand();
                 break;
-            case PlayerStates.Crouch:                                       
-                isCrouching = true;
-                bodyCollider.height = 1.5f;
-                bodyCollider.center = new Vector3(0, -0.25f, 0);
-                speed = crouchSpeed;
-                if (mainCamera.transform.localPosition.y > crouchingCamHeight.y)
-                {
-                    mainCamera.transform.localPosition = Vector3.Lerp(mainCamera.transform.localPosition, crouchingCamHeight, Time.deltaTime * 5);
-                }
-                if (Input.GetKeyDown(KeyCode.Space))
-                    state = PlayerStates.Stand;
+            case PlayerStates.Crouch:
+                PlayerCrouch();
                 break;
         }
         weaponCamera.transform.localPosition = mainCamera.transform.localPosition; //sync wep cam with main cam.
-        Debug.Log("State ->  " + state.ToString());
-        Debug.Log("Speed ->  " + speed);
-        Debug.Log("Grounded -> " + isGrounded);
+        //Debug.Log("State ->  " + state.ToString());
+        //Debug.Log("Speed ->  " + speed);
+        //Debug.Log("Grounded -> " + isGrounded);
+    }
+
+
+    void PlayerStand()
+    {
+        isCrouching = false;
+        bodyCollider.height = 2.0f;
+        bodyCollider.center = Vector3.zero;
+        speed = (Input.GetKey(KeyCode.LeftShift) && Input.GetKey(KeyCode.W)) ? runSpeed : walkSpeed;
+        if (mainCamera.transform.localPosition.y < standingCamHeight.y)
+        {
+            mainCamera.transform.localPosition = Vector3.Lerp(mainCamera.transform.localPosition, standingCamHeight, Time.deltaTime * 5);
+        }
+        if (Input.GetKeyDown(KeyCode.Space))
+            canJump = true;
+    }
+
+    void PlayerCrouch()
+    {
+        isCrouching = true;
+        bodyCollider.height = 1.5f;
+        bodyCollider.center = new Vector3(0, -0.25f, 0);
+        speed = crouchSpeed;
+        if (mainCamera.transform.localPosition.y > crouchingCamHeight.y)
+        {
+            mainCamera.transform.localPosition = Vector3.Lerp(mainCamera.transform.localPosition, crouchingCamHeight, Time.deltaTime * 5);
+        }
+        if (Input.GetKeyDown(KeyCode.Space))
+            state = PlayerStates.Stand;
     }
 
     void OnCollisionStay(Collision collision)

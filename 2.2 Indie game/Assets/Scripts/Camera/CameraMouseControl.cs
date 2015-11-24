@@ -45,20 +45,16 @@ public class CameraMouseControl : MonoBehaviour {
         if(axis == RotateAxis.X)
         {
             rotationX += (Input.GetAxis("Mouse X") * camSensitivity / 60 * cam.fieldOfView);
-
-            rotationX = FixAngle(rotationX, minRotationX, maxRotationX);
-     
+            rotationX = LimitRotation(rotationX, minRotationX, maxRotationX);
             Quaternion xRotation = Quaternion.AngleAxis(rotationX, Vector3.up);
-
-
             transform.localRotation = rotation * xRotation;
         }
         //Applying rotation with Y only on mainCamera. If we rotate the rootPlayerGameObject with Y .. well...
-        // collider gets rotated sooo if we look up => colliders is laying on ground, not standing ;P.
+        // collider gets rotated sooo if we look up => collider is laying on ground, not standing.
         else if (axis == RotateAxis.Y)
         {
             rotationY += (Input.GetAxis("Mouse Y") * camSensitivity / 60 * cam.fieldOfView);
-            rotationY = FixAngle(rotationY, minRotationY, maxRotationY);
+            rotationY = LimitRotation(rotationY, minRotationY, maxRotationY);
             Quaternion yRotation = Quaternion.AngleAxis(rotationY, Vector3.left);
             transform.localRotation = rotation * yRotation;
         }
@@ -67,7 +63,7 @@ public class CameraMouseControl : MonoBehaviour {
 	}
 
     //a reminder of game physics. Tank barrel? :P
-    static float FixAngle(float angle, float minAngle, float maxAngle)
+    static float LimitRotation(float angle, float minAngle, float maxAngle)
     {
         if (angle < -360f)
             angle += 360f;

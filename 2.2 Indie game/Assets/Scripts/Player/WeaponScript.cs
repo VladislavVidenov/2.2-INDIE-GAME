@@ -3,70 +3,77 @@ using System.Collections;
 
 [RequireComponent(typeof(AudioSource))]
 public class WeaponScript : MonoBehaviour {
+
+    Camera mainCamera;
+    Camera weaponCamera;
+    [SerializeField]
+    GameObject head;
     public enum WeaponMode { None,SemiFire,Auto };
     public WeaponMode currentWeaponMode;
 
-
-
-    [SerializeField]
-    GameObject recoilEffectGO;
-    AudioSource audioSource;
-    #region Sounds
-    [SerializeField] AudioClip dryFireSound;
-    [SerializeField] AudioClip reloadSound;
-    [SerializeField] AudioClip fireSound;
-    [SerializeField] AudioClip pullOutSound;
-
-    #endregion
-
-    //---SHOOT DECALS-------
-    [SerializeField]
-    GameObject normalDecal;
-    //----------------------
-    //Variables
-    
-    //---Aiming---
-    //Vector3 defaultPosition;
-    //Vector3 aimPosition;
-    //bool isAiming = false;
-    //float aimSpeed = 0;
-    //bool animationRun = false;
-    //-----------
-
-    //---Shooting---
-    
-    public int bulletsInMagazine = 6;
-    public int totalBulletCount = 24;
+    //Weapon properties.
+    public int bulletsInClip;
+    public int totalBullets;
     int maxBulletsPerMag;
 
-    public float damage = 20;
-    public float fireRate = 0.1f;
-    public float reloadTime = 3.0f;
+    public float damage;
+    public float fireRate;
+    public float reloadTime;
     public float pullOutWeaponTime;
-    public float nextFireTime;
+    float nextFireTime;
     bool isReloading = false;
-   // bool isFiring = false;
+
     bool weaponSelected = false;
     bool outOfAmmoSoundPlaying = false;
     bool reloadInfo = false;
     bool reloadInfoStarted = false;
-    //--------------
+    // bool isFiring = false;
+
+    #region Aiming
+    Vector3 defaultPosition = Vector3.zero;
+    public Vector3 aimPosition;
+    float aimDistance;
+    bool isAiming = false;
+    float aimSpeed = 0;
+    bool animationRun = false;
+    #endregion
+
+    #region Field of View
+    private Vector3 velocity = Vector3.zero;
+    private float aimingDamp = 0.2f;
+    private float fovDamp = 0.2f;
+    private float fovVel = 0;
+    [SerializeField]
+    float aimingFOV;
+    [SerializeField]
+    float normalFOV;
+    #endregion
+
+    #region Sounds
+    AudioSource audioSource;
+    [SerializeField] AudioClip dryFireSound;
+    [SerializeField] AudioClip reloadSound;
+    [SerializeField] AudioClip fireSound;
+    [SerializeField] AudioClip pullOutSound;
+    #endregion
+
+    #region Shoot Decals
+    [SerializeField]
+    GameObject normalDecal;
+    #endregion
 
 
-    //---Weapon Accuracy ---
-
-    //----------------------
-
-
-
-    //--- FOV ---
-
-    //-----------
+    public Texture2D crosshairTexture;
+    Rect position;
+    static bool OriginalOn = true;
 
     void Start () {
         audioSource = GetComponent<AudioSource>();
-     
-        maxBulletsPerMag = bulletsInMagazine;
+        mainCamera = Camera.main;
+        weaponCamera = GameObject.FindGameObjectWithTag(Tags.weaponCamera).GetComponent<Camera>();
+        maxBulletsPerMag = bulletsInClip;
+
+        position = new Rect((Screen.width - crosshairTexture.width) / 2, (Screen.height - crosshairTexture.height) / 2, crosshairTexture.width, crosshairTexture.height);
     }
 
 
@@ -96,15 +103,81 @@ public class WeaponScript : MonoBehaviour {
             {
                 Reload();
             }
+           
+        }
+        Aiming();
+        //--> Inaccuary system to be implemented.
+
+
+    }
+
+    void AdjustFOV(bool aiming)
+    {
+        if (aiming)
+        {
+            mainCamera.fieldOfView = Mathf.SmoothDamp(mainCamera.fieldOfView, aimingFOV, ref fovVel, fovDamp);
+            if (mainCamera.fieldOfView < aimingFOV)
+                mainCamera.fieldOfView = aimingFOV;
+            weaponCamera.fieldOfView = Mathf.SmoothDamp(weaponCamera.fieldOfView, aimingFOV, ref fovVel, fovDamp);
+            if (weaponCamera.fieldOfView < aimingFOV)
+                weaponCamera.fieldOfView = aimingFOV;
+        }
+        else
+        {
+            mainCamera.fieldOfView = Mathf.SmoothDamp(mainCamera.fieldOfView, normalFOV, ref fovVel, fovDamp);
+            if (mainCamera.fieldOfView > normalFOV)
+                mainCamera.fieldOfView = normalFOV;
+            weaponCamera.fieldOfView = Mathf.SmoothDamp(weaponCamera.fieldOfView, normalFOV, ref fovVel, fovDamp);
+            if (weaponCamera.fieldOfView > normalFOV)
+                weaponCamera.fieldOfView = normalFOV;
+        }
+    }
+    void Aiming()
+    {
+        if (Input.GetMouseButton(1) && weaponSelected && !isReloading && !Input.GetKey(KeyCode.LeftShift))
+        {
+            if (!isAiming)
+            {
+                isAiming = true;
+                aimDistance = Vector3.Distance(aimPosition, transform.localPosition);
+            }
+            
+            if (transform.localPosition != aimPosition)
+            {
+                AdjustFOV(isAiming);
+                if (aimDistance < aimDistance / aimSpeed * aimingDamp)
+                {
+                    transform.localPosition = Vector3.SmoothDamp(transform.localPosition, aimPosition, ref velocity, aimingDamp);
+                }
+            }
+        }
+        else
+        {
+            if (isAiming)
+            {
+                isAiming = false;
+                aimDistance = Vector3.Distance(defaultPosition, transform.localPosition);
+            }
+           
+            if (transform.localPosition != defaultPosition)
+            {
+                AdjustFOV(isAiming);
+                if (aimDistance < aimDistance / aimSpeed * aimingDamp)
+                {
+                    transform.localPosition = Vector3.SmoothDamp(transform.localPosition, defaultPosition, ref velocity, aimingDamp);
+                }
+            }
         }
     }
 
-
     void OnGUI()
     {
+        if (OriginalOn == true)
+            GUI.DrawTexture(position, crosshairTexture);
+
         GUI.contentColor = Color.red;
-        GUI.Label(new Rect(10, 10, 100, 50), "mag" + bulletsInMagazine);
-        GUI.Label(new Rect(10, 25, 100, 50), "total" + totalBulletCount);
+        GUI.Label(new Rect(10, 10, 100, 50), "mag" + bulletsInClip);
+        GUI.Label(new Rect(10, 25, 100, 50), "total" + totalBullets);
         if (reloadInfo) GUI.Label(new Rect(Screen.width / 2, Screen.height / 2, 150, 50), "You have no bullets left");
     }
     IEnumerator waitSound()
@@ -115,9 +188,9 @@ public class WeaponScript : MonoBehaviour {
  
     void SemiFireMode()
     {//If we are currently reloading / or we ran out of ammo -> return and play dry fire sound:).
-        if (isReloading || bulletsInMagazine <= 0)
+        if (isReloading || bulletsInClip <= 0)
         {
-            if (bulletsInMagazine <= 0)
+            if (bulletsInClip <= 0)
             {
                 DryFire();
             }
@@ -153,7 +226,7 @@ public class WeaponScript : MonoBehaviour {
       //  Debug.Log("Shooting");
         //apply kickback affect
         RecoilEffect();
-        bulletsInMagazine--;
+        bulletsInClip--;
 
     }
 
@@ -164,12 +237,12 @@ public class WeaponScript : MonoBehaviour {
     IEnumerator ReloadTime(float time)
     {
         yield return new WaitForSeconds(time);
-        int bulletsShot = maxBulletsPerMag - bulletsInMagazine;
-        int tBCcopy = totalBulletCount;
-        totalBulletCount -= bulletsShot;
-        if (totalBulletCount < 0) totalBulletCount = 0;
-        int delta = tBCcopy - totalBulletCount;
-        bulletsInMagazine += delta;
+        int bulletsShot = maxBulletsPerMag - bulletsInClip;
+        int tBCcopy = totalBullets;
+        totalBullets -= bulletsShot;
+        if (totalBullets < 0) totalBullets = 0;
+        int delta = tBCcopy - totalBullets;
+        bulletsInClip += delta;
         isReloading = false;
     }
     IEnumerator shutReloadInfo()
@@ -181,11 +254,11 @@ public class WeaponScript : MonoBehaviour {
     void Reload()
     {
         //if we are already reloading or we are already on full ammo in mag-> return;
-        if (isReloading || bulletsInMagazine == maxBulletsPerMag) return;
-        reloadInfo = (totalBulletCount <= 0) ? true : false;
+        if (isReloading || bulletsInClip == maxBulletsPerMag) return;
+        reloadInfo = (totalBullets <= 0) ? true : false;
         if (reloadInfo && !reloadInfoStarted) { reloadInfoStarted = true; StartCoroutine(shutReloadInfo()); }
 
-        if (bulletsInMagazine >= 0 && totalBulletCount > 0)
+        if (bulletsInClip >= 0 && totalBullets > 0)
         {
             isReloading = true;
             //--- set animation reload speed
@@ -229,7 +302,7 @@ public class WeaponScript : MonoBehaviour {
     }
     void RecoilEffect()
     {
-        recoilEffectGO.transform.localRotation = Quaternion.Euler(recoilEffectGO.transform.localRotation.eulerAngles - new Vector3(1, Random.Range(-1, 1), 0));
+        head.transform.localRotation = Quaternion.Euler(head.transform.localRotation.eulerAngles - new Vector3(1, Random.Range(-1, 1), 0));
     }
     bool CanFire()
     {
