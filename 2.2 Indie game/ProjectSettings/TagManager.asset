@@ -9,7 +9,7 @@ TagManager:
   - Enemy
   - LootableBox
   - WeaponCamera
-  - New Tag
+  - QualityToggle
   layers:
   - Default
   - TransparentFX

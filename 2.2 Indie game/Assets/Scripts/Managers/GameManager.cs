@@ -48,7 +48,9 @@ public class GameManager : MonoBehaviour {
     [HideInInspector]
     public int health = 100;
     [HideInInspector]
-    public int scrap = 1000;
+    public int scrap = 100;
+    [HideInInspector]
+    public int electronics = 100;
 
     //endPlayer
 
@@ -114,7 +116,8 @@ public class GameManager : MonoBehaviour {
     }
 
     public void SavePlayerStats() {
-        playerScript.GetStats(out health, out maxHealth, out scrap);
+        playerScript.GetCurrencyStats(out scrap, out electronics);
+        playerScript.GetHealthStats(out health, out maxHealth);
     }
 
 }

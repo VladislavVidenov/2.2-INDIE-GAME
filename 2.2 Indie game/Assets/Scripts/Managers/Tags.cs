@@ -9,10 +9,12 @@ public class Tags : MonoBehaviour {
     public const string mainCamera = "MainCamera";
     public const string player = "Player";
     public const string gameController = "GameController";
-    
+
     //Custom Tags
-    public const string enemy = "Enemy";
     public const string ground = "Ground";
     public const string vendingMachine = "VendingMachine";
+    public const string enemy = "Enemy";
+    public const string lootableBox = "LootableBox";
     public const string weaponCamera = "WeaponCamera";
+    public const string qualityToggle = "QualityToggle";
 }

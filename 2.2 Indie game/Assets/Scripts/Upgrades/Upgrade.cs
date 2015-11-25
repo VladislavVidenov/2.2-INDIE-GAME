@@ -7,9 +7,10 @@ public class Upgrade :MonoBehaviour {
 	public Sprite upGradeImage;
 	public string text;
 
-	public int Cost;
+	public int ScrapCost;
+    public int ElectronicsCost;
 
-	public Image buttonImage;
+	//public Image buttonImage;
 
 	void Start () {
 	}
