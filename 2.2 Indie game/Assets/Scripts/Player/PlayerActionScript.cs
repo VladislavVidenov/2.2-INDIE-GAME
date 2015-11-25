@@ -17,7 +17,7 @@ public class PlayerActionScript : MonoBehaviour {
 
     void Raycasting() {
         Ray ray = Camera.main.ViewportPointToRay(new Vector3(0.5f, 0.5f, 0));
-        Debug.DrawRay(ray.origin, ray.direction * maxRayDistance, Color.green);
+    //    Debug.DrawRay(ray.origin, ray.direction * maxRayDistance, Color.black,2);
         if (Physics.Raycast(ray,out hit, maxRayDistance, layerMask.value)) { 
             
             switch (hit.collider.tag) {

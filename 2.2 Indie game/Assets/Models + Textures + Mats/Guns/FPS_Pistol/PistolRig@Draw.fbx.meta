@@ -1,0 +1,296 @@
+fileFormatVersion: 2
+guid: 765bf2faffc9fc14c892e0d827a42bfb
+timeCreated: 1448355453
+licenseType: Free
+ModelImporter:
+  serializedVersion: 18
+  fileIDToRecycleName:
+    100000: Arm_Mesh3
+    100002: Character1_Head
+    100004: Character1_LeftArm
+    100006: Character1_LeftForeArm
+    100008: Character1_LeftHand
+    100010: Character1_LeftHandIndex1
+    100012: Character1_LeftHandIndex2
+    100014: Character1_LeftHandIndex3
+    100016: Character1_LeftHandMiddle1
+    100018: Character1_LeftHandMiddle2
+    100020: Character1_LeftHandMiddle3
+    100022: Character1_LeftHandPinky1
+    100024: Character1_LeftHandPinky2
+    100026: Character1_LeftHandPinky3
+    100028: Character1_LeftHandRing1
+    100030: Character1_LeftHandRing2
+    100032: Character1_LeftHandRing3
+    100034: Character1_LeftHandThumb1
+    100036: Character1_LeftHandThumb2
+    100038: Character1_LeftHandThumb3
+    100040: Character1_LeftShoulder
+    100042: Character1_Neck
+    100044: Character1_RightArm
+    100046: Character1_RightForeArm
+    100048: Character1_RightHand
+    100050: Character1_RightHandIndex1
+    100052: Character1_RightHandIndex2
+    100054: Character1_RightHandIndex3
+    100056: Character1_RightHandMiddle1
+    100058: Character1_RightHandMiddle2
+    100060: Character1_RightHandMiddle3
+    100062: Character1_RightHandPinky1
+    100064: Character1_RightHandPinky2
+    100066: Character1_RightHandPinky3
+    100068: Character1_RightHandRing1
+    100070: Character1_RightHandRing2
+    100072: Character1_RightHandRing3
+    100074: Character1_RightHandThumb1
+    100076: Character1_RightHandThumb2
+    100078: Character1_RightHandThumb3
+    100080: Character1_RightShoulder
+    100082: Character1_Spine
+    100084: FPS_Rig_01
+    100086: Pistol_01
+    100088: Pistol_Barrel_Mesh
+    100090: Pistol_Trigger_Mesh
+    100092: //RootNode
+    400000: Arm_Mesh3
+    400002: Character1_Head
+    400004: Character1_LeftArm
+    400006: Character1_LeftForeArm
+    400008: Character1_LeftHand
+    400010: Character1_LeftHandIndex1
+    400012: Character1_LeftHandIndex2
+    400014: Character1_LeftHandIndex3
+    400016: Character1_LeftHandMiddle1
+    400018: Character1_LeftHandMiddle2
+    400020: Character1_LeftHandMiddle3
+    400022: Character1_LeftHandPinky1
+    400024: Character1_LeftHandPinky2
+    400026: Character1_LeftHandPinky3
+    400028: Character1_LeftHandRing1
+    400030: Character1_LeftHandRing2
+    400032: Character1_LeftHandRing3
+    400034: Character1_LeftHandThumb1
+    400036: Character1_LeftHandThumb2
+    400038: Character1_LeftHandThumb3
+    400040: Character1_LeftShoulder
+    400042: Character1_Neck
+    400044: Character1_RightArm
+    400046: Character1_RightForeArm
+    400048: Character1_RightHand
+    400050: Character1_RightHandIndex1
+    400052: Character1_RightHandIndex2
+    400054: Character1_RightHandIndex3
+    400056: Character1_RightHandMiddle1
+    400058: Character1_RightHandMiddle2
+    400060: Character1_RightHandMiddle3
+    400062: Character1_RightHandPinky1
+    400064: Character1_RightHandPinky2
+    400066: Character1_RightHandPinky3
+    400068: Character1_RightHandRing1
+    400070: Character1_RightHandRing2
+    400072: Character1_RightHandRing3
+    400074: Character1_RightHandThumb1
+    400076: Character1_RightHandThumb2
+    400078: Character1_RightHandThumb3
+    400080: Character1_RightShoulder
+    400082: Character1_Spine
+    400084: FPS_Rig_01
+    400086: Pistol_01
+    400088: Pistol_Barrel_Mesh
+    400090: Pistol_Trigger_Mesh
+    400092: //RootNode
+    2300000: Pistol_Barrel_Mesh
+    2300002: Pistol_Trigger_Mesh
+    3300000: Pistol_Barrel_Mesh
+    3300002: Pistol_Trigger_Mesh
+    4300000: Arm_Mesh3
+    4300002: Pistol_Trigger_Mesh
+    4300004: Pistol_Barrel_Mesh
+    7400000: Draw
+    9500000: //RootNode
+    11100000: //RootNode
+    13700000: Arm_Mesh3
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    optimizeGameObjects: 0
+    motionNodeName: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    animationCompression: 0
+    animationRotationError: .5
+    animationPositionError: .5
+    animationScaleError: .5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    clipAnimations:
+    - serializedVersion: 16
+      name: Draw
+      takeName: Take 001
+      firstFrame: 1
+      lastFrame: 44
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: Character1_Spine
+        weight: 1
+      - path: Character1_Spine/Character1_LeftShoulder
+        weight: 1
+      - path: Character1_Spine/Character1_LeftShoulder/Character1_LeftArm
+        weight: 1
+      - path: Character1_Spine/Character1_LeftShoulder/Character1_LeftArm/Character1_LeftForeArm
+        weight: 1
+      - path: Character1_Spine/Character1_LeftShoulder/Character1_LeftArm/Character1_LeftForeArm/Character1_LeftHand
+        weight: 1
+      - path: Character1_Spine/Character1_LeftShoulder/Character1_LeftArm/Character1_LeftForeArm/Character1_LeftHand/Character1_LeftHandIndex1
+        weight: 1
+      - path: Character1_Spine/Character1_LeftShoulder/Character1_LeftArm/Character1_LeftForeArm/Character1_LeftHand/Character1_LeftHandIndex1/Character1_LeftHandIndex2
+        weight: 1
+      - path: Character1_Spine/Character1_LeftShoulder/Character1_LeftArm/Character1_LeftForeArm/Character1_LeftHand/Character1_LeftHandIndex1/Character1_LeftHandIndex2/Character1_LeftHandIndex3
+        weight: 1
+      - path: Character1_Spine/Character1_LeftShoulder/Character1_LeftArm/Character1_LeftForeArm/Character1_LeftHand/Character1_LeftHandMiddle1
+        weight: 1
+      - path: Character1_Spine/Character1_LeftShoulder/Character1_LeftArm/Character1_LeftForeArm/Character1_LeftHand/Character1_LeftHandMiddle1/Character1_LeftHandMiddle2
+        weight: 1
+      - path: Character1_Spine/Character1_LeftShoulder/Character1_LeftArm/Character1_LeftForeArm/Character1_LeftHand/Character1_LeftHandMiddle1/Character1_LeftHandMiddle2/Character1_LeftHandMiddle3
+        weight: 1
+      - path: Character1_Spine/Character1_LeftShoulder/Character1_LeftArm/Character1_LeftForeArm/Character1_LeftHand/Character1_LeftHandPinky1
+        weight: 1
+      - path: Character1_Spine/Character1_LeftShoulder/Character1_LeftArm/Character1_LeftForeArm/Character1_LeftHand/Character1_LeftHandPinky1/Character1_LeftHandPinky2
+        weight: 1
+      - path: Character1_Spine/Character1_LeftShoulder/Character1_LeftArm/Character1_LeftForeArm/Character1_LeftHand/Character1_LeftHandPinky1/Character1_LeftHandPinky2/Character1_LeftHandPinky3
+        weight: 1
+      - path: Character1_Spine/Character1_LeftShoulder/Character1_LeftArm/Character1_LeftForeArm/Character1_LeftHand/Character1_LeftHandRing1
+        weight: 1
+      - path: Character1_Spine/Character1_LeftShoulder/Character1_LeftArm/Character1_LeftForeArm/Character1_LeftHand/Character1_LeftHandRing1/Character1_LeftHandRing2
+        weight: 1
+      - path: Character1_Spine/Character1_LeftShoulder/Character1_LeftArm/Character1_LeftForeArm/Character1_LeftHand/Character1_LeftHandRing1/Character1_LeftHandRing2/Character1_LeftHandRing3
+        weight: 1
+      - path: Character1_Spine/Character1_LeftShoulder/Character1_LeftArm/Character1_LeftForeArm/Character1_LeftHand/Character1_LeftHandThumb1
+        weight: 1
+      - path: Character1_Spine/Character1_LeftShoulder/Character1_LeftArm/Character1_LeftForeArm/Character1_LeftHand/Character1_LeftHandThumb1/Character1_LeftHandThumb2
+        weight: 1
+      - path: Character1_Spine/Character1_LeftShoulder/Character1_LeftArm/Character1_LeftForeArm/Character1_LeftHand/Character1_LeftHandThumb1/Character1_LeftHandThumb2/Character1_LeftHandThumb3
+        weight: 1
+      - path: Character1_Spine/Character1_Neck
+        weight: 1
+      - path: Character1_Spine/Character1_Neck/Character1_Head
+        weight: 1
+      - path: Character1_Spine/Character1_RightShoulder
+        weight: 1
+      - path: Character1_Spine/Character1_RightShoulder/Character1_RightArm
+        weight: 1
+      - path: Character1_Spine/Character1_RightShoulder/Character1_RightArm/Character1_RightForeArm
+        weight: 1
+      - path: Character1_Spine/Character1_RightShoulder/Character1_RightArm/Character1_RightForeArm/Character1_RightHand
+        weight: 1
+      - path: Character1_Spine/Character1_RightShoulder/Character1_RightArm/Character1_RightForeArm/Character1_RightHand/Character1_RightHandIndex1
+        weight: 1
+      - path: Character1_Spine/Character1_RightShoulder/Character1_RightArm/Character1_RightForeArm/Character1_RightHand/Character1_RightHandIndex1/Character1_RightHandIndex2
+        weight: 1
+      - path: Character1_Spine/Character1_RightShoulder/Character1_RightArm/Character1_RightForeArm/Character1_RightHand/Character1_RightHandIndex1/Character1_RightHandIndex2/Character1_RightHandIndex3
+        weight: 1
+      - path: Character1_Spine/Character1_RightShoulder/Character1_RightArm/Character1_RightForeArm/Character1_RightHand/Character1_RightHandMiddle1
+        weight: 1
+      - path: Character1_Spine/Character1_RightShoulder/Character1_RightArm/Character1_RightForeArm/Character1_RightHand/Character1_RightHandMiddle1/Character1_RightHandMiddle2
+        weight: 1
+      - path: Character1_Spine/Character1_RightShoulder/Character1_RightArm/Character1_RightForeArm/Character1_RightHand/Character1_RightHandMiddle1/Character1_RightHandMiddle2/Character1_RightHandMiddle3
+        weight: 1
+      - path: Character1_Spine/Character1_RightShoulder/Character1_RightArm/Character1_RightForeArm/Character1_RightHand/Character1_RightHandPinky1
+        weight: 1
+      - path: Character1_Spine/Character1_RightShoulder/Character1_RightArm/Character1_RightForeArm/Character1_RightHand/Character1_RightHandPinky1/Character1_RightHandPinky2
+        weight: 1
+      - path: Character1_Spine/Character1_RightShoulder/Character1_RightArm/Character1_RightForeArm/Character1_RightHand/Character1_RightHandPinky1/Character1_RightHandPinky2/Character1_RightHandPinky3
+        weight: 1
+      - path: Character1_Spine/Character1_RightShoulder/Character1_RightArm/Character1_RightForeArm/Character1_RightHand/Character1_RightHandRing1
+        weight: 1
+      - path: Character1_Spine/Character1_RightShoulder/Character1_RightArm/Character1_RightForeArm/Character1_RightHand/Character1_RightHandRing1/Character1_RightHandRing2
+        weight: 1
+      - path: Character1_Spine/Character1_RightShoulder/Character1_RightArm/Character1_RightForeArm/Character1_RightHand/Character1_RightHandRing1/Character1_RightHandRing2/Character1_RightHandRing3
+        weight: 1
+      - path: Character1_Spine/Character1_RightShoulder/Character1_RightArm/Character1_RightForeArm/Character1_RightHand/Character1_RightHandThumb1
+        weight: 1
+      - path: Character1_Spine/Character1_RightShoulder/Character1_RightArm/Character1_RightForeArm/Character1_RightHand/Character1_RightHandThumb1/Character1_RightHandThumb2
+        weight: 1
+      - path: Character1_Spine/Character1_RightShoulder/Character1_RightArm/Character1_RightForeArm/Character1_RightHand/Character1_RightHandThumb1/Character1_RightHandThumb2/Character1_RightHandThumb3
+        weight: 1
+      - path: Character1_Spine/Character1_RightShoulder/Character1_RightArm/Character1_RightForeArm/Character1_RightHand/Pistol_01
+        weight: 1
+      - path: Character1_Spine/Character1_RightShoulder/Character1_RightArm/Character1_RightForeArm/Character1_RightHand/Pistol_01/Pistol_Barrel_Mesh
+        weight: 1
+      - path: Character1_Spine/Character1_RightShoulder/Character1_RightArm/Character1_RightForeArm/Character1_RightHand/Pistol_01/Pistol_Trigger_Mesh
+        weight: 1
+      - path: FPS_Rig_01
+        weight: 1
+      - path: FPS_Rig_01/Arm_Mesh3
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    importBlendShapes: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    splitTangentsAcrossUV: 1
+    normalImportMode: 0
+    tangentImportMode: 1
+  importAnimation: 1
+  copyAvatar: 1
+  humanDescription:
+    human: []
+    skeleton: []
+    armTwist: .5
+    foreArmTwist: .5
+    upperLegTwist: .5
+    legTwist: .5
+    armStretch: .0500000007
+    legStretch: .0500000007
+    feetSpacing: 0
+    rootMotionBoneName: 
+    hasTranslationDoF: 0
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 1
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

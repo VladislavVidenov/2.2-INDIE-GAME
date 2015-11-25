@@ -11,7 +11,8 @@ public class PlayerMovement : MonoBehaviour {
     int stateID { get { return state.GetHashCode(); } }
 
     //Components
-    Rigidbody rigidBody;
+    [HideInInspector]
+    public Rigidbody rigidBody;
     CapsuleCollider bodyCollider;
     GameObject mainCamera;
     GameObject weaponCamera;
@@ -19,32 +20,36 @@ public class PlayerMovement : MonoBehaviour {
 
 
     //Variables
-    [SerializeField]
-    float walkSpeed;
+    //[SerializeField]
+    public float walkSpeed;
     [SerializeField]
     float crouchSpeed;
-    [SerializeField]
-    float runSpeed;
+    //[SerializeField]
+    public float runSpeed;
     [SerializeField]
     float inAirSpeed;
     [SerializeField]
     float heightToJump;
     float GetJumpHeight { get { return Mathf.Sqrt(heightToJump * gravity); } }
     float speed = 10;
-    float maxVelocityClamp = 10f;
+    float maxVelocityClamp = 5f;
     [SerializeField]
     float gravity;
 
+    bool isCurrentWeaponReloading = false;
+    [HideInInspector]
+    public bool releasedRun = true;
     bool isGrounded = false;
     bool canJump = true;
     [HideInInspector]
     public bool isCrouching = false;
+    [HideInInspector]
+    public bool isRunning = false;
     Vector3 standingCamHeight = new Vector3(0, 0.4f, 0);
     Vector3 crouchingCamHeight = new Vector3(0, -0.2f, 0);
 
-    Vector3 input;
-    Vector3 targetVel;
-
+   
+   
     // Use this for initialization
     void Start()
     {
@@ -58,12 +63,15 @@ public class PlayerMovement : MonoBehaviour {
     // Update is called once per frame
     void FixedUpdate()
     {
-        input = new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical"));
-        input *= (Mathf.Abs(input.x) == 1 && Mathf.Abs(input.z) == 1) ? 0.707f : 1.0f; //normalize input.
+       // Debug.Log("SPEED ->" + rigidBody.velocity.magnitude);
+
+        Vector3 input = new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical"));
+        input.Normalize();
 
         if (isGrounded)
         {
 
+            Vector3 targetVel;
             targetVel = input;
             targetVel = transform.TransformDirection(targetVel);
             targetVel *= speed;
@@ -83,9 +91,9 @@ public class PlayerMovement : MonoBehaviour {
         }
         else
         {
-            //if we are not grounded => apply in air speed.
+            Vector3 targetVel;
             targetVel = input;
-            targetVel = transform.TransformDirection(targetVel * inAirSpeed);
+            targetVel = transform.TransformDirection(targetVel) * inAirSpeed;
             rigidBody.AddForce(targetVel, ForceMode.VelocityChange);
         }
 
@@ -109,6 +117,19 @@ public class PlayerMovement : MonoBehaviour {
             else if (stateID == 2)
                 state = PlayerStates.Stand;
         }
+        else if (Input.GetKey(KeyCode.LeftShift) && Input.GetKey(KeyCode.W) && releasedRun && !isCurrentWeaponReloading)
+        {
+            isRunning = true;
+            releasedRun = false;
+        }
+        if (Input.GetKeyUp(KeyCode.LeftShift) || Input.GetKeyUp(KeyCode.W))
+        {
+            isRunning = false;
+            releasedRun = true;
+        }
+
+        Debug.Log(isRunning + "r");
+
 
         switch (state)
         {
@@ -131,7 +152,7 @@ public class PlayerMovement : MonoBehaviour {
         isCrouching = false;
         bodyCollider.height = 2.0f;
         bodyCollider.center = Vector3.zero;
-        speed = (Input.GetKey(KeyCode.LeftShift) && Input.GetKey(KeyCode.W)) ? runSpeed : walkSpeed;
+        speed = isRunning ? runSpeed : walkSpeed;
         if (mainCamera.transform.localPosition.y < standingCamHeight.y)
         {
             mainCamera.transform.localPosition = Vector3.Lerp(mainCamera.transform.localPosition, standingCamHeight, Time.deltaTime * 5);
@@ -150,7 +171,7 @@ public class PlayerMovement : MonoBehaviour {
         {
             mainCamera.transform.localPosition = Vector3.Lerp(mainCamera.transform.localPosition, crouchingCamHeight, Time.deltaTime * 5);
         }
-        if (Input.GetKeyDown(KeyCode.Space))
+        if (Input.GetKeyDown(KeyCode.Space)|| Input.GetKeyDown(KeyCode.LeftShift))
             state = PlayerStates.Stand;
     }
 
@@ -170,5 +191,12 @@ public class PlayerMovement : MonoBehaviour {
     {
         recoilEffectGO.transform.localRotation = Quaternion.Euler(recoilEffectGO.transform.localRotation.eulerAngles - new Vector3(amount, 0, 0));
     }
-
+    void finishedReloading()
+    {
+        isCurrentWeaponReloading = false;
+    }
+    void startedReloading()
+    {
+        isCurrentWeaponReloading = true;
+    }
 }

@@ -6,9 +6,13 @@ public class WeaponScript : MonoBehaviour {
 
     Camera mainCamera;
     Camera weaponCamera;
+    PlayerMovement playerMove;
     [SerializeField]
     GameObject head;
-    public enum WeaponMode { None,SemiFire,Auto };
+    [SerializeField]
+    Transform weaponNozzle;
+    Animation weaponAnimations;
+    public enum WeaponMode { None, SemiFire, Auto };
     public WeaponMode currentWeaponMode;
 
     //Weapon properties.
@@ -22,12 +26,11 @@ public class WeaponScript : MonoBehaviour {
     public float pullOutWeaponTime;
     float nextFireTime;
     bool isReloading = false;
-
+    bool isShooting = false;
     bool weaponSelected = false;
     bool outOfAmmoSoundPlaying = false;
     bool reloadInfo = false;
     bool reloadInfoStarted = false;
-    // bool isFiring = false;
 
     #region Aiming
     Vector3 defaultPosition = Vector3.zero;
@@ -48,7 +51,21 @@ public class WeaponScript : MonoBehaviour {
     [SerializeField]
     float normalFOV;
     #endregion
+    #region Accuracy
+    float inaccuracy = 0.05f;
 
+    float minInaccuracy;
+    float minInaccuracyHip = 1.5f;
+    float minInaccuracyAim = 0.005f;
+
+    float maxInaccuracy;
+    float maxInaccuracyHip = 5.0f;
+    float maxInaccuracyAim = 1.0f;
+
+    float inaccuracyIncreaseWalk = 0.5f;
+    float inaccuracyDecrease = 0.5f;
+    float increaseInaccuracy = 0.2f;
+    #endregion
     #region Sounds
     AudioSource audioSource;
     [SerializeField] AudioClip dryFireSound;
@@ -62,12 +79,16 @@ public class WeaponScript : MonoBehaviour {
     GameObject normalDecal;
     #endregion
 
-
+    //temp crosshair
     public Texture2D crosshairTexture;
     Rect position;
-    static bool OriginalOn = true;
-
-    void Start () {
+    static bool showCrosshair = true;
+    void Awake()
+    {
+        weaponAnimations = GetComponentInChildren<Animation>();
+        playerMove = head.GetComponentInParent<PlayerMovement>();
+    }
+    void Start() {
         audioSource = GetComponent<AudioSource>();
         mainCamera = Camera.main;
         weaponCamera = GameObject.FindGameObjectWithTag(Tags.weaponCamera).GetComponent<Camera>();
@@ -79,6 +100,7 @@ public class WeaponScript : MonoBehaviour {
 
     void Update()
     {
+
         // Debug.Log(isReloading);
         if (weaponSelected)
         {
@@ -103,17 +125,51 @@ public class WeaponScript : MonoBehaviour {
             {
                 Reload();
             }
-           
+            Aiming();
+            SetInaccuracyRange();
+            CalculateInaccuracy();
         }
-        Aiming();
+
         //--> Inaccuary system to be implemented.
 
 
     }
-
-    void AdjustFOV(bool aiming)
+    void CalculateInaccuracy()
     {
-        if (aiming)
+        //if you are running
+        if (playerMove.rigidBody.velocity.magnitude > (playerMove.runSpeed - 0.3f))
+        {
+            Debug.Log("Im runnin brah");
+            // inaccuracy += inaccuracyIncreaseRun;      
+
+        } else if (playerMove.rigidBody.velocity.magnitude > (playerMove.walkSpeed - 0.2f))
+        {
+            inaccuracy += inaccuracyIncreaseWalk;              //^^^so if we decide to change walk speed , inaccuracy doesnt brake. 
+            Debug.Log("i AM WALKING BRUH");                    //   veloc.magnituted is always 0.2 less than the speed
+        }//else if(playerMove.isCrouching)
+
+        if (isShooting)
+        {
+            inaccuracy += increaseInaccuracy;
+        }
+        else
+        {   //if we are not shooting and not moving.
+            if (playerMove.rigidBody.velocity.magnitude < 1)
+                inaccuracy -= inaccuracyDecrease;
+        }
+      
+        inaccuracy = LimitInaccuracy(inaccuracy, minInaccuracy, maxInaccuracy);
+        Debug.Log(inaccuracy + "inac");
+    }
+   
+    void SetInaccuracyRange()
+    {
+        minInaccuracy = isAiming ? minInaccuracyAim : minInaccuracyHip;
+        maxInaccuracy = isAiming ? maxInaccuracyAim : maxInaccuracyHip;
+    }
+    void AdjustFOV()
+    {
+        if (isAiming)
         {
             mainCamera.fieldOfView = Mathf.SmoothDamp(mainCamera.fieldOfView, aimingFOV, ref fovVel, fovDamp);
             if (mainCamera.fieldOfView < aimingFOV)
@@ -134,8 +190,9 @@ public class WeaponScript : MonoBehaviour {
     }
     void Aiming()
     {
-        if (Input.GetMouseButton(1) && weaponSelected && !isReloading && !Input.GetKey(KeyCode.LeftShift))
+        if (Input.GetMouseButton(1) && weaponSelected && !isReloading)
         {
+            playerMove.isRunning = false;
             if (!isAiming)
             {
                 isAiming = true;
@@ -144,7 +201,7 @@ public class WeaponScript : MonoBehaviour {
             
             if (transform.localPosition != aimPosition)
             {
-                AdjustFOV(isAiming);
+                AdjustFOV();
                 if (aimDistance < aimDistance / aimSpeed * aimingDamp)
                 {
                     transform.localPosition = Vector3.SmoothDamp(transform.localPosition, aimPosition, ref velocity, aimingDamp);
@@ -155,13 +212,14 @@ public class WeaponScript : MonoBehaviour {
         {
             if (isAiming)
             {
+                playerMove.releasedRun = true;
                 isAiming = false;
                 aimDistance = Vector3.Distance(defaultPosition, transform.localPosition);
             }
            
             if (transform.localPosition != defaultPosition)
             {
-                AdjustFOV(isAiming);
+                AdjustFOV();
                 if (aimDistance < aimDistance / aimSpeed * aimingDamp)
                 {
                     transform.localPosition = Vector3.SmoothDamp(transform.localPosition, defaultPosition, ref velocity, aimingDamp);
@@ -172,8 +230,15 @@ public class WeaponScript : MonoBehaviour {
 
     void OnGUI()
     {
-        if (OriginalOn == true)
-            GUI.DrawTexture(position, crosshairTexture);
+        if (showCrosshair)
+        {
+            if (!isAiming)
+            {
+
+                GUI.DrawTexture(position, crosshairTexture);
+            }
+        }
+       
 
         GUI.contentColor = Color.red;
         GUI.Label(new Rect(10, 10, 100, 50), "mag" + bulletsInClip);
@@ -202,29 +267,29 @@ public class WeaponScript : MonoBehaviour {
  
     void FireOneBullet()
     {
-        Vector3 shootDirection = gameObject.transform.TransformDirection(new Vector3(Random.Range(-0.01f,0.01f), Random.Range(-0.01f, 0.01f),1));
+        playerMove.isRunning = false;
+        isShooting = true;
+        Vector3 shootDirection = mainCamera.transform.TransformDirection(new Vector3(Random.Range(-0.01f, 0.01f) * inaccuracy, Random.Range(-0.01f, 0.01f) * inaccuracy, 1));
         RaycastHit hit;
-        Vector3 shootingPos = transform.parent.position;
-        Debug.DrawRay(shootingPos, shootDirection * 100f, Color.red, 2);
-       
-        if(Physics.Raycast(shootingPos,shootDirection, out hit, 100f))
+        Debug.DrawRay(mainCamera.transform.position, shootDirection * 100f, Color.green, 5);
+        if (Physics.Raycast(mainCamera.transform.position, shootDirection, out hit, 100f))
         {
 
             Vector3 hitPoint = hit.point;
-            Quaternion hitPointDecalPos = Quaternion.FromToRotation(Vector3.up, hit.normal);
-           // Debug.Log(hit.transform.gameObject.name);
-            if (hit.transform.CompareTag("Ground"))
+            Quaternion decalRotation = Quaternion.FromToRotation(Vector3.up, hit.normal);
+
+            if (!hit.transform.CompareTag(Tags.enemy))
             {
-            
-                GameObject go = Instantiate(normalDecal,new Vector3(hitPoint.x,hitPoint.y + 0.00001f,hitPoint.z),hitPointDecalPos) as GameObject;
+                GameObject go = Instantiate(normalDecal, hitPoint + (hit.normal * 0.01f), decalRotation) as GameObject;
                 go.transform.parent = hit.transform;
             }
         }
+        
 
         audioSource.PlayOneShot(fireSound);
-        //play animations
-      //  Debug.Log("Shooting");
-        //apply kickback affect
+     //   weaponAnimations.Rewind("Shoot");
+       // weaponAnimations.Play("Shoot");
+
         RecoilEffect();
         bulletsInClip--;
 
@@ -244,6 +309,8 @@ public class WeaponScript : MonoBehaviour {
         int delta = tBCcopy - totalBullets;
         bulletsInClip += delta;
         isReloading = false;
+        playerMove.releasedRun = true;
+    //    playerMove.SendMessage("finishedReloading");
     }
     IEnumerator shutReloadInfo()
     {
@@ -261,6 +328,8 @@ public class WeaponScript : MonoBehaviour {
         if (bulletsInClip >= 0 && totalBullets > 0)
         {
             isReloading = true;
+            playerMove.isRunning = false;
+           // playerMove.SendMessage("startedReloading");
             //--- set animation reload speed
             //--- play reload gun animation
             audioSource.PlayOneShot(reloadSound);
@@ -278,9 +347,10 @@ public class WeaponScript : MonoBehaviour {
     }
     void PullOutWeapon()
     {
-        //play draw weapon sound
-        //play "pullout wep animation" with playmode.stopall
-        //play "pull out animation" by crossfade.
+        weaponAnimations["Draw"].speed = pullOutWeaponTime * 2;
+      //  weaponAnimations.Play("Draw", PlayMode.StopAll);
+       // weaponAnimations.Play("Draw");
+        weaponAnimations.CrossFade("Draw");
         StartCoroutine(waitPullOut(pullOutWeaponTime));
 
     }
@@ -316,7 +386,14 @@ public class WeaponScript : MonoBehaviour {
         }
         return false;
     }
-
+    float LimitInaccuracy(float value, float min, float max)
+    {
+        if (value >= max)
+            value = max;
+        if (value <= min)
+            value = min;
+        return value;
+    }
 
 
 }
