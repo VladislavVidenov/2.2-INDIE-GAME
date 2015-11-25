@@ -89,9 +89,7 @@ public class LoadLevelGame : MonoBehaviour {
 						break;
 
 					}
-
-                   
-                    Debug.Log("count " + rotations.Count);
+                        
 					break;
 
 				case "layer":
@@ -113,10 +111,13 @@ public class LoadLevelGame : MonoBehaviour {
 	void InstatiateGameObject (XmlReader xmlReader, int gameObjectIndex) {
 		if (int.Parse(xmlReader["gid"]) != 0){
             Debug.Log(rotations[gameObjectIndex]);
-            GameObject go = GameObject.Instantiate(tiles[gameObjectIndex], new Vector3((width - x) * 3.863f, tileHeight * 2.4938f, z),Quaternion.Euler( rotations[gameObjectIndex])) as GameObject;
-          //  go.transform.rotation = new Quaternion rotations[gameObjectIndex];
-			go.transform.SetParent(this.transform);
-			levelObjects.Add(go);
+            if (tiles[gameObjectIndex] != null)
+            {
+                GameObject go = GameObject.Instantiate(tiles[gameObjectIndex], new Vector3((width - x) * 3.863f, tileHeight * 2.4938f, z * 3.863f), Quaternion.Euler(rotations[gameObjectIndex])) as GameObject;
+                //  go.transform.rotation = new Quaternion rotations[gameObjectIndex];
+                go.transform.SetParent(this.transform);
+                levelObjects.Add(go);
+            }
 		}
 		x++;
 		if(x>width-1) {
@@ -126,6 +127,7 @@ public class LoadLevelGame : MonoBehaviour {
 	}
 
 	public void DeleteScene () {
+        rotations.Clear();
 		foreach(GameObject levelObject in levelObjects){
 			DestroyImmediate (levelObject);
 		}
