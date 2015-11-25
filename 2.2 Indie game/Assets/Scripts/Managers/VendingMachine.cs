@@ -15,22 +15,34 @@ public class VendingMachine : MonoBehaviour {
 	//menuVisuals
     [SerializeField]
     GameObject buyscreen;
-	[SerializeField]
+    [SerializeField]
+    GameObject playerUpgrades;
+    [SerializeField]
+    GameObject toolUpgrades;
+    [SerializeField]
+    GameObject weaponUpgrades;
+
+    GameObject currentUpgrades;
+
+    [SerializeField]
+    Button buyButton;
+    [SerializeField]
 	Image buyMenuImage;
 	[SerializeField]
 	Text buyText;
     [SerializeField]
-    Text healthText;
+    Text electronicsText;
     [SerializeField]
     Text scrapText;
     [SerializeField]
-    Button buyButton;
-
+    Text electronicsCostText;
+    [SerializeField]
+    Text scrapCostText;
+ 
     //player
     PlayerScript player;
-    int playerHealth;
     int playerScrap;
-    int playerMaxHealth;
+    int playerElectronics;
 
 
 
@@ -41,7 +53,7 @@ public class VendingMachine : MonoBehaviour {
 		ownedUpgrades = GameManager.Instance.OwnedUpgrades;
         ApplyUpgrades();
 
-		FindButtons ();
+		//FindButtons ();
         DisableBuyScreen();
 	}
 
@@ -53,7 +65,6 @@ public class VendingMachine : MonoBehaviour {
 
 	public void DeActivateStation () {
         SetPlayerStats();
-		if(selectedUpgrade != null) ChangeSelectedButton(Color.white);
 		buyButton.gameObject.SetActive(false);
 		SetImageAndText ();
         DisableBuyScreen();
@@ -61,18 +72,15 @@ public class VendingMachine : MonoBehaviour {
 	}
 
 	public void SelectUpgrade (Upgrade upgrade) {
-        if (selectedUpgrade != null) {
-			ChangeSelectedButton(Color.white);
-        }
+
 		if (!buyButton.gameObject.activeInHierarchy) {
 			buyButton.gameObject.SetActive( true);
 		}
 
 		selectedUpgrade = upgrade;
 
-		ChangeSelectedButton(Color.red);
-
 		SetImageAndText (selectedUpgrade);
+        UpdateUpgradeCosts();
 
         CheckUpgrade();
 	}
@@ -81,7 +89,8 @@ public class VendingMachine : MonoBehaviour {
 		selectedUpgrade.Apply ();
 		ownedUpgrades.Add (selectedUpgrade);
 		ChangeBuyButton("Allready have",false);
-        playerScrap -= selectedUpgrade.Cost;
+        playerScrap -= selectedUpgrade.ScrapCost;
+        playerElectronics -= selectedUpgrade.ElectronicsCost;
         ChangePlayerStatsText();
 	}
 
@@ -89,19 +98,19 @@ public class VendingMachine : MonoBehaviour {
 		if (ownedUpgrades.Contains (selectedUpgrade)) {
 			ChangeBuyButton("Allready have",false);
 		} else {
-			if (selectedUpgrade.Cost > playerScrap) {
-				ChangeBuyButton("no Money",false);
+			if (selectedUpgrade.ScrapCost > playerScrap || selectedUpgrade.ElectronicsCost >playerElectronics) {
+				ChangeBuyButton("Not enough resources",false);
 			} else {
 				ChangeBuyButton("Buy Upgrade",true);
 			}
 		}
     }
 
-	void FindButtons () {
-		foreach (Upgrade upgrade in allUpgrades) {
-			upgrade.buttonImage = GameObject.Find (upgrade.name + "Button").GetComponent<Image> ();
-		}
-	}
+    //void FindButtons () {
+    //    foreach (Upgrade upgrade in allUpgrades) {
+    //        upgrade.buttonImage = GameObject.Find (upgrade.name + "Button").GetComponent<Image> ();
+    //    }
+    //}
 
     void DisableBuyScreen() {
         buyscreen.SetActive(false);
@@ -112,15 +121,16 @@ public class VendingMachine : MonoBehaviour {
 			buyButton.interactable = active;
 	}
 
-	void ChangeSelectedButton (Color color) {
-		selectedUpgrade.buttonImage.color = color;
-	}
 
     public List<Upgrade> GetOwndedList() {
             return ownedUpgrades;
     }
 
 	void SetImageAndText (Upgrade upgrade = null) {
+        if (!buyMenuImage.GetComponent<Mask>().showMaskGraphic) {
+            buyMenuImage.GetComponent<Mask>().showMaskGraphic = true;
+        }
+
 		if (upgrade == null) {
 			buyMenuImage.sprite = null;
 			buyText.text = null;
@@ -137,15 +147,44 @@ public class VendingMachine : MonoBehaviour {
     }
 
     void GetPlayerStats() {
-        player.GetStats(out playerHealth,out playerMaxHealth, out playerScrap);
+        player.GetCurrencyStats( out playerScrap,out playerElectronics);
     }
 
     void SetPlayerStats() {
-        player.SetStats(playerHealth, playerMaxHealth, playerScrap);
+        player.SetCurrencyStats(playerScrap,playerElectronics);
     }
 
     void ChangePlayerStatsText() {
-        scrapText.text = "Scrap:"+ playerScrap.ToString();
-        healthText.text ="health"+ playerHealth.ToString() + "/" + playerMaxHealth.ToString();
+        scrapText.text = playerScrap.ToString();
+        electronicsText.text = playerElectronics.ToString();
+    }
+
+    public void SelectPlayer() {
+        SetGameObjectActive(playerUpgrades,true);
+    }
+
+    public void SelectTools() {
+        SetGameObjectActive(toolUpgrades, true);
+    }
+
+    public void SelectWeapons() {
+        SetGameObjectActive(weaponUpgrades, true);
+    }
+
+    void SetGameObjectActive(GameObject gameobject , bool on) {
+        DisablePreviousUpgrades();
+        gameobject.SetActive(on);
+        currentUpgrades = gameobject;
+    }
+
+    void DisablePreviousUpgrades() {
+        if (currentUpgrades != null) {
+            currentUpgrades.SetActive(false);
+        }
+    }
+
+    void UpdateUpgradeCosts() {
+        scrapCostText.text = selectedUpgrade.ScrapCost.ToString();
+        electronicsCostText.text = selectedUpgrade.ElectronicsCost.ToString();
     }
 }

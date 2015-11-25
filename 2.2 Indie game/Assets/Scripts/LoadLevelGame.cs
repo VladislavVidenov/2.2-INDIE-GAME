@@ -13,6 +13,7 @@ public class LoadLevelGame : MonoBehaviour {
 	/// The tileset, as an array.
 	/// </summary>
 	public GameObject[] tiles;
+    List<Vector3> rotations;
 
 	List<GameObject> levelObjects = new List<GameObject>();
 
@@ -21,8 +22,6 @@ public class LoadLevelGame : MonoBehaviour {
 	int rotationX;
 	int rotationY;
 	int rotationZ;
-
-	//int [,] array;
 
 	int x=0;
 	int z=0;
@@ -34,7 +33,7 @@ public class LoadLevelGame : MonoBehaviour {
 	
 	//start loading the level at the start
 	void Start () {
-		//array = new int[width, height];
+        rotations = new List<Vector3>();
 		LoadLevel();
 	}
 	
@@ -56,7 +55,6 @@ public class LoadLevelGame : MonoBehaviour {
                         if (id == -1) {
                             id = 0;
                         }
-						Debug.Log (id);
 					} else{
 						int index = int.Parse(xmlReader["gid"])-1;
 						InstatiateGameObject(xmlReader, index);
@@ -66,8 +64,6 @@ public class LoadLevelGame : MonoBehaviour {
 
 				case "property":
 					string attribute = xmlReader ["name"];
-
-					Debug.Log (attribute);
 
 					switch (attribute) {
 					
@@ -86,19 +82,22 @@ public class LoadLevelGame : MonoBehaviour {
 					case "rotationZ":
 						rotationZ = int.Parse (xmlReader ["value"]);
 						Debug.Log (rotationZ);
+
+                        Vector3 temp = new Vector3(rotationX, rotationY, rotationZ);
+                        rotations.Add(temp);
 						
 						break;
 
 					}
 
-					tiles[id + 1].transform.rotation = Quaternion.Euler(rotationX,rotationY,rotationZ);
+                   
+                    Debug.Log("count " + rotations.Count);
 					break;
 
 				case "layer":
 					tileHeight++;
 					x=0;
 					z=0;
-					Debug.Log(x);
 					break;
 				
 				}
@@ -113,7 +112,9 @@ public class LoadLevelGame : MonoBehaviour {
 
 	void InstatiateGameObject (XmlReader xmlReader, int gameObjectIndex) {
 		if (int.Parse(xmlReader["gid"]) != 0){
-            GameObject go = GameObject.Instantiate(tiles[gameObjectIndex], new Vector3((width - x) * 3.863f, tileHeight * 2.4938f, z * 3.863f), tiles[gameObjectIndex].transform.rotation) as GameObject;
+            Debug.Log(rotations[gameObjectIndex]);
+            GameObject go = GameObject.Instantiate(tiles[gameObjectIndex], new Vector3((width - x) * 3.863f, tileHeight * 2.4938f, z),Quaternion.Euler( rotations[gameObjectIndex])) as GameObject;
+          //  go.transform.rotation = new Quaternion rotations[gameObjectIndex];
 			go.transform.SetParent(this.transform);
 			levelObjects.Add(go);
 		}

@@ -7,6 +7,7 @@ public class PlayerScript : MonoBehaviour {
     int maxHealth;
     int health;
     int scrap;
+    int electronics;
 
     Camera mainCamera;
 
@@ -52,26 +53,36 @@ public class PlayerScript : MonoBehaviour {
         maxHealth = GameManager.Instance.maxHealth;
         health = GameManager.Instance.health;
         scrap = GameManager.Instance.scrap;
+        electronics = GameManager.Instance.electronics;
     }
 
 
-    public void GetStats(out int pHealth, out int pMaxHealth, out int pScrap) {
+    public void GetCurrencyStats( out int pScrap,out int pElectronics) {
+        pScrap = scrap;
+        pElectronics = electronics;
+    }
+
+    public void SetCurrencyStats( int pScrap, int pElectronics) {
+        scrap = pScrap;
+        electronics = pElectronics;
+    }
+
+    public void GetHealthStats(out int pHealth, out int pMaxHealth) {
         pHealth = health;
         pMaxHealth = maxHealth;
-        pScrap = scrap;
     }
 
-    public void SetStats(int pHealth, int pMaxHealth, int pScrap) {
-        maxHealth =pMaxHealth;
+    public void SetHealthStats(int pHealth, int pMaxHealth) {
         health = pHealth;
-        scrap = pScrap;
+        maxHealth = pMaxHealth;
     }
 
-    public void IncreasePlayerStats(int pHealth, int pMaxHealth, int pScrap) {
+    public void IncreasePlayerStats(int pHealth, int pMaxHealth, int pScrap, int pElectronics) {
         if(pScrap>0) IncreaseScrapHud(pScrap);
         maxHealth += pMaxHealth;
         health += pHealth;
         scrap += pScrap;
+        electronics += pScrap;
     }
 
     void IncreaseScrapHud(int Amount) {
