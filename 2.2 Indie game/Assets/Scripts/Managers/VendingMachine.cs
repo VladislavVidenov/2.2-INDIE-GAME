@@ -10,6 +10,14 @@ public class VendingMachine : MonoBehaviour {
 	List<Upgrade> allUpgrades;
     List<Upgrade> ownedUpgrades;
 
+    List<Upgrade> playerUpgradesOwnedList;
+    List<Upgrade> toolsUpgradesOwnedList;
+    List<Upgrade> weaponUpgradesOwnedList;
+
+    int playerUpgradesCount = 0;
+    int toolsUpgradesCount = 0;
+    int weaponUpgradesCount = 0;
+
 	Upgrade selectedUpgrade;
     Button selectedButton;
 
@@ -49,12 +57,43 @@ public class VendingMachine : MonoBehaviour {
     bool AlreadyHave = false;
 
 	void Start(){
+
+        playerUpgradesOwnedList = new List<Upgrade>();
+        toolsUpgradesOwnedList = new List<Upgrade>();
+        weaponUpgradesOwnedList = new List<Upgrade>();
+
         player = GameObject.FindGameObjectWithTag(Tags.player).GetComponent<PlayerScript>() ;
 
 		ownedUpgrades = GameManager.Instance.OwnedUpgrades;
         ApplyUpgrades();
 
-		//FindButtons ();
+        foreach (Upgrade upgrade in allUpgrades) {
+            int tier = upgrade.tier;
+            print("tier : " + tier);
+            UpgradeType type = upgrade.upgradeType;
+            if (tier == 1) {
+
+                switch (type) {
+
+                    case UpgradeType.Player:
+                        playerUpgradesCount++;
+                        break;
+
+                    case UpgradeType.Tools:
+                        toolsUpgradesCount++;
+                        break;
+
+                    case UpgradeType.Weapon:
+                        weaponUpgradesCount++;
+                        break;
+                }
+            }
+        }
+
+        Debug.Log(playerUpgradesCount);
+        Debug.Log(toolsUpgradesCount);
+        Debug.Log(weaponUpgradesCount);
+
         DisableBuyScreen();
 	}
 
@@ -104,6 +143,7 @@ public class VendingMachine : MonoBehaviour {
 	public void BuyUpgrade () {
 		selectedUpgrade.Apply ();
 		ownedUpgrades.Add (selectedUpgrade);
+        AddToTypeList();
 		ChangeBuyButton("Purchased",false);
         playerScrap -= selectedUpgrade.ScrapCost;
         playerElectronics -= selectedUpgrade.ElectronicsCost;
@@ -111,6 +151,24 @@ public class VendingMachine : MonoBehaviour {
         selectedButton.image.sprite = selectedUpgrade.buttonSprite;
         SetSelectedButtonColor(1, 1, 1);
 	}
+
+    void AddToTypeList() {
+        UpgradeType type = selectedUpgrade.upgradeType;
+        switch (type) {
+
+            case UpgradeType.Player:
+                playerUpgradesOwnedList.Add(selectedUpgrade);
+                break;
+
+            case UpgradeType.Tools:
+                toolsUpgradesOwnedList.Add(selectedUpgrade);
+                break;
+
+            case UpgradeType.Weapon:
+                weaponUpgradesOwnedList.Add(selectedUpgrade);
+                break;
+        }
+    }
 
     void CheckUpgrade() {
 		if (ownedUpgrades.Contains (selectedUpgrade)) {
@@ -122,14 +180,31 @@ public class VendingMachine : MonoBehaviour {
 			} else {
 				ChangeBuyButton("Buy Upgrade",true);
 			}
+            if (selectedUpgrade.tier == 2) {
+                UpgradeType type = selectedUpgrade.upgradeType;
+                switch (type) {
+
+                    case UpgradeType.Player:
+                        if (playerUpgradesOwnedList.Count < playerUpgradesCount) {
+                            ChangeBuyButton("Unlock Tier 1", false);
+                        }
+                        break;
+
+                    case UpgradeType.Tools:
+                        if (toolsUpgradesOwnedList.Count < toolsUpgradesCount) {
+                            ChangeBuyButton("Unlock Tier 1", false);
+                        }
+                        break;
+
+                    case UpgradeType.Weapon:
+                        if (weaponUpgradesOwnedList.Count < weaponUpgradesCount) {
+                            ChangeBuyButton("Unlock Tier 1", false);
+                        }
+                        break;
+                }
+            }
 		}
     }
-
-    //void FindButtons () {
-    //    foreach (Upgrade upgrade in allUpgrades) {
-    //        upgrade.buttonImage = GameObject.Find (upgrade.name + "Button").GetComponent<Image> ();
-    //    }
-    //}
 
     void DisableBuyScreen() {
         buyscreen.SetActive(false);

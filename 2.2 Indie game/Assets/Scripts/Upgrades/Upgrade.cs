@@ -2,8 +2,12 @@
 using System.Collections;
 using UnityEngine.UI;
 
-public class Upgrade :MonoBehaviour {
+public enum UpgradeType {
+    Player, Tools, Weapon
+}
 
+public class Upgrade :MonoBehaviour {
+  
 	public Sprite descriptionImage;
 	public string text;
 
@@ -12,14 +16,12 @@ public class Upgrade :MonoBehaviour {
 	public int ScrapCost;
     public int ElectronicsCost;
 
+    public  int tier;
+    public UpgradeType upgradeType;
+
 	//public Image buttonImage;
-
-	void Start () {
-	}
-
-	void Initialize (bool drawable){
-
-	}
+    public virtual void Start() {
+    }
 
 	public virtual void Apply (){
 

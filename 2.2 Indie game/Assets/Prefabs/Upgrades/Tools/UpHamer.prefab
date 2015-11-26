@@ -44,6 +44,8 @@ MonoBehaviour:
   buttonSprite: {fileID: 21300000, guid: 8c73309b29f571d41a9edef5a4cce32a, type: 3}
   ScrapCost: 5
   ElectronicsCost: 5
+  tier: 1
+  upgradeType: 1
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1
@@ -72,6 +74,14 @@ Prefab:
     - target: {fileID: 0}
       propertyPath: ElectronicsCost
       value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: tier
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: upgradeType
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
