@@ -1,0 +1,118 @@
+fileFormatVersion: 2
+guid: edaa074c01bfd2b4e979c0c5f75e08e8
+timeCreated: 1448547614
+licenseType: Free
+ModelImporter:
+  serializedVersion: 18
+  fileIDToRecycleName:
+    100000: BalconyCornerLowPoly1
+    100002: BalconyVent1
+    100004: BalconyWallCornerLowPoly11
+    100006: //RootNode
+    100008: ColumnLeft2
+    100010: ColumnRight
+    100012: Corner
+    100014: WallColumnLowPoly
+    100016: WallColumnLowPoly 1
+    100018: WallLowPoly
+    100020: WallLowPoly 1
+    100022: WallNormal
+    100024: WallNormal2
+    400000: BalconyCornerLowPoly1
+    400002: BalconyVent1
+    400004: BalconyWallCornerLowPoly11
+    400006: //RootNode
+    400008: ColumnLeft2
+    400010: ColumnRight
+    400012: Corner
+    400014: WallColumnLowPoly
+    400016: WallColumnLowPoly 1
+    400018: WallLowPoly
+    400020: WallLowPoly 1
+    400022: WallNormal
+    400024: WallNormal2
+    2300000: BalconyCornerLowPoly1
+    2300002: BalconyWallCornerLowPoly11
+    2300004: Corner
+    2300006: WallColumnLowPoly
+    2300008: WallColumnLowPoly 1
+    2300010: WallLowPoly
+    2300012: WallLowPoly 1
+    3300000: BalconyCornerLowPoly1
+    3300002: BalconyWallCornerLowPoly11
+    3300004: Corner
+    3300006: WallColumnLowPoly
+    3300008: WallColumnLowPoly 1
+    3300010: WallLowPoly
+    3300012: WallLowPoly 1
+    4300000: WallLowPoly
+    4300002: WallColumnLowPoly
+    4300004: WallLowPoly
+    4300006: WallColumnLowPoly
+    4300008: BalconyWallCornerLowPoly11
+    4300010: BalconyCornerLowPoly1
+    4300012: Corner
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    optimizeGameObjects: 0
+    motionNodeName: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    animationCompression: 1
+    animationRotationError: .5
+    animationPositionError: .5
+    animationScaleError: .5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    importBlendShapes: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    splitTangentsAcrossUV: 1
+    normalImportMode: 0
+    tangentImportMode: 1
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    human: []
+    skeleton: []
+    armTwist: .5
+    foreArmTwist: .5
+    upperLegTwist: .5
+    legTwist: .5
+    armStretch: .0500000007
+    legStretch: .0500000007
+    feetSpacing: 0
+    rootMotionBoneName: 
+    hasTranslationDoF: 0
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 0
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

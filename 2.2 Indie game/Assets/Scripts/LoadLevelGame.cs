@@ -33,7 +33,7 @@ public class LoadLevelGame : MonoBehaviour {
 	
 	//start loading the level at the start
 	void Start () {
-        rotations = new List<Vector3>();
+        
 		LoadLevel();
 	}
 	
@@ -41,6 +41,11 @@ public class LoadLevelGame : MonoBehaviour {
 
 		//open xml
 		XmlReader xmlReader = XmlReader.Create(Application.streamingAssetsPath + "/" + levelName + ".tmx");
+
+        rotations = new List<Vector3>();
+        for (int i = 0; i < width * height; i++) {
+            rotations.Add(new Vector3(0, 0, 0));
+        }
 		
 		//keep reading until end-of-file
 		while (xmlReader.Read()) {
@@ -51,12 +56,12 @@ public class LoadLevelGame : MonoBehaviour {
 
 				case "tile":
 					if (xmlReader ["id"] != null) {
-						id = int.Parse (xmlReader ["id"]) -1;
-                        if (id == -1) {
-                            id = 0;
-                        }
+						id = int.Parse (xmlReader ["id"]);
 					} else{
-						int index = int.Parse(xmlReader["gid"])-1;
+						int index = int.Parse(xmlReader["gid"]) -1 ;
+                        if (index == -1) {
+                            index = 0;
+                        }
 						InstatiateGameObject(xmlReader, index);
 					}
 
@@ -69,23 +74,22 @@ public class LoadLevelGame : MonoBehaviour {
 					
 					case "rotationX":
 						rotationX = int.Parse (xmlReader ["value"]);
-						Debug.Log (rotationX);
+				
 
 						break;
 
 					case "rotationY":
 						rotationY = int.Parse (xmlReader ["value"]);
-						Debug.Log (rotationY);
+			
 						
 						break;
 
 					case "rotationZ":
 						rotationZ = int.Parse (xmlReader ["value"]);
-						Debug.Log (rotationZ);
+			
 
                         Vector3 temp = new Vector3(rotationX, rotationY, rotationZ);
-                        rotations.Add(temp);
-						
+                        rotations.Insert(id,temp);
 						break;
 
 					}
@@ -99,22 +103,19 @@ public class LoadLevelGame : MonoBehaviour {
 					break;
 				
 				}
-
 			}
-
-
 		}
 
 		tileHeight = 0;
 	}
 
 	void InstatiateGameObject (XmlReader xmlReader, int gameObjectIndex) {
-		if (int.Parse(xmlReader["gid"]) != 0){
-            Debug.Log(rotations[gameObjectIndex]);
+		if (gameObjectIndex != 0){
             if (tiles[gameObjectIndex] != null)
             {
-                GameObject go = GameObject.Instantiate(tiles[gameObjectIndex], new Vector3((width - x) * 3.863f, tileHeight * 2.4938f, z * 3.863f), Quaternion.Euler(rotations[gameObjectIndex])) as GameObject;
-                //  go.transform.rotation = new Quaternion rotations[gameObjectIndex];
+                Quaternion rot = rotations[gameObjectIndex] != null ? Quaternion.Euler(rotations[gameObjectIndex]) : Quaternion.Euler(0,0,0) ;
+             
+                GameObject go = GameObject.Instantiate(tiles[gameObjectIndex], new Vector3((width - x) * 3.863f, tileHeight * 2.4938f, z * 3.863f), rot) as GameObject;
                 go.transform.SetParent(this.transform);
                 levelObjects.Add(go);
             }
@@ -128,9 +129,21 @@ public class LoadLevelGame : MonoBehaviour {
 
 	public void DeleteScene () {
         rotations.Clear();
+         id = 0;
+
+        rotationX=0;
+        rotationY=0;
+        rotationZ=0;
+
+        x = 0;
+       z = 0;
+
+        tileHeight = 0;
+
 		foreach(GameObject levelObject in levelObjects){
 			DestroyImmediate (levelObject);
 		}
+        levelObjects.Clear(); 
 	}
 
 }

@@ -1,15 +1,45 @@
 fileFormatVersion: 2
-guid: d0b726a68b0c91a4983c1660bd30d671
-timeCreated: 1448363200
+guid: 9cf4834359b03f5469f365e9e6ef29bb
+timeCreated: 1448501629
 licenseType: Free
 ModelImporter:
   serializedVersion: 18
   fileIDToRecycleName:
     100000: //RootNode
+    100002: ColumnLeft2
+    100004: ColumnRight
+    100006: Corner
+    100008: WallColumnLowPoly
+    100010: WallColumnLowPoly 1
+    100012: WallLowPoly
+    100014: WallLowPoly 1
+    100016: WallNormal
+    100018: WallNormal2
     400000: //RootNode
-    2300000: //RootNode
-    3300000: //RootNode
-    4300000: group1
+    400002: ColumnLeft2
+    400004: ColumnRight
+    400006: Corner
+    400008: WallColumnLowPoly
+    400010: WallColumnLowPoly 1
+    400012: WallLowPoly
+    400014: WallLowPoly 1
+    400016: WallNormal
+    400018: WallNormal2
+    2300000: Corner
+    2300002: WallColumnLowPoly
+    2300004: WallColumnLowPoly 1
+    2300006: WallLowPoly
+    2300008: WallLowPoly 1
+    3300000: Corner
+    3300002: WallColumnLowPoly
+    3300004: WallColumnLowPoly 1
+    3300006: WallLowPoly
+    3300008: WallLowPoly 1
+    4300000: WallLowPoly
+    4300002: WallColumnLowPoly
+    4300004: WallLowPoly
+    4300006: WallColumnLowPoly
+    4300008: Corner
   materials:
     importMaterials: 1
     materialName: 0
