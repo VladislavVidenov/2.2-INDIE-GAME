@@ -9,61 +9,53 @@ using System.Collections;
 
 public class EnemyScript : MonoBehaviour {
 
-    enum AIState { idle, patrolling, lowAlert, mediumAlert, highAlert, chasing, attacking }
+    enum AIState { patrolling, charging, chasing, attacking }
     AIState state;
 
     [SerializeField] int health;
     [SerializeField] int creditsDropAmount = 5;
 
+    [SerializeField] float defaultRange = 10;
+    [SerializeField] float alertedRange = 20;
+
     //Patrolling
     [SerializeField] float patrolSpeed = 2.0f;
     [SerializeField] float patrolWaitTime = 1.0f;
+    
     Vector3 currentDestination;
     float patrolTimer;
     int waypointIndex;
 
     //Attacking
- //   [SerializeField] float attackDistance = 3.0f;
- //   [SerializeField] float attackRate = 1.0f;
+    //[SerializeField] float attackDistance = 3.0f;
+    //[SerializeField] float attackRate = 1.0f;
 
-    [SerializeField]
-    float attackRotationSpeed = 1f;
+    [SerializeField] float attackRotationSpeed = 1f;
 
     //Chasing
- //   [SerializeField] float chaseDistance = 10.0f;
     [SerializeField] float chaseSpeed = 3.0f;
- //   [SerializeField] float chaseRotationSpeed = 5.0f;
     [SerializeField] float chaseWaitTime = 5f;
     float chaseTimer;
 
-   // float distanceToTarget;
+    //float distanceToTarget;
 
     NavMeshAgent agent;
     public Transform[] patrolWaypoints;
     Transform target; //player
-
-    //Used for RotateToward
-    Quaternion rotation;
 
     EnemySightScript enemySight;
     LastPlayerSightingScript lastPlayerSighting;
 
     Vector3 rayDirection;
 
-
     float time;
-
     int rotated = 0;
-
     bool relocating = false;
-
     public float maxDistance = 7f;
 
     Vector3 point;
 
-
     void Awake () {
-
         time = Time.time;
         //Getting the references
         agent = GetComponent<NavMeshAgent>();
@@ -71,46 +63,21 @@ public class EnemyScript : MonoBehaviour {
         lastPlayerSighting = GameManager.Instance.GetComponent<LastPlayerSightingScript>();
 
         if (target == null) target = GameObject.FindWithTag(Tags.player).transform;
-        InvokeRepeating("StateLogic", 0, 0.01f);
 
+        InvokeRepeating("StateLogic", 0, 0.01f);
         StartCoroutine("StateMachine");
 	}
-
-   // int timeBetweenSteps = 1;
-    //debug update
-    void Update() {
-        if (Input.GetKeyDown(KeyCode.Q)) {
-            //TakeDamage(10);
-        }
-    }
-    //------------
-
 
     IEnumerator StateMachine() {
         while (true) {
             switch (state) {
-                case AIState.idle:
-                  //  Debug.Log("Idle");
-                    break;
                 case AIState.patrolling:
                     Patrolling();
                     break;
-                case AIState.lowAlert:
-                    //magic
-                  //  Debug.Log("Low Alert");
-                    break;
-                case AIState.mediumAlert:
-                    //magic
-                //    Debug.Log("Medium Alert");
-                    break;
-                case AIState.highAlert:
-                    //magic
-                 //   Debug.Log("High Alert");
-                    break;
                 case AIState.chasing:
-                    //magic
+                    agent.updateRotation = true;
                     Chasing();
-                //    Debug.Log("Chasing");
+                    //Debug.Log("Chasing");
                     break;
                 case AIState.attacking:
                     Shooting();
@@ -122,22 +89,23 @@ public class EnemyScript : MonoBehaviour {
     }
 
     void StateLogic() {
-      //  distanceToTarget = (target.position - transform.position).sqrMagnitude; --> enable it when distance to target is used !!!!!
-
         if (enemySight.playerInSight /*and player == alive*/) {
+            enemySight.sphereCollider.radius = alertedRange;
             state = AIState.attacking;
         }
         // If player has been sighted by any of the enemies and isnt dead.
         else if (enemySight.personalLastSighting != lastPlayerSighting.resetPosition /*And player == alive*/) {
+            enemySight.sphereCollider.radius = alertedRange;
             state = AIState.chasing;
         }
         else {
+            enemySight.sphereCollider.radius = defaultRange;
             state = AIState.patrolling;
         }
     }
 
     void Shooting() {
-        if (!relocating) FindFightingPosition();
+        if (!relocating) FindFightingPosition(); 
         if (agent.remainingDistance <= agent.stoppingDistance) relocating = false;
         this.transform.rotation = Quaternion.RotateTowards(this.transform.rotation, Quaternion.LookRotation(target.transform.position - this.transform.position), attackRotationSpeed);
 
@@ -152,13 +120,11 @@ public class EnemyScript : MonoBehaviour {
             agent.Resume();
             agent.updateRotation = false;
 
-            //   for (int i = 0; i < 100; i++) {
             Vector3 delta = (this.transform.position - target.transform.position);
 
             point = target.transform.position + new Vector3(Random.Range(-7f, 7f), 0, Random.Range(-7f, 7f));
             Vector3 dirToPoint = point - target.transform.position;
             if (Vector3.Dot(delta, dirToPoint) > 0) {
-
                 RaycastHit hit;
                 Vector3 dir = (target.transform.position -point);
            
@@ -168,19 +134,13 @@ public class EnemyScript : MonoBehaviour {
                         Debug.Log("I FOUND IT");
                         agent.SetDestination(point);
                         relocating = true;
-                        // i = 100;
                     }
                 }
-
-                // if (i == 100) relocating = false;
             }
-
         }
-
         else {
             agent.Stop();
         }
-
     }
 
     void OnDrawGizmos() {
@@ -213,11 +173,7 @@ public class EnemyScript : MonoBehaviour {
                 enemySight.personalLastSighting = lastPlayerSighting.resetPosition;
                 chaseTimer = 0f;
 
-             //   Debug.Log("GOT RESET");
-
                 rotated = 0; // reset rotation amount 
-                Debug.Log("GOT RESET");
-
             }
         }
         else
@@ -275,7 +231,6 @@ public class EnemyScript : MonoBehaviour {
         if (Physics.Raycast(transform.position + transform.up / 3, direction.normalized, out hit, 100f)) {
             Debug.DrawRay(transform.position + transform.up / 3, direction, Color.red);
             if (hit.collider.CompareTag(Tags.player)) {
-
                 Debug.Log("i shot u");
             }
             else {

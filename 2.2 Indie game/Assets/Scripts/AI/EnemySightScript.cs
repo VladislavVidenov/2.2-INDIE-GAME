@@ -9,13 +9,14 @@ public class EnemySightScript : MonoBehaviour {
     public Vector3 personalLastSighting;
 
     //NavMeshAgent navMeshAgent;
-    SphereCollider sphereCollider;
+    public SphereCollider sphereCollider;
     LastPlayerSightingScript lastPlayerSighting;
 
     GameObject player;
 
     Vector3 previousSighting;
 
+    
     void Awake() {
         //navMeshAgent = GetComponent<NavMeshAgent>();
         
