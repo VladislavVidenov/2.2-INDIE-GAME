@@ -69,7 +69,7 @@ public class VendingMachine : MonoBehaviour {
 
         foreach (Upgrade upgrade in allUpgrades) {
             int tier = upgrade.tier;
-            print("tier : " + tier);
+
             UpgradeType type = upgrade.upgradeType;
             if (tier == 1) {
 
@@ -89,11 +89,6 @@ public class VendingMachine : MonoBehaviour {
                 }
             }
         }
-
-        Debug.Log(playerUpgradesCount);
-        Debug.Log(toolsUpgradesCount);
-        Debug.Log(weaponUpgradesCount);
-
         DisableBuyScreen();
 	}
 

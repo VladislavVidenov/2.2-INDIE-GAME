@@ -144,7 +144,7 @@ public class WeaponScript : MonoBehaviour {
     void CalculateInaccuracy()
     {
         inaccuracy = playerMove.isMoving() ? maxInaccuracy : minInaccuracy;
-        Debug.Log("Inacc -> " + inaccuracy);
+
     }
 
     void SetInaccuracyRange()

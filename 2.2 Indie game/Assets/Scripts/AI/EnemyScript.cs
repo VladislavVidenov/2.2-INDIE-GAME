@@ -3,15 +3,13 @@ using System.Collections;
 
 /// <summary>
 /// This is the General EnemyScript.
-/// This is going to be extended by the different enemy types.
 /// </summary>
-
 
 public class EnemyScript : MonoBehaviour {
 
-    enum AIState { patrolling, charging, chasing, attacking }
+    enum AIState { patrolling, charging, chasing, searching, guarding, attacking }
     AIState state;
-
+    
     [SerializeField] int health;
     [SerializeField] int creditsDropAmount = 5;
 
@@ -19,17 +17,23 @@ public class EnemyScript : MonoBehaviour {
     [SerializeField] float alertedRange = 20;
 
     //Patrolling
+    public Transform[] patrolWaypoints;
     [SerializeField] float patrolSpeed = 2.0f;
     [SerializeField] float patrolWaitTime = 1.0f;
-    
     Vector3 currentDestination;
     float patrolTimer;
     int waypointIndex;
+    int waypointRounds = 0;
+
+    //Charging
+    public Transform chargingSpot;
+
+    //Guarding
+    public Transform guardingSpot;
 
     //Attacking
     //[SerializeField] float attackDistance = 3.0f;
     //[SerializeField] float attackRate = 1.0f;
-
     [SerializeField] float attackRotationSpeed = 1f;
 
     //Chasing
@@ -40,7 +44,7 @@ public class EnemyScript : MonoBehaviour {
     //float distanceToTarget;
 
     NavMeshAgent agent;
-    public Transform[] patrolWaypoints;
+    
     Transform target; //player
 
     EnemySightScript enemySight;
@@ -61,7 +65,7 @@ public class EnemyScript : MonoBehaviour {
         agent = GetComponent<NavMeshAgent>();
         enemySight = GetComponent<EnemySightScript>();
         lastPlayerSighting = GameManager.Instance.GetComponent<LastPlayerSightingScript>();
-
+        
         if (target == null) target = GameObject.FindWithTag(Tags.player).transform;
 
         InvokeRepeating("StateLogic", 0, 0.01f);
@@ -77,10 +81,22 @@ public class EnemyScript : MonoBehaviour {
                 case AIState.chasing:
                     agent.updateRotation = true;
                     Chasing();
-                    //Debug.Log("Chasing");
+                    Debug.Log("Chasing");
+                    break;
+                case AIState.charging:
+                    Charging();
+                    Debug.Log("Charging");
+                    break;
+                case AIState.guarding:
+                    //magic
+                    Debug.Log("Guarding");
+                    break;
+                case AIState.searching:
+                    //magic
+                    Debug.Log("Searching");
                     break;
                 case AIState.attacking:
-                    Shooting();
+                    Attacking();
                     Debug.Log("Attacking");
                     break;
             }
@@ -98,13 +114,13 @@ public class EnemyScript : MonoBehaviour {
             enemySight.sphereCollider.radius = alertedRange;
             state = AIState.chasing;
         }
-        else {
-            enemySight.sphereCollider.radius = defaultRange;
-            state = AIState.patrolling;
-        }
+        //else {
+        //    enemySight.sphereCollider.radius = defaultRange;
+        //    state = AIState.patrolling;
+        //}
     }
 
-    void Shooting() {
+    void Attacking() {
         if (!relocating) FindFightingPosition(); 
         if (agent.remainingDistance <= agent.stoppingDistance) relocating = false;
         this.transform.rotation = Quaternion.RotateTowards(this.transform.rotation, Quaternion.LookRotation(target.transform.position - this.transform.position), attackRotationSpeed);
@@ -113,6 +129,12 @@ public class EnemyScript : MonoBehaviour {
             Shoot();
             time = Time.time;
         }
+    }
+
+    void Shoot() {
+        Vector3 direction = target.transform.position - this.transform.position;
+        direction += new Vector3(Random.Range(-1f, 1f), Random.Range(-1f, 1f), Random.Range(-1f, 1f));
+        StartCoroutine(ShootRaycast(direction));
     }
 
     void FindFightingPosition() {
@@ -141,10 +163,6 @@ public class EnemyScript : MonoBehaviour {
         else {
             agent.Stop();
         }
-    }
-
-    void OnDrawGizmos() {
-        if (relocating) Gizmos.DrawCube(point, new Vector3(1, 1, 1));
     }
 
     void Chasing() {
@@ -193,11 +211,18 @@ public class EnemyScript : MonoBehaviour {
             // If the timer exceeds the wait time...
             if (patrolTimer >= patrolWaitTime) {
                 // ... increment the wayPointIndex.
-                if (waypointIndex == patrolWaypoints.Length - 1)
+                if (waypointIndex == patrolWaypoints.Length - 1) {
                     waypointIndex = 0;
-                else
+                    waypointRounds++;
+                    print("waypointRounds: " + waypointRounds);
+                    if (waypointRounds == 2) {
+                        state = AIState.charging;
+                        waypointRounds = 0;
+                    }
+                }
+                else {
                     waypointIndex++;
-
+                }
                 // Reset the timer.
                 patrolTimer = 0;
             }
@@ -207,17 +232,19 @@ public class EnemyScript : MonoBehaviour {
             patrolTimer = 0;
 
         // Set the destination to the patrolWayPoint.
-        if (patrolWaypoints != null) agent.destination = patrolWaypoints[waypointIndex].position;
-     //   Debug.Log("ok");
+        agent.destination = patrolWaypoints[waypointIndex].position;
     }
 
-    void Shoot() {
-         Vector3 direction = target.transform.position - this.transform.position;
-         direction += new Vector3(Random.Range(-1f, 1f), Random.Range(-1f, 1f), Random.Range(-1f, 1f));
-         StartCoroutine(ShootRaycast(direction));
+    void Charging() {
+        agent.SetDestination(chargingSpot.position);
+        if (agent.remainingDistance <= agent.stoppingDistance) {
+            agent.transform.LookAt(chargingSpot.GetComponentInChildren<Transform>());
+            //look at it at home :P
+
+        }
     }
 
-    void LookAround() {
+    void LookAround() { //improve this for guarding?
         if (!(rotated > 270)) {
             this.transform.Rotate(0, 1, 0);
         } 
