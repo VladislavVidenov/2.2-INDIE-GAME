@@ -68,11 +68,6 @@ public class WeaponScript : MonoBehaviour {
     float maxInaccuracyCrouchHip = 5.0f;//CROUCH + WALK + HIP
     float maxInaccuracyStandAim = 3f; //STAND + AIM+ WALK
     float maxInaccuracyCrouchAim = 1.5f; //CROUCH + AIM + WALK
-    
-
-    float inaccuracyIncreaseWalk = 0.5f;
-    float inaccuracyDecrease = 0.5f;
-    float increaseInaccuracy = 0.2f;
     #endregion
     #region Sounds
     AudioSource audioSource;
@@ -261,6 +256,7 @@ public class WeaponScript : MonoBehaviour {
             }
             
         }
+    
         
 
         audioSource.PlayOneShot(fireSound);

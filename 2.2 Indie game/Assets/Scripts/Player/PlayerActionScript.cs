@@ -9,7 +9,7 @@ public class PlayerActionScript : MonoBehaviour {
     public GUISkin guiSkin;
     bool showGuiSkin = false;
     RaycastHit hit;
-
+    bool gotInfo = false;
 	// Update is called once per frame
 	void Update () {
         Raycasting();
@@ -18,8 +18,8 @@ public class PlayerActionScript : MonoBehaviour {
     void Raycasting() {
         Ray ray = Camera.main.ViewportPointToRay(new Vector3(0.5f, 0.5f, 0));
     //    Debug.DrawRay(ray.origin, ray.direction * maxRayDistance, Color.black,2);
-        if (Physics.Raycast(ray,out hit, maxRayDistance, layerMask.value)) { 
-            
+        if (Physics.Raycast(ray,out hit, maxRayDistance, layerMask.value)) {
+            if (gotInfo) return;
             switch (hit.collider.tag) {
 
                 case "VendingMachine":
@@ -38,12 +38,19 @@ public class PlayerActionScript : MonoBehaviour {
                     else {
                         showGuiSkin = false;
                     }
-
-                   
                     break;
+                case "Tool":
+                    Debug.Log("TOOL TOOL TOOLL MODAFUKA");
+                    gotInfo = true;
+                    //get the tool script               (and show text)                 (show text)
+                    //ask tool manager if he has it, if so replace the current tool , otherwise pick up the tool 
+                    //give it to tool manager and its stuff.
+                    break;
+
             }
         }
         else {
+            if (gotInfo) gotInfo = false;
             showGuiSkin = false;
         }
     }

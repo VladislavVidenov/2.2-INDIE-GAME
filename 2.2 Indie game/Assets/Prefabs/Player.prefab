@@ -146,6 +146,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 498622}
   - 114: {fileID: 11482182}
+  - 111: {fileID: 11180722}
   m_Layer: 8
   m_Name: WeaponHolder
   m_TagString: Untagged
@@ -474,7 +475,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!1 &132792
 GameObject:
   m_ObjectHideFlags: 1
@@ -1423,7 +1424,7 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 408902}
-  - 111: {fileID: 11198042}
+  - 95: {fileID: 9587560}
   m_Layer: 0
   m_Name: PistolRig
   m_TagString: Untagged
@@ -3367,6 +3368,23 @@ Behaviour:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 174860}
   m_Enabled: 1
+--- !u!95 &9587560
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 191732}
+  m_Enabled: 1
+  m_Avatar: {fileID: 9000000, guid: bdd541cacf3753442b2d0c276db25e60, type: 3}
+  m_Controller: {fileID: 9100000, guid: f9a6eee4bd1633042a3536d19e684b1f, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
 --- !u!111 &11150372
 Animation:
   m_ObjectHideFlags: 1
@@ -3379,28 +3397,26 @@ Animation:
   m_Animations:
   - {fileID: 7400000, guid: 765bf2faffc9fc14c892e0d827a42bfb, type: 3}
   - {fileID: 7400000, guid: 5a47b50080e0e974f8eae650678aaef5, type: 3}
-  - {fileID: 7400000, guid: 3b92d32207229054bb5e419735d41fc3, type: 3}
+  - {fileID: 7400000, guid: fc05e29cce7c90e49b7bba308c7d65aa, type: 3}
   m_WrapMode: 0
   m_PlayAutomatically: 1
   m_AnimatePhysics: 0
   m_CullingType: 1
---- !u!111 &11198042
+--- !u!111 &11180722
 Animation:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 191732}
-  m_Enabled: 1
+  m_GameObject: {fileID: 107656}
+  m_Enabled: 0
   serializedVersion: 3
-  m_Animation: {fileID: 7400000, guid: 765bf2faffc9fc14c892e0d827a42bfb, type: 3}
+  m_Animation: {fileID: 0}
   m_Animations:
-  - {fileID: 7400000, guid: 765bf2faffc9fc14c892e0d827a42bfb, type: 3}
-  - {fileID: 7400000, guid: 5a47b50080e0e974f8eae650678aaef5, type: 3}
-  - {fileID: 7400000, guid: 3b92d32207229054bb5e419735d41fc3, type: 3}
+  - {fileID: 7400000, guid: 4446066db8f77b24a89847dfefd01d72, type: 2}
   m_WrapMode: 0
   m_PlayAutomatically: 1
   m_AnimatePhysics: 0
-  m_CullingType: 1
+  m_CullingType: 0
 --- !u!114 &11407194
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -3435,6 +3451,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   head: {fileID: 106084}
   weaponNozzle: {fileID: 0}
+  animator: {fileID: 0}
   currentWeaponMode: 1
   bulletsInClip: 333
   totalBullets: 999
@@ -3538,6 +3555,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   head: {fileID: 106084}
   weaponNozzle: {fileID: 0}
+  animator: {fileID: 0}
   currentWeaponMode: 1
   bulletsInClip: 24
   totalBullets: 999
