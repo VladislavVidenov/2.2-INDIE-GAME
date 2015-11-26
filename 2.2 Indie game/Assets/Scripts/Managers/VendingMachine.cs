@@ -11,6 +11,7 @@ public class VendingMachine : MonoBehaviour {
     List<Upgrade> ownedUpgrades;
 
 	Upgrade selectedUpgrade;
+    Button selectedButton;
 
 	//menuVisuals
     [SerializeField]
@@ -24,12 +25,13 @@ public class VendingMachine : MonoBehaviour {
 
     GameObject currentUpgrades;
 
+
     [SerializeField]
     Button buyButton;
     [SerializeField]
-	Image buyMenuImage;
+	Image UpgradeSprite;
 	[SerializeField]
-	Text buyText;
+	Text UpgradeDescriptionText;
     [SerializeField]
     Text electronicsText;
     [SerializeField]
@@ -44,8 +46,7 @@ public class VendingMachine : MonoBehaviour {
     int playerScrap;
     int playerElectronics;
 
-
-
+    bool AlreadyHave = false;
 
 	void Start(){
         player = GameObject.FindGameObjectWithTag(Tags.player).GetComponent<PlayerScript>() ;
@@ -61,44 +62,62 @@ public class VendingMachine : MonoBehaviour {
         GetPlayerStats();
         ChangePlayerStatsText();
         buyscreen.SetActive(true);
+        buyButton.gameObject.SetActive(false);
+        electronicsCostText.text = "";
+        scrapCostText.text = "";
 	}
 
 	public void DeActivateStation () {
         SetPlayerStats();
-		buyButton.gameObject.SetActive(false);
 		SetImageAndText ();
         DisableBuyScreen();
 		selectedUpgrade = null;
+        UpgradeSprite.GetComponent<Mask>().showMaskGraphic = false;
+        SetSelectedButtonColor(1, 1, 1);
 	}
 
 	public void SelectUpgrade (Upgrade upgrade) {
-
+        if (!buyButton.gameObject.activeInHierarchy) {
+            buyButton.gameObject.SetActive(true);
+        }
 		if (!buyButton.gameObject.activeInHierarchy) {
 			buyButton.gameObject.SetActive( true);
 		}
 
 		selectedUpgrade = upgrade;
-
-		SetImageAndText (selectedUpgrade);
+		
         UpdateUpgradeCosts();
 
         CheckUpgrade();
 	}
 
+    public void SelectButton(Button button) {
+        if (selectedButton != null) {
+            SetSelectedButtonColor(1, 1, 1);
+        }
+
+        selectedButton = button;
+        SetSelectedButtonColor(216f/255, 1, 39/255);
+        SetImageAndText(selectedUpgrade);
+    }
+
 	public void BuyUpgrade () {
 		selectedUpgrade.Apply ();
 		ownedUpgrades.Add (selectedUpgrade);
-		ChangeBuyButton("Allready have",false);
+		ChangeBuyButton("Purchased",false);
         playerScrap -= selectedUpgrade.ScrapCost;
         playerElectronics -= selectedUpgrade.ElectronicsCost;
         ChangePlayerStatsText();
+        selectedButton.image.sprite = selectedUpgrade.buttonSprite;
+        SetSelectedButtonColor(1, 1, 1);
 	}
 
     void CheckUpgrade() {
 		if (ownedUpgrades.Contains (selectedUpgrade)) {
-			ChangeBuyButton("Allready have",false);
+			ChangeBuyButton("Purchased",false);
 		} else {
 			if (selectedUpgrade.ScrapCost > playerScrap || selectedUpgrade.ElectronicsCost >playerElectronics) {
+          
 				ChangeBuyButton("Not enough resources",false);
 			} else {
 				ChangeBuyButton("Buy Upgrade",true);
@@ -116,10 +135,24 @@ public class VendingMachine : MonoBehaviour {
         buyscreen.SetActive(false);
     }
 
-	void ChangeBuyButton (string text, bool active){
-		buyButton.GetComponentInChildren<Text>().text = text;
-			buyButton.interactable = active;
-	}
+    void SetSelectedButtonColor(float r, float g, float b) {
+        if (selectedButton != null) {
+            selectedButton.image.color = new Color(r, g, b);
+        }
+    }
+
+    void ChangeBuyButton(string text, bool active) {
+        buyButton.GetComponentInChildren<Text>().text = text;
+
+        ChangeBuyButtonTextColorLight(buyButton.GetComponentInChildren<Text>());
+        buyButton.interactable = active;
+        if (!active) {
+            buyButton.image.color = new Color(31f / 255, 1, 35f / 255);
+        }
+        else {
+            buyButton.image.color = new Color(1, 1, 1);
+        }
+    }
 
 
     public List<Upgrade> GetOwndedList() {
@@ -127,16 +160,16 @@ public class VendingMachine : MonoBehaviour {
     }
 
 	void SetImageAndText (Upgrade upgrade = null) {
-        if (!buyMenuImage.GetComponent<Mask>().showMaskGraphic) {
-            buyMenuImage.GetComponent<Mask>().showMaskGraphic = true;
+        if (!UpgradeSprite.GetComponent<Mask>().showMaskGraphic) {
+            UpgradeSprite.GetComponent<Mask>().showMaskGraphic = true;
         }
 
 		if (upgrade == null) {
-			buyMenuImage.sprite = null;
-			buyText.text = null;
+			UpgradeSprite.sprite = null;
+			UpgradeDescriptionText.text = null;
 		} else {
-			buyMenuImage.sprite = upgrade.upGradeImage;
-			buyText.text = upgrade.text;
+			UpgradeSprite.sprite = selectedButton.image.sprite;
+			UpgradeDescriptionText.text = upgrade.text;
 		}
 	}
 
@@ -186,5 +219,13 @@ public class VendingMachine : MonoBehaviour {
     void UpdateUpgradeCosts() {
         scrapCostText.text = selectedUpgrade.ScrapCost.ToString();
         electronicsCostText.text = selectedUpgrade.ElectronicsCost.ToString();
+    }
+
+    public void ChangeBuyButtonTextColorDark(Text text) {
+
+        if (buyButton.interactable) text.color = new Color(0, 51f / 255, 53f / 255);
+    }
+    public void ChangeBuyButtonTextColorLight(Text text) {
+         text.color = new Color(9f / 255, 184f/255, 190f / 255);
     }
 }

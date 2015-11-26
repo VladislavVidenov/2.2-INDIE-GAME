@@ -47,7 +47,7 @@ public class PauseMenuScript : MonoBehaviour {
         foreach (Upgrade upgrade in ownedUpgrades) {
             GameObject go = Instantiate(upgradeImage, pauseUpgrade.transform.position, Quaternion.identity) as GameObject;
             SetParent(go);
-            go.GetComponent<Image>().sprite = upgrade.upGradeImage;
+            go.GetComponent<Image>().sprite = upgrade.descriptionImage;
             go.GetComponent<UpgradeImageScript>().text = upgrade.text;
             UpgadeList.Add(go);
             upgradeCount++;

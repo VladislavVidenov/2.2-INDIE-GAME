@@ -48,9 +48,9 @@ public class GameManager : MonoBehaviour {
     [HideInInspector]
     public int health = 100;
     [HideInInspector]
-    public int scrap = 100;
+    public int scrap = 1000;
     [HideInInspector]
-    public int electronics = 100;
+    public int electronics = 1000;
 
     //endPlayer
 
@@ -64,17 +64,19 @@ public class GameManager : MonoBehaviour {
     void Awake()
     {
        
+    
         if (Application.loadedLevel != 0)
         {
             currentState = GameState.InGame;
             FindGameObjects();
         }
+
+        ownedUpgrades = new List<Upgrade>();
         Debug.Log("---State is set to " + CurrentState + " by default---");
     }
 
     void Start()
     {
-        ownedUpgrades = new List<Upgrade>();
     }
    
     void OnLevelWasLoaded()
