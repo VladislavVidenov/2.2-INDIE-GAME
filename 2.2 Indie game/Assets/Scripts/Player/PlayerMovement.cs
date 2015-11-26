@@ -22,8 +22,7 @@ public class PlayerMovement : MonoBehaviour {
     //Variables
     //[SerializeField]
     public float walkSpeed;
-    [SerializeField]
-    float crouchSpeed;
+    public float crouchSpeed;
     //[SerializeField]
     public float runSpeed;
     [SerializeField]
@@ -36,7 +35,7 @@ public class PlayerMovement : MonoBehaviour {
     [SerializeField]
     float gravity;
 
-    bool isCurrentWeaponReloading = false;
+    bool isWepAiming = false;
     [HideInInspector]
     public bool releasedRun = true;
     bool isGrounded = false;
@@ -47,6 +46,7 @@ public class PlayerMovement : MonoBehaviour {
     public bool isRunning = false;
     Vector3 standingCamHeight = new Vector3(0, 0.4f, 0);
     Vector3 crouchingCamHeight = new Vector3(0, -0.2f, 0);
+    
 
    
    
@@ -117,7 +117,7 @@ public class PlayerMovement : MonoBehaviour {
             else if (stateID == 2)
                 state = PlayerStates.Stand;
         }
-        else if (Input.GetKey(KeyCode.LeftShift) && Input.GetKey(KeyCode.W) && releasedRun && !isCurrentWeaponReloading)
+        else if (Input.GetKey(KeyCode.LeftShift) && Input.GetKey(KeyCode.W) && releasedRun && !isWepAiming)
         {
             isRunning = true;
             releasedRun = false;
@@ -128,7 +128,7 @@ public class PlayerMovement : MonoBehaviour {
             releasedRun = true;
         }
 
-        Debug.Log(isRunning + "r");
+
 
 
         switch (state)
@@ -152,7 +152,9 @@ public class PlayerMovement : MonoBehaviour {
         isCrouching = false;
         bodyCollider.height = 2.0f;
         bodyCollider.center = Vector3.zero;
-        speed = isRunning ? runSpeed : walkSpeed;
+
+        speed = isWepAiming ? crouchSpeed : isRunning ? runSpeed : walkSpeed;
+        
         if (mainCamera.transform.localPosition.y < standingCamHeight.y)
         {
             mainCamera.transform.localPosition = Vector3.Lerp(mainCamera.transform.localPosition, standingCamHeight, Time.deltaTime * 5);
@@ -191,12 +193,15 @@ public class PlayerMovement : MonoBehaviour {
     {
         recoilEffectGO.transform.localRotation = Quaternion.Euler(recoilEffectGO.transform.localRotation.eulerAngles - new Vector3(amount, 0, 0));
     }
-    void finishedReloading()
+    void SetAim(bool aiming)
     {
-        isCurrentWeaponReloading = false;
+        isWepAiming = aiming ? true : false;
     }
-    void startedReloading()
+    public bool isMoving()
     {
-        isCurrentWeaponReloading = true;
+        if (rigidBody.velocity.magnitude > (speed - 0.3f))
+            return true;
+        else
+            return false;
     }
 }

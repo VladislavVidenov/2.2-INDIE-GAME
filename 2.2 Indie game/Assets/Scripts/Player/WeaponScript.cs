@@ -55,12 +55,17 @@ public class WeaponScript : MonoBehaviour {
     float inaccuracy = 0.05f;
 
     float minInaccuracy;
-    float minInaccuracyHip = 1.5f;
-    float minInaccuracyAim = 0.005f;
+    float minInaccuracyStandHip = 5f;     //STAND + HIP 
+    float minInaccuracyCrouchHip = 4.5f;    //CROUCH + HIP
+    float minInaccuracyStandAim = 1.5f;    //STAND + AIM  
+    float minInaccuracyCrouchAim = 1f;  //CROUCH +AIM
 
     float maxInaccuracy;
-    float maxInaccuracyHip = 5.0f;
-    float maxInaccuracyAim = 1.0f;
+    float maxInaccuracyStandHip = 6f; //STAND + WALK + HIP
+    float maxInaccuracyCrouchHip = 5.0f;//CROUCH + WALK + HIP
+    float maxInaccuracyStandAim = 3f; //STAND + AIM+ WALK
+    float maxInaccuracyCrouchAim = 1.5f; //CROUCH + AIM + WALK
+    
 
     float inaccuracyIncreaseWalk = 0.5f;
     float inaccuracyDecrease = 0.5f;
@@ -104,6 +109,10 @@ public class WeaponScript : MonoBehaviour {
         // Debug.Log(isReloading);
         if (weaponSelected)
         {
+            Aiming();
+            SetInaccuracyRange();
+            CalculateInaccuracy();
+
             if (Input.GetButtonDown("Fire"))
             {
 
@@ -125,9 +134,7 @@ public class WeaponScript : MonoBehaviour {
             {
                 Reload();
             }
-            Aiming();
-            SetInaccuracyRange();
-            CalculateInaccuracy();
+           
         }
 
         //--> Inaccuary system to be implemented.
@@ -136,36 +143,14 @@ public class WeaponScript : MonoBehaviour {
     }
     void CalculateInaccuracy()
     {
-        //if you are running
-        if (playerMove.rigidBody.velocity.magnitude > (playerMove.runSpeed - 0.3f))
-        {
-            Debug.Log("Im runnin brah");
-            // inaccuracy += inaccuracyIncreaseRun;      
-
-        } else if (playerMove.rigidBody.velocity.magnitude > (playerMove.walkSpeed - 0.2f))
-        {
-            inaccuracy += inaccuracyIncreaseWalk;              //^^^so if we decide to change walk speed , inaccuracy doesnt brake. 
-            Debug.Log("i AM WALKING BRUH");                    //   veloc.magnituted is always 0.2 less than the speed
-        }//else if(playerMove.isCrouching)
-
-        if (isShooting)
-        {
-            inaccuracy += increaseInaccuracy;
-        }
-        else
-        {   //if we are not shooting and not moving.
-            if (playerMove.rigidBody.velocity.magnitude < 1)
-                inaccuracy -= inaccuracyDecrease;
-        }
-      
-        inaccuracy = LimitInaccuracy(inaccuracy, minInaccuracy, maxInaccuracy);
-        Debug.Log(inaccuracy + "inac");
+        inaccuracy = playerMove.isMoving() ? maxInaccuracy : minInaccuracy;
+        Debug.Log("Inacc -> " + inaccuracy);
     }
-   
+
     void SetInaccuracyRange()
     {
-        minInaccuracy = isAiming ? minInaccuracyAim : minInaccuracyHip;
-        maxInaccuracy = isAiming ? maxInaccuracyAim : maxInaccuracyHip;
+        minInaccuracy = isAiming ? playerMove.isCrouching ? minInaccuracyCrouchAim : minInaccuracyStandAim : playerMove.isCrouching ? minInaccuracyCrouchHip : minInaccuracyStandHip;
+        maxInaccuracy = isAiming ? playerMove.isCrouching ? maxInaccuracyCrouchAim : maxInaccuracyStandAim : playerMove.isCrouching ? maxInaccuracyCrouchHip : maxInaccuracyStandHip;
     }
     void AdjustFOV()
     {
@@ -193,9 +178,11 @@ public class WeaponScript : MonoBehaviour {
         if (Input.GetMouseButton(1) && weaponSelected && !isReloading)
         {
             playerMove.isRunning = false;
+            
             if (!isAiming)
             {
                 isAiming = true;
+                playerMove.SendMessage("SetAim", isAiming);
                 aimDistance = Vector3.Distance(aimPosition, transform.localPosition);
             }
             
@@ -214,6 +201,7 @@ public class WeaponScript : MonoBehaviour {
             {
                 playerMove.releasedRun = true;
                 isAiming = false;
+                playerMove.SendMessage("SetAim", isAiming);
                 aimDistance = Vector3.Distance(defaultPosition, transform.localPosition);
             }
            
@@ -308,9 +296,8 @@ public class WeaponScript : MonoBehaviour {
         if (totalBullets < 0) totalBullets = 0;
         int delta = tBCcopy - totalBullets;
         bulletsInClip += delta;
-        isReloading = false;
-        playerMove.releasedRun = true;
-    //    playerMove.SendMessage("finishedReloading");
+        isReloading = false;        
+        playerMove.releasedRun = true;//if player still holds run button during reload => start running again.
     }
     IEnumerator shutReloadInfo()
     {
@@ -328,8 +315,7 @@ public class WeaponScript : MonoBehaviour {
         if (bulletsInClip >= 0 && totalBullets > 0)
         {
             isReloading = true;
-            playerMove.isRunning = false;
-           // playerMove.SendMessage("startedReloading");
+            playerMove.isRunning = false;//so we stop running if we run and reload.
             //--- set animation reload speed
             //--- play reload gun animation
             audioSource.PlayOneShot(reloadSound);
