@@ -11,11 +11,14 @@ public class WeaponScript : MonoBehaviour {
     GameObject head;
     [SerializeField]
     Transform weaponNozzle;
-    Animation weaponAnimations;
+    [HideInInspector]
+    public Animator animator;
     public enum WeaponMode { None, SemiFire, Auto };
     public WeaponMode currentWeaponMode;
 
+    float weaponSwitchTime; //getting it from the weapon manager so we can sync animations.
     //Weapon properties.
+    Vector3 hitPoint;
     public int bulletsInClip;
     public int totalBullets;
     int maxBulletsPerMag;
@@ -86,11 +89,11 @@ public class WeaponScript : MonoBehaviour {
 
     //temp crosshair
     public Texture2D crosshairTexture;
-    Rect position;
+    Rect crosshairPos;
     static bool showCrosshair = true;
     void Awake()
     {
-        weaponAnimations = GetComponentInChildren<Animation>();
+        animator = GetComponentInChildren<Animator>();
         playerMove = head.GetComponentInParent<PlayerMovement>();
     }
     void Start() {
@@ -98,15 +101,14 @@ public class WeaponScript : MonoBehaviour {
         mainCamera = Camera.main;
         weaponCamera = GameObject.FindGameObjectWithTag(Tags.weaponCamera).GetComponent<Camera>();
         maxBulletsPerMag = bulletsInClip;
+        weaponSwitchTime = FindObjectOfType<WeaponManager>().weaponSwitchTime;
 
-        position = new Rect((Screen.width - crosshairTexture.width) / 2, (Screen.height - crosshairTexture.height) / 2, crosshairTexture.width, crosshairTexture.height);
+        crosshairPos = new Rect((Screen.width - crosshairTexture.width) / 2, (Screen.height - crosshairTexture.height) / 2, crosshairTexture.width, crosshairTexture.height);
     }
 
 
     void Update()
     {
-
-        // Debug.Log(isReloading);
         if (weaponSelected)
         {
             Aiming();
@@ -114,32 +116,16 @@ public class WeaponScript : MonoBehaviour {
             CalculateInaccuracy();
 
             if (Input.GetButtonDown("Fire"))
-            {
-
                 if (currentWeaponMode == WeaponMode.SemiFire)
-                {
                     SemiFireMode();
-                }
-
-            }
-            else if (Input.GetButton("Fire"))
-            {
-                if (currentWeaponMode == WeaponMode.Auto)
-                {
-                    SemiFireMode();
-                }
-            }
+                else if (Input.GetButton("Fire"))
+                    if (currentWeaponMode == WeaponMode.Auto)
+                        SemiFireMode();
 
             if (Input.GetKeyDown(KeyCode.R))
-            {
                 Reload();
-            }
-           
+
         }
-
-        //--> Inaccuary system to be implemented.
-
-
     }
     void CalculateInaccuracy()
     {
@@ -215,15 +201,16 @@ public class WeaponScript : MonoBehaviour {
             }
         }
     }
-
+  
     void OnGUI()
     {
+     
         if (showCrosshair)
         {
             if (!isAiming)
             {
 
-                GUI.DrawTexture(position, crosshairTexture);
+                GUI.DrawTexture(crosshairPos, crosshairTexture);
             }
         }
        
@@ -252,18 +239,19 @@ public class WeaponScript : MonoBehaviour {
 
         if (CanFire()) FireOneBullet();
     }
- 
+    
     void FireOneBullet()
     {
         playerMove.isRunning = false;
         isShooting = true;
         Vector3 shootDirection = mainCamera.transform.TransformDirection(new Vector3(Random.Range(-0.01f, 0.01f) * inaccuracy, Random.Range(-0.01f, 0.01f) * inaccuracy, 1));
         RaycastHit hit;
-        Debug.DrawRay(mainCamera.transform.position, shootDirection * 100f, Color.green, 5);
+       // Debug.DrawRay(mainCamera.transform.position, shootDirection * 100f, Color.green, 5);
         if (Physics.Raycast(mainCamera.transform.position, shootDirection, out hit, 100f))
         {
-
-            Vector3 hitPoint = hit.point;
+            
+            Debug.DrawRay(mainCamera.transform.position, shootDirection * Vector3.Distance(mainCamera.transform.position,hit.point), Color.red, 5f);
+            hitPoint = hit.point;
             Quaternion decalRotation = Quaternion.FromToRotation(Vector3.up, hit.normal);
 
             if (!hit.transform.CompareTag(Tags.enemy))
@@ -271,13 +259,13 @@ public class WeaponScript : MonoBehaviour {
                 GameObject go = Instantiate(normalDecal, hitPoint + (hit.normal * 0.01f), decalRotation) as GameObject;
                 go.transform.parent = hit.transform;
             }
+            
         }
         
 
         audioSource.PlayOneShot(fireSound);
      //   weaponAnimations.Rewind("Shoot");
-       // weaponAnimations.Play("Shoot");
-
+       // weaponAnimations.CrossFade("Idle");
         RecoilEffect();
         bulletsInClip--;
 
@@ -333,10 +321,12 @@ public class WeaponScript : MonoBehaviour {
     }
     void PullOutWeapon()
     {
-        weaponAnimations["Draw"].speed = pullOutWeaponTime * 2;
-      //  weaponAnimations.Play("Draw", PlayMode.StopAll);
-       // weaponAnimations.Play("Draw");
-        weaponAnimations.CrossFade("Draw");
+        // weaponAnimations["Draw"].speed = pullOutWeaponTime * 2;
+        //  weaponAnimations.Play("Draw", PlayMode.StopAll);
+        // weaponAnimations.Play("Draw");
+        //  weaponAnimations.CrossFade("Draw");
+        
+        animator.SetBool("PullOutWeapon", true);
         StartCoroutine(waitPullOut(pullOutWeaponTime));
 
     }
@@ -344,7 +334,9 @@ public class WeaponScript : MonoBehaviour {
     {
         yield return new WaitForSeconds(waittime);
         isReloading = false;
+        animator.SetBool("PullOutWeapon", false);
         weaponSelected = true;
+    
       //  Debug.Log("Pull out wep called !");
         //enable crosshair 
 

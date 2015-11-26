@@ -19,8 +19,7 @@ public class WeaponManager : MonoBehaviour {
 
     RaycastHit hit;
     float pickDistance = 2.0f;
-    [SerializeField]
-    float weaponSwitchTime = 0.5f;
+    public float weaponSwitchTime = 0.5f;
     public LayerMask layerWeapons;
 
     bool showWeaponText = false;
@@ -58,13 +57,13 @@ public class WeaponManager : MonoBehaviour {
                 else
                 //if the slot is taken but the weapon is NOT owned.
                 {
-                    GUI.Label(new Rect(Screen.width / 2, Screen.height / 2, 150, 100), "Press <F> to replace current weapon with this one");
+                    GUI.Label(new Rect(Screen.width / 2, Screen.height / 2, 150, 100), "Press <E> to replace current weapon with this one");
                 }
 
             }
             else
             {
-                GUI.Label(new Rect(Screen.width / 2, Screen.height / 2, 150, 100), "Press <F> to pick up !");
+                GUI.Label(new Rect(Screen.width / 2, Screen.height / 2, 150, 100), "Press <E> to pick up !");
             }
         }
     }
@@ -115,7 +114,7 @@ public class WeaponManager : MonoBehaviour {
             }
 
          //   Debug.Log("IS SLOT / WEAPON TAKEN ??" + isSlotTaken + " - " + isWeaponOwned);
-            if (Input.GetKeyDown(KeyCode.F) && canSwitchWeapon)
+            if (Input.GetKeyDown(KeyCode.E) && canSwitchWeapon)
             {
                 if (isSlotTaken)
                 {
@@ -208,10 +207,12 @@ public class WeaponManager : MonoBehaviour {
                 previousWeapon = temp;
             
 
-                weaponsOnPlayer[i].gameObject.SendMessage("HolsterWeapon", SendMessageOptions.DontRequireReceiver);
-                weaponsOnPlayer[i].SetActive(false);
-                weaponsOnPlayer[i].GetComponent<WeaponIndex>().enabled = false;
-                weaponsOnPlayer[i].GetComponent<WeaponScript>().enabled = false;
+                temp.gameObject.SendMessage("HolsterWeapon", SendMessageOptions.DontRequireReceiver);
+                temp.gameObject.SetActive(false);
+                temp.enabled = false;
+                //weaponsOnPlayer[i].SetActive(false);
+                //weaponsOnPlayer[i].GetComponent<WeaponIndex>().enabled = false;
+                //weaponsOnPlayer[i].GetComponent<WeaponScript>().enabled = false;
               //  Debug.Log("DISABLED WEAPON --> " + temp.slotID + " - " + temp.weaponID);
                 break;
             }
@@ -224,12 +225,15 @@ public class WeaponManager : MonoBehaviour {
             WeaponIndex temp = weaponsOnPlayer[i].GetComponent<WeaponIndex>();
             if (temp.slotID == slot && temp.weaponID == wepId)
             {
-                weaponsOnPlayer[i].SetActive(true);
-                weaponsOnPlayer[i].GetComponent<WeaponIndex>().enabled = true;
-                weaponsOnPlayer[i].GetComponent<WeaponScript>().enabled = true;
+                temp.gameObject.SetActive(true);
+                temp.enabled = true;
+
+                //weaponsOnPlayer[i].SetActive(true);
+                //weaponsOnPlayer[i].GetComponent<WeaponIndex>().enabled = true;
+                //weaponsOnPlayer[i].GetComponent<WeaponScript>().enabled = true;
                 currentWeapon = temp;
                 inventory[slot - 1] = currentWeapon;
-                weaponsOnPlayer[i].gameObject.SendMessage("PullOutWeapon", SendMessageOptions.DontRequireReceiver);
+                temp.gameObject.SendMessage("PullOutWeapon", SendMessageOptions.DontRequireReceiver);
              //   Debug.Log("ENABLE WEAPON --> " + temp.slotID + " - " + temp.weaponID);
                 //  Debug.Log("------ENABLE HAPPENED ------ !");
                 break;
