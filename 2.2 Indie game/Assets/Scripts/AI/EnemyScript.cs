@@ -28,53 +28,35 @@ public class EnemyScript : MonoBehaviour {
     //Charging
 	[SerializeField] float chargeTime = 15f;
     [SerializeField] Transform chargingSpot;
+    bool charging = false;
+    float chargeTimer;
 
     //Guarding
     [SerializeField] Transform guardingSpot;
+    [SerializeField] float guardRotateTime = 2.5f; //lower is faster
+    [SerializeField] float guardRotateAngle = 180f;
+    Quaternion rotation = Quaternion.identity;
+    float guardRotateTimer;
+    bool guarding = false;
+    bool shouldRotateToCenter = true;
 
     //Attacking
-    //[SerializeField] float attackDistance = 3.0f;
-    //[SerializeField] float attackRate = 1.0f;
     [SerializeField] float attackRotationSpeed = 1f;
 	[SerializeField] float attackTime = 2f;
+    Vector3 fightingPosition;
+    float attackTimer;
+    bool relocating = false;
 
     //Chasing
     [SerializeField] float chaseSpeed = 3.0f;
     [SerializeField] float chaseWaitTime = 5f;
     float chaseTimer;
-
-    //float distanceToTarget;
+    int chaseRotated = 0;
 
     NavMeshAgent agent;
-    
-    Transform target; //player
-
+    Transform player; //target
     EnemySightScript enemySight;
     LastPlayerSightingScript lastPlayerSighting;
-
-    Vector3 rayDirection;
-
-    float attackTimer;
-    int rotated = 0;
-    bool relocating = false;
-    [SerializeField] float maxDistance = 7f;
-
-    Vector3 point;
-
-	bool charging = false;
-	float chargeTimer;
-
-	bool guarding = false;
-	float guardTimer;
-	
-	bool shouldRot = true;
-	[SerializeField] int guardRotAngle;
-	int hasRotated = 0;
-
-	bool shouldGoRight= true;
-	Quaternion rotation = Quaternion.identity;
-
-	float counter = 0.0f;
 
     void Awake () {
         attackTimer = Time.time;
@@ -83,7 +65,7 @@ public class EnemyScript : MonoBehaviour {
         enemySight = GetComponent<EnemySightScript>();
         lastPlayerSighting = GameManager.Instance.GetComponent<LastPlayerSightingScript>();
         
-        if (target == null) target = GameObject.FindWithTag(Tags.player).transform;
+        if (player == null) player = GameObject.FindWithTag(Tags.player).transform;
 
         InvokeRepeating("StateLogic", 0, 0.01f);
         StartCoroutine("StateMachine");
@@ -131,16 +113,12 @@ public class EnemyScript : MonoBehaviour {
             enemySight.sphereCollider.radius = alertedRange;
             state = AIState.chasing;
         }
-        //else {
-        //    enemySight.sphereCollider.radius = defaultRange;
-        //    state = AIState.patrolling;
-        //}
     }
 
     void Attacking() {
         if (!relocating) FindFightingPosition(); 
         if (agent.remainingDistance <= agent.stoppingDistance) relocating = false;
-        this.transform.rotation = Quaternion.RotateTowards(this.transform.rotation, Quaternion.LookRotation(target.transform.position - this.transform.position), attackRotationSpeed);
+        this.transform.rotation = Quaternion.RotateTowards(this.transform.rotation, Quaternion.LookRotation(player.transform.position - this.transform.position), attackRotationSpeed);
 
         if (Time.time - attackTimer > attackTime) {
             Shoot();
@@ -149,7 +127,7 @@ public class EnemyScript : MonoBehaviour {
     }
 
     void Shoot() {
-        Vector3 direction = target.transform.position - this.transform.position;
+        Vector3 direction = player.transform.position - this.transform.position;
         direction += new Vector3(Random.Range(-1f, 1f), Random.Range(-1f, 1f), Random.Range(-1f, 1f));
         StartCoroutine(ShootRaycast(direction));
     }
@@ -159,19 +137,19 @@ public class EnemyScript : MonoBehaviour {
             agent.Resume();
             agent.updateRotation = false;
 
-            Vector3 delta = (this.transform.position - target.transform.position);
+            Vector3 delta = (this.transform.position - player.transform.position);
 
-            point = target.transform.position + new Vector3(Random.Range(-7f, 7f), 0, Random.Range(-7f, 7f));
-            Vector3 dirToPoint = point - target.transform.position;
+            fightingPosition = player.transform.position + new Vector3(Random.Range(-7f, 7f), 0, Random.Range(-7f, 7f));
+            Vector3 dirToPoint = fightingPosition - player.transform.position;
             if (Vector3.Dot(delta, dirToPoint) > 0) {
                 RaycastHit hit;
-                Vector3 dir = (target.transform.position -point);
+                Vector3 dir = (player.transform.position -fightingPosition);
            
-                if (Physics.Raycast(point, dir, out hit, 11f)) {
-                    Debug.DrawRay(point, dir, Color.black,5f);
+                if (Physics.Raycast(fightingPosition, dir, out hit, 11f)) {
+                    Debug.DrawRay(fightingPosition, dir, Color.black,5f);
                     if (hit.collider.CompareTag(Tags.player)) {
                         Debug.Log("I FOUND IT");
-                        agent.SetDestination(point);
+                        agent.SetDestination(fightingPosition);
                         relocating = true;
                     }
                 }
@@ -208,7 +186,7 @@ public class EnemyScript : MonoBehaviour {
                 enemySight.personalLastSighting = lastPlayerSighting.resetPosition;
                 chaseTimer = 0f;
 
-                rotated = 0; // reset rotation amount 
+                chaseRotated = 0; // reset rotation amount 
             }
         }
         else
@@ -280,11 +258,10 @@ public class EnemyScript : MonoBehaviour {
 		if (!guarding) {
 			agent.SetDestination (guardingSpot.position);
 			guarding = true;
-			guardTimer = Time.time;
 		}
 		if (agent.remainingDistance <= agent.stoppingDistance) {
 
-			if (shouldRot) {
+			if (shouldRotateToCenter) {
 				rotation = Quaternion.LookRotation (guardingSpot.forward);
 				rotation.x = 0;
 				rotation.z = 0;
@@ -293,40 +270,23 @@ public class EnemyScript : MonoBehaviour {
 
 			//if agent reached centerpoint
 			if (agent.transform.rotation == rotation) {
-				shouldRot = false;
+				shouldRotateToCenter = false;
 			}
 
-			if (!shouldRot) {
+			if (!shouldRotateToCenter) {
+                guardRotateTimer += Time.deltaTime;
+                float phase = Mathf.Sin(guardRotateTimer / guardRotateTime);
+                agent.transform.localRotation = Quaternion.Euler(new Vector3(0, phase * (guardRotateAngle/2), 0));
+            }
 
-				print (Mathf.PingPong(Time.time *50f, guardRotAngle));
-				agent.transform.rotation = Quaternion.Euler(0.0f, -(guardRotAngle/2) +Mathf.PingPong(Time.time * 50f, guardRotAngle), 0.0f);
-
-//				if ((hasRotated < rotation.y + guardRotAngle/2 ) && !shouldGoRight) {
-//					agent.transform.Rotate (0, 1, 0);
-//					hasRotated++;
-//				} else {
-//					shouldGoRight = true;
-//				}
-//
-//				
-//				if ((hasRotated > rotation.y - guardRotAngle/2)&& shouldGoRight) {
-//					agent.transform.Rotate (0, -1, 0);
-//					hasRotated--;
-//				}else {
-//					shouldGoRight = false;
-//				}
-
-
-			}
-
-		}
+        }
 	}
 
     void LookAround() { //improve this for guarding?
-        if (!(rotated > 270)) {
+        if (!(chaseRotated > 270)) {
             this.transform.Rotate(0, 1, 0);
         } 
-        rotated++;
+        chaseRotated++;
     }
 
     IEnumerator ShootRaycast(Vector3 direction) {
