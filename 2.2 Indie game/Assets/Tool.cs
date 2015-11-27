@@ -5,13 +5,19 @@ public enum ToolTypes
 {
     Screwdriver, Hammer, Wrench
 };
-public class ToolType : MonoBehaviour {
+public class Tool : MonoBehaviour {
 
     //select the coorect tooltype in inspector.
-    public ToolTypes toolType;
+    public ToolTypes Type;
 
     public float increaseScrap;
     public float increaseElectronics;
-
-
+    [HideInInspector]
+    public float ID;
+    [HideInInspector]
+    public bool draw = false;
+    void Start()
+    {
+        ID = Type.GetHashCode();
+    }
 }

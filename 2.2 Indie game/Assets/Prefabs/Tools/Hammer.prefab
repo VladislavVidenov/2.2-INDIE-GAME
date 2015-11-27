@@ -8,13 +8,14 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 460960}
-  - 114: {fileID: 11428050}
   - 33: {fileID: 3331476}
   - 23: {fileID: 2340760}
   - 65: {fileID: 6580846}
-  m_Layer: 0
+  - 54: {fileID: 5441598}
+  - 114: {fileID: 11492452}
+  m_Layer: 9
   m_Name: Hammer
-  m_TagString: Untagged
+  m_TagString: Tool
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -62,6 +63,21 @@ MeshFilter:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 144316}
   m_Mesh: {fileID: 4300000, guid: d451a16c8cb83304d8a9fd8ad6ee44f8, type: 3}
+--- !u!54 &5441598
+Rigidbody:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 144316}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: .0500000007
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
 --- !u!65 &6580846
 BoxCollider:
   m_ObjectHideFlags: 1
@@ -74,7 +90,7 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: .965671062, y: .0951747149, z: .361994445}
   m_Center: {x: .020611763, y: .0913157091, z: -.00290351361}
---- !u!114 &11428050
+--- !u!114 &11492452
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -85,16 +101,38 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b51e5b7149462bf40b9996072ab24d07, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  toolType: 1
+  Type: 1
   increaseScrap: 5
   increaseElectronics: 0
+  ID: 1
+  draw: 0
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1
   serializedVersion: 2
   m_Modification:
     m_TransformParent: {fileID: 0}
-    m_Modifications: []
+    m_Modifications:
+    - target: {fileID: 0}
+      propertyPath: m_TagString
+      value: Tool
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: Type
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: increaseScrap
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: ID
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
   m_RootGameObject: {fileID: 144316}

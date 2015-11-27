@@ -91,6 +91,22 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!1 &103662
+GameObject:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 423168}
+  - 114: {fileID: 11456436}
+  m_Layer: 8
+  m_Name: ToolManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
 --- !u!1 &104176
 GameObject:
   m_ObjectHideFlags: 1
@@ -438,6 +454,21 @@ GameObject:
   - 4: {fileID: 449432}
   m_Layer: 0
   m_Name: Character1_LeftHandRing2
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!1 &130298
+GameObject:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 436074}
+  m_Layer: 8
+  m_Name: ToolHolder
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1881,6 +1912,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 498622}
+  - {fileID: 423168}
   m_Father: {fileID: 413272}
   m_RootOrder: 0
 --- !u!4 &420932
@@ -1921,6 +1953,19 @@ Transform:
   - {fileID: 498466}
   m_Father: {fileID: 430558}
   m_RootOrder: 0
+--- !u!4 &423168
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 103662}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 436074}
+  m_Father: {fileID: 420520}
+  m_RootOrder: 1
 --- !u!4 &425588
 Transform:
   m_ObjectHideFlags: 1
@@ -2065,6 +2110,18 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 484044}
+  m_RootOrder: 0
+--- !u!4 &436074
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 130298}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: .189999998, y: -.169999957, z: .828000009}
+  m_LocalScale: {x: .505573094, y: .505573094, z: .505573094}
+  m_Children: []
+  m_Father: {fileID: 423168}
   m_RootOrder: 0
 --- !u!4 &436706
 Transform:
@@ -2813,7 +2870,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 180752}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -26.2999992, y: 1.72000003, z: -9.30000019}
+  m_LocalPosition: {x: 0, y: 1.51800001, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 425588}
@@ -3525,6 +3582,20 @@ MonoBehaviour:
   slotID: 1
   weaponID: 1
   weaponType: 
+--- !u!114 &11456436
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 103662}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cb6dd2920ba1735459049dac3be98b2c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  toolHolder: {fileID: 0}
+  showToolGuiText: 0
+  toolnUseGUI: 0
 --- !u!114 &11456850
 MonoBehaviour:
   m_ObjectHideFlags: 1
