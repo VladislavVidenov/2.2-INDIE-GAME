@@ -11,6 +11,7 @@ TagManager:
   - WeaponCamera
   - QualityToggle
   - Tool
+  - Quality Toggle
   layers:
   - Default
   - TransparentFX
@@ -23,7 +24,7 @@ TagManager:
   - Player
   - UsableItems
   - Weapons
-  - 
+  - VendingMachine
   - 
   - 
   - 
