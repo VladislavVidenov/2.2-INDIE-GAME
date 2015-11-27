@@ -65,7 +65,7 @@ public class LoadLevelGame : MonoBehaviour {
                         if (index == -1) {
                             index = 0;
                         }
-						InstatiateGameObject(xmlReader, index);
+						InstatiateGameObject(index);
 					}
 
 					break;
@@ -104,13 +104,13 @@ public class LoadLevelGame : MonoBehaviour {
 		heightOffset = 0;
 	}
 
-	void InstatiateGameObject (XmlReader xmlReader, int gameObjectIndex) {
+	void InstatiateGameObject (int gameObjectIndex) {
 		if (gameObjectIndex != 0){
             if (tiles[gameObjectIndex] != null)
             {
                 Quaternion rot = rotations[gameObjectIndex] != null ? Quaternion.Euler(rotations[gameObjectIndex]) : Quaternion.Euler(0,0,0) ;
-             
-                GameObject go = GameObject.Instantiate(tiles[gameObjectIndex], new Vector3((width - x) * tileWidth, heightOffset * tileHeight, z * tileWidth), rot) as GameObject;
+                Vector3 Pos = new Vector3((width - x) * tileWidth, heightOffset * tileHeight, z * tileWidth);
+                GameObject go = GameObject.Instantiate(tiles[gameObjectIndex], Pos , rot) as GameObject;
                 go.transform.SetParent(this.transform);
                 levelObjects.Add(go);
             }
@@ -124,20 +124,16 @@ public class LoadLevelGame : MonoBehaviour {
 
 	public void DeleteScene () {
         rotations = new Vector3[0];
-         id = 0;
-
-        rotationX=0;
-        rotationY=0;
-        rotationZ=0;
 
         x = 0;
-       z = 0;
+        z = 0;
 
         heightOffset = 0;
 
 		foreach(GameObject levelObject in levelObjects){
 			DestroyImmediate (levelObject);
 		}
+
         levelObjects.Clear(); 
 	}
 

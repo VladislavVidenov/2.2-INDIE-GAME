@@ -114,9 +114,6 @@ public class VendingMachine : MonoBehaviour {
         if (!buyButton.gameObject.activeInHierarchy) {
             buyButton.gameObject.SetActive(true);
         }
-		if (!buyButton.gameObject.activeInHierarchy) {
-			buyButton.gameObject.SetActive( true);
-		}
 
 		selectedUpgrade = upgrade;
 		
@@ -125,27 +122,37 @@ public class VendingMachine : MonoBehaviour {
         CheckUpgrade();
 	}
 
+
+	public void BuyUpgrade () {
+		selectedUpgrade.Apply ();
+		ownedUpgrades.Add (selectedUpgrade);
+        AddToTypeList();
+
+		ChangeBuyButton("Purchased",false);
+
+        playerScrap -= selectedUpgrade.ScrapCost;
+        playerElectronics -= selectedUpgrade.ElectronicsCost;
+
+        ChangePlayerStatsText();
+        SetSelectedButtonImage();
+        SetSelectedButtonColor(1, 1, 1);
+	}
+
+
     public void SelectButton(Button button) {
         if (selectedButton != null) {
             SetSelectedButtonColor(1, 1, 1);
         }
 
         selectedButton = button;
-        SetSelectedButtonColor(216f/255, 1, 39/255);
+        SetSelectedButtonColor(216f / 255, 1, 39 / 255);
         SetImageAndText(selectedUpgrade);
     }
 
-	public void BuyUpgrade () {
-		selectedUpgrade.Apply ();
-		ownedUpgrades.Add (selectedUpgrade);
-        AddToTypeList();
-		ChangeBuyButton("Purchased",false);
-        playerScrap -= selectedUpgrade.ScrapCost;
-        playerElectronics -= selectedUpgrade.ElectronicsCost;
-        ChangePlayerStatsText();
+    void SetSelectedButtonImage() {
         selectedButton.image.sprite = selectedUpgrade.buttonSprite;
-        SetSelectedButtonColor(1, 1, 1);
-	}
+       
+    }
 
     void AddToTypeList() {
         UpgradeType type = selectedUpgrade.upgradeType;
