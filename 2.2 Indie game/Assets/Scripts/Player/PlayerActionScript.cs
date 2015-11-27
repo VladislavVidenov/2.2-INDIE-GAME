@@ -2,7 +2,7 @@
 using System.Collections;
 
 public class PlayerActionScript : MonoBehaviour {
-
+    ToolManager toolManager;
     float maxRayDistance = 2.0f;
     [SerializeField]
     LayerMask layerMask;
@@ -10,6 +10,12 @@ public class PlayerActionScript : MonoBehaviour {
     bool showGuiSkin = false;
     RaycastHit hit;
     bool gotInfo = false;
+
+
+    void Start()
+    {
+        toolManager = FindObjectOfType<ToolManager>();
+    }
 	// Update is called once per frame
 	void Update () {
         Raycasting();
@@ -19,7 +25,6 @@ public class PlayerActionScript : MonoBehaviour {
         Ray ray = Camera.main.ViewportPointToRay(new Vector3(0.5f, 0.5f, 0));
     //    Debug.DrawRay(ray.origin, ray.direction * maxRayDistance, Color.black,2);
         if (Physics.Raycast(ray,out hit, maxRayDistance, layerMask.value)) {
-            if (gotInfo) return;
             switch (hit.collider.tag) {
 
                 case "VendingMachine":
@@ -41,16 +46,17 @@ public class PlayerActionScript : MonoBehaviour {
                     break;
                 case "Tool":
                     Debug.Log("TOOL TOOL TOOLL MODAFUKA");
-                    gotInfo = true;
-                    //get the tool script               (and show text)                 (show text)
-                    //ask tool manager if he has it, if so replace the current tool , otherwise pick up the tool 
-                    //give it to tool manager and its stuff.
+                 //   gotInfo = true;
+                    toolManager.CheckTool(hit.transform.GetComponent<Tool>());
+
                     break;
 
             }
         }
         else {
-            if (gotInfo) gotInfo = false;
+            Debug.Log("false");
+         //   if (gotInfo) gotInfo = false;
+            if (toolManager.showToolGuiText) toolManager.showToolGuiText = false;
             showGuiSkin = false;
         }
     }

@@ -238,9 +238,13 @@ public class EnemyScript : MonoBehaviour {
     void Charging() {
         agent.SetDestination(chargingSpot.position);
         if (agent.remainingDistance <= agent.stoppingDistance) {
-            agent.transform.LookAt(chargingSpot.GetComponentInChildren<Transform>());
-            //look at it at home :P
+            Transform spotchild = chargingSpot.GetChild(0);
 
+            Quaternion rotation = Quaternion.LookRotation(spotchild.position - agent.transform.position);
+            rotation.x = 0;
+            rotation.z = 0;
+            agent.transform.rotation = Quaternion.Slerp(agent.transform.rotation, rotation, Time.deltaTime * 2);
+            
         }
     }
 

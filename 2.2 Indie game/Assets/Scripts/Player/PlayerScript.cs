@@ -56,7 +56,7 @@ public class PlayerScript : MonoBehaviour {
         electronics = GameManager.Instance.electronics;
     }
 
-
+  
     public void GetCurrencyStats( out int pScrap,out int pElectronics) {
         pScrap = scrap;
         pElectronics = electronics;
