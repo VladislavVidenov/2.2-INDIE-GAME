@@ -32,7 +32,7 @@ GameObject:
   - 64: {fileID: 6485510}
   - 54: {fileID: 5485166}
   m_Layer: 10
-  m_Name: Pistol_rBody_2
+  m_Name: shotgun_body
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -175,8 +175,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 721bf64ce887a5942b92b7409f044fa4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  slotID: 1
-  weaponID: 2
+  slotID: 2
+  weaponID: 1
   weaponType: 
 --- !u!1001 &100100000
 Prefab:
@@ -184,7 +184,15 @@ Prefab:
   serializedVersion: 2
   m_Modification:
     m_TransformParent: {fileID: 0}
-    m_Modifications: []
+    m_Modifications:
+    - target: {fileID: 0}
+      propertyPath: slotID
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: weaponID
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
   m_RootGameObject: {fileID: 168282}

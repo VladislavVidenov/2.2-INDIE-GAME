@@ -48,9 +48,9 @@ public class GameManager : MonoBehaviour {
     [HideInInspector]
     public int health = 100;
     [HideInInspector]
-    public int scrap = 1000;
+    public int scrap = 50;
     [HideInInspector]
-    public int electronics = 1000;
+    public int electronics = 50;
 
     //endPlayer
 
