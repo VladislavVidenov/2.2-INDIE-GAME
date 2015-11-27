@@ -352,10 +352,11 @@ public class EnemyScript : MonoBehaviour
     void Die()
     {
         DropCredits(creditsDropAmount);
-        GameObject.Destroy(this.gameObject);  //debug
+
+        Destroy(gameObject);
     }
 
-    void TakeDamage(int amount)
+    public void TakeDamage(int amount)
     {
         health -= amount;
 

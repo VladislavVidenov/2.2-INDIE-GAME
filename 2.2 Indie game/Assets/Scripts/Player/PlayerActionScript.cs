@@ -45,9 +45,12 @@ public class PlayerActionScript : MonoBehaviour {
                     }
                     break;
                 case "Tool":
-                    Debug.Log("TOOL TOOL TOOLL MODAFUKA");
-                 //   gotInfo = true;
                     toolManager.CheckTool(hit.transform.GetComponent<Tool>());
+                    break;
+                case "Enemy":
+
+                    break;
+                case "EnemyButton":
 
                     break;
 

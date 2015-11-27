@@ -23,7 +23,7 @@ public class WeaponScript : MonoBehaviour {
     public int totalBullets;
     int maxBulletsPerMag;
 
-    public float damage;
+    public int damage;
     public float fireRate;
     public float reloadTime;
     public float pullOutWeaponTime;
@@ -247,10 +247,16 @@ public class WeaponScript : MonoBehaviour {
             
             Debug.DrawRay(mainCamera.transform.position, shootDirection * Vector3.Distance(mainCamera.transform.position,hit.point), Color.red, 5f);
             hitPoint = hit.point;
-            Quaternion decalRotation = Quaternion.FromToRotation(Vector3.up, hit.normal);
+            switch (hit.transform.gameObject.tag)
+            {
+                case Tags.enemy:
+                    hit.transform.GetComponentInParent<EnemyScript>().TakeDamage(damage);
+                    break;
+            }
 
             if (!hit.transform.CompareTag(Tags.enemy))
             {
+                Quaternion decalRotation = Quaternion.FromToRotation(Vector3.up, hit.normal);
                 GameObject go = Instantiate(normalDecal, hitPoint + (hit.normal * 0.01f), decalRotation) as GameObject;
                 go.transform.parent = hit.transform;
             }

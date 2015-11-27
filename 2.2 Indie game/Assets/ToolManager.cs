@@ -17,34 +17,31 @@ public class ToolManager : MonoBehaviour
     bool isToolOwned = false;
     bool toolSlotTaken = false;
 
+    float scrapIncrease;
+    float electronicIncrease;
 
-
-
+    PlayerScript playerScript;
     private List<Tool> tools;
     [HideInInspector]
     public bool toolnUseGUI = false;
 
     void Start()
     {
+        playerScript = FindObjectOfType<PlayerScript>();
         tools = new List<Tool>();
     }
 
 
     public void CheckTool(Tool tool)
     {
-        Debug.Log(tools.Count + " cooount ");
         showToolGuiText = true;
         if (tools.Count != 0)
         {
             toolSlotTaken = true;
             if (tool.ID == currentTool.ID)
-            {
                 isToolOwned = true;
-            }
             else
-            {
                 isToolOwned = false;
-            }
 
         }
         else
@@ -83,6 +80,13 @@ public class ToolManager : MonoBehaviour
         AddTool(tool);
 
     }
+
+
+    void StoreStats(float scrap,float electronics)
+    {
+        electronicIncrease = electronics;
+        scrapIncrease = scrap;
+    }
     public void AddTool(Tool tool)
     {
         tools.Add(tool);
@@ -90,6 +94,7 @@ public class ToolManager : MonoBehaviour
         currentTool.transform.position = toolHolder.position;
         currentTool.transform.rotation = toolHolder.rotation;
         currentTool.transform.parent = toolHolder;
+        playerScript.SetCurrentTool(currentTool);
         currentTool.gameObject.SetActive(false);
       
 

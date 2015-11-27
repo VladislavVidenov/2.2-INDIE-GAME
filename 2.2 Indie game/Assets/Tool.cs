@@ -10,10 +10,11 @@ public class Tool : MonoBehaviour {
     //select the coorect tooltype in inspector.
     public ToolTypes Type;
 
-    public float increaseScrap;
-    public float increaseElectronics;
+    public int scrapBoost;
+    public int electronicsBoost;
+
     [HideInInspector]
-    public float ID;
+    public int ID;
     [HideInInspector]
     public bool draw = false;
     void Start()

@@ -9,6 +9,14 @@ public class PlayerScript : MonoBehaviour {
     int scrap;
     int electronics;
 
+    int scrapBoost;
+    int electronicsBoost;
+
+    int screwUpgBoost;
+    int hammerUpgBoost;
+    int wrenchUpgBoost;
+
+
     Camera mainCamera;
 
     SceneChangeManager sceneManager;
@@ -17,7 +25,7 @@ public class PlayerScript : MonoBehaviour {
     GameObject scrapHud;
     Text scrapText;
 
-
+    Tool currentTool;
 	// Use this for initialization
 	void Start () {
         scrapText = scrapHud.GetComponentInChildren<Text>();
@@ -81,8 +89,8 @@ public class PlayerScript : MonoBehaviour {
         if(pScrap>0) IncreaseScrapHud(pScrap);
         maxHealth += pMaxHealth;
         health += pHealth;
-        scrap += pScrap;
-        electronics += pScrap;
+        scrap += pScrap + scrapBoost;
+        electronics += pElectronics + electronicsBoost;
     }
 
     void IncreaseScrapHud(int Amount) {
@@ -94,7 +102,29 @@ public class PlayerScript : MonoBehaviour {
     void DeactiveScrapHud() {
         scrapHud.SetActive(false);
     }
-        
+    public void SetCurrentTool(Tool tool)
+    {
+        currentTool = tool;
+        SetBoostUpgrades();
+    }
+    void SetBoostUpgrades()
+    {
+        switch (currentTool.Type)
+        {
+            case ToolTypes.Screwdriver:
+                electronicsBoost = currentTool.electronicsBoost + screwUpgBoost;
+                break;
+
+            case ToolTypes.Hammer:
+                scrapBoost = currentTool.scrapBoost + hammerUpgBoost;
+                break;
+
+            case ToolTypes.Wrench:
+                scrapBoost = currentTool.scrapBoost + wrenchUpgBoost;
+                electronicsBoost = currentTool.electronicsBoost + wrenchUpgBoost;
+                break;
+        }
+    }
     IEnumerator IncreaseHud(int text, int Amount) {
 
         float stepTime = 0.02f;
