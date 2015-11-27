@@ -23,7 +23,7 @@ public class PauseMenuScript : MonoBehaviour {
 
 
     void Start() {
-        vendingMachine = GameObject.FindWithTag(Tags.vendingMachine).GetComponent<VendingMachine>();
+        vendingMachine = GameObject.Find("VendingMachine").GetComponent<VendingMachine>();
         pauseUpgrade = GameObject.Find("PauseUpgrade");
         DisablePauseScreen();
         UpgadeList = new List<GameObject>();

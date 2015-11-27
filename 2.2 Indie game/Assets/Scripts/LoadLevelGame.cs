@@ -5,6 +5,7 @@ using System.IO;
 using System.Xml;
 using System.Linq;
 using System.Text.RegularExpressions;
+using System;
 
 public class LoadLevelGame : MonoBehaviour {
 	public string levelName;
@@ -13,11 +14,11 @@ public class LoadLevelGame : MonoBehaviour {
 	/// The tileset, as an array.
 	/// </summary>
 	public GameObject[] tiles;
-    List<Vector3> rotations;
+    Vector3[] rotations;
 
 	List<GameObject> levelObjects = new List<GameObject>();
 
-	int id= 0;
+	int id;
 
 	int rotationX;
 	int rotationY;
@@ -26,14 +27,19 @@ public class LoadLevelGame : MonoBehaviour {
 	int x=0;
 	int z=0;
 
-	int tileHeight= 0;
+	int heightOffset= 0;
 
-	public int height = 25;
-	public int width = 25;
-	
+    [SerializeField]
+	 int height = 25;
+    [SerializeField]
+	 int width = 25;
+    [SerializeField]
+    float tileWidth;
+    [SerializeField]
+    float tileHeight;
+
 	//start loading the level at the start
 	void Start () {
-        
 		LoadLevel();
 	}
 	
@@ -42,11 +48,8 @@ public class LoadLevelGame : MonoBehaviour {
 		//open xml
 		XmlReader xmlReader = XmlReader.Create(Application.streamingAssetsPath + "/" + levelName + ".tmx");
 
-        rotations = new List<Vector3>();
-        for (int i = 0; i < width * height; i++) {
-            rotations.Add(new Vector3(0, 0, 0));
-        }
-		
+        rotations = new Vector3[width*height];
+ 
 		//keep reading until end-of-file
 		while (xmlReader.Read()) {
 		
@@ -74,30 +77,22 @@ public class LoadLevelGame : MonoBehaviour {
 					
 					case "rotationX":
 						rotationX = int.Parse (xmlReader ["value"]);
-				
-
 						break;
 
 					case "rotationY":
 						rotationY = int.Parse (xmlReader ["value"]);
-			
-						
 						break;
 
 					case "rotationZ":
 						rotationZ = int.Parse (xmlReader ["value"]);
-			
-
                         Vector3 temp = new Vector3(rotationX, rotationY, rotationZ);
-                        rotations.Insert(id,temp);
+                        rotations[id] = temp;
 						break;
-
 					}
-                        
 					break;
 
 				case "layer":
-					tileHeight++;
+					heightOffset++;
 					x=0;
 					z=0;
 					break;
@@ -106,7 +101,7 @@ public class LoadLevelGame : MonoBehaviour {
 			}
 		}
 
-		tileHeight = 0;
+		heightOffset = 0;
 	}
 
 	void InstatiateGameObject (XmlReader xmlReader, int gameObjectIndex) {
@@ -115,7 +110,7 @@ public class LoadLevelGame : MonoBehaviour {
             {
                 Quaternion rot = rotations[gameObjectIndex] != null ? Quaternion.Euler(rotations[gameObjectIndex]) : Quaternion.Euler(0,0,0) ;
              
-                GameObject go = GameObject.Instantiate(tiles[gameObjectIndex], new Vector3((width - x) * 3.863f, tileHeight * 2.4938f, z * 3.863f), rot) as GameObject;
+                GameObject go = GameObject.Instantiate(tiles[gameObjectIndex], new Vector3((width - x) * tileWidth, heightOffset * tileHeight, z * tileWidth), rot) as GameObject;
                 go.transform.SetParent(this.transform);
                 levelObjects.Add(go);
             }
@@ -128,7 +123,7 @@ public class LoadLevelGame : MonoBehaviour {
 	}
 
 	public void DeleteScene () {
-        rotations.Clear();
+        rotations = new Vector3[0];
          id = 0;
 
         rotationX=0;
@@ -138,7 +133,7 @@ public class LoadLevelGame : MonoBehaviour {
         x = 0;
        z = 0;
 
-        tileHeight = 0;
+        heightOffset = 0;
 
 		foreach(GameObject levelObject in levelObjects){
 			DestroyImmediate (levelObject);

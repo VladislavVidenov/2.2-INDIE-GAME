@@ -1,0 +1,111 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &154544
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 4
+  m_Component:
+  - 224: {fileID: 22464026}
+  m_Layer: 5
+  m_Name: VendingMachineUI
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!1 &166968
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 447162}
+  - 114: {fileID: 11482856}
+  m_Layer: 0
+  m_Name: VendingMachine
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &447162
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 166968}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 22464026}
+  m_RootOrder: 0
+--- !u!114 &11482856
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 166968}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ada68bb6663268241a5ab890411d3518, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  allUpgrades:
+  - {fileID: 11464300, guid: 2e4e5d1f22b86004f835fb8f400529d2, type: 2}
+  - {fileID: 11493912, guid: 4ca3a18af1ecc944bb422602ed09b2ca, type: 2}
+  - {fileID: 11484260, guid: 3e8de823cb5f0d5409abb82563ed10fa, type: 2}
+  - {fileID: 11440616, guid: 19b57405ea34e5645a049510d1121d6e, type: 2}
+  - {fileID: 11460166, guid: b19f399410598eb4bbad5d0159b8968d, type: 2}
+  - {fileID: 11433144, guid: 2a6e87d636a093f4d999d35ec6b02585, type: 2}
+  - {fileID: 11420810, guid: ef8d3218a3b86cf489250525833c3ca4, type: 2}
+  - {fileID: 11425568, guid: 2c367aad039b60542bd88533233843a2, type: 2}
+  - {fileID: 11460718, guid: 1064a7f4fb2b9b54ca96fcb4e3d4dd10, type: 2}
+  - {fileID: 11419982, guid: 92912be61c7e777488d2dc6c98a5a964, type: 2}
+  - {fileID: 11445828, guid: 5c8888aa61f44a44aab2cea3f894628e, type: 2}
+  - {fileID: 11458604, guid: c36494dbf3536b642ac944b59c5dbe6d, type: 2}
+  - {fileID: 11444268, guid: 5edbd9252c140cd4abe026c88f388b30, type: 2}
+  - {fileID: 11433002, guid: 9d3d4e5ad49e2674796f8ef321be34fe, type: 2}
+  buyscreen: {fileID: 0}
+  playerUpgrades: {fileID: 0}
+  toolUpgrades: {fileID: 0}
+  weaponUpgrades: {fileID: 0}
+  buyButton: {fileID: 0}
+  UpgradeSprite: {fileID: 0}
+  UpgradeDescriptionText: {fileID: 0}
+  electronicsText: {fileID: 0}
+  scrapText: {fileID: 0}
+  electronicsCostText: {fileID: 0}
+  scrapCostText: {fileID: 0}
+--- !u!224 &22464026
+RectTransform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 154544}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: -136.041336}
+  m_LocalScale: {x: .281332195, y: .281332195, z: .281332195}
+  m_Children:
+  - {fileID: 447162}
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_AnchorMin: {x: .5, y: .5}
+  m_AnchorMax: {x: .5, y: .5}
+  m_AnchoredPosition: {x: 645.171448, y: 526.252075}
+  m_SizeDelta: {x: 100, y: 100}
+  m_Pivot: {x: .5, y: .5}
+--- !u!1001 &100100000
+Prefab:
+  m_ObjectHideFlags: 1
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications: []
+    m_RemovedComponents: []
+  m_ParentPrefab: {fileID: 0}
+  m_RootGameObject: {fileID: 154544}
+  m_IsPrefabParent: 1

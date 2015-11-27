@@ -21,6 +21,7 @@ public class SceneChangeManager : MonoBehaviour {
     }
     void Update() {
      
+
         if (Input.GetKeyDown(KeyCode.Escape)) {
             switch(currentState){
             
@@ -112,6 +113,7 @@ public class SceneChangeManager : MonoBehaviour {
 
     public void SwitchToLevel(int index) {
         GameManager.Instance.CurrentState = GameState.InGame;
+        SetState(GameState.InGame);
         Application.LoadLevel(index);
     }
 
