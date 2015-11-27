@@ -26,15 +26,17 @@ public class EnemyScript : MonoBehaviour {
     int waypointRounds = 0;
 
     //Charging
-    public Transform chargingSpot;
+	[SerializeField] float chargeTime = 15f;
+    [SerializeField] Transform chargingSpot;
 
     //Guarding
-    public Transform guardingSpot;
+    [SerializeField] Transform guardingSpot;
 
     //Attacking
     //[SerializeField] float attackDistance = 3.0f;
     //[SerializeField] float attackRate = 1.0f;
     [SerializeField] float attackRotationSpeed = 1f;
+	[SerializeField] float attackTime = 2f;
 
     //Chasing
     [SerializeField] float chaseSpeed = 3.0f;
@@ -52,15 +54,30 @@ public class EnemyScript : MonoBehaviour {
 
     Vector3 rayDirection;
 
-    float time;
+    float attackTimer;
     int rotated = 0;
     bool relocating = false;
-    public float maxDistance = 7f;
+    [SerializeField] float maxDistance = 7f;
 
     Vector3 point;
 
+	bool charging = false;
+	float chargeTimer;
+
+	bool guarding = false;
+	float guardTimer;
+	
+	bool shouldRot = true;
+	[SerializeField] int guardRotAngle;
+	int hasRotated = 0;
+
+	bool shouldGoRight= true;
+	Quaternion rotation = Quaternion.identity;
+
+	float counter = 0.0f;
+
     void Awake () {
-        time = Time.time;
+        attackTimer = Time.time;
         //Getting the references
         agent = GetComponent<NavMeshAgent>();
         enemySight = GetComponent<EnemySightScript>();
@@ -73,36 +90,36 @@ public class EnemyScript : MonoBehaviour {
 	}
 
     IEnumerator StateMachine() {
-        while (true) {
-            switch (state) {
-                case AIState.patrolling:
-                    Patrolling();
-                    break;
-                case AIState.chasing:
-                    agent.updateRotation = true;
-                    Chasing();
-                    Debug.Log("Chasing");
-                    break;
-                case AIState.charging:
-                    Charging();
-                    Debug.Log("Charging");
-                    break;
-                case AIState.guarding:
+		while (true) {
+			switch (state) {
+			case AIState.patrolling:
+				Patrolling ();
+				break;
+			case AIState.chasing:
+				agent.updateRotation = true;
+				Chasing ();
+				Debug.Log ("Chasing");
+				break;
+			case AIState.charging:
+				Charging ();
+				Debug.Log ("Charging");
+				break;
+			case AIState.guarding:
+				Guarding ();
+				Debug.Log ("Guarding");
+				break;
+			case AIState.searching:
                     //magic
-                    Debug.Log("Guarding");
-                    break;
-                case AIState.searching:
-                    //magic
-                    Debug.Log("Searching");
-                    break;
-                case AIState.attacking:
-                    Attacking();
-                    Debug.Log("Attacking");
-                    break;
-            }
-            yield return null;
-        }
-    }
+				Debug.Log ("Searching");
+				break;
+			case AIState.attacking:
+				Attacking ();
+				Debug.Log ("Attacking");
+				break;
+			}
+			yield return null;
+		}
+	}
 
     void StateLogic() {
         if (enemySight.playerInSight /*and player == alive*/) {
@@ -125,9 +142,9 @@ public class EnemyScript : MonoBehaviour {
         if (agent.remainingDistance <= agent.stoppingDistance) relocating = false;
         this.transform.rotation = Quaternion.RotateTowards(this.transform.rotation, Quaternion.LookRotation(target.transform.position - this.transform.position), attackRotationSpeed);
 
-        if (Time.time - time > 2f) {
+        if (Time.time - attackTimer > attackTime) {
             Shoot();
-            time = Time.time;
+            attackTimer = Time.time;
         }
     }
 
@@ -236,13 +253,74 @@ public class EnemyScript : MonoBehaviour {
     }
 
     void Charging() {
-        agent.SetDestination(chargingSpot.position);
-        if (agent.remainingDistance <= agent.stoppingDistance) {
-            agent.transform.LookAt(chargingSpot.GetComponentInChildren<Transform>());
-            //look at it at home :P
+		if (!charging) {
+			agent.SetDestination (chargingSpot.position);
+			charging = true;
+			chargeTimer = Time.time;
+		}
+		if (agent.remainingDistance <= agent.stoppingDistance) {
+			Quaternion rotation = Quaternion.LookRotation (chargingSpot.forward);
+			rotation.x = 0;
+			rotation.z = 0;
+			agent.transform.rotation = Quaternion.Slerp (agent.transform.rotation, rotation, Time.deltaTime * 2);
 
-        }
-    }
+			if (Time.time - chargeTimer > chargeTime) {
+				int random = Random.Range (0, 1);
+				if (random == 1) {
+					state = AIState.guarding;
+				} else {
+					state = AIState.guarding;
+				}
+				charging = false;
+			}
+		}
+	}
+
+	void Guarding () {
+		if (!guarding) {
+			agent.SetDestination (guardingSpot.position);
+			guarding = true;
+			guardTimer = Time.time;
+		}
+		if (agent.remainingDistance <= agent.stoppingDistance) {
+
+			if (shouldRot) {
+				rotation = Quaternion.LookRotation (guardingSpot.forward);
+				rotation.x = 0;
+				rotation.z = 0;
+				agent.transform.rotation = Quaternion.Slerp (agent.transform.rotation, rotation, Time.deltaTime * 2);
+			}
+
+			//if agent reached centerpoint
+			if (agent.transform.rotation == rotation) {
+				shouldRot = false;
+			}
+
+			if (!shouldRot) {
+
+				print (Mathf.PingPong(Time.time *50f, guardRotAngle));
+				agent.transform.rotation = Quaternion.Euler(0.0f, -(guardRotAngle/2) +Mathf.PingPong(Time.time * 50f, guardRotAngle), 0.0f);
+
+//				if ((hasRotated < rotation.y + guardRotAngle/2 ) && !shouldGoRight) {
+//					agent.transform.Rotate (0, 1, 0);
+//					hasRotated++;
+//				} else {
+//					shouldGoRight = true;
+//				}
+//
+//				
+//				if ((hasRotated > rotation.y - guardRotAngle/2)&& shouldGoRight) {
+//					agent.transform.Rotate (0, -1, 0);
+//					hasRotated--;
+//				}else {
+//					shouldGoRight = false;
+//				}
+
+
+			}
+
+		}
+	}
 
     void LookAround() { //improve this for guarding?
         if (!(rotated > 270)) {
