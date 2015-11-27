@@ -172,11 +172,13 @@ MonoBehaviour:
   alertedRange: 20
   patrolSpeed: 5
   patrolWaitTime: 1
-  patrolWaypoints: []
+  patrolWaypoints:
+  - {fileID: 0}
   chargeTime: 15
   chargingSpot: {fileID: 0}
   guardRotateTime: 2.5
   guardRotateAngle: 110
+  guardTime: 25
   guardingSpot: {fileID: 0}
   attackRotationSpeed: 1
   attackTime: 2

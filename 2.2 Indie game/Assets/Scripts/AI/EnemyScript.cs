@@ -7,7 +7,7 @@ using System.Collections;
 
 public class EnemyScript : MonoBehaviour
 {
-    enum AIState { patrolling, charging, chasing, searching, guarding, attacking }
+    enum AIState { patrolling, charging, chasing, searching, guarding, attacking, dying }
     AIState state;
 
     [Header("General")]
@@ -35,6 +35,7 @@ public class EnemyScript : MonoBehaviour
     [Header("Guarding")]
     [SerializeField] float guardRotateTime = 2.5f; //lower is faster
     [SerializeField] float guardRotateAngle = 180f;
+    [SerializeField] float guardTime = 25f;
     [SerializeField] Transform guardingSpot;
     Quaternion rotation = Quaternion.identity;
     float guardRotateTimer;
@@ -102,6 +103,10 @@ public class EnemyScript : MonoBehaviour
                 case AIState.attacking:
                     Attacking();
                     Debug.Log("Attacking");
+                    break;
+                case AIState.dying:
+                    Dying();
+                    Debug.Log("Dying");
                     break;
             }
             yield return null;
@@ -273,14 +278,17 @@ public class EnemyScript : MonoBehaviour
 
             if (Time.time - chargeTimer > chargeTime)
             {
-                int random = Random.Range(0, 1);
+                print("going to either patrol or guard now");
+                int random = Random.Range(0, 2);
                 if (random == 1)
                 {
-                    state = AIState.guarding;
+                    state = AIState.patrolling;
+                    print("patrol...");
                 }
                 else
                 {
                     state = AIState.guarding;
+                    print("guard...");
                 }
                 charging = false;
             }
@@ -289,16 +297,12 @@ public class EnemyScript : MonoBehaviour
 
     void Guarding()
     {
-        if (!guarding)
-        {
+        if (!guarding) {
             agent.SetDestination(guardingSpot.position);
             guarding = true;
         }
-        if (agent.remainingDistance <= agent.stoppingDistance)
-        {
-
-            if (shouldRotateToCenter)
-            {
+        if (agent.remainingDistance <= agent.stoppingDistance) {
+            if (shouldRotateToCenter) {
                 rotation = Quaternion.LookRotation(guardingSpot.forward);
                 rotation.x = 0;
                 rotation.z = 0;
@@ -306,23 +310,28 @@ public class EnemyScript : MonoBehaviour
             }
 
             //if agent reached centerpoint
-            if (agent.transform.rotation == rotation)
-            {
+            if (agent.transform.rotation == rotation) {
                 shouldRotateToCenter = false;
             }
 
-            if (!shouldRotateToCenter)
-            {
+            if (!shouldRotateToCenter) {
                 guardRotateTimer += Time.deltaTime;
                 float phase = Mathf.Sin(guardRotateTimer / guardRotateTime);
                 agent.transform.localRotation = Quaternion.Euler(new Vector3(0, phase * (guardRotateAngle / 2), 0));
-            }
 
+                if (guardRotateTimer >= guardTime) {
+                    print("reached guardtime");
+                    guarding = false;
+                    shouldRotateToCenter = true;
+                    state = AIState.charging;
+                    
+                }
+            }
         }
     }
 
     void LookAround()
-    { //improve this for guarding?
+    { 
         if (!(chaseRotated > 270))
         {
             this.transform.Rotate(0, 1, 0);
@@ -349,11 +358,12 @@ public class EnemyScript : MonoBehaviour
         }
     }
 
-    void Die()
+    void Dying()
     {
-        DropCredits(creditsDropAmount);
+        //DIE PLEASE!
 
-        Destroy(gameObject);
+        //DropCredits(creditsDropAmount);
+        //Destroy(gameObject);
     }
 
     public void TakeDamage(int amount)
@@ -362,7 +372,7 @@ public class EnemyScript : MonoBehaviour
 
         if (health <= 0)
         {
-            Die();
+            Dying();
         }
     }
 
