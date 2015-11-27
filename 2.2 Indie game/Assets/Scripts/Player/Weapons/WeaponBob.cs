@@ -22,7 +22,7 @@ public class WeaponBob : MonoBehaviour {
     }
 
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {                       //negative input, because we add the delay to our position
         delayX = ClampDelay(-Input.GetAxis("Mouse X") * delay, minDelay, maxDelay);
                             //same.
@@ -30,10 +30,8 @@ public class WeaponBob : MonoBehaviour {
 
         Vector3 newPos = new Vector3(localPos.x + delayX, localPos.y + delayY, localPos.z);
         transform.localPosition = Vector3.SmoothDamp(transform.localPosition, newPos, ref vel, smoothSpeed);
-       // Debug.Log("X -> " + delayX + "Y -> " + delayY);
+
     }
-
-
     float ClampDelay(float value,float min,float max)
     {
         if (value > max)
