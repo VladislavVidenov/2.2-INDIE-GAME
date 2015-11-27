@@ -9,6 +9,7 @@ public class EnemySightScript : MonoBehaviour {
     public Vector3 personalLastSighting;
 
     //NavMeshAgent navMeshAgent;
+    [HideInInspector]
     public SphereCollider sphereCollider;
     LastPlayerSightingScript lastPlayerSighting;
 

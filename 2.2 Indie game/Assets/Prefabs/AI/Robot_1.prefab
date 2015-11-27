@@ -171,14 +171,17 @@ MonoBehaviour:
   alertedRange: 20
   patrolSpeed: 5
   patrolWaitTime: .5
-  attackRotationSpeed: 1
-  chaseSpeed: 3
-  chaseWaitTime: 5
   patrolWaypoints:
   - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  maxDistance: 7
+  chargeTime: 1
+  chargingSpot: {fileID: 0}
+  guardRotateTime: 2.5
+  guardRotateAngle: 110
+  guardingSpot: {fileID: 0}
+  attackRotationSpeed: 1
+  attackTime: 2
+  chaseSpeed: 3
+  chaseWaitTime: 5
 --- !u!114 &11443374
 MonoBehaviour:
   m_ObjectHideFlags: 1
