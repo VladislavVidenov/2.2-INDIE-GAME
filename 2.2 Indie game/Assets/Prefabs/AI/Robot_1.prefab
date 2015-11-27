@@ -170,10 +170,9 @@ MonoBehaviour:
   defaultRange: 10
   alertedRange: 20
   patrolSpeed: 5
-  patrolWaitTime: .5
-  patrolWaypoints:
-  - {fileID: 0}
-  chargeTime: 1
+  patrolWaitTime: 1
+  patrolWaypoints: []
+  chargeTime: 15
   chargingSpot: {fileID: 0}
   guardRotateTime: 2.5
   guardRotateAngle: 110
