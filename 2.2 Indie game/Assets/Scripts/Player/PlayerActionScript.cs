@@ -24,38 +24,40 @@ public class PlayerActionScript : MonoBehaviour {
     void Raycasting() {
         Ray ray = Camera.main.ViewportPointToRay(new Vector3(0.5f, 0.5f, 0));
     //    Debug.DrawRay(ray.origin, ray.direction * maxRayDistance, Color.black,2);
-        if (Physics.Raycast(ray,out hit, maxRayDistance, layerMask.value)) {
-            switch (hit.collider.tag) {
+        if (Physics.Raycast (ray, out hit, maxRayDistance, layerMask.value)) {
+			switch (hit.collider.tag) {
 
-                case "VendingMachine":
-                    showGuiSkin = true;
-                    if (Input.GetKeyDown(KeyCode.E))
-                    GameObject.Find("SceneManager").GetComponent<SceneChangeManager>().SetState(GameState.InBuyScreen);
-                    break;
+			case "VendingMachine":
+				showGuiSkin = true;
+				if (Input.GetKeyDown (KeyCode.E))
+					GameObject.Find ("SceneManager").GetComponent<SceneChangeManager> ().SetState (GameState.InBuyScreen);
+				break;
 
-                case "LootableBox":
-                    LootableBoxScript lootBox = hit.collider.gameObject.GetComponent<LootableBoxScript>();
-                    if (!lootBox.isLooted) {
-                        showGuiSkin = true;
-                        if (Input.GetKeyDown(KeyCode.E))
-                            lootBox.Loot();
-                    }
-                    else {
-                        showGuiSkin = false;
-                    }
-                    break;
-                case "Tool":
-                    toolManager.CheckTool(hit.transform.GetComponent<Tool>());
-                    break;
-                case "Enemy":
+			case "LootableBox":
+				LootableBoxScript lootBox = hit.collider.gameObject.GetComponent<LootableBoxScript> ();
+				if (!lootBox.isLooted) {
+					showGuiSkin = true;
+					if (Input.GetKeyDown (KeyCode.E))
+						lootBox.Loot ();
+				} else {
+					showGuiSkin = false;
+				}
+				break;
+			case "Tool":
+				toolManager.CheckTool (hit.transform.GetComponent<Tool> ());
+				break;
+			case "Enemy":
+					//DEBUG!!!!!
+				EnemyScript enemyScript = hit.collider.GetComponent<EnemyScript> ();
+				if (Input.GetKeyDown (KeyCode.E))enemyScript.TakeDamage(30);
 
-                    break;
-                case "EnemyButton":
+				break;
+			case "EnemyButton":
 
-                    break;
+				break;
 
-            }
-        }
+			}
+		}
         else {
             Debug.Log("false");
          //   if (gotInfo) gotInfo = false;

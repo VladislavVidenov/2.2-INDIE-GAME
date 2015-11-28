@@ -60,6 +60,9 @@ public class EnemyScript : MonoBehaviour
     EnemySightScript enemySight;
     LastPlayerSightingScript lastPlayerSighting;
 
+
+	public SpawningScript spawner;
+
     void Awake()
     {
         attackTimer = Time.time;
@@ -360,10 +363,11 @@ public class EnemyScript : MonoBehaviour
 
     void Dying()
     {
+	
         //DIE PLEASE!
-
+		spawner.KillEnemy ();
         //DropCredits(creditsDropAmount);
-        //Destroy(gameObject);
+        Destroy(gameObject);
     }
 
     public void TakeDamage(int amount)
