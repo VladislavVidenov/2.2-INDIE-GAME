@@ -2,13 +2,20 @@
 using System.Collections;
 using System.Collections.Generic;
 
-public class SpawningScript : MonoBehaviour { 
+[System.Serializable]
+public struct WaveInfo  {
+	public int mEnemy;
+	public int rEnemy;
+}
 
+public class SpawningScript : MonoBehaviour { 
+	
 	public enum SpawnTypes {
 		Once,
 		Wave,
 		TimedWave
 	}
+	[SerializeField] WaveInfo[] waves;
 
 	[SerializeField] List<Transform> spawnPoints;
 	int spawnIndex = 0;
@@ -32,15 +39,18 @@ public class SpawningScript : MonoBehaviour {
 	public float waveTimer = 30f;
 	private float timeTillWave = 0f;
 	//wave controls
-	public int totalWaves = 5;
+	private int totalWaves;
 	private int numWaves = 0;
 
 	public float timeBetweenWaves;
 	private float betweenWavesTimer;
 
 
+
 	void Start () {
 		SpawnID = Random.Range (1, 500);
+		print (waves.Length);
+		totalWaves = waves.Length;
 	}
 
 	void Update () {
@@ -49,16 +59,17 @@ public class SpawningScript : MonoBehaviour {
 			switch(spawnType) {
 
 			case SpawnTypes.Once:
-				if(spawnedEnemy >= totalEnemy)
-				{
-					//sets the spawner to false
-					spawn = false;
-				}
-				else
-				{
+
 					// spawns an enemy
-					SpawnEnemy();
+				for(int i = 0; i < waves[0].mEnemy ; i++) {
+					SpawnEnemy(meleeEnemyPrefab);
 				}
+				for(int j = 0; j < waves[0].rEnemy ; j++) {
+					SpawnEnemy(rangedEnemyPrefab);
+				}
+					spawn =false;
+				
+
 				break;
 
 			case SpawnTypes.Wave:
@@ -67,10 +78,18 @@ public class SpawningScript : MonoBehaviour {
 				{
 					if (waveSpawn)
 					{
+						for(int i = 0; i < waves[numWaves -1].mEnemy ; i++) {
+							SpawnEnemy(meleeEnemyPrefab);
+						}
+						for(int j = 0; j < waves[numWaves-1].rEnemy ; j++) {
+							SpawnEnemy(rangedEnemyPrefab);
+						}
 						//spawns an enemy
-						SpawnEnemy();
+
 						Debug.Log("SPWANWNIF");
+						waveSpawn = false;
 					}
+
 					if (remainingEnemy == 0)
 					{
 						//start the betweenWavesTimer
@@ -86,12 +105,6 @@ public class SpawningScript : MonoBehaviour {
 
 						}
 					}
-					if(remainingEnemy == totalEnemy)
-					{
-
-						// disables the wave spawner
-						waveSpawn = false;
-					}
 				}
 				break;
 
@@ -103,8 +116,16 @@ public class SpawningScript : MonoBehaviour {
 					timeTillWave += Time.deltaTime;
 					if (waveSpawn)
 					{
+						for(int i = 0; i < waves[numWaves -1].mEnemy ; i++) {
+							SpawnEnemy(meleeEnemyPrefab);
+						}
+						for(int j = 0; j < waves[numWaves -1].rEnemy ; j++) {
+							SpawnEnemy(rangedEnemyPrefab);
+						}
 						//spawns an enemy
-						SpawnEnemy();
+						
+						Debug.Log("SPWANWNIF");
+						waveSpawn = false;
 					}
 					// checks if the time is equal to the time required for a new wave
 					if (timeTillWave >= waveTimer)
@@ -118,11 +139,6 @@ public class SpawningScript : MonoBehaviour {
 						// A hack to get it to spawn the same number of enemies regardless of how many have been killed
 						remainingEnemy = 0;
 					}
-					if(remainingEnemy >= totalEnemy)
-					{
-						// diables the wave spawner
-						waveSpawn = false;
-					}
 				}
 				else
 				{
@@ -133,13 +149,15 @@ public class SpawningScript : MonoBehaviour {
 		}
 	}
 
-	private void SpawnEnemy (){
+	private void SpawnEnemy (GameObject pEnemy){
 		Vector3 spawnPos = spawnPoints [spawnIndex].position;
 		spawnIndex++;
 		if (spawnIndex >= spawnPoints.Count) {
 			spawnIndex =0;
 		}
-		GameObject enemy = Instantiate (meleeEnemyPrefab, spawnPos, Quaternion.identity) as GameObject;
+		GameObject enemy = Instantiate (pEnemy, spawnPos, Quaternion.identity) as GameObject;
+
+
 		enemy.GetComponent<EnemyScript> ().spawner = this.GetComponent<SpawningScript> ();
 	//	enemy.SendMessage ("SetID", SpawnID);
 
