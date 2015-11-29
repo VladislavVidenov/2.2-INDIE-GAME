@@ -17,7 +17,7 @@ GameObject:
   - 65: {fileID: 6524294}
   - 114: {fileID: 11444366}
   - 114: {fileID: 11451462}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Robot_Melee
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -35,7 +35,7 @@ GameObject:
   - 33: {fileID: 3371728}
   - 65: {fileID: 6579668}
   - 23: {fileID: 2360748}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: EpicNose
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -49,7 +49,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 102486}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 336.039917, y: 4.84000015, z: 127.773201}
+  m_LocalPosition: {x: -29.4209595, y: 1.41999996, z: -16.862793}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 471350}

@@ -61,10 +61,10 @@ public class GameManager : MonoBehaviour {
     [HideInInspector]
     public PauseMenuScript pauseMenu;
 
+	CoverSpotScript[] coverSpots;
+
     void Awake()
     {
-       
-    
         if (Application.loadedLevel != 0)
         {
             currentState = GameState.InGame;
@@ -77,6 +77,8 @@ public class GameManager : MonoBehaviour {
 
     void Start()
     {
+		coverSpots = FindObjectsOfType<CoverSpotScript> ();
+		Debug.Log (coverSpots.Length);
     }
    
     void OnLevelWasLoaded()

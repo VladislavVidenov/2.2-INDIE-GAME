@@ -8,19 +8,53 @@ public class RangedEnemyScript : EnemyScript {
     [SerializeField] float attackTime = 2f;
     [SerializeField] float attackRotationSpeed = 5f;
 
+	CoverSpotScript coverSpot;
+
 
     void Start() {
 		base.Start ();
-        state = AIState.Attacking;
+        state = AIState.FindPlayerInSight;
     }
 
     void Update() {
-        switch (state) {
-            case AIState.Attacking:
-                Attacking();
-                break;
-        }
-    }
+		switch (state) {
+		case AIState.FindPlayerInSight:
+			FindPlayerInSight();
+			break;
+		case AIState.Shooting:
+			Shooting ();
+			break;
+		case AIState.FindCover:
+			FindCover ();
+			break;
+		case AIState.InCover:
+			InCover ();
+			break;
+		}
+	}
+
+	void Shooting(){
+		agent.Stop();
+	}
+
+	void FindCover(){
+		
+	}
+	void InCover(){
+		
+	}
+
+	void FindPlayerInSight(){
+		agent.SetDestination (player.transform.position);
+		Vector3 dir = player.transform.position - agent.transform.position;
+		RaycastHit hit;
+		Debug.DrawRay (agent.transform.position, dir * 100, Color.cyan);
+		if (Physics.Raycast (agent.transform.position,dir,out hit,100f)) {
+			if(hit.collider.CompareTag("Player")){
+				state = AIState.Shooting;
+			}
+		}
+	}
 
     void Attacking() {
         if (!relocating) FindFightingPosition();

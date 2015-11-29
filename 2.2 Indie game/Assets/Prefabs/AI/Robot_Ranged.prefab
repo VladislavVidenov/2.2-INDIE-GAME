@@ -11,7 +11,7 @@ GameObject:
   - 33: {fileID: 3361576}
   - 65: {fileID: 6584490}
   - 23: {fileID: 2399418}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: EpicNose
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -35,7 +35,7 @@ GameObject:
   - 65: {fileID: 6530344}
   - 114: {fileID: 11442264}
   - 114: {fileID: 11469052}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Robot_Ranged
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -49,7 +49,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 115192}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1.28400004, y: 0, z: 0}
+  m_LocalPosition: {x: -33.161499, y: 1.33700001, z: -15.7068634}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 445618}
@@ -196,6 +196,8 @@ MonoBehaviour:
   agent: {fileID: 19592358}
   player: {fileID: 0}
   spawner: {fileID: 0}
+  attackTime: 2
+  attackRotationSpeed: 5
 --- !u!114 &11469052
 MonoBehaviour:
   m_ObjectHideFlags: 1
