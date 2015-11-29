@@ -5,7 +5,8 @@ public class RangedEnemyScript : EnemyScript {
     Vector3 fightingPosition;
     bool relocating;
     float attackTimer;
-    float attackTime;
+    [SerializeField] float attackTime = 2f;
+    [SerializeField] float attackRotationSpeed = 5f;
 
 
     void Start() {
