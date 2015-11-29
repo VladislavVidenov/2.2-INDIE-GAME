@@ -10,6 +10,7 @@ public class RangedEnemyScript : EnemyScript {
 
 
     void Start() {
+		base.Start ();
         state = AIState.Attacking;
     }
 

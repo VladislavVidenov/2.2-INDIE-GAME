@@ -5,6 +5,7 @@ public class MeleeEnemyScript : EnemyScript {
 	
 	// Use this for initialization
 	void Start () {
+		base.Start ();
 		state = AIState.Running;
 	}
 	
@@ -27,7 +28,13 @@ public class MeleeEnemyScript : EnemyScript {
 
 	void OnTriggerEnter (Collider other) {
 		if (other.CompareTag (Tags.player)) {
-			print ("helooo");
+			state = AIState.Attacking;
+		}
+	}
+	
+	void OnTriggerExit (Collider other) {
+		if (other.CompareTag (Tags.player)) {
+			state = AIState.Running;
 		}
 	}
 }

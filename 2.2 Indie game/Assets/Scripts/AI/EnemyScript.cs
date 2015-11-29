@@ -17,11 +17,15 @@ public class EnemyScript : MonoBehaviour
 	
 
     public NavMeshAgent agent;
+	[HideInInspector]
     public Transform player; //target
 
 	[HideInInspector]
 	public SpawningScript spawner;
-	
+
+	public void Start () {
+		player = GameObject.FindGameObjectWithTag (Tags.player).transform;
+	}
 
 
 //    void Attacking()
@@ -136,7 +140,6 @@ public class EnemyScript : MonoBehaviour
 
     void Dying()
     {
-	
         //DIE PLEASE!
 		spawner.KillEnemy ();
         //DropCredits(creditsDropAmount);
