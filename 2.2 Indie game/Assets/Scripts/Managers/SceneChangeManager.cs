@@ -10,68 +10,54 @@ public class SceneChangeManager : MonoBehaviour {
     GameState currentState;
     CameraMouseControl[] cmc;
 
-    void Awake()
-    {
+    void Awake() {
         DontDestroyOnLoad(GameManager.Instance); //DIRTY FIX SO WE CAN START ANY SCENE.
        
     }
-    void Start()
-    {
+
+    void Start() {
         currentState = GameManager.Instance.CurrentState;
     }
-    void Update() {
-     
 
+    void Update() {
         if (Input.GetKeyDown(KeyCode.Escape)) {
             switch(currentState){
-            
                 case GameState.InBuyScreen:
                     SetState(GameState.InGame);
                     break;
-
                 case GameState.InGame:
                     SetState(GameState.InPauseMenu);
                     break;
-
                 case GameState.InPauseMenu:
                     SetState(GameState.InGame);
                     break;
             }
-            
         }
-
     }
 
     public void SetState(GameState newGameState) {
-
         DisablePreviousState(currentState);
-
         switch (newGameState) {
-
             case GameState.InMenu:
                 Cursor.lockState = CursorLockMode.None;
                 break;
-
             case GameState.InGame:
                 Cursor.lockState = CursorLockMode.Locked;
 				Time.timeScale = 1;
 				SetSensitivity(2);
                 break;
-
             case GameState.InBuyScreen:
                 Cursor.lockState = CursorLockMode.None;
                 Time.timeScale = 0;
                 GameManager.Instance.vendingMachine.ActivateStation();
                 SetSensitivity(0);
                 break;
-
             case GameState.InPauseMenu:
                 Cursor.lockState = CursorLockMode.None;
                 Time.timeScale = 0;
                 GameManager.Instance.pauseMenu.ActivatePauseMenu();
                 SetSensitivity(0);
                 break;
-
             case GameState.PlayerDied:
                 Cursor.lockState = CursorLockMode.Locked;
                 SetSensitivity(0);
@@ -83,21 +69,16 @@ public class SceneChangeManager : MonoBehaviour {
 
     void DisablePreviousState(GameState previousState) {
         switch (previousState) {
-
             case GameState.InMenu:
                 break;
-
             case GameState.InGame:
                 break;
-
             case GameState.InBuyScreen:
                 GameManager.Instance.vendingMachine.DeActivateStation();
                 break;
-
             case GameState.InPauseMenu:
                 GameManager.Instance.pauseMenu.DeActivatePauseMenu();
                 break;
-
             case GameState.PlayerDied:
                 break;
         }
