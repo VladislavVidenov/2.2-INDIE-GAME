@@ -60,7 +60,7 @@ public class PauseMenuScript : MonoBehaviour {
         if (ownedUpgrades != null) {
             DrawUpgrades();
         }
-
+        
     }
     public void DeActivatePauseMenu() {
         DisableCurrent_2_Buttons();
@@ -69,7 +69,10 @@ public class PauseMenuScript : MonoBehaviour {
         DestroyImages();
         upgradeCount = 0;
 
+        current_2_Buttons = null;
+        current_3_Buttons = null;
     }
+
     void DrawUpgrades() {
         foreach (Upgrade upgrade in ownedUpgrades) {
             GameObject go = Instantiate(upgradeImage, pauseUpgrade.transform.position, Quaternion.identity) as GameObject;
@@ -100,7 +103,8 @@ public class PauseMenuScript : MonoBehaviour {
     }
 
     void ActiveButtons(GameObject buttons, bool active) {
-        buttons.SetActive(active ? true : false);
+        if (buttons == null) return;
+        buttons.SetActive(active);
     }
 
     #region "Quit"
