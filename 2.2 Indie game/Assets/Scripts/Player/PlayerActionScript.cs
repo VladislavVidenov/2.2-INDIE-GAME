@@ -59,7 +59,7 @@ public class PlayerActionScript : MonoBehaviour {
 			}
 		}
         else {
-            Debug.Log("false");
+
          //   if (gotInfo) gotInfo = false;
             if (toolManager.showToolGuiText) toolManager.showToolGuiText = false;
             showGuiSkin = false;
