@@ -17,4 +17,5 @@ public class Tags : MonoBehaviour {
     public const string lootableBox = "LootableBox";
     public const string weaponCamera = "WeaponCamera";
     public const string qualityToggle = "QualityToggle";
+	public const string aiManager = "AIManager";
 }

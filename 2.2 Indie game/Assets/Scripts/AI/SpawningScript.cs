@@ -47,11 +47,13 @@ public class SpawningScript : MonoBehaviour {
 	public float timeBetweenWaves;
 	private float betweenWavesTimer;
 
+	AIManager manager;
+
 
 
 	void Start () {
+		manager = GameObject.FindGameObjectWithTag (Tags.aiManager).GetComponent<AIManager>();
 		SpawnID = Random.Range (1, 500);
-		print (waves.Length);
 		totalWaves = waves.Length;
 	}
 
@@ -164,22 +166,27 @@ public class SpawningScript : MonoBehaviour {
 		Vector3 spawnPos = spawnPoints [spawnIndex].position;
 		spawnIndex++;
 		if (spawnIndex >= spawnPoints.Count) {
-			spawnIndex =0;
+			spawnIndex = 0;
 		}
 		GameObject enemy = Instantiate (pEnemy, spawnPos, Quaternion.identity) as GameObject;
 
-
 		enemy.GetComponent<EnemyScript> ().spawner = this.GetComponent<SpawningScript> ();
+
+		if (enemy.GetComponent<MeleeEnemyScript> () != null) {
+			manager.meleeEnemies.Add (enemy.GetComponent<MeleeEnemyScript>());
+		} else if (enemy.GetComponent<RangedEnemyScript> () != null) {
+			manager.rangedEnemies.Add (enemy.GetComponent<RangedEnemyScript>());
+		} else {
+			manager.rangedRushEnemies.Add (enemy.GetComponent<RangedRushEnemy>());
+		}
 
 		remainingEnemy++;
 		spawnedEnemy++;
+	
 	}
 
 	public void KillEnemy () {
-
-	
 			remainingEnemy--;
-
 	}
 
 	public void EnableSpawner (int sID) {

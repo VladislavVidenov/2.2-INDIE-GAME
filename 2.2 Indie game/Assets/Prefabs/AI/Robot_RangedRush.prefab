@@ -16,7 +16,7 @@ GameObject:
   - 136: {fileID: 13647852}
   - 114: {fileID: 11482808}
   - 114: {fileID: 11471840}
-  m_Layer: 12
+  m_Layer: 0
   m_Name: Robot_RangedRush
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -34,7 +34,7 @@ GameObject:
   - 33: {fileID: 3347696}
   - 65: {fileID: 6597244}
   - 23: {fileID: 2311332}
-  m_Layer: 12
+  m_Layer: 0
   m_Name: EpicNose
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -235,7 +235,11 @@ Prefab:
   serializedVersion: 2
   m_Modification:
     m_TransformParent: {fileID: 0}
-    m_Modifications: []
+    m_Modifications:
+    - target: {fileID: 0}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
   m_RootGameObject: {fileID: 141104}

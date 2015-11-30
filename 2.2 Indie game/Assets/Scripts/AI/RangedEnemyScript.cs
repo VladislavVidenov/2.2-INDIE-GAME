@@ -23,14 +23,16 @@ public class RangedEnemyScript : EnemyScript {
 
     void Start() {
 		base.Start ();
-        state = AIState.FindCover;
         coverSpots = GameManager.Instance.coverSpots;
+		Invoke ("StartFind", 0.1f);
         
     }
+	void StartFind () {
+		state = AIState.FindCover;
+	}
 
     void Update() {
 
-        Debug.Log(state);
         switch (state) {
             case AIState.Shooting:
                 Shooting();
@@ -60,8 +62,6 @@ public class RangedEnemyScript : EnemyScript {
     }
 
     void FindCover() {
-       // coverSpot = null;
-
         for (int i = 0; i < coverSpots.Length; i++) {
             if (coverSpots[i].CheckCoverSpot(player.transform.position) && coverSpots[i] != previousSpot) {
                 float length = CalculatePathLenght(coverSpots[i].transform.position);
@@ -137,20 +137,8 @@ public class RangedEnemyScript : EnemyScript {
             if (!doAction) StartCoroutine(StopCrouching(true));
         }
 
-        //RaycastHit hit;
-        //Vector3 direction = agent.transform.position - player.transform.position;
-        //Debug.DrawRay(player.transform.position - player.transform.up, direction * 100f, Color.cyan);
-        //if (Physics.Raycast(player.transform.position - player.transform.up, direction, out hit, 100f)) {
-        //    if (hit.collider.CompareTag(Tags.enemy)) {
-        //        state = AIState.Shooting;
-
-        //    }
-        //} 
-
         agent.Stop();
     }
-
-
 
     IEnumerator StartCrouching() {
         doAction = true;

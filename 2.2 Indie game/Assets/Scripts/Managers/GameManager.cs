@@ -16,7 +16,6 @@ public class GameManager : MonoBehaviour {
         {
             if (_instance == null) {
                 _instance = new GameObject("Game Manager").AddComponent<GameManager>();
-                _instance.gameObject.AddComponent<LastPlayerSightingScript>();
                 _instance.tag = Tags.gameController;
             }
 
@@ -76,11 +75,6 @@ public class GameManager : MonoBehaviour {
         Debug.Log("---State is set to " + CurrentState + " by default---");
     }
 
-    void Start()
-    {
-		
-		Debug.Log (coverSpots.Length);
-    }
    
     void OnLevelWasLoaded()
     {

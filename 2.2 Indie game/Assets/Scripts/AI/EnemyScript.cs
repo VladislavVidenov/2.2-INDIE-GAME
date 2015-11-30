@@ -4,7 +4,7 @@ using System.Collections;
 /// <summary>
 /// This is the General EnemyScript.
 /// </summary>
-public enum AIState { Running , Attacking, FindPlayerInSight , FindCover, InCover, MovingToCover, Shooting}
+public enum AIState { Running , Attacking, FindPlayerInSight , FindCover, InCover, MovingToCover, Shooting, Charge}
 
 public class EnemyScript : MonoBehaviour
 {

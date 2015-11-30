@@ -34,17 +34,23 @@ public class PlayerScript : MonoBehaviour {
         sceneManager = GameObject.Find("SceneManager").GetComponent<SceneChangeManager>();
         GetPlayerStatsFromGameManager();
 	}
-	
-	// Update is called once per frame
-	void Update () {
-         if (Input.GetKeyDown(KeyCode.I)) Died();
-    }
+
+	void Update (){
+		print ("HEALTH" + health);
+	}
+
 
     public void ChangeHealth(int amount) {
         health += amount;
         if (health > 100) health = 100;
         if (health <= 0) Died();
     }
+
+	public void TakeDamage(int amount){
+		ChangeHealth (-amount);
+		// show direction
+		//knockback?
+	}
 
     public void Died() {
         sceneManager.SetState(GameState.PlayerDied);

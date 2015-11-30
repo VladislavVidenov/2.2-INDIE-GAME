@@ -24,15 +24,16 @@ public class RangedRushEnemy : EnemyScript {
 
     // Use this for initialization
     void Start() {
-        base.Start();
-        state = AIState.FindCover;
+        base.Start(); 
         coverSpots = GameManager.Instance.coverSpots;
+		Invoke ("StartFind", 0.1f);
     }
-
+	void StartFind () {
+		state = AIState.FindCover;
+	}
 
     void Update() {
 
-        Debug.Log(state);
         switch (state) {
             case AIState.Shooting:
                 Shooting();
@@ -83,27 +84,29 @@ public class RangedRushEnemy : EnemyScript {
 
             shortestLength = 0;
         }
-        else {
-            state = AIState.Shooting;
-        }
+//        else {
+//            state = AIState.Shooting;
+//        }
 
     }
+
+
 
     void MovingToCover() {
-        agent.Resume();
-        agent.updateRotation = false;
-        this.transform.rotation = Quaternion.RotateTowards(this.transform.rotation, Quaternion.LookRotation(player.transform.position - this.transform.position), attackRotationSpeed);
-        if (agent.remainingDistance <= agent.stoppingDistance) {
-            state = AIState.InCover;
-         
-            return;
-        }
-        else if (!coverSpot.checkIfSafe(player.transform.position)) {
-            state = AIState.FindCover;
-        }
+	
+		agent.Resume ();
+		agent.updateRotation = false;
+		this.transform.rotation = Quaternion.RotateTowards (this.transform.rotation, Quaternion.LookRotation (player.transform.position - this.transform.position), attackRotationSpeed);
+		if (agent.remainingDistance <= agent.stoppingDistance) {
+			state = AIState.InCover;
+			return;
+		} else if (!coverSpot.checkIfSafe (player.transform.position)) {
+			state = AIState.FindCover;
+		}
 
+		
 
-    }
+	}
 
     void InCover() {
         changeCoverTimer += Time.deltaTime;

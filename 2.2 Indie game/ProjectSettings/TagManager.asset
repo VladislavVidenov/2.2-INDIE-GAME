@@ -11,6 +11,8 @@ TagManager:
   - WeaponCamera
   - QualityToggle
   - Tool
+  - CoverSpot
+  - AIManager
   layers:
   - Default
   - TransparentFX
