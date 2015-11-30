@@ -1,40 +1,39 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class RangedEnemyScript : EnemyScript {
-    
+public class RangedRushEnemy : EnemyScript {
+   
     Vector3 fightingPosition;
     float attackTimer;
     float changeCoverTimer;
-    [SerializeField] float attackTime = 2f;
-    [SerializeField] float attackRotationSpeed = 5f;
+    [SerializeField]
+    float attackTime = 2f;
+    [SerializeField]
+    float attackRotationSpeed = 5f;
 
     CoverSpotScript[] coverSpots;
 
-	CoverSpotScript coverSpot;
+    CoverSpotScript coverSpot;
     CoverSpotScript previousSpot;
 
 
-    float shortestLength  = 0;
+    float shortestLength = 0;
 
     bool crouching = false;
     bool doAction = false;
 
-
+    // Use this for initialization
     void Start() {
-		base.Start ();
+        base.Start();
         state = AIState.FindCover;
         coverSpots = GameManager.Instance.coverSpots;
-        
     }
+
 
     void Update() {
 
         Debug.Log(state);
         switch (state) {
-            case AIState.FindPlayerInSight:
-                FindPlayerInSight();
-                break;
             case AIState.Shooting:
                 Shooting();
                 break;
@@ -50,7 +49,6 @@ public class RangedEnemyScript : EnemyScript {
         }
     }
 
-
     void Shooting() {
         agent.Stop();
         agent.updateRotation = false;
@@ -63,11 +61,10 @@ public class RangedEnemyScript : EnemyScript {
     }
 
     void FindCover() {
-       // coverSpot = null;
 
         for (int i = 0; i < coverSpots.Length; i++) {
             if (coverSpots[i].CheckCoverSpot(player.transform.position) && coverSpots[i] != previousSpot) {
-                float length = CalculatePathLenght(coverSpots[i].transform.position);
+                float length = Vector3.Distance(player.transform.position, coverSpots[i].gameObject.transform.position);
                 if (shortestLength == 0) {
                     shortestLength = length;
                     coverSpot = coverSpots[i];
@@ -81,9 +78,8 @@ public class RangedEnemyScript : EnemyScript {
 
         if (coverSpot != null) {
             agent.SetDestination(coverSpot.gameObject.transform.position);
-           // coverSpot.isTaken = true;
             state = AIState.MovingToCover;
-            
+
             shortestLength = 0;
         }
         else {
@@ -125,7 +121,7 @@ public class RangedEnemyScript : EnemyScript {
             state = AIState.FindCover;
         }
 
-      
+
     }
 
     void InCover() {
@@ -134,21 +130,31 @@ public class RangedEnemyScript : EnemyScript {
         if (!crouching) {
             this.transform.rotation = Quaternion.RotateTowards(this.transform.rotation, Quaternion.LookRotation(player.transform.position - this.transform.position), attackRotationSpeed);
             Shoot();
-            if (!doAction) StartCoroutine(StartCrouching());      
+            if (!doAction) StartCoroutine(StartCrouching());
         }
         else if (crouching) {
             if (!doAction) StartCoroutine(StopCrouching(true));
         }
 
-        //RaycastHit hit;
-        //Vector3 direction = agent.transform.position - player.transform.position;
-        //Debug.DrawRay(player.transform.position - player.transform.up, direction * 100f, Color.cyan);
-        //if (Physics.Raycast(player.transform.position - player.transform.up, direction, out hit, 100f)) {
-        //    if (hit.collider.CompareTag(Tags.enemy)) {
-        //        state = AIState.Shooting;
+        RaycastHit hit;
+        Vector3 direction = agent.transform.position - player.transform.position;
+        Debug.DrawRay(player.transform.position - player.transform.up, direction * 100f, Color.cyan);
+        if (Physics.Raycast(player.transform.position - player.transform.up, direction, out hit, 100f)) {
+            if (hit.collider.CompareTag(Tags.enemy)) {
+                state = AIState.Shooting;
 
-        //    }
-        //} 
+            }
+        }
+        changeCoverTimer += Time.deltaTime;
+
+        if (changeCoverTimer > 5) {
+            changeCoverTimer = 0;
+            if (Random.Range(0, 3) == 0) {
+                previousSpot = coverSpot;
+                coverSpot.isTaken = false;
+                state = AIState.FindCover;
+            }
+        }
 
         agent.Stop();
     }
@@ -174,18 +180,6 @@ public class RangedEnemyScript : EnemyScript {
         print("stopped to crouch");
         doAction = false;
     }
-
-	void FindPlayerInSight(){
-		agent.SetDestination (player.transform.position);
-		Vector3 dir = player.transform.position - agent.transform.position;
-		RaycastHit hit;
-	//	Debug.DrawRay (agent.transform.position, dir * 100, Color.cyan);
-		if (Physics.Raycast (agent.transform.position,dir,out hit,100f)) {
-			if(hit.collider.CompareTag(Tags.player)){
-				state = AIState.Shooting;
-			}
-		}
-	}
 
     void Shoot() {
         Vector3 direction = player.transform.position - this.transform.position;

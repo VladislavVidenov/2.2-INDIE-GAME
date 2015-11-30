@@ -42,14 +42,15 @@ public class CoverSpotScript : MonoBehaviour {
 
 	private bool checkIftaken()
 	{
-		if (Physics.CheckSphere(transform.position, 1, layer))
-		{
-			return true;
-		}
-		else
-		{
-			return false;
-		}
+        return isTaken;
+        //if (Physics.CheckSphere(transform.position, 0.1f, layer))
+        //{
+        //    return true;
+        //}
+        //else
+        //{
+        //    return false;
+        //}
 		
 	}
 
