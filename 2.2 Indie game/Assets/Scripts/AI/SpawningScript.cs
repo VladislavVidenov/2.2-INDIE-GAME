@@ -4,8 +4,9 @@ using System.Collections.Generic;
 
 [System.Serializable]
 public struct WaveInfo  {
-	public int mEnemy;
-	public int rEnemy;
+	public int meleeEnemy;
+	public int rangedEnemy;
+    public int rangedRushEnemy;
 }
 
 public class SpawningScript : MonoBehaviour { 
@@ -23,6 +24,7 @@ public class SpawningScript : MonoBehaviour {
 	//enemy prefabs
 	[SerializeField] GameObject meleeEnemyPrefab;
 	[SerializeField] GameObject rangedEnemyPrefab;
+    [SerializeField] GameObject rangedRushEnemyPrefab;
 
 	//enemies created
 	public int totalEnemy = 10;
@@ -61,12 +63,15 @@ public class SpawningScript : MonoBehaviour {
 			case SpawnTypes.Once:
 
 					// spawns an enemy
-				for(int i = 0; i < waves[0].mEnemy ; i++) {
+				for(int i = 0; i < waves[0].meleeEnemy ; i++) {
 					SpawnEnemy(meleeEnemyPrefab);
 				}
-				for(int j = 0; j < waves[0].rEnemy ; j++) {
+				for(int j = 0; j < waves[0].rangedEnemy ; j++) {
 					SpawnEnemy(rangedEnemyPrefab);
 				}
+                for (int k = 0; k < waves[numWaves - 1].rangedRushEnemy; k++) {
+                    SpawnEnemy(rangedRushEnemyPrefab);
+                }
 					spawn =false;
 				
 
@@ -78,12 +83,15 @@ public class SpawningScript : MonoBehaviour {
 				{
 					if (waveSpawn)
 					{
-						for(int i = 0; i < waves[numWaves -1].mEnemy ; i++) {
+						for(int i = 0; i < waves[numWaves -1].meleeEnemy ; i++) {
 							SpawnEnemy(meleeEnemyPrefab);
 						}
-						for(int j = 0; j < waves[numWaves-1].rEnemy ; j++) {
+						for(int j = 0; j < waves[numWaves-1].rangedEnemy ; j++) {
 							SpawnEnemy(rangedEnemyPrefab);
 						}
+                        for (int k = 0; k < waves[numWaves - 1].rangedRushEnemy; k++) {
+                            SpawnEnemy(rangedRushEnemyPrefab);
+                        }
 						//spawns an enemy
 
 						Debug.Log("SPWANWNIF");
@@ -116,12 +124,15 @@ public class SpawningScript : MonoBehaviour {
 					timeTillWave += Time.deltaTime;
 					if (waveSpawn)
 					{
-						for(int i = 0; i < waves[numWaves -1].mEnemy ; i++) {
+						for(int i = 0; i < waves[numWaves -1].meleeEnemy ; i++) {
 							SpawnEnemy(meleeEnemyPrefab);
 						}
-						for(int j = 0; j < waves[numWaves -1].rEnemy ; j++) {
+						for(int j = 0; j < waves[numWaves -1].rangedEnemy ; j++) {
 							SpawnEnemy(rangedEnemyPrefab);
 						}
+                        for (int k = 0; k < waves[numWaves - 1].rangedRushEnemy; k++) {
+                            SpawnEnemy(rangedRushEnemyPrefab);
+                        }
 						//spawns an enemy
 						
 						Debug.Log("SPWANWNIF");
@@ -159,7 +170,6 @@ public class SpawningScript : MonoBehaviour {
 
 
 		enemy.GetComponent<EnemyScript> ().spawner = this.GetComponent<SpawningScript> ();
-	//	enemy.SendMessage ("SetID", SpawnID);
 
 		remainingEnemy++;
 		spawnedEnemy++;

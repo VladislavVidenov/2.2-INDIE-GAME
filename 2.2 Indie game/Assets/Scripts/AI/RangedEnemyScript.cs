@@ -32,9 +32,6 @@ public class RangedEnemyScript : EnemyScript {
 
         Debug.Log(state);
         switch (state) {
-            case AIState.FindPlayerInSight:
-                FindPlayerInSight();
-                break;
             case AIState.Shooting:
                 Shooting();
                 break;
@@ -81,7 +78,7 @@ public class RangedEnemyScript : EnemyScript {
 
         if (coverSpot != null) {
             agent.SetDestination(coverSpot.gameObject.transform.position);
-           // coverSpot.isTaken = true;
+            coverSpot.isTaken = true;
             state = AIState.MovingToCover;
             
             shortestLength = 0;
@@ -118,10 +115,10 @@ public class RangedEnemyScript : EnemyScript {
         this.transform.rotation = Quaternion.RotateTowards(this.transform.rotation, Quaternion.LookRotation(player.transform.position - this.transform.position), attackRotationSpeed);
         if (agent.remainingDistance <= agent.stoppingDistance) {
             state = AIState.InCover;
-            coverSpot.isTaken = true;
+           
             return;
         }
-        else if (!coverSpot.CheckCoverSpot(player.transform.position)) {
+        else if (!coverSpot.checkIfSafe(player.transform.position)) {
             state = AIState.FindCover;
         }
 
@@ -174,18 +171,6 @@ public class RangedEnemyScript : EnemyScript {
         print("stopped to crouch");
         doAction = false;
     }
-
-	void FindPlayerInSight(){
-		agent.SetDestination (player.transform.position);
-		Vector3 dir = player.transform.position - agent.transform.position;
-		RaycastHit hit;
-	//	Debug.DrawRay (agent.transform.position, dir * 100, Color.cyan);
-		if (Physics.Raycast (agent.transform.position,dir,out hit,100f)) {
-			if(hit.collider.CompareTag(Tags.player)){
-				state = AIState.Shooting;
-			}
-		}
-	}
 
     void Shoot() {
         Vector3 direction = player.transform.position - this.transform.position;

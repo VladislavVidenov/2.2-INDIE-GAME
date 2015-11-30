@@ -79,6 +79,7 @@ public class RangedRushEnemy : EnemyScript {
         if (coverSpot != null) {
             agent.SetDestination(coverSpot.gameObject.transform.position);
             state = AIState.MovingToCover;
+            coverSpot.isTaken = true;
 
             shortestLength = 0;
         }
@@ -88,36 +89,16 @@ public class RangedRushEnemy : EnemyScript {
 
     }
 
-    float CalculatePathLenght(Vector3 targetPos) {
-        NavMeshPath path = new NavMeshPath();
-        agent.CalculatePath(targetPos, path);
-        Vector3[] waypoints = new Vector3[path.corners.Length + 2];
-        waypoints[0] = agent.transform.position;
-        waypoints[waypoints.Length - 1] = targetPos;
-
-        for (int i = 0; i < path.corners.Length; i++) {
-            waypoints[i + 1] = path.corners[i];
-        }
-
-        float pathLength = 0;
-
-        for (int i = 0; i < waypoints.Length - 1; i++) {
-            pathLength += Vector3.Distance(waypoints[i], waypoints[i + 1]);
-        }
-
-        return pathLength;
-    }
-
     void MovingToCover() {
         agent.Resume();
         agent.updateRotation = false;
         this.transform.rotation = Quaternion.RotateTowards(this.transform.rotation, Quaternion.LookRotation(player.transform.position - this.transform.position), attackRotationSpeed);
         if (agent.remainingDistance <= agent.stoppingDistance) {
             state = AIState.InCover;
-            coverSpot.isTaken = true;
+         
             return;
         }
-        else if (!coverSpot.CheckCoverSpot(player.transform.position)) {
+        else if (!coverSpot.checkIfSafe(player.transform.position)) {
             state = AIState.FindCover;
         }
 
