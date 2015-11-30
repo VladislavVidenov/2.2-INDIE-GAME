@@ -87,7 +87,7 @@ public class WeaponManager : MonoBehaviour {
                 if (inventory[2] == null) return;
                 SetSlot(3, inventory[2].weaponID);
             }
-            else if (Input.GetKeyDown(KeyCode.E))
+            else if (Input.GetKeyDown(KeyCode.Q))
             {
                 canSwitchWeapon = false;
                 lastWeaponUsed();
@@ -208,12 +208,12 @@ public class WeaponManager : MonoBehaviour {
             
 
                 temp.gameObject.SendMessage("HolsterWeapon", SendMessageOptions.DontRequireReceiver);
-                temp.gameObject.SetActive(false);
-                temp.enabled = false;
-                //weaponsOnPlayer[i].SetActive(false);
-                //weaponsOnPlayer[i].GetComponent<WeaponIndex>().enabled = false;
-                //weaponsOnPlayer[i].GetComponent<WeaponScript>().enabled = false;
-              //  Debug.Log("DISABLED WEAPON --> " + temp.slotID + " - " + temp.weaponID);
+                //temp.gameObject.SetActive(false);
+                //temp.enabled = false;
+                weaponsOnPlayer[i].SetActive(false);
+                weaponsOnPlayer[i].GetComponent<WeaponIndex>().enabled = false;
+                weaponsOnPlayer[i].GetComponent<WeaponScript>().enabled = false;
+                //  Debug.Log("DISABLED WEAPON --> " + temp.slotID + " - " + temp.weaponID);
                 break;
             }
         }
@@ -225,12 +225,12 @@ public class WeaponManager : MonoBehaviour {
             WeaponIndex temp = weaponsOnPlayer[i].GetComponent<WeaponIndex>();
             if (temp.slotID == slot && temp.weaponID == wepId)
             {
-                temp.gameObject.SetActive(true);
-                temp.enabled = true;
+                //temp.gameObject.SetActive(true);
+                //temp.enabled = true;
 
-                //weaponsOnPlayer[i].SetActive(true);
-                //weaponsOnPlayer[i].GetComponent<WeaponIndex>().enabled = true;
-                //weaponsOnPlayer[i].GetComponent<WeaponScript>().enabled = true;
+                weaponsOnPlayer[i].SetActive(true);
+                weaponsOnPlayer[i].GetComponent<WeaponIndex>().enabled = true;
+                weaponsOnPlayer[i].GetComponent<WeaponScript>().enabled = true;
                 currentWeapon = temp;
                 inventory[slot - 1] = currentWeapon;
                 temp.gameObject.SendMessage("PullOutWeapon", SendMessageOptions.DontRequireReceiver);

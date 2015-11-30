@@ -10,13 +10,16 @@ public class WeaponScript : MonoBehaviour {
     [SerializeField]
     GameObject head;
     [SerializeField]
-    Transform weaponNozzle;
+    Transform muzzleTransform;
+    Animation reloadAnimation;
     [HideInInspector]
     public Animator animator;
+    public enum Weapons { Pistol,Shotgun };
+    public Weapons weapon;
+
     public enum WeaponMode { None, SemiFire, Auto };
     public WeaponMode currentWeaponMode;
 
-    float weaponSwitchTime; //getting it from the weapon manager so we can sync animations.
     //Weapon properties.
     Vector3 hitPoint;
     public int bulletsInClip;
@@ -35,6 +38,10 @@ public class WeaponScript : MonoBehaviour {
     bool reloadInfo = false;
     bool reloadInfoStarted = false;
 
+    //Used for shotgun
+    float shotgunPelletsPerShot = 5;
+
+
     #region Aiming
     Vector3 defaultPosition = Vector3.zero;
     public Vector3 aimPosition;
@@ -47,7 +54,7 @@ public class WeaponScript : MonoBehaviour {
     #region Field of View
     private Vector3 velocity = Vector3.zero;
     private float aimingDamp = 0.2f;
-    private float fovDamp = 0.2f;
+    private float fovDamp = 0.1f;
     private float fovVel = 0;
     [SerializeField]
     float aimingFOV;
@@ -80,12 +87,15 @@ public class WeaponScript : MonoBehaviour {
     #region Shoot Decals
     [SerializeField]
     GameObject normalDecal;
+    [SerializeField]
+    GameObject muzzleParticlePistol;
     #endregion
 
     //temp crosshair
     public Texture2D crosshairTexture;
     Rect crosshairPos;
     static bool showCrosshair = true;
+
     void Awake()
     {
         animator = GetComponentInChildren<Animator>();
@@ -96,8 +106,8 @@ public class WeaponScript : MonoBehaviour {
         mainCamera = Camera.main;
         weaponCamera = GameObject.FindGameObjectWithTag(Tags.weaponCamera).GetComponent<Camera>();
         maxBulletsPerMag = bulletsInClip;
-        weaponSwitchTime = FindObjectOfType<WeaponManager>().weaponSwitchTime;
-
+        reloadAnimation = GetComponentInParent<Animation>();
+        reloadAnimation["PistolReload"].speed = reloadTime / 1.5f;
         crosshairPos = new Rect((Screen.width - crosshairTexture.width) / 2, (Screen.height - crosshairTexture.height) / 2, crosshairTexture.width, crosshairTexture.height);
     }
 
@@ -106,25 +116,37 @@ public class WeaponScript : MonoBehaviour {
     {
         if (weaponSelected)
         {
+           
             Aiming();
             SetInaccuracyRange();
             CalculateInaccuracy();
 
             if (Input.GetButtonDown("Fire"))
-                if (currentWeaponMode == WeaponMode.SemiFire)
-                    SemiFireMode();
-                else if (Input.GetButton("Fire"))
-                    if (currentWeaponMode == WeaponMode.Auto)
-                        SemiFireMode();
-
+                if (weapon == Weapons.Pistol)
+                {
+                    if (currentWeaponMode == WeaponMode.SemiFire)
+                        SemiFirePistol();
+                    else if (Input.GetButton("Fire"))
+                        if (currentWeaponMode == WeaponMode.Auto)
+                            SemiFirePistol();
+                }else if (weapon == Weapons.Shotgun)
+                {
+                    if (currentWeaponMode == WeaponMode.SemiFire)
+                        SemiFireShotgun();
+                    else if (Input.GetButton("Fire"))
+                        if (currentWeaponMode == WeaponMode.Auto)
+                            SemiFireShotgun();
+                }
             if (Input.GetKeyDown(KeyCode.R))
                 Reload();
 
         }
     }
+
+
     void CalculateInaccuracy()
     {
-        inaccuracy = playerMove.isMoving() ? maxInaccuracy : minInaccuracy;
+        inaccuracy = playerMove.isWalking() ? maxInaccuracy : minInaccuracy;
 
     }
 
@@ -204,7 +226,7 @@ public class WeaponScript : MonoBehaviour {
         {
             if (!isAiming)
             {
-
+               
                 GUI.DrawTexture(crosshairPos, crosshairTexture);
             }
         }
@@ -220,8 +242,61 @@ public class WeaponScript : MonoBehaviour {
         yield return new WaitForSeconds(0.2f);
         outOfAmmoSoundPlaying = false;
     }
- 
-    void SemiFireMode()
+    void SemiFireShotgun()
+    {
+        if (isReloading || bulletsInClip <= 0)
+        {
+            if (bulletsInClip <= 0)
+            {
+                DryFire();
+            }
+            return;
+        }
+
+        if (CanFire())
+        {
+            float test = 0;
+            while (test < shotgunPelletsPerShot)
+            {
+                FireShotGun();
+                test++;
+            }
+
+            audioSource.PlayOneShot(fireSound);
+
+            RecoilEffect();
+            bulletsInClip--;
+        }
+    }
+    void FireShotGun()
+    {
+        playerMove.isRunning = false;
+        isShooting = true;
+        Vector3 shootDirection = mainCamera.transform.TransformDirection(new Vector3(Random.Range(-0.01f, 0.01f) * inaccuracy, Random.Range(-0.01f, 0.01f) * inaccuracy, 1));
+        RaycastHit hit;
+        if (Physics.Raycast(mainCamera.transform.position, shootDirection, out hit, 100f))
+        {
+
+            Debug.DrawRay(mainCamera.transform.position, shootDirection * Vector3.Distance(mainCamera.transform.position, hit.point), Color.red, 5f);
+            hitPoint = hit.point;
+            switch (hit.transform.gameObject.tag)
+            {
+                case Tags.enemy:
+                    hit.transform.GetComponentInParent<EnemyScript>().TakeDamage(damage);
+                    break;
+            }
+
+            if (!hit.transform.CompareTag(Tags.enemy))
+            {
+                Quaternion decalRotation = Quaternion.FromToRotation(Vector3.up, hit.normal);
+                GameObject go = Instantiate(normalDecal, hitPoint + (hit.normal * 0.01f), decalRotation) as GameObject;
+                go.transform.parent = hit.transform;
+            }
+
+        }
+    }
+
+    void SemiFirePistol()
     {//If we are currently reloading / or we ran out of ammo -> return and play dry fire sound:).
         if (isReloading || bulletsInClip <= 0)
         {
@@ -247,6 +322,8 @@ public class WeaponScript : MonoBehaviour {
             
             Debug.DrawRay(mainCamera.transform.position, shootDirection * Vector3.Distance(mainCamera.transform.position,hit.point), Color.red, 5f);
             hitPoint = hit.point;
+            GameObject muzzle = Instantiate(muzzleParticlePistol, muzzleTransform.position, Quaternion.identity) as GameObject;
+            Destroy(muzzle, 1);
             switch (hit.transform.gameObject.tag)
             {
                 case Tags.enemy:
@@ -259,21 +336,31 @@ public class WeaponScript : MonoBehaviour {
                 Quaternion decalRotation = Quaternion.FromToRotation(Vector3.up, hit.normal);
                 GameObject go = Instantiate(normalDecal, hitPoint + (hit.normal * 0.01f), decalRotation) as GameObject;
                 go.transform.parent = hit.transform;
+                Destroy(go, 2);
             }
             
         }
-    
-        
 
-        audioSource.PlayOneShot(fireSound);
-     //   weaponAnimations.Rewind("Shoot");
-       // weaponAnimations.CrossFade("Idle");
-        RecoilEffect();
-        bulletsInClip--;
+
+            
+            animator.Play("Shoot", 0, 0);
+          
+
+            audioSource.PlayOneShot(fireSound);
+
+            RecoilEffect();
+            bulletsInClip--;
+        
+      
 
     }
 
+    IEnumerator shotAnim(float time)
+    {
 
+        yield return new WaitForSeconds(time);
+        animator.SetBool("Shot2", false);
+    }
 
 
     #region Reloading 
@@ -286,7 +373,8 @@ public class WeaponScript : MonoBehaviour {
         if (totalBullets < 0) totalBullets = 0;
         int delta = tBCcopy - totalBullets;
         bulletsInClip += delta;
-        isReloading = false;        
+        isReloading = false;
+        playerMove.SendMessage("SetIsReloading", isReloading);
         playerMove.releasedRun = true;//if player still holds run button during reload => start running again.
     }
     IEnumerator shutReloadInfo()
@@ -305,11 +393,12 @@ public class WeaponScript : MonoBehaviour {
         if (bulletsInClip >= 0 && totalBullets > 0)
         {
             isReloading = true;
+            playerMove.SendMessage("SetIsReloading", isReloading); // tell the movement 
             playerMove.isRunning = false;//so we stop running if we run and reload.
-            //--- set animation reload speed
-            //--- play reload gun animation
+            reloadAnimation.CrossFade("PistolReload");
             audioSource.PlayOneShot(reloadSound);
-            StartCoroutine(ReloadTime(reloadTime));
+
+            StartCoroutine(ReloadTime(reloadTime)); 
         }
 
     }
@@ -338,7 +427,7 @@ public class WeaponScript : MonoBehaviour {
         isReloading = false;
         animator.SetBool("PullOutWeapon", false);
         weaponSelected = true;
-    
+        showCrosshair = true;
       //  Debug.Log("Pull out wep called !");
         //enable crosshair 
 
@@ -347,6 +436,7 @@ public class WeaponScript : MonoBehaviour {
     {
       //  Debug.Log("HolsterWeapon called!");
         weaponSelected = false;
+        showCrosshair = false;
     //change field of view.
         //set a bool that crossshair is = false;
     }

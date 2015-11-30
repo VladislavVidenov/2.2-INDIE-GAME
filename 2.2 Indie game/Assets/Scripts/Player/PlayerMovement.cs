@@ -17,7 +17,8 @@ public class PlayerMovement : MonoBehaviour {
     GameObject mainCamera;
     GameObject weaponCamera;
     GameObject recoilEffectGO;
-
+    [SerializeField]
+    Animation playerAnimation;
 
     //Variables
     //[SerializeField]
@@ -34,7 +35,7 @@ public class PlayerMovement : MonoBehaviour {
     float maxVelocityClamp = 5f;
     [SerializeField]
     float gravity;
-
+    bool isReloading = false;
     bool isWepAiming = false;
     [HideInInspector]
     public bool releasedRun = true;
@@ -107,7 +108,17 @@ public class PlayerMovement : MonoBehaviour {
     void Update()
     {
 
-        if (isGrounded) { /* play animations */ } else { /* play idle*/}
+        if (isGrounded && !isReloading)
+        {
+
+            if (isWalking())
+                playerAnimation.CrossFade("Walk");
+            else
+                if (isRunning)
+                playerAnimation.CrossFade("Run");
+            else
+                playerAnimation.CrossFade("Idle");
+        }
 
 
         if (Input.GetKeyDown(KeyCode.C))
@@ -195,11 +206,15 @@ public class PlayerMovement : MonoBehaviour {
     }
     void SetAim(bool aiming)
     {
-        isWepAiming = aiming ? true : false;
+        isWepAiming = aiming;
     }
-    public bool isMoving()
+    void SetIsReloading(bool reload)
     {
-        if (rigidBody.velocity.magnitude > (speed - 0.3f))
+        isReloading = reload;
+    }
+    public bool isWalking()
+    {
+        if (rigidBody.velocity.magnitude > (speed - 0.3f) && rigidBody.velocity.magnitude < (runSpeed - 1))
             return true;
         else
             return false;
