@@ -316,29 +316,28 @@ public class WeaponScript : MonoBehaviour {
         isShooting = true;
         Vector3 shootDirection = mainCamera.transform.TransformDirection(new Vector3(Random.Range(-0.01f, 0.01f) * inaccuracy, Random.Range(-0.01f, 0.01f) * inaccuracy, 1));
         RaycastHit hit;
-       // Debug.DrawRay(mainCamera.transform.position, shootDirection * 100f, Color.green, 5);
+        // Debug.DrawRay(mainCamera.transform.position, shootDirection * 100f, Color.green, 5);
         if (Physics.Raycast(mainCamera.transform.position, shootDirection, out hit, 100f))
         {
-            
-            Debug.DrawRay(mainCamera.transform.position, shootDirection * Vector3.Distance(mainCamera.transform.position,hit.point), Color.red, 5f);
+
+            Debug.DrawRay(mainCamera.transform.position, shootDirection * Vector3.Distance(mainCamera.transform.position, hit.point), Color.red, 5f);
             hitPoint = hit.point;
             GameObject muzzle = Instantiate(muzzleParticlePistol, muzzleTransform.position, Quaternion.identity) as GameObject;
             Destroy(muzzle, 1);
             switch (hit.transform.gameObject.tag)
             {
                 case Tags.enemy:
-                    hit.transform.GetComponentInParent<EnemyScript>().TakeDamage(damage);
+                    hit.transform.GetComponent<EnemyScript>().TakeDamage(damage);
+                    Debug.Log("Hit");
                     break;
             }
 
-            if (!hit.transform.CompareTag(Tags.enemy))
-            {
-                Quaternion decalRotation = Quaternion.FromToRotation(Vector3.up, hit.normal);
-                GameObject go = Instantiate(normalDecal, hitPoint + (hit.normal * 0.01f), decalRotation) as GameObject;
-                go.transform.parent = hit.transform;
-                Destroy(go, 2);
-            }
-            
+            Quaternion decalRotation = Quaternion.FromToRotation(Vector3.up, hit.normal);
+            GameObject go = Instantiate(normalDecal, hitPoint + (hit.normal * 0.01f), decalRotation) as GameObject;
+            go.transform.parent = hit.transform;
+            Destroy(go, 2);
+
+
         }
 
 
