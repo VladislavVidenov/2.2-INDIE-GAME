@@ -7,8 +7,6 @@ public class LootableBoxScript : MonoBehaviour {
     int scrap;
     [SerializeField]
     int electronics;
-    [SerializeField]
-    int ammo;
 
     public bool isLooted = false;
 

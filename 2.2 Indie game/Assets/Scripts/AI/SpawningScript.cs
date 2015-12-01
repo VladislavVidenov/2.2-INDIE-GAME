@@ -59,6 +59,8 @@ public class SpawningScript : MonoBehaviour {
 
 	void Update () {
 
+        
+
 		if (spawn) {
 			switch(spawnType) {
 
@@ -81,41 +83,41 @@ public class SpawningScript : MonoBehaviour {
 
 			case SpawnTypes.Wave:
 
-				if(numWaves < totalWaves + 1)
-				{
-					if (waveSpawn)
-					{
-						for(int i = 0; i < waves[numWaves -1].meleeEnemy ; i++) {
-							SpawnEnemy(meleeEnemyPrefab);
-						}
-						for(int j = 0; j < waves[numWaves-1].rangedEnemy ; j++) {
-							SpawnEnemy(rangedEnemyPrefab);
-						}
+                if (numWaves < totalWaves + 1) {
+                    if (waveSpawn) {
+                        GameManager.Instance.isWaving = true;
+                        for (int i = 0; i < waves[numWaves - 1].meleeEnemy; i++) {
+                            SpawnEnemy(meleeEnemyPrefab);
+                        }
+                        for (int j = 0; j < waves[numWaves - 1].rangedEnemy; j++) {
+                            SpawnEnemy(rangedEnemyPrefab);
+                        }
                         for (int k = 0; k < waves[numWaves - 1].rangedRushEnemy; k++) {
                             SpawnEnemy(rangedRushEnemyPrefab);
                         }
-						//spawns an enemy
+                        //spawns an enemy
 
-						Debug.Log("SPWANWNIF");
-						waveSpawn = false;
-					}
+                        Debug.Log("SPWANWNIF");
+                        waveSpawn = false;
+                    }
 
-					if (remainingEnemy == 0)
-					{
-						//start the betweenWavesTimer
-						betweenWavesTimer += Time.deltaTime;
+                    if (remainingEnemy == 0) {
+                        GameManager.Instance.isWaving = false;
+                        //start the betweenWavesTimer
+                        betweenWavesTimer += Time.deltaTime;
 
-						if (betweenWavesTimer >= timeBetweenWaves) {
-							// enables the wave spawner
-							betweenWavesTimer = 0;
-							waveSpawn = true;
-							//increase the number of waves
-							numWaves++;
-							print (numWaves);
+                        if (betweenWavesTimer >= timeBetweenWaves) {
 
-						}
-					}
-				}
+                            // enables the wave spawner
+                            betweenWavesTimer = 0;
+                            waveSpawn = true;
+                            //increase the number of waves
+                            numWaves++;
+                            print(numWaves);
+
+                        }
+                    }
+                }
 				break;
 
 			case SpawnTypes.TimedWave:
@@ -184,6 +186,11 @@ public class SpawningScript : MonoBehaviour {
 		spawnedEnemy++;
 	
 	}
+
+    void DropAmmoAndHealth() {
+
+
+    }
 
 	public void KillEnemy () {
 			remainingEnemy--;

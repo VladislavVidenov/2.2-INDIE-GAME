@@ -34,6 +34,7 @@ public class EnemyScript : MonoBehaviour
     {
         //DIE PLEASE!
 		spawner.KillEnemy ();
+        player.GetComponent<PlayerScript>().IncreasePlayerStats(0, 0, 20, 0);
         //DropCredits(creditsDropAmount);
         Destroy(gameObject);
     }

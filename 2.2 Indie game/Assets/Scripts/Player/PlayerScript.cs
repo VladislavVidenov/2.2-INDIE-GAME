@@ -26,6 +26,8 @@ public class PlayerScript : MonoBehaviour {
     Text scrapText;
 
     Tool currentTool;
+
+    float cutOffScrap;
 	// Use this for initialization
 	void Start () {
         scrapText = scrapHud.GetComponentInChildren<Text>();
@@ -89,16 +91,25 @@ public class PlayerScript : MonoBehaviour {
 
     public void IncreasePlayerStats(int pHealth, int pMaxHealth, int pScrap, int pElectronics) {
         if(pScrap>0) IncreaseScrapHud(pScrap);
+        Debug.Log(scrap);
         maxHealth += pMaxHealth;
         health += pHealth;
         scrap += pScrap + scrapBoost;
+        Debug.Log(scrap);
         electronics += pElectronics + electronicsBoost;
     }
 
     void IncreaseScrapHud(int Amount) {
-        scrapHud.SetActive(true);
-        StartCoroutine(IncreaseHud(scrap,Amount));
-        Invoke("DeactiveScrapHud", 5);
+        if (scrapHud.gameObject.activeInHierarchy) {
+            StopAllCoroutines();
+            CancelInvoke("DeactiveScrapHud");
+            StartCoroutine(IncreaseHud(cutOffScrap, Amount + (scrap - cutOffScrap)));
+        }
+        else {
+            scrapHud.SetActive(true);
+            StartCoroutine(IncreaseHud(scrap, Amount));
+           
+        }
     }
 
     void DeactiveScrapHud() {
@@ -127,18 +138,23 @@ public class PlayerScript : MonoBehaviour {
                 break;
         }
     }
-    IEnumerator IncreaseHud(int text, int Amount) {
+    IEnumerator IncreaseHud(float text, float Amount) {
 
         float stepTime = 0.02f;
         float addAmount = (float)Amount / 100;
         
         for (int i = 0; i < 100+1; i++) {
             yield return new WaitForSeconds(stepTime);
-            float scrapAmount = i * addAmount;
-            scrapText.text = (text + Mathf.Floor(scrapAmount)).ToString();
+            float adding = addAmount * i;
+            cutOffScrap = (text + Mathf.Floor(adding));
+            scrapText.text = cutOffScrap.ToString();
             if (i > 60) stepTime = 0.03f;
             if (i > 70) stepTime = 0.04f;
             if (i > 80) stepTime = 0.05f;
+
+            if (i > 99) Invoke("DeactiveScrapHud", 5);
         }
+
+        
     }
 }

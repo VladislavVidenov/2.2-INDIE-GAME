@@ -3705,7 +3705,7 @@ Prefab:
     m_Modifications:
     - target: {fileID: 11491052, guid: 31d03c281b8025a46a739ff103757ebf, type: 2}
       propertyPath: waves.Array.size
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 467798, guid: 31d03c281b8025a46a739ff103757ebf, type: 2}
       propertyPath: m_LocalPosition.x
@@ -3753,7 +3753,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 11491052, guid: 31d03c281b8025a46a739ff103757ebf, type: 2}
       propertyPath: waves.Array.data[1].meleeEnemy
-      value: 0
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 11491052, guid: 31d03c281b8025a46a739ff103757ebf, type: 2}
       propertyPath: rangedRushEnemyPrefab
@@ -3794,6 +3794,18 @@ Prefab:
     - target: {fileID: 451232, guid: 31d03c281b8025a46a739ff103757ebf, type: 2}
       propertyPath: m_LocalPosition.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 11491052, guid: 31d03c281b8025a46a739ff103757ebf, type: 2}
+      propertyPath: waves.Array.data[1].rangedEnemy
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 11491052, guid: 31d03c281b8025a46a739ff103757ebf, type: 2}
+      propertyPath: waves.Array.data[1].rangedRushEnemy
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 11491052, guid: 31d03c281b8025a46a739ff103757ebf, type: 2}
+      propertyPath: timeBetweenWaves
+      value: 10
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 31d03c281b8025a46a739ff103757ebf, type: 2}
