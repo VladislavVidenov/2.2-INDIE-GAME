@@ -41,6 +41,13 @@ public class GameManager : MonoBehaviour {
             return _player.GetComponent<PlayerScript>();
         }
     }
+    WeaponScript[] weapons
+    {
+        get
+        {
+            return _player.GetComponentsInChildren<WeaponScript>();
+        }
+    }
 
     [HideInInspector]
     public int maxHealth = 100;
@@ -59,8 +66,19 @@ public class GameManager : MonoBehaviour {
     public VendingMachine vendingMachine;
     [HideInInspector]
     public PauseMenuScript pauseMenu;
-
 	public CoverSpotScript[] coverSpots;
+    public WeaponManager weaponManager;
+
+    public bool isWaving = false;
+    
+    public int pistolCurrentClipAmmo;
+    public int pistolTotalAmmo;
+    public int pistolMaxTotalAmmo;
+
+    public int shotgunCurrentClipAmmo;
+    public int shotgunTotalAmmo;
+    public int shotgunMaxTotalAmmo;
+
 
     void Awake()
     {
@@ -68,7 +86,7 @@ public class GameManager : MonoBehaviour {
         {
             currentState = GameState.InGame;
             FindGameObjects();
-            coverSpots = FindObjectsOfType<CoverSpotScript>();
+           
         }
 
         ownedUpgrades = new List<Upgrade>();
@@ -112,11 +130,53 @@ public class GameManager : MonoBehaviour {
 
         vendingMachine = GameObject.Find("VendingMachine").GetComponent<VendingMachine>();
         pauseMenu = GameObject.Find("PauseMenuManager").GetComponent<PauseMenuScript>();
+        coverSpots = FindObjectsOfType<CoverSpotScript>();
+        weaponManager = FindObjectOfType<WeaponManager>();
     }
 
     public void SavePlayerStats() {
         playerScript.GetCurrencyStats(out scrap, out electronics);
         playerScript.GetHealthStats(out health, out maxHealth);
+    }
+    public void SetWeaponStats()
+    {        
+        for (int i = 0; i < weapons.Length; i++)
+        {
+            WeaponScript curr = weapons[i];
+            if(curr.weapon == WeaponScript.Weapons.Pistol)
+            {
+                curr.ammoInClip = pistolCurrentClipAmmo;
+                curr.totalAmmo = pistolTotalAmmo;
+                curr.maxTotalAmmo = pistolMaxTotalAmmo;
+
+            }
+            else if (curr.weapon == WeaponScript.Weapons.Shotgun)
+            {
+
+                curr.ammoInClip = shotgunCurrentClipAmmo;
+                curr.totalAmmo = shotgunTotalAmmo;
+                curr.maxTotalAmmo = shotgunMaxTotalAmmo;
+            }
+        }
+    }
+    public void SaveWeaponStats()
+    {
+        for (int i = 0; i < weapons.Length; i++)
+        {
+            WeaponScript curr = weapons[i];
+            if (curr.weapon == WeaponScript.Weapons.Pistol)
+            {
+                pistolCurrentClipAmmo = curr.ammoInClip;
+                pistolTotalAmmo = curr.totalAmmo;
+                pistolMaxTotalAmmo = curr.maxTotalAmmo;
+            }
+            else if (curr.weapon == WeaponScript.Weapons.Shotgun)
+            { 
+                shotgunCurrentClipAmmo = curr.ammoInClip;
+                shotgunTotalAmmo = curr.totalAmmo;
+                shotgunMaxTotalAmmo = curr.maxTotalAmmo;
+            }
+        }
     }
 
 }

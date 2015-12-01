@@ -3,37 +3,27 @@ using System.Collections;
 
 public class WeaponManager : MonoBehaviour {
 
-    // [SerializeField]
-    // GameObject[] weaponsOnGround; //JUST weapons available for picking up
     [SerializeField]
     Rigidbody[] weaponPrefabs;
     [SerializeField]
     GameObject[] weaponsOnPlayer; //all weapons WITH hands attached on the player gameObject!!
     [SerializeField]
     Transform dropWeaponPosition;
-
-    //GameObject currentWeapon;
-    // int currentSlot;
-
-
-
     RaycastHit hit;
     float pickDistance = 2.0f;
     public float weaponSwitchTime = 0.5f;
     public LayerMask layerWeapons;
 
     bool showWeaponText = false;
-
     bool isWeaponOwned = false;
     bool isSlotTaken = false;
     [HideInInspector]
     public bool canSwitchWeapon = true;
 
-    //int hitSlotIndex;
-    //int hitWepIndex;
     WeaponIndex currentWeapon;
     WeaponIndex previousWeapon;
-    WeaponIndex[] inventory;
+    [HideInInspector]
+    public WeaponIndex[] inventory;
     WeaponIndex hitWeaponIndex;
 
     void Start()

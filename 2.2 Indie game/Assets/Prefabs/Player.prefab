@@ -3708,7 +3708,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 106084}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: .150000006, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 491374}
@@ -5472,7 +5472,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 180752}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 222.899994, y: 4.74069977, z: 135.050003}
+  m_LocalPosition: {x: -33.4045715, y: 2.00999999, z: -1.81013489}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 425588}
@@ -6708,6 +6708,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 1024
   canSwitchWeapon: 1
+  inventory: []
 --- !u!114 &11465992
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -6776,7 +6777,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   head: {fileID: 106084}
-  muzzleTransform: {fileID: 0}
+  muzzleTransform: {fileID: 433938}
   animator: {fileID: 0}
   weapon: 1
   currentWeaponMode: 1
@@ -6793,9 +6794,9 @@ MonoBehaviour:
   reloadSound: {fileID: 8300000, guid: f5665b51f15a29f408f36094524c51aa, type: 3}
   fireSound: {fileID: 8300000, guid: ea8d17b9cab6bd54d96aa29f2114c9bf, type: 3}
   pullOutSound: {fileID: 0}
-  normalDecal: {fileID: 132896, guid: e101da6a7ebafb6478cab46d5ca66492, type: 2}
-  muzzleParticlePistol: {fileID: 0}
-  crosshairTexture: {fileID: 0}
+  normalDecal: {fileID: 100002, guid: cc6e9d702265cf943af458c466ac6a5b, type: 2}
+  muzzleParticlePistol: {fileID: 183120, guid: a9e3c73b3c932a24bb13e041b0fa876c, type: 2}
+  crosshairTexture: {fileID: 2800000, guid: a834b144dc22cb34a84b8eb0296a0573, type: 3}
 --- !u!114 &11494316
 MonoBehaviour:
   m_ObjectHideFlags: 1

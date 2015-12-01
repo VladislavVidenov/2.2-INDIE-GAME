@@ -22,9 +22,11 @@ public class WeaponScript : MonoBehaviour {
 
     //Weapon properties.
     Vector3 hitPoint;
-    public int bulletsInClip;
-    public int totalBullets;
-    int maxBulletsPerMag;
+    public int ammoInClip;
+    public int maxAmmoInClip;
+    public int totalAmmo;
+    public int maxTotalAmmo;
+   
 
     public int damage;
     public float fireRate;
@@ -103,12 +105,12 @@ public class WeaponScript : MonoBehaviour {
         audioSource = GetComponent<AudioSource>();
         mainCamera = Camera.main;
         weaponCamera = GameObject.FindGameObjectWithTag(Tags.weaponCamera).GetComponent<Camera>();
-        maxBulletsPerMag = bulletsInClip;
         reloadAnimation = GetComponentInParent<Animation>();
         reloadAnimation["PistolReload"].speed = reloadTime / 1.5f;
         crosshairPos = new Rect((Screen.width - crosshairTexture.width) / 2, (Screen.height - crosshairTexture.height) / 2, crosshairTexture.width, crosshairTexture.height);
+       // GetAmmoFromManager(weapon);
     }
-
+  
     void Update() {
         if (weaponSelected) {
             Aiming();
@@ -134,8 +136,16 @@ public class WeaponScript : MonoBehaviour {
                 Reload();
         }
     }
-
-
+    public void UpgradeTotalAmmo(int amount)
+    {
+        maxTotalAmmo += amount;
+    }
+    public void IncreaseTotalAmmo(int amount)
+    {
+        totalAmmo += amount;
+        if (totalAmmo >= maxTotalAmmo)
+            totalAmmo = maxTotalAmmo;
+    }
     void CalculateInaccuracy() {
         inaccuracy = playerMove.isWalking() ? maxInaccuracy : minInaccuracy;
     }
@@ -205,8 +215,8 @@ public class WeaponScript : MonoBehaviour {
         }
 
         GUI.contentColor = Color.red;
-        GUI.Label(new Rect(10, 10, 100, 50), "mag" + bulletsInClip);
-        GUI.Label(new Rect(10, 25, 100, 50), "total" + totalBullets);
+        GUI.Label(new Rect(10, 10, 100, 50), "mag" + ammoInClip);
+        GUI.Label(new Rect(10, 25, 100, 50), "total" + totalAmmo);
         if (reloadInfo) GUI.Label(new Rect(Screen.width / 2, Screen.height / 2, 150, 50), "You have no bullets left");
     }
 
@@ -216,8 +226,8 @@ public class WeaponScript : MonoBehaviour {
     }
 
     void SemiFireShotgun() {
-        if (isReloading || bulletsInClip <= 0) {
-            if (bulletsInClip <= 0) {
+        if (isReloading || ammoInClip <= 0) {
+            if (ammoInClip <= 0) {
                 DryFire();
             }
             return;
@@ -233,7 +243,7 @@ public class WeaponScript : MonoBehaviour {
             audioSource.PlayOneShot(fireSound);
 
             RecoilEffect();
-            bulletsInClip--;
+            ammoInClip--;
         }
     }
 
@@ -262,8 +272,8 @@ public class WeaponScript : MonoBehaviour {
     }
 
     void SemiFirePistol() {//If we are currently reloading / or we ran out of ammo -> return and play dry fire sound:).
-        if (isReloading || bulletsInClip <= 0) {
-            if (bulletsInClip <= 0) {
+        if (isReloading || ammoInClip <= 0) {
+            if (ammoInClip <= 0) {
                 DryFire();
             }
             return;
@@ -302,7 +312,7 @@ public class WeaponScript : MonoBehaviour {
         audioSource.PlayOneShot(fireSound);
 
         RecoilEffect();
-        bulletsInClip--;
+        ammoInClip--;
         UpdateHudValues();
     }
 
@@ -314,15 +324,16 @@ public class WeaponScript : MonoBehaviour {
     #region Reloading 
     IEnumerator ReloadTime(float time) {
         yield return new WaitForSeconds(time);
-        int bulletsShot = maxBulletsPerMag - bulletsInClip;
-        int tBCcopy = totalBullets;
-        totalBullets -= bulletsShot;
-        if (totalBullets < 0) totalBullets = 0;
-        int delta = tBCcopy - totalBullets;
-        bulletsInClip += delta;
+        int bulletsShot = maxAmmoInClip - ammoInClip;
+        int tBCcopy = totalAmmo;
+        totalAmmo -= bulletsShot;
+        if (totalAmmo < 0) totalAmmo = 0;
+        int delta = tBCcopy - totalAmmo;
+        ammoInClip += delta;
         isReloading = false;
         playerMove.SendMessage("SetIsReloading", isReloading);
         playerMove.releasedRun = true;//if player still holds run button during reload => start running again.
+        UpdateHudValues();
     }
 
     IEnumerator shutReloadInfo() {
@@ -332,19 +343,19 @@ public class WeaponScript : MonoBehaviour {
     }
 
     void UpdateHudValues() {
-        hud.AmmoMagLeft = bulletsInClip;
-        hud.AmmoMagCap = maxBulletsPerMag;
-        hud.AmmoCarryLeft = totalBullets;
+        hud.AmmoMagLeft = ammoInClip;
+        hud.AmmoMagCap = maxAmmoInClip;
+        hud.AmmoCarryLeft = totalAmmo;
         //hud.AmmoCarryCap = ...
     }
 
     void Reload() {
         //if we are already reloading or we are already on full ammo in mag-> return;
-        if (isReloading || bulletsInClip == maxBulletsPerMag) return;
-        reloadInfo = (totalBullets <= 0) ? true : false;
+        if (isReloading || ammoInClip == maxAmmoInClip) return;
+        reloadInfo = (totalAmmo <= 0) ? true : false;
         if (reloadInfo && !reloadInfoStarted) { reloadInfoStarted = true; StartCoroutine(shutReloadInfo()); }
 
-        if (bulletsInClip >= 0 && totalBullets > 0) {
+        if (ammoInClip >= 0 && totalAmmo > 0) {
             isReloading = true;
             playerMove.SendMessage("SetIsReloading", isReloading); // tell the movement 
             playerMove.isRunning = false;//so we stop running if we run and reload.
@@ -364,11 +375,6 @@ public class WeaponScript : MonoBehaviour {
     }
 
     void PullOutWeapon() {
-        // weaponAnimations["Draw"].speed = pullOutWeaponTime * 2;
-        //  weaponAnimations.Play("Draw", PlayMode.StopAll);
-        // weaponAnimations.Play("Draw");
-        //  weaponAnimations.CrossFade("Draw");
-
         animator.SetBool("PullOutWeapon", true);
         StartCoroutine(waitPullOut(pullOutWeaponTime));
     }
@@ -378,16 +384,12 @@ public class WeaponScript : MonoBehaviour {
         animator.SetBool("PullOutWeapon", false);
         weaponSelected = true;
         showCrosshair = true;
-        //  Debug.Log("Pull out wep called !");
-        //enable crosshair 
     }
 
     void HolsterWeapon() {
         //  Debug.Log("HolsterWeapon called!");
         weaponSelected = false;
         showCrosshair = false;
-        //change field of view.
-        //set a bool that crossshair is = false;
     }
 
     void RecoilEffect() {
