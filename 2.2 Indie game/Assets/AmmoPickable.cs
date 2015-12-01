@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class test2 : MonoBehaviour {
+public class AmmoPickable : MonoBehaviour {
     WeaponManager wepManager;
     public enum AmmoType
     {
@@ -15,6 +15,7 @@ public class test2 : MonoBehaviour {
     void Start()
     {
         wepManager = FindObjectOfType<WeaponManager>();
+        gameObject.name += " - " + typeOfAmmo.ToString();
     }
 
 	void OnTriggerEnter(Collider hit)
@@ -23,7 +24,7 @@ public class test2 : MonoBehaviour {
         {
             if(typeOfAmmo == AmmoType.Pistol)
             {
-                wepManager.inventory[0].GetComponent<WeaponScript>().totalAmmo += AmmoGiveAmount;
+                wepManager.inventory[0].GetComponent<WeaponScript>().IncreaseTotalAmmo(AmmoGiveAmount);
             }
             else if (typeOfAmmo == AmmoType.Shotgun)
             {
