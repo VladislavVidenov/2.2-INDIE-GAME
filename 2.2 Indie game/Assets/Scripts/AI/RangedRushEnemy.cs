@@ -6,6 +6,7 @@ public class RangedRushEnemy : EnemyScript {
     Vector3 fightingPosition;
     float attackTimer;
     float changeCoverTimer;
+    float playerNotSeenTimer;
     [SerializeField]
     float attackTime = 2f;
     [SerializeField]
@@ -47,6 +48,9 @@ public class RangedRushEnemy : EnemyScript {
             case AIState.MovingToCover:
                 MovingToCover();
                 break;
+            case AIState.Flank:
+                Flank();
+                break;
         }
     }
 
@@ -58,6 +62,20 @@ public class RangedRushEnemy : EnemyScript {
 
         if (Vector3.Distance(agent.transform.position, player.transform.position) > 15) {
             state = AIState.FindCover;
+        }
+    }
+
+    void Flank() {
+        agent.Resume();
+        agent.SetDestination(player.transform.position);
+        Shoot();
+
+        RaycastHit hit;
+        Vector3 direction = player.transform.position - this.transform.position;
+        if (Physics.Raycast(agent.transform.position - (agent.transform.up/2), direction, out hit, 100f)) {
+            if (hit.collider.CompareTag(Tags.player)) {
+                state = AIState.Shooting;
+            }
         }
     }
 
@@ -84,14 +102,9 @@ public class RangedRushEnemy : EnemyScript {
 
             shortestLength = 0;
         }
-//        else {
-//            state = AIState.Shooting;
-//        }
 
     }
-
-
-
+    
     void MovingToCover() {
 	
 		agent.Resume ();
@@ -109,7 +122,9 @@ public class RangedRushEnemy : EnemyScript {
 	}
 
     void InCover() {
+
         changeCoverTimer += Time.deltaTime;
+        
         agent.updateRotation = false;
         if (!crouching) {
             this.transform.rotation = Quaternion.RotateTowards(this.transform.rotation, Quaternion.LookRotation(player.transform.position - this.transform.position), attackRotationSpeed);
@@ -120,16 +135,33 @@ public class RangedRushEnemy : EnemyScript {
             if (!doAction) StartCoroutine(StopCrouching(true));
         }
 
-        RaycastHit hit;
-        Vector3 direction = agent.transform.position - player.transform.position;
-        Debug.DrawRay(player.transform.position - player.transform.up, direction * 100f, Color.cyan);
-        if (Physics.Raycast(player.transform.position - player.transform.up, direction, out hit, 100f)) {
-            if (hit.collider.CompareTag(Tags.enemy)) {
-                state = AIState.Shooting;
 
+        //RaycastHit hit;
+        //Vector3 direction = agent.transform.position - player.transform.position;
+        //Debug.DrawRay(player.transform.position - player.transform.up, direction * 100f, Color.cyan);
+        //if (Physics.Raycast(player.transform.position - player.transform.up, direction, out hit, 100f)) {
+        //    if (hit.collider.CompareTag(Tags.enemy)) {
+        //        state = AIState.Shooting;
+        //    }
+        //}
+    //    changeCoverTimer += Time.deltaTime;
+
+        RaycastHit hit2;
+        Vector3 eyePos = (agent.transform.position + agent.transform.up);
+        Vector3 direction2 = (playerHead.position - eyePos).normalized;
+       
+        if (Physics.Raycast(eyePos, direction2, out hit2, 100f)) {
+            Debug.DrawRay(eyePos, direction2 * Vector3.Distance(eyePos,hit2.point), Color.blue);
+            print(hit2.collider.gameObject.name);
+            if (!hit2.collider.CompareTag(Tags.player)) {
+                //print(playerNotSeenTimer);
+                playerNotSeenTimer += Time.deltaTime;
+                if (playerNotSeenTimer > 10) {
+                    state = AIState.Flank;
+                    playerNotSeenTimer =0;
+                }
             }
         }
-        changeCoverTimer += Time.deltaTime;
 
         if (changeCoverTimer > 5) {
             changeCoverTimer = 0;
@@ -140,8 +172,11 @@ public class RangedRushEnemy : EnemyScript {
             }
         }
 
+      
+    
         agent.Stop();
     }
+    
 
 
 
@@ -169,8 +204,13 @@ public class RangedRushEnemy : EnemyScript {
         Vector3 direction = player.transform.position - this.transform.position;
         direction += new Vector3(Random.Range(-1f, 1f), Random.Range(-1f, 1f), Random.Range(-1f, 1f));
         if (Time.time - attackTimer > attackTime) {
-            ShootRaycast(direction);
-            attackTimer = Time.time;
+            RaycastHit hit;
+            if (Physics.Raycast(agent.transform.position, direction, out hit, 100f)) {
+                if (hit.collider.CompareTag(Tags.player)) {
+                    ShootRaycast(direction);
+                    attackTimer = Time.time;
+                }
+            }
         }
     }
 

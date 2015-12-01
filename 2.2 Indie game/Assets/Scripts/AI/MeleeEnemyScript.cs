@@ -36,6 +36,8 @@ public class MeleeEnemyScript : EnemyScript {
 
 		attackTimer += Time.deltaTime;
 
+        this.transform.rotation = Quaternion.RotateTowards(this.transform.rotation, Quaternion.LookRotation(player.transform.position - this.transform.position), 5);
+
 		if (attackTimer > 2f) {
 			MeleeAttack ();
 			attackTimer = 0;

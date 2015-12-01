@@ -17,6 +17,8 @@ public class RangedEnemyScript : EnemyScript {
 
     float shortestLength  = 0;
 
+    int shots = 0;
+
     bool crouching = false;
     bool doAction = false;
 
@@ -145,7 +147,6 @@ public class RangedEnemyScript : EnemyScript {
         yield return new WaitForSeconds((float)Random.Range(2, 5));
         //play anim
         crouching = true;
-        print("starting to crouch");
         doAction = false;
     }
 
@@ -156,7 +157,6 @@ public class RangedEnemyScript : EnemyScript {
         }
         //play anim
         crouching = false;
-        print("stopped to crouch");
         doAction = false;
     }
 
@@ -164,9 +164,20 @@ public class RangedEnemyScript : EnemyScript {
         Vector3 direction = player.transform.position - this.transform.position;
         direction += new Vector3(Random.Range(-1f, 1f), Random.Range(-1f, 1f), Random.Range(-1f, 1f));
         if (Time.time - attackTimer > attackTime) {
-            ShootRaycast(direction);
+            if (shots == 5) {
+                shots = 0;
+                ShootBolt();
+            }
+            else {
+                ShootRaycast(direction);
+            }
             attackTimer = Time.time;
+            shots++;
         }
+    }
+
+    void ShootBolt() {
+        print("Fired bolt");
     }
 
     void ShootRaycast(Vector3 direction) {
@@ -175,10 +186,8 @@ public class RangedEnemyScript : EnemyScript {
         if (Physics.Raycast(transform.position + transform.up / 3, direction.normalized, out hit, 100f)) {
             Debug.DrawRay(transform.position + transform.up / 3, direction, Color.red);
             if (hit.collider.CompareTag(Tags.player)) {
-                Debug.Log("i shot u");
             }
             else {
-                Debug.Log("i missed u");
             }
         }
     }

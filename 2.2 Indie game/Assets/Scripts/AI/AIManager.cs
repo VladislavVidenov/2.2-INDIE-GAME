@@ -15,8 +15,11 @@ public class AIManager : MonoBehaviour {
 	int rangedEnemyInCover = 0;
 	int rangedRushEnemyShooting = 0;
 	int rangedRushEnemyInCover = 0;
+
+    PlayerMovement playerMovement;
 	// Use this for initialization
 	void Start () {
+        playerMovement = GameObject.FindWithTag(Tags.player).GetComponent<PlayerMovement>();
 		meleeEnemies = new List<MeleeEnemyScript> ();
 		rangedEnemies = new List<RangedEnemyScript> ();
 		rangedRushEnemies = new List<RangedRushEnemy> ();
@@ -78,13 +81,17 @@ public class AIManager : MonoBehaviour {
 		if (meleeEnemyAttacking == 0 && meleeEnemyCharging == 0) {
 			meleeEnemies[Random.Range(0,meleeEnemies.Count - 1)].state = AIState.Charge;
 		}
+
+        if (playerMovement.isCrouching) {
+            rangedRushEnemies[Random.Range(0, rangedRushEnemies.Count - 1)].state = AIState.Flank;
+        }
+
+        //if ()   {
+
+        //}
+
 	}
 
-	
-	// Update is called once per frame
-	void Update () {
-		Debug.Log (meleeEnemyRunning);
-	}
 }
 
 
