@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.UI;
 using System.Collections;
 
 public class HudScript : MonoBehaviour {
@@ -10,6 +11,12 @@ public class HudScript : MonoBehaviour {
 
     int playerHealthCap;
     float playerHealth;
+
+    //references to own onscreen items
+    [SerializeField] Text currentHealthText;
+    [SerializeField] Text healthCapText;
+    //[SerializeField] Text ;
+
 
     void Start() {
         UpdateHud();
@@ -64,7 +71,9 @@ public class HudScript : MonoBehaviour {
         UpdateAmmoHud();
     }
 
-    void UpdateHealthHud() { }
+    void UpdateHealthHud() {
+
+    }
 
 
     void UpdateAmmoHud() {
