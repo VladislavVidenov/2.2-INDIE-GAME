@@ -67,7 +67,7 @@ public class WeaponScript : MonoBehaviour {
     float minInaccuracy;
     float minInaccuracyStandHip = 5f;     //STAND + HIP 
     float minInaccuracyCrouchHip = 4.5f;    //CROUCH + HIP
-    float minInaccuracyStandAim = 1.5f;    //STAND + AIM  
+    float minInaccuracyStandAim = 1.3f;    //STAND + AIM  
     float minInaccuracyCrouchAim = 1f;  //CROUCH +AIM
 
     float maxInaccuracy;
@@ -321,6 +321,7 @@ public class WeaponScript : MonoBehaviour {
             hitPoint = hit.point;
             GameObject muzzle = Instantiate(muzzleParticlePistol, muzzleTransform.position, Quaternion.identity) as GameObject;
             Destroy(muzzle, 1);
+
             switch (hit.transform.gameObject.tag)
             {
                 case Tags.enemy:

@@ -112,7 +112,14 @@ public class PlayerMovement : MonoBehaviour {
         {
 
             if (isWalking())
+            {
+                if (isCrouching || isWepAiming)
+                    playerAnimation["Walk"].speed = 0.5f;
+                else
+                    playerAnimation["Walk"].speed = 1;
+
                 playerAnimation.CrossFade("Walk");
+            }
             else
                 if (isRunning)
                 playerAnimation.CrossFade("Run");
