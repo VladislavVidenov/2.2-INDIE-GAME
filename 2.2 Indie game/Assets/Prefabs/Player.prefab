@@ -5472,7 +5472,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 180752}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -33.4045715, y: 2.00999999, z: -1.81013489}
+  m_LocalPosition: {x: 222.899994, y: 4.74069977, z: 135.050003}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 425588}
@@ -6516,11 +6516,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   head: {fileID: 106084}
   muzzleTransform: {fileID: 0}
+  hud: {fileID: 0}
   animator: {fileID: 0}
   weapon: 0
   currentWeaponMode: 1
-  bulletsInClip: 6
-  totalBullets: 24
+  ammoInClip: 0
+  maxAmmoInClip: 0
+  totalAmmo: 0
+  maxTotalAmmo: 0
   damage: 15
   fireRate: .5
   reloadTime: 2
@@ -6548,7 +6551,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   slotID: 2
   weaponID: 1
-  weaponType: 
 --- !u!114 &11413858
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -6562,7 +6564,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   slotID: 1
   weaponID: 2
-  weaponType: 
 --- !u!114 &11428904
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -6592,6 +6593,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   scrapHud: {fileID: 0}
+  hud: {fileID: 0}
 --- !u!114 &11440882
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -6605,7 +6607,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   slotID: 1
   weaponID: 1
-  weaponType: 
 --- !u!114 &11449034
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -6619,11 +6620,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   head: {fileID: 106084}
   muzzleTransform: {fileID: 453528}
+  hud: {fileID: 0}
   animator: {fileID: 0}
   weapon: 0
   currentWeaponMode: 1
-  bulletsInClip: 999
-  totalBullets: 999
+  ammoInClip: 0
+  maxAmmoInClip: 0
+  totalAmmo: 0
+  maxTotalAmmo: 0
   damage: 15
   fireRate: .200000003
   reloadTime: 2
@@ -6682,7 +6686,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   slotID: 1
   weaponID: 1
-  weaponType: 
 --- !u!114 &11462650
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -6778,11 +6781,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   head: {fileID: 106084}
   muzzleTransform: {fileID: 433938}
+  hud: {fileID: 0}
   animator: {fileID: 0}
   weapon: 1
   currentWeaponMode: 1
-  bulletsInClip: 24
-  totalBullets: 6
+  ammoInClip: 0
+  maxAmmoInClip: 0
+  totalAmmo: 0
+  maxTotalAmmo: 0
   damage: 15
   fireRate: .5
   reloadTime: 2
@@ -6810,11 +6816,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   head: {fileID: 106084}
   muzzleTransform: {fileID: 0}
+  hud: {fileID: 0}
   animator: {fileID: 0}
   weapon: 0
   currentWeaponMode: 1
-  bulletsInClip: 6
-  totalBullets: 24
+  ammoInClip: 0
+  maxAmmoInClip: 0
+  totalAmmo: 0
+  maxTotalAmmo: 0
   damage: 15
   fireRate: .5
   reloadTime: 2

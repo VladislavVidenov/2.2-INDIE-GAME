@@ -13042,53 +13042,55 @@ Prefab:
       propertyPath: m_Name
       value: NewScenePrefab
       objectReference: {fileID: 0}
-    - target: {fileID: 22474206, guid: 1926c072953e79a419808d0077a48ff7, type: 2}
-      propertyPath: m_AnchorMax.y
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 22494664, guid: 1926c072953e79a419808d0077a48ff7, type: 2}
-      propertyPath: m_AnchorMax.y
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 22437656, guid: 1926c072953e79a419808d0077a48ff7, type: 2}
-      propertyPath: m_AnchorMax.y
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 22409766, guid: 1926c072953e79a419808d0077a48ff7, type: 2}
-      propertyPath: m_AnchorMax.y
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 22413716, guid: 1926c072953e79a419808d0077a48ff7, type: 2}
-      propertyPath: m_AnchorMax.y
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 22430570, guid: 1926c072953e79a419808d0077a48ff7, type: 2}
-      propertyPath: m_AnchorMax.y
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 22456156, guid: 1926c072953e79a419808d0077a48ff7, type: 2}
-      propertyPath: m_AnchorMax.y
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 22468744, guid: 1926c072953e79a419808d0077a48ff7, type: 2}
-      propertyPath: m_AnchorMax.y
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 22475952, guid: 1926c072953e79a419808d0077a48ff7, type: 2}
       propertyPath: m_AnchorMax.y
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 22466108, guid: 1926c072953e79a419808d0077a48ff7, type: 2}
       propertyPath: m_AnchorMax.y
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 107490, guid: 1926c072953e79a419808d0077a48ff7, type: 2}
-      propertyPath: m_IsActive
+    - target: {fileID: 22456156, guid: 1926c072953e79a419808d0077a48ff7, type: 2}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 22468744, guid: 1926c072953e79a419808d0077a48ff7, type: 2}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 22413716, guid: 1926c072953e79a419808d0077a48ff7, type: 2}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 22430570, guid: 1926c072953e79a419808d0077a48ff7, type: 2}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 22437656, guid: 1926c072953e79a419808d0077a48ff7, type: 2}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 22409766, guid: 1926c072953e79a419808d0077a48ff7, type: 2}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 22474206, guid: 1926c072953e79a419808d0077a48ff7, type: 2}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 22494664, guid: 1926c072953e79a419808d0077a48ff7, type: 2}
+      propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 1926c072953e79a419808d0077a48ff7, type: 2}
   m_IsPrefabParent: 0
+--- !u!114 &255946883 stripped
+MonoBehaviour:
+  m_PrefabParentObject: {fileID: 11417962, guid: 1926c072953e79a419808d0077a48ff7,
+    type: 2}
+  m_PrefabInternal: {fileID: 255946882}
+  m_Script: {fileID: 11500000, guid: 62670d71977ec2940ac9bf4033242c8f, type: 3}
 --- !u!1 &257484473
 GameObject:
   m_ObjectHideFlags: 0
@@ -28385,6 +28387,10 @@ Prefab:
       propertyPath: scrapHud
       value: 
       objectReference: {fileID: 433358849}
+    - target: {fileID: 11430582, guid: 9d6040898dddac64195218c736f468a6, type: 2}
+      propertyPath: hud
+      value: 
+      objectReference: {fileID: 255946883}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 9d6040898dddac64195218c736f468a6, type: 2}
   m_IsPrefabParent: 0

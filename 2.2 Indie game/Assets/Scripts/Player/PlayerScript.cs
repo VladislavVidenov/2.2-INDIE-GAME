@@ -21,9 +21,12 @@ public class PlayerScript : MonoBehaviour {
 
     SceneChangeManager sceneManager;
 
-    [SerializeField]
-    GameObject scrapHud;
+    [Tooltip("Reference to the Scrap HUD")]
+    [SerializeField] GameObject scrapHud;
     Text scrapText;
+
+    [Tooltip("Reference to the Ingame HUD")]
+    [SerializeField] HudScript hud;
 
     Tool currentTool;
 
@@ -35,16 +38,22 @@ public class PlayerScript : MonoBehaviour {
         mainCamera = Camera.main;
         sceneManager = GameObject.Find("SceneManager").GetComponent<SceneChangeManager>();
         GetPlayerStatsFromGameManager();
-	}
-
+        UpdateHealthHud();
+    }
 
     public void ChangeHealth(int amount) {
         health += amount;
-        if (health > 100) health = 100;
-        if (health <= 0) Died();
+        if (health > maxHealth) health = maxHealth;
+        if (health <= 0) { health = 0; Died(); }
+
+        hud.PlayerHealth = health;
+    }
+    void UpdateHealthHud() {
+        hud.PlayerHealth = health;
+        hud.PlayerHealthCap = maxHealth;
     }
 
-	public void TakeDamage(int amount){
+    public void TakeDamage(int amount){
 		ChangeHealth (-amount);
 		// show direction
 		//knockback?
