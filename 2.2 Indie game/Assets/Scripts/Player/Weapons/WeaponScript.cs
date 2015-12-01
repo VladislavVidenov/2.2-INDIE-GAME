@@ -221,16 +221,13 @@ public class WeaponScript : MonoBehaviour {
   
     void OnGUI()
     {
-     
         if (showCrosshair)
         {
             if (!isAiming)
             {
-               
                 GUI.DrawTexture(crosshairPos, crosshairTexture);
             }
         }
-       
 
         GUI.contentColor = Color.red;
         GUI.Label(new Rect(10, 10, 100, 50), "mag" + bulletsInClip);

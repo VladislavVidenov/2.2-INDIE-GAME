@@ -35,10 +35,6 @@ public class PlayerScript : MonoBehaviour {
         GetPlayerStatsFromGameManager();
 	}
 
-	void Update (){
-		print ("HEALTH" + health);
-	}
-
 
     public void ChangeHealth(int amount) {
         health += amount;
