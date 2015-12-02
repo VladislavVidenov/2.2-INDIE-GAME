@@ -1,0 +1,560 @@
+fileFormatVersion: 2
+guid: 5bbd0a2f45244ce4caf6fee568c7f1af
+timeCreated: 1449053058
+licenseType: Free
+ModelImporter:
+  serializedVersion: 18
+  fileIDToRecycleName:
+    100000: Arm_Mesh1
+    100002: Arm_Mesh3
+    100004: Arm_Mesh_01
+    100006: ElbowL_PV_Controller_01
+    100008: ElbowR_PV_Controller_01
+    100010: FPS_Joints_01
+    100012: FPS_Rig_01
+    100014: Hand_L_Controllers_01
+    100016: Hand_L_Controllers_02
+    100018: Head_joint_01
+    100020: LArm_IK_Controller_01
+    100022: Left_IK_Controller
+    100024: LeftArm_joint_01
+    100026: LeftForeArm_joint_01
+    100028: LeftHand_joint_01
+    100030: LeftHandIndex_joint_01
+    100032: LeftHandIndex_joint_02
+    100034: LeftHandIndex_joint_03
+    100036: LeftHandIndex_joint_04
+    100038: LeftHandMiddle_joint_01
+    100040: LeftHandMiddle_joint_02
+    100042: LeftHandMiddle_joint_03
+    100044: LeftHandMiddle_joint_04
+    100046: LeftHandPinky_joint_01
+    100048: LeftHandPinky_joint_02
+    100050: LeftHandPinky_joint_03
+    100052: LeftHandPinky_joint_04
+    100054: LeftHandRing_joint_01
+    100056: LeftHandRing_joint_02
+    100058: LeftHandRing_joint_03
+    100060: LeftHandRing_joint_04
+    100062: LeftHandThumb_joint_01
+    100064: LeftHandThumb_joint_02
+    100066: LeftHandThumb_joint_03
+    100068: LeftHandThumb_joint_04
+    100070: LeftShoulder_joint_01
+    100072: LFinger1_Controller_01
+    100074: LFinger1_Controller_Base_01
+    100076: LFinger1_Controller_Mid_01
+    100078: LFinger1_Controller_Top_01
+    100080: LFinger2_Controllers_01
+    100082: LFinger3_Controller_Base_01
+    100084: LFinger3_Controller_Mid_01
+    100086: LFinger3_Controller_Top_01
+    100088: LFinger4_Controller_Base_01
+    100090: LFinger4_Controller_Mid_01
+    100092: LFinger4_Controller_Top_01
+    100094: LFinger4_Controllers_01
+    100096: LFinger_3_Controllers_01
+    100098: LThumb1_Controller_Base_01
+    100100: LThumb1_Controller_Mid_01
+    100102: LThumb1_Controller_Top_01
+    100104: LThumb1_Controllers_01
+    100106: LWrist_Controller_01
+    100108: Neck_joint_01
+    100110: RArm_IK_Controller_01
+    100112: RFinger1_Controller_01
+    100114: RFinger1_Controller_Base_01
+    100116: RFinger1_Controller_Mid_01
+    100118: RFinger1_Controller_Top_01
+    100120: RFinger2_Controller_Base_01
+    100122: RFinger2_Controller_Base_01 1
+    100124: RFinger2_Controller_Mid_01
+    100126: RFinger2_Controller_Mid_01 1
+    100128: RFinger2_Controller_Top_01
+    100130: RFinger2_Controller_Top_01 1
+    100132: RFinger2_Controllers_01
+    100134: RFinger3_Controller_Base_01
+    100136: RFinger3_Controller_Mid_01
+    100138: RFinger3_Controller_Top_01
+    100140: RFinger4_Controller_Base_01
+    100142: RFinger4_Controller_Mid_01
+    100144: RFinger4_Controller_Top_01
+    100146: RFinger4_Controllers_01
+    100148: RFinger_3_Controllers_01
+    100150: Right_IK_Handle
+    100152: RightArm_joint_01
+    100154: RightForeArm_joint_01
+    100156: RightHand_joint_01
+    100158: RightHandIndex_joint_01
+    100160: RightHandIndex_joint_02
+    100162: RightHandIndex_joint_03
+    100164: RightHandIndex_joint_04
+    100166: RightHandMiddle_joint_01
+    100168: RightHandMiddle_joint_02
+    100170: RightHandMiddle_joint_03
+    100172: RightHandMiddle_joint_04
+    100174: RightHandPinky_joint_01
+    100176: RightHandPinky_joint_02
+    100178: RightHandPinky_joint_03
+    100180: RightHandPinky_joint_04
+    100182: RightHandRing_joint_01
+    100184: RightHandRing_joint_02
+    100186: RightHandRing_joint_03
+    100188: RightHandRing_joint_04
+    100190: RightHandThumb_joint_01
+    100192: RightHandThumb_joint_02
+    100194: RightHandThumb_joint_03
+    100196: RightHandThumb_joint_04
+    100198: RightShoulder_joint_01
+    100200: RThumb1_Controller_Base_01
+    100202: RThumb1_Controller_Mid_01
+    100204: RThumb1_Controller_Top_01
+    100206: RThumb1_Controllers_01
+    100208: RWrist_Controller_01
+    100210: Shotgun_Mesh
+    100212: //RootNode
+    100214: Shoulder_Controller_L_01
+    100216: Shoulder_Controller_R_01
+    100218: Spine_joint_01
+    100220: transform1
+    100222: transform2
+    100224: group
+    100226: group1
+    400000: Arm_Mesh1
+    400002: Arm_Mesh3
+    400004: Arm_Mesh_01
+    400006: ElbowL_PV_Controller_01
+    400008: ElbowR_PV_Controller_01
+    400010: FPS_Joints_01
+    400012: FPS_Rig_01
+    400014: Hand_L_Controllers_01
+    400016: Hand_L_Controllers_02
+    400018: Head_joint_01
+    400020: LArm_IK_Controller_01
+    400022: Left_IK_Controller
+    400024: LeftArm_joint_01
+    400026: LeftForeArm_joint_01
+    400028: LeftHand_joint_01
+    400030: LeftHandIndex_joint_01
+    400032: LeftHandIndex_joint_02
+    400034: LeftHandIndex_joint_03
+    400036: LeftHandIndex_joint_04
+    400038: LeftHandMiddle_joint_01
+    400040: LeftHandMiddle_joint_02
+    400042: LeftHandMiddle_joint_03
+    400044: LeftHandMiddle_joint_04
+    400046: LeftHandPinky_joint_01
+    400048: LeftHandPinky_joint_02
+    400050: LeftHandPinky_joint_03
+    400052: LeftHandPinky_joint_04
+    400054: LeftHandRing_joint_01
+    400056: LeftHandRing_joint_02
+    400058: LeftHandRing_joint_03
+    400060: LeftHandRing_joint_04
+    400062: LeftHandThumb_joint_01
+    400064: LeftHandThumb_joint_02
+    400066: LeftHandThumb_joint_03
+    400068: LeftHandThumb_joint_04
+    400070: LeftShoulder_joint_01
+    400072: LFinger1_Controller_01
+    400074: LFinger1_Controller_Base_01
+    400076: LFinger1_Controller_Mid_01
+    400078: LFinger1_Controller_Top_01
+    400080: LFinger2_Controllers_01
+    400082: LFinger3_Controller_Base_01
+    400084: LFinger3_Controller_Mid_01
+    400086: LFinger3_Controller_Top_01
+    400088: LFinger4_Controller_Base_01
+    400090: LFinger4_Controller_Mid_01
+    400092: LFinger4_Controller_Top_01
+    400094: LFinger4_Controllers_01
+    400096: LFinger_3_Controllers_01
+    400098: LThumb1_Controller_Base_01
+    400100: LThumb1_Controller_Mid_01
+    400102: LThumb1_Controller_Top_01
+    400104: LThumb1_Controllers_01
+    400106: LWrist_Controller_01
+    400108: Neck_joint_01
+    400110: RArm_IK_Controller_01
+    400112: RFinger1_Controller_01
+    400114: RFinger1_Controller_Base_01
+    400116: RFinger1_Controller_Mid_01
+    400118: RFinger1_Controller_Top_01
+    400120: RFinger2_Controller_Base_01
+    400122: RFinger2_Controller_Base_01 1
+    400124: RFinger2_Controller_Mid_01
+    400126: RFinger2_Controller_Mid_01 1
+    400128: RFinger2_Controller_Top_01
+    400130: RFinger2_Controller_Top_01 1
+    400132: RFinger2_Controllers_01
+    400134: RFinger3_Controller_Base_01
+    400136: RFinger3_Controller_Mid_01
+    400138: RFinger3_Controller_Top_01
+    400140: RFinger4_Controller_Base_01
+    400142: RFinger4_Controller_Mid_01
+    400144: RFinger4_Controller_Top_01
+    400146: RFinger4_Controllers_01
+    400148: RFinger_3_Controllers_01
+    400150: Right_IK_Handle
+    400152: RightArm_joint_01
+    400154: RightForeArm_joint_01
+    400156: RightHand_joint_01
+    400158: RightHandIndex_joint_01
+    400160: RightHandIndex_joint_02
+    400162: RightHandIndex_joint_03
+    400164: RightHandIndex_joint_04
+    400166: RightHandMiddle_joint_01
+    400168: RightHandMiddle_joint_02
+    400170: RightHandMiddle_joint_03
+    400172: RightHandMiddle_joint_04
+    400174: RightHandPinky_joint_01
+    400176: RightHandPinky_joint_02
+    400178: RightHandPinky_joint_03
+    400180: RightHandPinky_joint_04
+    400182: RightHandRing_joint_01
+    400184: RightHandRing_joint_02
+    400186: RightHandRing_joint_03
+    400188: RightHandRing_joint_04
+    400190: RightHandThumb_joint_01
+    400192: RightHandThumb_joint_02
+    400194: RightHandThumb_joint_03
+    400196: RightHandThumb_joint_04
+    400198: RightShoulder_joint_01
+    400200: RThumb1_Controller_Base_01
+    400202: RThumb1_Controller_Mid_01
+    400204: RThumb1_Controller_Top_01
+    400206: RThumb1_Controllers_01
+    400208: RWrist_Controller_01
+    400210: Shotgun_Mesh
+    400212: //RootNode
+    400214: Shoulder_Controller_L_01
+    400216: Shoulder_Controller_R_01
+    400218: Spine_joint_01
+    400220: transform1
+    400222: transform2
+    400224: group
+    400226: group1
+    2300000: Shotgun_Mesh
+    3300000: Shotgun_Mesh
+    4300000: Arm_Mesh3
+    4300002: Shotgun_Mesh
+    7400000: Take 001
+    9500000: //RootNode
+    11100000: //RootNode
+    13700000: Arm_Mesh3
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    optimizeGameObjects: 0
+    motionNodeName: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    animationCompression: 1
+    animationRotationError: .5
+    animationPositionError: .5
+    animationScaleError: .5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    clipAnimations:
+    - serializedVersion: 16
+      name: Take 001
+      takeName: Take 001
+      firstFrame: 19
+      lastFrame: 31
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: Arm_Mesh1
+        weight: 1
+      - path: Arm_Mesh1/transform2
+        weight: 1
+      - path: FPS_Rig_01
+        weight: 1
+      - path: FPS_Rig_01/Arm_Mesh3
+        weight: 1
+      - path: FPS_Rig_01/Arm_Mesh_01
+        weight: 1
+      - path: FPS_Rig_01/Arm_Mesh_01/transform1
+        weight: 1
+      - path: FPS_Rig_01/FPS_Joints_01
+        weight: 1
+      - path: FPS_Rig_01/FPS_Joints_01/Spine_joint_01
+        weight: 1
+      - path: FPS_Rig_01/FPS_Joints_01/Spine_joint_01/LeftShoulder_joint_01
+        weight: 1
+      - path: FPS_Rig_01/FPS_Joints_01/Spine_joint_01/LeftShoulder_joint_01/LeftArm_joint_01
+        weight: 1
+      - path: FPS_Rig_01/FPS_Joints_01/Spine_joint_01/LeftShoulder_joint_01/LeftArm_joint_01/LeftForeArm_joint_01
+        weight: 1
+      - path: FPS_Rig_01/FPS_Joints_01/Spine_joint_01/LeftShoulder_joint_01/LeftArm_joint_01/LeftForeArm_joint_01/LeftHand_joint_01
+        weight: 1
+      - path: FPS_Rig_01/FPS_Joints_01/Spine_joint_01/LeftShoulder_joint_01/LeftArm_joint_01/LeftForeArm_joint_01/LeftHand_joint_01/LeftHandIndex_joint_01
+        weight: 1
+      - path: FPS_Rig_01/FPS_Joints_01/Spine_joint_01/LeftShoulder_joint_01/LeftArm_joint_01/LeftForeArm_joint_01/LeftHand_joint_01/LeftHandIndex_joint_01/LeftHandIndex_joint_02
+        weight: 1
+      - path: FPS_Rig_01/FPS_Joints_01/Spine_joint_01/LeftShoulder_joint_01/LeftArm_joint_01/LeftForeArm_joint_01/LeftHand_joint_01/LeftHandIndex_joint_01/LeftHandIndex_joint_02/LeftHandIndex_joint_03
+        weight: 1
+      - path: FPS_Rig_01/FPS_Joints_01/Spine_joint_01/LeftShoulder_joint_01/LeftArm_joint_01/LeftForeArm_joint_01/LeftHand_joint_01/LeftHandIndex_joint_01/LeftHandIndex_joint_02/LeftHandIndex_joint_03/LeftHandIndex_joint_04
+        weight: 1
+      - path: FPS_Rig_01/FPS_Joints_01/Spine_joint_01/LeftShoulder_joint_01/LeftArm_joint_01/LeftForeArm_joint_01/LeftHand_joint_01/LeftHandMiddle_joint_01
+        weight: 1
+      - path: FPS_Rig_01/FPS_Joints_01/Spine_joint_01/LeftShoulder_joint_01/LeftArm_joint_01/LeftForeArm_joint_01/LeftHand_joint_01/LeftHandMiddle_joint_01/LeftHandMiddle_joint_02
+        weight: 1
+      - path: FPS_Rig_01/FPS_Joints_01/Spine_joint_01/LeftShoulder_joint_01/LeftArm_joint_01/LeftForeArm_joint_01/LeftHand_joint_01/LeftHandMiddle_joint_01/LeftHandMiddle_joint_02/LeftHandMiddle_joint_03
+        weight: 1
+      - path: FPS_Rig_01/FPS_Joints_01/Spine_joint_01/LeftShoulder_joint_01/LeftArm_joint_01/LeftForeArm_joint_01/LeftHand_joint_01/LeftHandMiddle_joint_01/LeftHandMiddle_joint_02/LeftHandMiddle_joint_03/LeftHandMiddle_joint_04
+        weight: 1
+      - path: FPS_Rig_01/FPS_Joints_01/Spine_joint_01/LeftShoulder_joint_01/LeftArm_joint_01/LeftForeArm_joint_01/LeftHand_joint_01/LeftHandPinky_joint_01
+        weight: 1
+      - path: FPS_Rig_01/FPS_Joints_01/Spine_joint_01/LeftShoulder_joint_01/LeftArm_joint_01/LeftForeArm_joint_01/LeftHand_joint_01/LeftHandPinky_joint_01/LeftHandPinky_joint_02
+        weight: 1
+      - path: FPS_Rig_01/FPS_Joints_01/Spine_joint_01/LeftShoulder_joint_01/LeftArm_joint_01/LeftForeArm_joint_01/LeftHand_joint_01/LeftHandPinky_joint_01/LeftHandPinky_joint_02/LeftHandPinky_joint_03
+        weight: 1
+      - path: FPS_Rig_01/FPS_Joints_01/Spine_joint_01/LeftShoulder_joint_01/LeftArm_joint_01/LeftForeArm_joint_01/LeftHand_joint_01/LeftHandPinky_joint_01/LeftHandPinky_joint_02/LeftHandPinky_joint_03/LeftHandPinky_joint_04
+        weight: 1
+      - path: FPS_Rig_01/FPS_Joints_01/Spine_joint_01/LeftShoulder_joint_01/LeftArm_joint_01/LeftForeArm_joint_01/LeftHand_joint_01/LeftHandRing_joint_01
+        weight: 1
+      - path: FPS_Rig_01/FPS_Joints_01/Spine_joint_01/LeftShoulder_joint_01/LeftArm_joint_01/LeftForeArm_joint_01/LeftHand_joint_01/LeftHandRing_joint_01/LeftHandRing_joint_02
+        weight: 1
+      - path: FPS_Rig_01/FPS_Joints_01/Spine_joint_01/LeftShoulder_joint_01/LeftArm_joint_01/LeftForeArm_joint_01/LeftHand_joint_01/LeftHandRing_joint_01/LeftHandRing_joint_02/LeftHandRing_joint_03
+        weight: 1
+      - path: FPS_Rig_01/FPS_Joints_01/Spine_joint_01/LeftShoulder_joint_01/LeftArm_joint_01/LeftForeArm_joint_01/LeftHand_joint_01/LeftHandRing_joint_01/LeftHandRing_joint_02/LeftHandRing_joint_03/LeftHandRing_joint_04
+        weight: 1
+      - path: FPS_Rig_01/FPS_Joints_01/Spine_joint_01/LeftShoulder_joint_01/LeftArm_joint_01/LeftForeArm_joint_01/LeftHand_joint_01/LeftHandThumb_joint_01
+        weight: 1
+      - path: FPS_Rig_01/FPS_Joints_01/Spine_joint_01/LeftShoulder_joint_01/LeftArm_joint_01/LeftForeArm_joint_01/LeftHand_joint_01/LeftHandThumb_joint_01/LeftHandThumb_joint_02
+        weight: 1
+      - path: FPS_Rig_01/FPS_Joints_01/Spine_joint_01/LeftShoulder_joint_01/LeftArm_joint_01/LeftForeArm_joint_01/LeftHand_joint_01/LeftHandThumb_joint_01/LeftHandThumb_joint_02/LeftHandThumb_joint_03
+        weight: 1
+      - path: FPS_Rig_01/FPS_Joints_01/Spine_joint_01/LeftShoulder_joint_01/LeftArm_joint_01/LeftForeArm_joint_01/LeftHand_joint_01/LeftHandThumb_joint_01/LeftHandThumb_joint_02/LeftHandThumb_joint_03/LeftHandThumb_joint_04
+        weight: 1
+      - path: FPS_Rig_01/FPS_Joints_01/Spine_joint_01/Neck_joint_01
+        weight: 1
+      - path: FPS_Rig_01/FPS_Joints_01/Spine_joint_01/Neck_joint_01/Head_joint_01
+        weight: 1
+      - path: FPS_Rig_01/FPS_Joints_01/Spine_joint_01/RightShoulder_joint_01
+        weight: 1
+      - path: FPS_Rig_01/FPS_Joints_01/Spine_joint_01/RightShoulder_joint_01/RightArm_joint_01
+        weight: 1
+      - path: FPS_Rig_01/FPS_Joints_01/Spine_joint_01/RightShoulder_joint_01/RightArm_joint_01/RightForeArm_joint_01
+        weight: 1
+      - path: FPS_Rig_01/FPS_Joints_01/Spine_joint_01/RightShoulder_joint_01/RightArm_joint_01/RightForeArm_joint_01/RightHand_joint_01
+        weight: 1
+      - path: FPS_Rig_01/FPS_Joints_01/Spine_joint_01/RightShoulder_joint_01/RightArm_joint_01/RightForeArm_joint_01/RightHand_joint_01/RightHandIndex_joint_01
+        weight: 1
+      - path: FPS_Rig_01/FPS_Joints_01/Spine_joint_01/RightShoulder_joint_01/RightArm_joint_01/RightForeArm_joint_01/RightHand_joint_01/RightHandIndex_joint_01/RightHandIndex_joint_02
+        weight: 1
+      - path: FPS_Rig_01/FPS_Joints_01/Spine_joint_01/RightShoulder_joint_01/RightArm_joint_01/RightForeArm_joint_01/RightHand_joint_01/RightHandIndex_joint_01/RightHandIndex_joint_02/RightHandIndex_joint_03
+        weight: 1
+      - path: FPS_Rig_01/FPS_Joints_01/Spine_joint_01/RightShoulder_joint_01/RightArm_joint_01/RightForeArm_joint_01/RightHand_joint_01/RightHandIndex_joint_01/RightHandIndex_joint_02/RightHandIndex_joint_03/RightHandIndex_joint_04
+        weight: 1
+      - path: FPS_Rig_01/FPS_Joints_01/Spine_joint_01/RightShoulder_joint_01/RightArm_joint_01/RightForeArm_joint_01/RightHand_joint_01/RightHandMiddle_joint_01
+        weight: 1
+      - path: FPS_Rig_01/FPS_Joints_01/Spine_joint_01/RightShoulder_joint_01/RightArm_joint_01/RightForeArm_joint_01/RightHand_joint_01/RightHandMiddle_joint_01/RightHandMiddle_joint_02
+        weight: 1
+      - path: FPS_Rig_01/FPS_Joints_01/Spine_joint_01/RightShoulder_joint_01/RightArm_joint_01/RightForeArm_joint_01/RightHand_joint_01/RightHandMiddle_joint_01/RightHandMiddle_joint_02/RightHandMiddle_joint_03
+        weight: 1
+      - path: FPS_Rig_01/FPS_Joints_01/Spine_joint_01/RightShoulder_joint_01/RightArm_joint_01/RightForeArm_joint_01/RightHand_joint_01/RightHandMiddle_joint_01/RightHandMiddle_joint_02/RightHandMiddle_joint_03/RightHandMiddle_joint_04
+        weight: 1
+      - path: FPS_Rig_01/FPS_Joints_01/Spine_joint_01/RightShoulder_joint_01/RightArm_joint_01/RightForeArm_joint_01/RightHand_joint_01/RightHandPinky_joint_01
+        weight: 1
+      - path: FPS_Rig_01/FPS_Joints_01/Spine_joint_01/RightShoulder_joint_01/RightArm_joint_01/RightForeArm_joint_01/RightHand_joint_01/RightHandPinky_joint_01/RightHandPinky_joint_02
+        weight: 1
+      - path: FPS_Rig_01/FPS_Joints_01/Spine_joint_01/RightShoulder_joint_01/RightArm_joint_01/RightForeArm_joint_01/RightHand_joint_01/RightHandPinky_joint_01/RightHandPinky_joint_02/RightHandPinky_joint_03
+        weight: 1
+      - path: FPS_Rig_01/FPS_Joints_01/Spine_joint_01/RightShoulder_joint_01/RightArm_joint_01/RightForeArm_joint_01/RightHand_joint_01/RightHandPinky_joint_01/RightHandPinky_joint_02/RightHandPinky_joint_03/RightHandPinky_joint_04
+        weight: 1
+      - path: FPS_Rig_01/FPS_Joints_01/Spine_joint_01/RightShoulder_joint_01/RightArm_joint_01/RightForeArm_joint_01/RightHand_joint_01/RightHandRing_joint_01
+        weight: 1
+      - path: FPS_Rig_01/FPS_Joints_01/Spine_joint_01/RightShoulder_joint_01/RightArm_joint_01/RightForeArm_joint_01/RightHand_joint_01/RightHandRing_joint_01/RightHandRing_joint_02
+        weight: 1
+      - path: FPS_Rig_01/FPS_Joints_01/Spine_joint_01/RightShoulder_joint_01/RightArm_joint_01/RightForeArm_joint_01/RightHand_joint_01/RightHandRing_joint_01/RightHandRing_joint_02/RightHandRing_joint_03
+        weight: 1
+      - path: FPS_Rig_01/FPS_Joints_01/Spine_joint_01/RightShoulder_joint_01/RightArm_joint_01/RightForeArm_joint_01/RightHand_joint_01/RightHandRing_joint_01/RightHandRing_joint_02/RightHandRing_joint_03/RightHandRing_joint_04
+        weight: 1
+      - path: FPS_Rig_01/FPS_Joints_01/Spine_joint_01/RightShoulder_joint_01/RightArm_joint_01/RightForeArm_joint_01/RightHand_joint_01/RightHandThumb_joint_01
+        weight: 1
+      - path: FPS_Rig_01/FPS_Joints_01/Spine_joint_01/RightShoulder_joint_01/RightArm_joint_01/RightForeArm_joint_01/RightHand_joint_01/RightHandThumb_joint_01/RightHandThumb_joint_02
+        weight: 1
+      - path: FPS_Rig_01/FPS_Joints_01/Spine_joint_01/RightShoulder_joint_01/RightArm_joint_01/RightForeArm_joint_01/RightHand_joint_01/RightHandThumb_joint_01/RightHandThumb_joint_02/RightHandThumb_joint_03
+        weight: 1
+      - path: FPS_Rig_01/FPS_Joints_01/Spine_joint_01/RightShoulder_joint_01/RightArm_joint_01/RightForeArm_joint_01/RightHand_joint_01/RightHandThumb_joint_01/RightHandThumb_joint_02/RightHandThumb_joint_03/RightHandThumb_joint_04
+        weight: 1
+      - path: FPS_Rig_01/LArm_IK_Controller_01
+        weight: 1
+      - path: FPS_Rig_01/LArm_IK_Controller_01/ElbowL_PV_Controller_01
+        weight: 1
+      - path: FPS_Rig_01/LArm_IK_Controller_01/Hand_L_Controllers_01
+        weight: 1
+      - path: FPS_Rig_01/LArm_IK_Controller_01/Hand_L_Controllers_01/LFinger1_Controller_01
+        weight: 1
+      - path: FPS_Rig_01/LArm_IK_Controller_01/Hand_L_Controllers_01/LFinger1_Controller_01/LFinger1_Controller_Base_01
+        weight: 1
+      - path: FPS_Rig_01/LArm_IK_Controller_01/Hand_L_Controllers_01/LFinger1_Controller_01/LFinger1_Controller_Base_01/LFinger1_Controller_Mid_01
+        weight: 1
+      - path: FPS_Rig_01/LArm_IK_Controller_01/Hand_L_Controllers_01/LFinger1_Controller_01/LFinger1_Controller_Base_01/LFinger1_Controller_Mid_01/LFinger1_Controller_Top_01
+        weight: 1
+      - path: FPS_Rig_01/LArm_IK_Controller_01/Hand_L_Controllers_01/LFinger2_Controllers_01
+        weight: 1
+      - path: FPS_Rig_01/LArm_IK_Controller_01/Hand_L_Controllers_01/LFinger2_Controllers_01/RFinger2_Controller_Base_01
+        weight: 1
+      - path: FPS_Rig_01/LArm_IK_Controller_01/Hand_L_Controllers_01/LFinger2_Controllers_01/RFinger2_Controller_Base_01/RFinger2_Controller_Mid_01
+        weight: 1
+      - path: FPS_Rig_01/LArm_IK_Controller_01/Hand_L_Controllers_01/LFinger2_Controllers_01/RFinger2_Controller_Base_01/RFinger2_Controller_Mid_01/RFinger2_Controller_Top_01
+        weight: 1
+      - path: FPS_Rig_01/LArm_IK_Controller_01/Hand_L_Controllers_01/LFinger4_Controllers_01
+        weight: 1
+      - path: FPS_Rig_01/LArm_IK_Controller_01/Hand_L_Controllers_01/LFinger4_Controllers_01/LFinger4_Controller_Base_01
+        weight: 1
+      - path: FPS_Rig_01/LArm_IK_Controller_01/Hand_L_Controllers_01/LFinger4_Controllers_01/LFinger4_Controller_Base_01/LFinger4_Controller_Mid_01
+        weight: 1
+      - path: FPS_Rig_01/LArm_IK_Controller_01/Hand_L_Controllers_01/LFinger4_Controllers_01/LFinger4_Controller_Base_01/LFinger4_Controller_Mid_01/LFinger4_Controller_Top_01
+        weight: 1
+      - path: FPS_Rig_01/LArm_IK_Controller_01/Hand_L_Controllers_01/LFinger_3_Controllers_01
+        weight: 1
+      - path: FPS_Rig_01/LArm_IK_Controller_01/Hand_L_Controllers_01/LFinger_3_Controllers_01/LFinger3_Controller_Base_01
+        weight: 1
+      - path: FPS_Rig_01/LArm_IK_Controller_01/Hand_L_Controllers_01/LFinger_3_Controllers_01/LFinger3_Controller_Base_01/LFinger3_Controller_Mid_01
+        weight: 1
+      - path: FPS_Rig_01/LArm_IK_Controller_01/Hand_L_Controllers_01/LFinger_3_Controllers_01/LFinger3_Controller_Base_01/LFinger3_Controller_Mid_01/LFinger3_Controller_Top_01
+        weight: 1
+      - path: FPS_Rig_01/LArm_IK_Controller_01/Hand_L_Controllers_01/LThumb1_Controllers_01
+        weight: 1
+      - path: FPS_Rig_01/LArm_IK_Controller_01/Hand_L_Controllers_01/LThumb1_Controllers_01/LThumb1_Controller_Base_01
+        weight: 1
+      - path: FPS_Rig_01/LArm_IK_Controller_01/Hand_L_Controllers_01/LThumb1_Controllers_01/LThumb1_Controller_Base_01/LThumb1_Controller_Mid_01
+        weight: 1
+      - path: FPS_Rig_01/LArm_IK_Controller_01/Hand_L_Controllers_01/LThumb1_Controllers_01/LThumb1_Controller_Base_01/LThumb1_Controller_Mid_01/LThumb1_Controller_Top_01
+        weight: 1
+      - path: FPS_Rig_01/LArm_IK_Controller_01/Left_IK_Controller
+        weight: 1
+      - path: FPS_Rig_01/LArm_IK_Controller_01/Left_IK_Controller/LWrist_Controller_01
+        weight: 1
+      - path: FPS_Rig_01/RArm_IK_Controller_01
+        weight: 1
+      - path: FPS_Rig_01/RArm_IK_Controller_01/ElbowR_PV_Controller_01
+        weight: 1
+      - path: FPS_Rig_01/RArm_IK_Controller_01/Hand_L_Controllers_02
+        weight: 1
+      - path: FPS_Rig_01/RArm_IK_Controller_01/Hand_L_Controllers_02/RFinger1_Controller_01
+        weight: 1
+      - path: FPS_Rig_01/RArm_IK_Controller_01/Hand_L_Controllers_02/RFinger1_Controller_01/RFinger1_Controller_Base_01
+        weight: 1
+      - path: FPS_Rig_01/RArm_IK_Controller_01/Hand_L_Controllers_02/RFinger1_Controller_01/RFinger1_Controller_Base_01/RFinger1_Controller_Mid_01
+        weight: 1
+      - path: FPS_Rig_01/RArm_IK_Controller_01/Hand_L_Controllers_02/RFinger1_Controller_01/RFinger1_Controller_Base_01/RFinger1_Controller_Mid_01/RFinger1_Controller_Top_01
+        weight: 1
+      - path: FPS_Rig_01/RArm_IK_Controller_01/Hand_L_Controllers_02/RFinger2_Controllers_01
+        weight: 1
+      - path: FPS_Rig_01/RArm_IK_Controller_01/Hand_L_Controllers_02/RFinger2_Controllers_01/RFinger2_Controller_Base_01
+          1
+        weight: 1
+      - path: FPS_Rig_01/RArm_IK_Controller_01/Hand_L_Controllers_02/RFinger2_Controllers_01/RFinger2_Controller_Base_01
+          1/RFinger2_Controller_Mid_01 1
+        weight: 1
+      - path: FPS_Rig_01/RArm_IK_Controller_01/Hand_L_Controllers_02/RFinger2_Controllers_01/RFinger2_Controller_Base_01
+          1/RFinger2_Controller_Mid_01 1/RFinger2_Controller_Top_01 1
+        weight: 1
+      - path: FPS_Rig_01/RArm_IK_Controller_01/Hand_L_Controllers_02/RFinger4_Controllers_01
+        weight: 1
+      - path: FPS_Rig_01/RArm_IK_Controller_01/Hand_L_Controllers_02/RFinger4_Controllers_01/RFinger4_Controller_Base_01
+        weight: 1
+      - path: FPS_Rig_01/RArm_IK_Controller_01/Hand_L_Controllers_02/RFinger4_Controllers_01/RFinger4_Controller_Base_01/RFinger4_Controller_Mid_01
+        weight: 1
+      - path: FPS_Rig_01/RArm_IK_Controller_01/Hand_L_Controllers_02/RFinger4_Controllers_01/RFinger4_Controller_Base_01/RFinger4_Controller_Mid_01/RFinger4_Controller_Top_01
+        weight: 1
+      - path: FPS_Rig_01/RArm_IK_Controller_01/Hand_L_Controllers_02/RFinger_3_Controllers_01
+        weight: 1
+      - path: FPS_Rig_01/RArm_IK_Controller_01/Hand_L_Controllers_02/RFinger_3_Controllers_01/RFinger3_Controller_Base_01
+        weight: 1
+      - path: FPS_Rig_01/RArm_IK_Controller_01/Hand_L_Controllers_02/RFinger_3_Controllers_01/RFinger3_Controller_Base_01/RFinger3_Controller_Mid_01
+        weight: 1
+      - path: FPS_Rig_01/RArm_IK_Controller_01/Hand_L_Controllers_02/RFinger_3_Controllers_01/RFinger3_Controller_Base_01/RFinger3_Controller_Mid_01/RFinger3_Controller_Top_01
+        weight: 1
+      - path: FPS_Rig_01/RArm_IK_Controller_01/Hand_L_Controllers_02/RThumb1_Controllers_01
+        weight: 1
+      - path: FPS_Rig_01/RArm_IK_Controller_01/Hand_L_Controllers_02/RThumb1_Controllers_01/RThumb1_Controller_Base_01
+        weight: 1
+      - path: FPS_Rig_01/RArm_IK_Controller_01/Hand_L_Controllers_02/RThumb1_Controllers_01/RThumb1_Controller_Base_01/RThumb1_Controller_Mid_01
+        weight: 1
+      - path: FPS_Rig_01/RArm_IK_Controller_01/Hand_L_Controllers_02/RThumb1_Controllers_01/RThumb1_Controller_Base_01/RThumb1_Controller_Mid_01/RThumb1_Controller_Top_01
+        weight: 1
+      - path: FPS_Rig_01/RArm_IK_Controller_01/Right_IK_Handle
+        weight: 1
+      - path: FPS_Rig_01/RArm_IK_Controller_01/Right_IK_Handle/RWrist_Controller_01
+        weight: 1
+      - path: FPS_Rig_01/Shotgun_Mesh
+        weight: 1
+      - path: Shoulder_Controller_L_01
+        weight: 1
+      - path: Shoulder_Controller_R_01
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    importBlendShapes: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    splitTangentsAcrossUV: 1
+    normalImportMode: 0
+    tangentImportMode: 1
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    human: []
+    skeleton: []
+    armTwist: .5
+    foreArmTwist: .5
+    upperLegTwist: .5
+    legTwist: .5
+    armStretch: .0500000007
+    legStretch: .0500000007
+    feetSpacing: 0
+    rootMotionBoneName: 
+    hasTranslationDoF: 0
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 1
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

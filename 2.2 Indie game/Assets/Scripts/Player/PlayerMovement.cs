@@ -124,7 +124,7 @@ public class PlayerMovement : MonoBehaviour {
                 if (isRunning)
                 playerAnimation.CrossFade("Run");
             else
-                playerAnimation.CrossFade("Idle");
+                playerAnimation.CrossFade("IdleBreath");
         }
 
 
