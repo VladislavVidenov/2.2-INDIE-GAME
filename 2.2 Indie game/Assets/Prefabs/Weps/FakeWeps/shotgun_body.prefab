@@ -1,22 +1,5 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &145406
-GameObject:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  serializedVersion: 4
-  m_Component:
-  - 4: {fileID: 456830}
-  - 33: {fileID: 3384778}
-  - 23: {fileID: 2301702}
-  m_Layer: 10
-  m_Name: Pistol_Barrel_Mesh
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
 --- !u!1 &168282
 GameObject:
   m_ObjectHideFlags: 0
@@ -28,9 +11,8 @@ GameObject:
   - 33: {fileID: 3320978}
   - 23: {fileID: 2349064}
   - 114: {fileID: 11431950}
-  - 64: {fileID: 6407812}
-  - 64: {fileID: 6485510}
   - 54: {fileID: 5485166}
+  - 64: {fileID: 6488926}
   m_Layer: 10
   m_Name: shotgun_body
   m_TagString: Untagged
@@ -45,48 +27,11 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 168282}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -26.9599991, y: 1.15999997, z: -1.33000004}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children:
-  - {fileID: 456830}
+  m_LocalPosition: {x: -27.1100006, y: .797999978, z: -1.49000001}
+  m_LocalScale: {x: 1.5, y: 1.5, z: 1.5}
+  m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
---- !u!4 &456830
-Transform:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 145406}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 437412}
-  m_RootOrder: 0
---- !u!23 &2301702
-MeshRenderer:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 145406}
-  m_Enabled: 1
-  m_CastShadows: 1
-  m_ReceiveShadows: 1
-  m_Materials:
-  - {fileID: 2100000, guid: 0b7f3421d2039bd40b0216373e7c12bd, type: 2}
-  m_SubsetIndices: 
-  m_StaticBatchRoot: {fileID: 0}
-  m_UseLightProbes: 1
-  m_ReflectionProbeUsage: 1
-  m_ProbeAnchor: {fileID: 0}
-  m_ScaleInLightmap: 1
-  m_PreserveUVs: 0
-  m_ImportantGI: 0
-  m_AutoUVMaxDistance: .5
-  m_AutoUVMaxAngle: 89
-  m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingOrder: 0
 --- !u!23 &2349064
 MeshRenderer:
   m_ObjectHideFlags: 1
@@ -117,14 +62,7 @@ MeshFilter:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 168282}
-  m_Mesh: {fileID: 4300002, guid: bdd541cacf3753442b2d0c276db25e60, type: 3}
---- !u!33 &3384778
-MeshFilter:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 145406}
-  m_Mesh: {fileID: 4300004, guid: bdd541cacf3753442b2d0c276db25e60, type: 3}
+  m_Mesh: {fileID: 4300002, guid: 5bbd0a2f45244ce4caf6fee568c7f1af, type: 3}
 --- !u!54 &5485166
 Rigidbody:
   m_ObjectHideFlags: 1
@@ -140,7 +78,7 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!64 &6407812
+--- !u!64 &6488926
 MeshCollider:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -151,19 +89,7 @@ MeshCollider:
   m_Enabled: 1
   serializedVersion: 2
   m_Convex: 1
-  m_Mesh: {fileID: 4300002, guid: bdd541cacf3753442b2d0c276db25e60, type: 3}
---- !u!64 &6485510
-MeshCollider:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 168282}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Convex: 1
-  m_Mesh: {fileID: 4300004, guid: bdd541cacf3753442b2d0c276db25e60, type: 3}
+  m_Mesh: {fileID: 4300002, guid: 5bbd0a2f45244ce4caf6fee568c7f1af, type: 3}
 --- !u!114 &11431950
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -177,7 +103,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   slotID: 2
   weaponID: 1
-  weaponType: 
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1
