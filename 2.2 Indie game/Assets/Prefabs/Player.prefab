@@ -6624,10 +6624,10 @@ MonoBehaviour:
   animator: {fileID: 0}
   weapon: 0
   currentWeaponMode: 1
-  ammoInClip: 0
-  maxAmmoInClip: 0
-  totalAmmo: 0
-  maxTotalAmmo: 0
+  ammoInClip: 12
+  maxAmmoInClip: 12
+  totalAmmo: 36
+  maxTotalAmmo: 52
   damage: 15
   fireRate: .200000003
   reloadTime: 2

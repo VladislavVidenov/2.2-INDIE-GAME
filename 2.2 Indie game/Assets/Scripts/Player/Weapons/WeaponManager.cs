@@ -30,6 +30,8 @@ public class WeaponManager : MonoBehaviour {
     {
         inventory = new WeaponIndex[3];
         SetSlot(1, 1);
+        
+     
 
     }
 

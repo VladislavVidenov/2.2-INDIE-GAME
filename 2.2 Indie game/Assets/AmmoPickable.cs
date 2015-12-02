@@ -15,7 +15,6 @@ public class AmmoPickable : MonoBehaviour {
     void Start()
     {
         wepManager = FindObjectOfType<WeaponManager>();
-        gameObject.name += " - " + typeOfAmmo.ToString();
     }
 
 	void OnTriggerEnter(Collider hit)
@@ -28,9 +27,10 @@ public class AmmoPickable : MonoBehaviour {
             }
             else if (typeOfAmmo == AmmoType.Shotgun)
             {
-                wepManager.inventory[1].GetComponent<WeaponScript>().totalAmmo += AmmoGiveAmount;
+                wepManager.inventory[1].GetComponent<WeaponScript>().IncreaseTotalAmmo(AmmoGiveAmount);
             }
+            Destroy(gameObject);
         }
-        Destroy(gameObject);
+      
     }
 }

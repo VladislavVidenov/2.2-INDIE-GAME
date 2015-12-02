@@ -5,7 +5,7 @@ public class MeleeEnemyScript : EnemyScript {
 
 	float attackTimer;
 	// Use this for initialization
-	void Start () {
+	override public void Start () {
 		base.Start ();
 		state = AIState.Running;
 	}
@@ -66,4 +66,6 @@ public class MeleeEnemyScript : EnemyScript {
 			state = AIState.Running;
 		}
 	}
+
+
 }

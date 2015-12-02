@@ -36,7 +36,7 @@ public class AIManager : MonoBehaviour {
 		rangedEnemyInCover = 0;
 		rangedRushEnemyShooting = 0;
 		rangedRushEnemyInCover = 0;
-
+        if (meleeEnemies.Count <= 0) return;
 		foreach (MeleeEnemyScript enemy in meleeEnemies) {
 	
 			switch (enemy.state) {

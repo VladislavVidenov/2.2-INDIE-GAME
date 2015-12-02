@@ -73,11 +73,9 @@ public class GameManager : MonoBehaviour {
     
     public int pistolCurrentClipAmmo;
     public int pistolTotalAmmo;
-    public int pistolMaxTotalAmmo;
 
     public int shotgunCurrentClipAmmo;
     public int shotgunTotalAmmo;
-    public int shotgunMaxTotalAmmo;
 
 
     void Awake()
@@ -86,7 +84,6 @@ public class GameManager : MonoBehaviour {
         {
             currentState = GameState.InGame;
             FindGameObjects();
-           
         }
 
         ownedUpgrades = new List<Upgrade>();
@@ -128,7 +125,7 @@ public class GameManager : MonoBehaviour {
 
     public void FindGameObjects() {
 
-        vendingMachine = GameObject.Find("VendingMachine").GetComponent<VendingMachine>();
+        vendingMachine = FindObjectOfType<VendingMachine>();
         pauseMenu = GameObject.Find("PauseMenuManager").GetComponent<PauseMenuScript>();
         coverSpots = FindObjectsOfType<CoverSpotScript>();
         weaponManager = FindObjectOfType<WeaponManager>();
@@ -147,7 +144,7 @@ public class GameManager : MonoBehaviour {
             {
                 curr.ammoInClip = pistolCurrentClipAmmo;
                 curr.totalAmmo = pistolTotalAmmo;
-                curr.maxTotalAmmo = pistolMaxTotalAmmo;
+               
 
             }
             else if (curr.weapon == WeaponScript.Weapons.Shotgun)
@@ -155,7 +152,7 @@ public class GameManager : MonoBehaviour {
 
                 curr.ammoInClip = shotgunCurrentClipAmmo;
                 curr.totalAmmo = shotgunTotalAmmo;
-                curr.maxTotalAmmo = shotgunMaxTotalAmmo;
+               
             }
         }
     }
@@ -168,13 +165,11 @@ public class GameManager : MonoBehaviour {
             {
                 pistolCurrentClipAmmo = curr.ammoInClip;
                 pistolTotalAmmo = curr.totalAmmo;
-                pistolMaxTotalAmmo = curr.maxTotalAmmo;
             }
             else if (curr.weapon == WeaponScript.Weapons.Shotgun)
             { 
                 shotgunCurrentClipAmmo = curr.ammoInClip;
                 shotgunTotalAmmo = curr.totalAmmo;
-                shotgunMaxTotalAmmo = curr.maxTotalAmmo;
             }
         }
     }

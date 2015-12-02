@@ -24,22 +24,22 @@ public class EnemyScript : MonoBehaviour
 	[HideInInspector]
 	public SpawningScript spawner;
 
-	public void Start () {
+	public virtual void Start () {
 		player = GameObject.FindGameObjectWithTag (Tags.player).transform;
         playerHead = player.GetChild(0).transform;
         print(playerHead.name);
 	}
 
-    void Dying()
+    public virtual void Dying()
     {
         //DIE PLEASE!
 		spawner.KillEnemy ();
         player.GetComponent<PlayerScript>().IncreasePlayerStats(0, 0, 20, 0);
-        //DropCredits(creditsDropAmount);
+        DropCredits();
         Destroy(gameObject);
     }
 
-    public void TakeDamage(int amount)
+    public virtual void TakeDamage(int amount)
     {
         health -= amount;
 
@@ -49,8 +49,18 @@ public class EnemyScript : MonoBehaviour
         }
     }
 
-    void DropCredits(int amount)
+    void DropCredits()
     {
-        //instantiate creditsdropprefab?
+        if (Random.Range(0, 2) == 1)
+        {
+            if (Random.Range(0, 2) == 1)
+            {
+                Instantiate(Resources.Load("Pickable-Ammo"), agent.transform.position + (-transform.up), Quaternion.identity);
+            }
+            else
+            {
+                Instantiate(Resources.Load("Pickable-Armor"), agent.transform.position + (-transform.up) , Quaternion.identity);
+            }
+        }
     }
 }
