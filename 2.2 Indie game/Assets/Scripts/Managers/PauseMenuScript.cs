@@ -2,11 +2,21 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine.UI;
+using System.Linq;
 using UnityEngine.EventSystems;
 
 /// <summary>
-/// 1 = leftlane, 2 = middlelane , 3 = rightlane
+/// _1 = leftlane, _2 = middlelane , _3 = rightlane
 /// </summary>
+
+/// Extension on ToggleGroup
+public static class ToggleGroupExtension {
+    public static Toggle GetActive(this ToggleGroup tGroup) {
+        Debug.Log(tGroup.ActiveToggles().FirstOrDefault());
+        return tGroup.ActiveToggles().FirstOrDefault();
+    }
+}
+
 
 public class PauseMenuScript : MonoBehaviour {
     VendingMachine vendingMachine;
@@ -17,6 +27,7 @@ public class PauseMenuScript : MonoBehaviour {
     [SerializeField] GameObject pauseMenu;
     [SerializeField] GameObject upgradeImage;
     [SerializeField] Text upgradeText;
+    [SerializeField] ToggleGroup toggleGroupOne, toggleGroupTwo;
 
     GameObject quit_2;
     GameObject options_2, options_3_Game, options_3_Display, options_3_Audio;
@@ -60,9 +71,13 @@ public class PauseMenuScript : MonoBehaviour {
         if (ownedUpgrades != null) {
             DrawUpgrades();
         }
-        
+
     }
-    public void DeActivatePauseMenu() {
+
+    public void DeactivatePauseMenu() {
+        if (toggleGroupOne.GetActive() != null) toggleGroupOne.GetActive().isOn = false;
+        if (toggleGroupTwo.GetActive() != null) toggleGroupTwo.GetActive().isOn = false;
+
         DisableCurrent_2_Buttons();
         DisableCurrent_3_Buttons();
         pauseMenu.SetActive(false);

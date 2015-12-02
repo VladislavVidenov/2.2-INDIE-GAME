@@ -24,7 +24,7 @@ public class PlayerActionScript : MonoBehaviour {
     void Raycasting() {
         Ray ray = Camera.main.ViewportPointToRay(new Vector3(0.5f, 0.5f, 0));
 
-        print(GameManager.Instance.isWaving);
+
         //    Debug.DrawRay(ray.origin, ray.direction * maxRayDistance, Color.black,2);
         if (Physics.Raycast(ray, out hit, maxRayDistance, layerMask.value))
         {
