@@ -12,7 +12,6 @@ using UnityEngine.EventSystems;
 /// Extension on ToggleGroup
 public static class ToggleGroupExtension {
     public static Toggle GetActive(this ToggleGroup tGroup) {
-        Debug.Log(tGroup.ActiveToggles().FirstOrDefault());
         return tGroup.ActiveToggles().FirstOrDefault();
     }
 }
