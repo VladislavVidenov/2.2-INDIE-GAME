@@ -108,10 +108,21 @@ public class WeaponScript : MonoBehaviour {
         reloadAnimation = GetComponentInParent<Animation>();
         reloadAnimation["PistolReload"].speed = reloadTime / 1.5f;
         crosshairPos = new Rect((Screen.width - crosshairTexture.width) / 2, (Screen.height - crosshairTexture.height) / 2, crosshairTexture.width, crosshairTexture.height);
-       // GetAmmoFromManager(weapon);
+        // GetAmmoFromManager(weapon);
+        UpdateHudValues();
     }
   
     void Update() {
+        if (Input.GetKey(KeyCode.J)) {
+            print("ammoInClip;"     + ammoInClip);
+            print("maxAmmoInClip;"  +maxAmmoInClip);
+            print("totalAmmo;"      +totalAmmo);
+            print("maxTotalAmmo;"   +maxTotalAmmo);
+
+
+        }
+
+
         if (weaponSelected) {
             Aiming();
             SetInaccuracyRange();
@@ -346,7 +357,7 @@ public class WeaponScript : MonoBehaviour {
         hud.AmmoMagLeft = ammoInClip;
         hud.AmmoMagCap = maxAmmoInClip;
         hud.AmmoCarryLeft = totalAmmo;
-        //hud.AmmoCarryCap = ...
+        hud.AmmoCarryCap = maxTotalAmmo;
     }
 
     void Reload() {
@@ -377,7 +388,9 @@ public class WeaponScript : MonoBehaviour {
     void PullOutWeapon() {
         animator.SetBool("PullOutWeapon", true);
         StartCoroutine(waitPullOut(pullOutWeaponTime));
+
     }
+
     IEnumerator waitPullOut(float waittime) {
         yield return new WaitForSeconds(waittime);
         isReloading = false;

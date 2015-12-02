@@ -44,10 +44,12 @@ public class PlayerScript : MonoBehaviour {
     public void ChangeHealth(int amount) {
         health += amount;
         if (health > maxHealth) health = maxHealth;
-        if (health <= 0) { health = 0; Died(); }
 
         hud.PlayerHealth = health;
+
+        if (health <= 0) { health = 0; Died(); }
     }
+
     void UpdateHealthHud() {
         hud.PlayerHealth = health;
         hud.PlayerHealthCap = maxHealth;

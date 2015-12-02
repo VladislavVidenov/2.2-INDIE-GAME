@@ -13,17 +13,22 @@ public class HudScript : MonoBehaviour {
     float playerHealth;
 
     //references to own onscreen items
+    [Header("Health Texts")]
     [SerializeField] Text currentHealthText;
     [SerializeField] Text healthCapText;
-    //[SerializeField] Text ;
 
+    [Header("Ammo Texts")]
+    [SerializeField] Text ammoMagLeftText;
+    [SerializeField] Text ammoMagCapText;
+    [SerializeField] Text ammoCarryLeftText;
+    [SerializeField] Text ammoCarryCapText;
 
     void Start() {
         UpdateHud();
     }
 
     void Update() {
-        if (Input.GetKeyDown(KeyCode.Space)) {
+        if (Input.GetKeyDown(KeyCode.H)) {
             print("ammoCarryCap:    " + ammoCarryCap);
             print("ammoCarryLEft:   " + ammoCarryLeft);
             print("ammoMagCap:      " + ammoMagCap);
@@ -72,12 +77,17 @@ public class HudScript : MonoBehaviour {
     }
 
     void UpdateHealthHud() {
-
+        currentHealthText.text = playerHealth.ToString();
+        healthCapText.text = "/" + playerHealthCap.ToString();
     }
 
 
     void UpdateAmmoHud() {
-
+        ammoMagLeftText.text = ammoMagLeft.ToString();
+        ammoMagCapText.text = "/" + ammoMagCap.ToString();
+        
+        ammoCarryLeftText.text = ammoCarryLeft.ToString();
+        ammoCarryCapText.text = "/" + ammoCarryCap.ToString();
     }
 
 }
