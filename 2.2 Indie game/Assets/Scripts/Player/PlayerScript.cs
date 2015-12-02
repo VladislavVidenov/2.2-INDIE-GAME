@@ -26,7 +26,7 @@ public class PlayerScript : MonoBehaviour {
     Text scrapText;
 
     [Tooltip("Reference to the Ingame HUD")]
-    [SerializeField] HudScript hud;
+    [SerializeField] HudScript inGameHud;
 
     Tool currentTool;
 
@@ -45,14 +45,14 @@ public class PlayerScript : MonoBehaviour {
         health += amount;
         if (health > maxHealth) health = maxHealth;
 
-        hud.PlayerHealth = health;
+        inGameHud.PlayerHealth = health;
 
         if (health <= 0) { health = 0; Died(); }
     }
 
     void UpdateHealthHud() {
-        hud.PlayerHealth = health;
-        hud.PlayerHealthCap = maxHealth;
+        inGameHud.PlayerHealth = health;
+        inGameHud.PlayerHealthCap = maxHealth;
     }
 
     public void TakeDamage(int amount){

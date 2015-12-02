@@ -106,7 +106,7 @@ public class WeaponScript : MonoBehaviour {
         mainCamera = Camera.main;
         weaponCamera = GameObject.FindGameObjectWithTag(Tags.weaponCamera).GetComponent<Camera>();
         reloadAnimation = GetComponentInParent<Animation>();
-        reloadAnimation["PistolReload"].speed = reloadTime / 1.5f;
+
         crosshairPos = new Rect((Screen.width - crosshairTexture.width) / 2, (Screen.height - crosshairTexture.height) / 2, crosshairTexture.width, crosshairTexture.height);
         // GetAmmoFromManager(weapon);
         UpdateHudValues();
@@ -150,6 +150,14 @@ public class WeaponScript : MonoBehaviour {
     public void UpgradeTotalAmmo(int amount)
     {
         maxTotalAmmo += amount;
+    }
+    public void UpgradeReloadTime(float amount)
+    {
+        reloadTime += amount;
+    }
+    public void UpgradeDamage(int amount)
+    {
+        damage += amount;
     }
     public void IncreaseTotalAmmo(int amount)
     {
@@ -263,21 +271,23 @@ public class WeaponScript : MonoBehaviour {
         isShooting = true;
         Vector3 shootDirection = mainCamera.transform.TransformDirection(new Vector3(Random.Range(-0.01f, 0.01f) * inaccuracy, Random.Range(-0.01f, 0.01f) * inaccuracy, 1));
         RaycastHit hit;
-        if (Physics.Raycast(mainCamera.transform.position, shootDirection, out hit, 100f)) {
+        if (Physics.Raycast(mainCamera.transform.position, shootDirection, out hit, 100f))
+        {
 
             Debug.DrawRay(mainCamera.transform.position, shootDirection * Vector3.Distance(mainCamera.transform.position, hit.point), Color.red, 5f);
             hitPoint = hit.point;
-            switch (hit.transform.gameObject.tag) {
+            switch (hit.transform.gameObject.tag)
+            {
                 case Tags.enemy:
                     hit.transform.GetComponentInParent<EnemyScript>().TakeDamage(damage);
                     break;
             }
 
-            if (!hit.transform.CompareTag(Tags.enemy)) {
-                Quaternion decalRotation = Quaternion.FromToRotation(Vector3.up, hit.normal);
-                GameObject go = Instantiate(normalDecal, hitPoint + (hit.normal * 0.01f), decalRotation) as GameObject;
-                go.transform.parent = hit.transform;
-            }
+
+            //Quaternion decalRotation = Quaternion.FromToRotation(Vector3.up, hit.normal);
+            //GameObject go = Instantiate(normalDecal, hitPoint + (hit.normal * 0.1f), decalRotation) as GameObject;
+            //go.transform.parent = hit.transform;
+
 
         }
     }
@@ -313,7 +323,7 @@ public class WeaponScript : MonoBehaviour {
             }
 
             Quaternion decalRotation = Quaternion.FromToRotation(Vector3.up, hit.normal);
-            GameObject go = Instantiate(normalDecal, hitPoint + (hit.normal * 0.01f), decalRotation) as GameObject;
+            GameObject go = Instantiate(normalDecal, hitPoint + (hit.normal * 0.1f), decalRotation) as GameObject;
             go.transform.parent = hit.transform;
             Destroy(go, 2);
         }
@@ -335,6 +345,7 @@ public class WeaponScript : MonoBehaviour {
     #region Reloading 
     IEnumerator ReloadTime(float time) {
         yield return new WaitForSeconds(time);
+        playerMove.SendMessage("SetIsReloading", isReloading);
         int bulletsShot = maxAmmoInClip - ammoInClip;
         int tBCcopy = totalAmmo;
         totalAmmo -= bulletsShot;
@@ -342,7 +353,7 @@ public class WeaponScript : MonoBehaviour {
         int delta = tBCcopy - totalAmmo;
         ammoInClip += delta;
         isReloading = false;
-        playerMove.SendMessage("SetIsReloading", isReloading);
+      
         playerMove.releasedRun = true;//if player still holds run button during reload => start running again.
         UpdateHudValues();
     }
@@ -370,6 +381,7 @@ public class WeaponScript : MonoBehaviour {
             isReloading = true;
             playerMove.SendMessage("SetIsReloading", isReloading); // tell the movement 
             playerMove.isRunning = false;//so we stop running if we run and reload.
+            reloadAnimation["PistolReload"].speed = reloadTime / 1.5f;
             reloadAnimation.CrossFade("PistolReload");
             audioSource.PlayOneShot(reloadSound);
 
