@@ -53,6 +53,12 @@ public class PlayerActionScript : MonoBehaviour {
                 case "Tool":
                     toolManager.CheckTool(hit.transform.GetComponent<Tool>());
                     break;
+
+                case "Engine":
+                    if (Input.GetKeyDown(KeyCode.E)) {
+                        hit.collider.gameObject.GetComponent<EngineScript>().StartEngine();
+                    }
+                    break;
                 //case "EnemyButton":
 
                 //    break;

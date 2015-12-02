@@ -35,7 +35,7 @@ public class SpawningScript : MonoBehaviour {
 
 	//wave types
 	private bool waveSpawn = false;
-	public bool spawn = true;
+	public bool spawn = false;
 	public SpawnTypes spawnType = SpawnTypes.TimedWave;
 	//timed waves
 	public float waveTimer = 30f;
@@ -96,8 +96,6 @@ public class SpawningScript : MonoBehaviour {
                             SpawnEnemy(rangedRushEnemyPrefab);
                         }
                         //spawns an enemy
-
-                        Debug.Log("SPWANWNIF");
                         waveSpawn = false;
                     }
 

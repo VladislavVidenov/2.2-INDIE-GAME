@@ -47,7 +47,7 @@ public class PlayerScript : MonoBehaviour {
 
         inGameHud.PlayerHealth = health;
 
-        if (health <= 0) { health = 0; Died(); }
+        //if (health <= 0) { health = 0; Died(); }
     }
 
     void UpdateHealthHud() {
@@ -63,7 +63,6 @@ public class PlayerScript : MonoBehaviour {
 
     public void Died() {
         sceneManager.SetState(GameState.PlayerDied);
-        mainCamera.GetComponent<Animation>().Play();
         Invoke("Respawn", 2);
     }
 

@@ -30,6 +30,7 @@ public class RangedRushEnemy : EnemyScript {
     void Start() {
         base.Start(); 
         coverSpots = GameManager.Instance.coverSpots;
+      
 		Invoke ("StartFind", 0.1f);
     }
 	void StartFind () {
@@ -37,7 +38,6 @@ public class RangedRushEnemy : EnemyScript {
 	}
 
     void Update() {
-
         if (health < 30 && !inDanger) {
             inDanger = true;
             state = AIState.FindCover;
@@ -97,7 +97,7 @@ public class RangedRushEnemy : EnemyScript {
         RaycastHit hit;
         Vector3 direction = (playerHeadPos.position - enemyHeadPos.position).normalized;
         if (Physics.Raycast(enemyHeadPos.position, direction, out hit, 100f, layer)) {
-            Debug.DrawRay(enemyHeadPos.position, direction * Vector3.Distance(enemyHeadPos.position, hit.point), color);
+    //        Debug.DrawRay(enemyHeadPos.position, direction * Vector3.Distance(enemyHeadPos.position, hit.point), color);
 
             if (hit.collider.CompareTag(Tags.player)) return true;
             else return false;
@@ -111,8 +111,11 @@ public class RangedRushEnemy : EnemyScript {
     void FindCover() {
 
         for (int i = 0; i < coverSpots.Length; i++) {
+
             if (coverSpots[i].CheckCoverSpot(player.transform.position) && coverSpots[i] != previousSpot) {
+
                 float length = Vector3.Distance(player.transform.position, coverSpots[i].gameObject.transform.position);
+
                 if (shortestLength == 0) {
                     shortestLength = length;
                     coverSpot = coverSpots[i];
@@ -125,12 +128,14 @@ public class RangedRushEnemy : EnemyScript {
         }
 
         if (coverSpot != null) {
+
             agent.SetDestination(coverSpot.gameObject.transform.position);
             state = AIState.MovingToCover;
             coverSpot.isTaken = true;
 
             shortestLength = 0;
         }
+
     }
     
     void MovingToCover() {
