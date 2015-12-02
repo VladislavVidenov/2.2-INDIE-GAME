@@ -89,7 +89,7 @@ public class PauseMenuScript : MonoBehaviour {
 
     void DrawUpgrades() {
         foreach (Upgrade upgrade in ownedUpgrades) {
-            GameObject go = Instantiate(upgradeImage, pauseUpgrade.transform.position, Quaternion.identity) as GameObject;
+            GameObject go = Instantiate(upgradeImage, Vector3.zero, Quaternion.identity) as GameObject;
             SetParent(go);
             go.GetComponent<Image>().sprite = upgrade.descriptionImage;
             go.GetComponent<UpgradeImageScript>().text = upgrade.text;
@@ -99,9 +99,13 @@ public class PauseMenuScript : MonoBehaviour {
     }
 
     void SetParent(GameObject child) {
-        child.transform.SetParent(pauseUpgrade.transform);
+        Vector2 upgradeField = pauseUpgrade.GetComponent<RectTransform>().sizeDelta;
 
-        child.transform.position = pauseUpgrade.transform.position - pauseUpgrade.transform.position / 2 + new Vector3( 0 + upgradeCount * xOffset , pauseUpgrade.transform.position.y -5, 0);
+        child.transform.SetParent(pauseUpgrade.transform);
+        print(upgradeField.x + "   " + upgradeField.y);
+        //child.transform.position = pauseUpgrade.transform.position - pauseUpgrade.transform.position / 2 + new Vector3( 0 + upgradeCount * xOffset , pauseUpgrade.transform.position.y -5, 0);
+        child.transform.position = pauseUpgrade.transform.position + new Vector3(-upgradeField.x /2, upgradeField.y / 2, 0);
+
     }
 
     void DisablePauseScreen() {
