@@ -25,6 +25,16 @@ public class RangedRushEnemy : EnemyScript {
 
     bool inDanger = false;
 
+    //try
+    float eyeLightIntensity = 4f;
+    Light eyeLight;
+
+    void Awake() {
+        eyeLight = GetComponentInChildren<Light>();
+        eyeLight.intensity = 0f;
+    }
+    //try
+
 
     // Use this for initialization
     void Start() {
@@ -226,6 +236,8 @@ public class RangedRushEnemy : EnemyScript {
         }
     }
 
+
+
     void ShootRaycast(Vector3 direction) {
         RaycastHit hit;
 
@@ -233,6 +245,10 @@ public class RangedRushEnemy : EnemyScript {
             Debug.DrawRay(enemyHeadPos.position, direction * Vector3.Distance(enemyHeadPos.position, hit.point), Color.green);
             if (hit.collider.CompareTag(Tags.player)) {
                 Debug.Log("i shot u");
+                eyeLight.intensity = 4f;
+                Invoke("DisableEyeLight", 0.5f);
+                SpawnBullet();
+
             }
             else {
                 Debug.Log("i missed u");
@@ -240,4 +256,18 @@ public class RangedRushEnemy : EnemyScript {
         }
     }
 
+    public GameObject bulletPrefab;
+    void SpawnBullet() {
+        GameObject temp = Instantiate(bulletPrefab, this.transform.position, Quaternion.identity) as GameObject;
+        Rigidbody rb = temp.GetComponent<Rigidbody>();
+        temp.transform.LookAt(player.position);
+        rb.AddForce(temp.transform.forward * 0.0007f);
+
+        Destroy(temp, 1f);
+    }
+
+
+    void DisableEyeLight() {
+        eyeLight.intensity = 0f;
+    }
 }

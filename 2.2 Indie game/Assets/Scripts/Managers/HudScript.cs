@@ -12,6 +12,8 @@ public class HudScript : MonoBehaviour {
     int playerHealthCap;
     float playerHealth;
 
+    bool showCrosshair;
+
     //references to own onscreen items
     [Header("Health Texts")]
     [SerializeField] Text currentHealthText;
@@ -68,7 +70,18 @@ public class HudScript : MonoBehaviour {
         get { return playerHealth; }
         set { playerHealth = value; UpdateHealthHud(); }
     }
+
+    public bool ShowCrosshair {
+        get { return showCrosshair; }
+        set { showCrosshair = value; }
+    }
     #endregion "Getters & Setters"
+
+    //if (showCrosshair) {
+    //        if (!isAiming) {
+    //            GUI.DrawTexture(crosshairPos, crosshairTexture);
+    //        }
+    //    }
 
 
     public void UpdateHud() {

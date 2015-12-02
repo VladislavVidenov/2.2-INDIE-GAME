@@ -186,8 +186,10 @@ public class RangedEnemyScript : EnemyScript {
         if (Physics.Raycast(transform.position + transform.up / 3, direction.normalized, out hit, 100f)) {
             Debug.DrawRay(transform.position + transform.up / 3, direction, Color.red);
             if (hit.collider.CompareTag(Tags.player)) {
+
             }
             else {
+
             }
         }
     }

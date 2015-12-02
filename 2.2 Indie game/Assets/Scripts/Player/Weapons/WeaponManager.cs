@@ -26,15 +26,10 @@ public class WeaponManager : MonoBehaviour {
     public WeaponIndex[] inventory;
     WeaponIndex hitWeaponIndex;
 
-    void Start()
-    {
+    void Start() {
         inventory = new WeaponIndex[3];
         SetSlot(1, 1);
-        
-     
-
     }
-
     void OnGUI()
     {
         GUI.contentColor = Color.red;
@@ -112,7 +107,6 @@ public class WeaponManager : MonoBehaviour {
                 {
                     if (isWeaponOwned)
                     {
-                        // Debug.Log("shit happens brah.");
                         //just notify the player that he already owns the weapon
                         //-->maybe replace ? to do.
                     }

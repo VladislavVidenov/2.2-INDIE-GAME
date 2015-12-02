@@ -9,7 +9,7 @@ public class WeaponScript : MonoBehaviour {
     PlayerMovement playerMove;
     [SerializeField] GameObject head;
     [SerializeField] Transform muzzleTransform;
-    [SerializeField] HudScript hud;
+    [SerializeField] HudScript inGameHud;
 
     [HideInInspector] public Animator animator;
     Animation reloadAnimation;
@@ -365,10 +365,10 @@ public class WeaponScript : MonoBehaviour {
     }
 
     void UpdateHudValues() {
-        hud.AmmoMagLeft = ammoInClip;
-        hud.AmmoMagCap = maxAmmoInClip;
-        hud.AmmoCarryLeft = totalAmmo;
-        hud.AmmoCarryCap = maxTotalAmmo;
+        inGameHud.AmmoMagLeft = ammoInClip;
+        inGameHud.AmmoMagCap = maxAmmoInClip;
+        inGameHud.AmmoCarryLeft = totalAmmo;
+        inGameHud.AmmoCarryCap = maxTotalAmmo;
     }
 
     void Reload() {
@@ -409,12 +409,14 @@ public class WeaponScript : MonoBehaviour {
         animator.SetBool("PullOutWeapon", false);
         weaponSelected = true;
         showCrosshair = true;
+        inGameHud.ShowCrosshair = true;
     }
 
     void HolsterWeapon() {
         //  Debug.Log("HolsterWeapon called!");
         weaponSelected = false;
         showCrosshair = false;
+        inGameHud.ShowCrosshair = false;
     }
 
     void RecoilEffect() {

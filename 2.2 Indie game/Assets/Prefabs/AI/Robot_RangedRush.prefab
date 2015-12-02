@@ -453,6 +453,7 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 488020}
+  - 108: {fileID: 10801490}
   m_Layer: 13
   m_Name: HeadPos (2)
   m_TagString: Untagged
@@ -1466,7 +1467,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 141104}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -15.3282776, y: 1, z: -43.6306458}
+  m_LocalPosition: {x: 50, y: 10, z: 50}
   m_LocalScale: {x: .75, y: .75, z: .75}
   m_Children:
   - {fileID: 488020}
@@ -1598,7 +1599,7 @@ Transform:
   m_GameObject: {fileID: 149806}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: .0390000008, y: .824000001, z: .128000006}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 1, y: 1, z: 1.39476299}
   m_Children: []
   m_Father: {fileID: 475674}
   m_RootOrder: 0
@@ -1780,6 +1781,38 @@ Animator:
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
+--- !u!108 &10801490
+Light:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 149806}
+  m_Enabled: 1
+  serializedVersion: 6
+  m_Type: 2
+  m_Color: {r: 0, g: 1, b: .0896551609, a: 1}
+  m_Intensity: 0
+  m_Range: .200000003
+  m_SpotAngle: 1
+  m_CookieSize: 10
+  m_Shadows:
+    m_Type: 0
+    m_Resolution: -1
+    m_Strength: 1
+    m_Bias: .0500000007
+    m_NormalBias: .400000006
+  m_Cookie: {fileID: 0}
+  m_DrawHalo: 1
+  m_Flare: {fileID: 0}
+  m_RenderMode: 0
+  m_CullingMask:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_Lightmapping: 4
+  m_BounceIntensity: 1.75
+  m_ShadowRadius: 0
+  m_ShadowAngle: 0
+  m_AreaSize: {x: 1, y: 1}
 --- !u!114 &11469160
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1815,6 +1848,7 @@ MonoBehaviour:
     m_Bits: 4294959103
   attackTime: 2
   attackRotationSpeed: 5
+  bulletPrefab: {fileID: 184856, guid: 8182db3bab065334ba7303254504be7d, type: 2}
 --- !u!114 &11482808
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1990,6 +2024,18 @@ Prefab:
       propertyPath: m_UseGravity
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: m_UseLightProbes
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: m_ProbeAnchor
+      value: 
+      objectReference: {fileID: 475674}
+    - target: {fileID: 0}
+      propertyPath: bulletPrefab
+      value: 
+      objectReference: {fileID: 184856, guid: 8182db3bab065334ba7303254504be7d, type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
   m_RootGameObject: {fileID: 141104}
