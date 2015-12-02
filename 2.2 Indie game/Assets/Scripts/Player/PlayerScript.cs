@@ -16,6 +16,15 @@ public class PlayerScript : MonoBehaviour {
     int hammerUpgBoost;
     int wrenchUpgBoost;
 
+    int regenRate = 5;
+    float timeNotHit;
+    float regenAmount;
+
+    [SerializeField] Image hp75;
+    [SerializeField] Image hp50;
+    [SerializeField] Image hp25;
+    [SerializeField] Image hitIndicator;
+
 
     Camera mainCamera;
 
@@ -41,6 +50,30 @@ public class PlayerScript : MonoBehaviour {
         UpdateHealthHud();
     }
 
+    void Update() {
+        RegenLife();
+        DeathHud();
+    }
+
+    void DeathHud() {
+        hp75.color = new Color(1, 1, 1, ((float)maxHealth - (float)health) / 25);
+        hp50.color = new Color(1, 1, 1, ((float)75 - (float)health) / 25);
+        hp25.color = new Color(1, 1, 1, ((float)50 - (float)health) / 25);
+    }
+
+    void RegenLife() {
+        timeNotHit += Time.deltaTime;
+
+        if (timeNotHit > 2) {
+            regenAmount += 0.2f;
+            if (regenAmount >= 1f) {
+                ChangeHealth(1);
+                regenAmount = 0;
+            }
+        }
+
+    }
+
     public void ChangeHealth(int amount) {
         health += amount;
         if (health > maxHealth) health = maxHealth;
@@ -50,6 +83,16 @@ public class PlayerScript : MonoBehaviour {
         //if (health <= 0) { health = 0; Died(); }
     }
 
+    public void ShowHitCircle(RaycastHit hit) {
+    //    hit.no
+
+        Vector3 direction = Camera.main.WorldToScreenPoint(hit.normal);
+        print(direction);
+        hitIndicator.transform.rotation = Quaternion.Euler(0,0,  Quaternion.LookRotation(hit.normal).z);
+        
+    }
+
+
     void UpdateHealthHud() {
         inGameHud.PlayerHealth = health;
         inGameHud.PlayerHealthCap = maxHealth;
@@ -57,6 +100,7 @@ public class PlayerScript : MonoBehaviour {
 
     public void TakeDamage(int amount){
 		ChangeHealth (-amount);
+        timeNotHit = 0;
 		// show direction
 		//knockback?
 	}
@@ -101,7 +145,6 @@ public class PlayerScript : MonoBehaviour {
 
     public void IncreasePlayerStats(int pHealth, int pMaxHealth, int pScrap, int pElectronics) {
         if(pScrap>0) IncreaseScrapHud(pScrap);
-        Debug.Log(scrap);
         maxHealth += pMaxHealth;
         health += pHealth;
         scrap += pScrap + scrapBoost;

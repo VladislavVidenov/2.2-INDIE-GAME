@@ -49,8 +49,6 @@ public class SpawningScript : MonoBehaviour {
 
 	AIManager manager;
 
-
-
 	void Start () {
 		manager = GameObject.FindGameObjectWithTag (Tags.aiManager).GetComponent<AIManager>();
 		SpawnID = Random.Range (1, 500);
@@ -58,7 +56,7 @@ public class SpawningScript : MonoBehaviour {
 	}
 
 	void Update () {
-
+        Debug.Log(spawn);
         
 
 		if (spawn) {
