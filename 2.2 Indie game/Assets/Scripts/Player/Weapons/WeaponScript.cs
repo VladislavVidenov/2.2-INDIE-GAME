@@ -37,6 +37,7 @@ public class WeaponScript : MonoBehaviour
     public int maxTotalAmmo;
     //Used for shotgun
     public float shotgunPelletsPerShot = 5;
+    public float weaponRange;
     public int damage;
     public float fireRate;
     public float reloadTime;
@@ -324,7 +325,7 @@ public class WeaponScript : MonoBehaviour
         isShooting = true;
         Vector3 shootDirection = mainCamera.transform.TransformDirection(new Vector3(Random.Range(-0.01f, 0.01f) * inaccuracy, Random.Range(-0.01f, 0.01f) * inaccuracy, 1));
         RaycastHit hit;
-        if (Physics.Raycast(mainCamera.transform.position, shootDirection, out hit, 100f))
+        if (Physics.Raycast(mainCamera.transform.position, shootDirection, out hit, weaponRange))
         {
 
             Debug.DrawRay(mainCamera.transform.position, shootDirection * Vector3.Distance(mainCamera.transform.position, hit.point), Color.red, 5f);
@@ -368,7 +369,7 @@ public class WeaponScript : MonoBehaviour
         Vector3 shootDirection = mainCamera.transform.TransformDirection(new Vector3(Random.Range(-0.01f, 0.01f) * inaccuracy, Random.Range(-0.01f, 0.01f) * inaccuracy, 1));
         RaycastHit hit;
         // Debug.DrawRay(mainCamera.transform.position, shootDirection * 100f, Color.green, 5);
-        if (Physics.Raycast(mainCamera.transform.position, shootDirection, out hit, 100f))
+        if (Physics.Raycast(mainCamera.transform.position, shootDirection, out hit, weaponRange))
         {
             Debug.DrawRay(mainCamera.transform.position, shootDirection * Vector3.Distance(mainCamera.transform.position, hit.point), Color.red, 5f);
             hitPoint = hit.point;
