@@ -12,22 +12,26 @@ public class EnemyScript : MonoBehaviour
     public AIState state;
 
     [Header("General")]
-    [SerializeField] int health;
+    public int health;
     [SerializeField] int creditsDropAmount = 5;
 	
 
     public NavMeshAgent agent;
 	[HideInInspector]
     public Transform player; //target
-    public Transform playerHead;
+    public Transform playerHeadPos;
+
+    public Transform enemyHeadPos;
 
 	[HideInInspector]
 	public SpawningScript spawner;
 
+    public LayerMask layer;
+
 	public virtual void Start () {
 		player = GameObject.FindGameObjectWithTag (Tags.player).transform;
-        playerHead = player.GetChild(0).transform;
-        print(playerHead.name);
+        playerHeadPos = player.GetChild(0).transform;
+        enemyHeadPos = agent.gameObject.transform.GetChild(0).transform;
 	}
 
     public virtual void Dying()

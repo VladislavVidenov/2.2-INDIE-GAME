@@ -29,7 +29,7 @@ public class CoverSpotScript : MonoBehaviour {
 		RaycastHit hit;
 		Vector3 direction = target - this.transform.position;
 
-		if (Physics.Raycast (this.transform.position, direction, out hit)) {
+		if (Physics.Raycast (this.transform.position, direction, out hit,100f, layer)) {
 			if (hit.collider.CompareTag (Tags.player)) {
 				return false;
 			} else {
@@ -40,18 +40,8 @@ public class CoverSpotScript : MonoBehaviour {
 		}
 	}
 
-	private bool checkIftaken()
-	{
+    private bool checkIftaken() {
         return isTaken;
-        //if (Physics.CheckSphere(transform.position, 0.1f, layer))
-        //{
-        //    return true;
-        //}
-        //else
-        //{
-        //    return false;
-        //}
-		
-	}
+    }
 
 }

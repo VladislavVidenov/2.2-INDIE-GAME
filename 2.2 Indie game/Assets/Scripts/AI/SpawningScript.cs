@@ -113,7 +113,6 @@ public class SpawningScript : MonoBehaviour {
                             waveSpawn = true;
                             //increase the number of waves
                             numWaves++;
-                            print(numWaves);
 
                         }
                     }

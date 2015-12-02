@@ -23,6 +23,9 @@ public class RangedRushEnemy : EnemyScript {
     bool crouching = false;
     bool doAction = false;
 
+    bool inDanger = false;
+
+
     // Use this for initialization
     void Start() {
         base.Start(); 
@@ -34,6 +37,11 @@ public class RangedRushEnemy : EnemyScript {
 	}
 
     void Update() {
+
+        if (health < 30 && !inDanger) {
+            inDanger = true;
+            state = AIState.FindCover;
+        }
 
         switch (state) {
             case AIState.Shooting:
@@ -55,28 +63,49 @@ public class RangedRushEnemy : EnemyScript {
     }
 
     void Shooting() {
+        
         agent.Stop();
         agent.updateRotation = false;
         this.transform.rotation = Quaternion.RotateTowards(this.transform.rotation, Quaternion.LookRotation(player.transform.position - this.transform.position), attackRotationSpeed);
         Shoot();
 
-        if (Vector3.Distance(agent.transform.position, player.transform.position) > 15) {
-            state = AIState.FindCover;
+        if (!DoISeePlayer(Color.white)) {
+            if (Random.Range(0, 2) == 1) {
+                state = AIState.Flank;
+            }
+            else {
+                state = AIState.FindCover;
+            }
         }
     }
 
     void Flank() {
         agent.Resume();
         agent.SetDestination(player.transform.position);
-        Shoot();
-
+       
         RaycastHit hit;
-        Vector3 direction = player.transform.position - this.transform.position;
+        Vector3 direction = playerHeadPos.position - enemyHeadPos.position;
         if (Physics.Raycast(agent.transform.position - (agent.transform.up/2), direction, out hit, 100f)) {
             if (hit.collider.CompareTag(Tags.player)) {
                 state = AIState.Shooting;
             }
         }
+    }
+
+    bool DoISeePlayer(Color color) {
+        if (color == null) color = Color.red;
+        RaycastHit hit;
+        Vector3 direction = (playerHeadPos.position - enemyHeadPos.position).normalized;
+        if (Physics.Raycast(enemyHeadPos.position, direction, out hit, 100f, layer)) {
+            Debug.DrawRay(enemyHeadPos.position, direction * Vector3.Distance(enemyHeadPos.position, hit.point), color);
+
+            if (hit.collider.CompareTag(Tags.player)) return true;
+            else return false;
+        }
+        else {
+            return false;
+        }
+    
     }
 
     void FindCover() {
@@ -102,7 +131,6 @@ public class RangedRushEnemy : EnemyScript {
 
             shortestLength = 0;
         }
-
     }
     
     void MovingToCover() {
@@ -116,64 +144,44 @@ public class RangedRushEnemy : EnemyScript {
 		} else if (!coverSpot.checkIfSafe (player.transform.position)) {
 			state = AIState.FindCover;
 		}
-
-		
-
 	}
 
     void InCover() {
-
-        changeCoverTimer += Time.deltaTime;
-        
         agent.updateRotation = false;
-        if (!crouching) {
-            this.transform.rotation = Quaternion.RotateTowards(this.transform.rotation, Quaternion.LookRotation(player.transform.position - this.transform.position), attackRotationSpeed);
-            Shoot();
-            if (!doAction) StartCoroutine(StartCrouching());
-        }
-        else if (crouching) {
+
+       // changeCoverTimer += Time.deltaTime;
+
+        if (crouching) {
+            if (DoISeePlayer(Color.yellow)) {
+
+                state = AIState.Shooting;
+
+            }
             if (!doAction) StartCoroutine(StopCrouching(true));
         }
-
-
-        //RaycastHit hit;
-        //Vector3 direction = agent.transform.position - player.transform.position;
-        //Debug.DrawRay(player.transform.position - player.transform.up, direction * 100f, Color.cyan);
-        //if (Physics.Raycast(player.transform.position - player.transform.up, direction, out hit, 100f)) {
-        //    if (hit.collider.CompareTag(Tags.enemy)) {
-        //        state = AIState.Shooting;
-        //    }
-        //}
-    //    changeCoverTimer += Time.deltaTime;
-
-        RaycastHit hit2;
-        Vector3 eyePos = (agent.transform.position + agent.transform.up);
-        Vector3 direction2 = (playerHead.position - eyePos).normalized;
-       
-        if (Physics.Raycast(eyePos, direction2, out hit2, 100f)) {
-            Debug.DrawRay(eyePos, direction2 * Vector3.Distance(eyePos,hit2.point), Color.blue);
-            print(hit2.collider.gameObject.name);
-            if (!hit2.collider.CompareTag(Tags.player)) {
-                //print(playerNotSeenTimer);
+        else if (!crouching) {
+            if (DoISeePlayer(Color.blue)) {
+                playerNotSeenTimer = 0;
+                Shoot();
+            } else if (!inDanger) {
                 playerNotSeenTimer += Time.deltaTime;
                 if (playerNotSeenTimer > 10) {
                     state = AIState.Flank;
-                    playerNotSeenTimer =0;
                 }
             }
+
+            if (!doAction) StartCoroutine(StartCrouching());
         }
 
-        if (changeCoverTimer > 5) {
-            changeCoverTimer = 0;
-            if (Random.Range(0, 3) == 0) {
-                previousSpot = coverSpot;
-                coverSpot.isTaken = false;
-                state = AIState.FindCover;
-            }
-        }
+        //if (changeCoverTimer > 5) {
+        //    changeCoverTimer = 0;
+        //    if (Random.Range(0, 3) == 0) {
+        //        previousSpot = coverSpot;
+        //        coverSpot.isTaken = false;
+        //        state = AIState.FindCover;
+        //    }
+        //}
 
-      
-    
         agent.Stop();
     }
     
@@ -201,15 +209,14 @@ public class RangedRushEnemy : EnemyScript {
     }
 
     void Shoot() {
-        Vector3 direction = player.transform.position - this.transform.position;
-        direction += new Vector3(Random.Range(-1f, 1f), Random.Range(-1f, 1f), Random.Range(-1f, 1f));
+
         if (Time.time - attackTimer > attackTime) {
-            RaycastHit hit;
-            if (Physics.Raycast(agent.transform.position, direction, out hit, 100f)) {
-                if (hit.collider.CompareTag(Tags.player)) {
-                    ShootRaycast(direction);
-                    attackTimer = Time.time;
-                }
+            if (DoISeePlayer(Color.black)) {
+                Vector3 direction = playerHeadPos.position - enemyHeadPos.position;
+                direction += new Vector3(Random.Range(-1f, 1f), Random.Range(-1f, 1f), Random.Range(-1f, 1f));
+
+                ShootRaycast(direction);
+                attackTimer = Time.time;
             }
         }
     }
@@ -217,8 +224,8 @@ public class RangedRushEnemy : EnemyScript {
     void ShootRaycast(Vector3 direction) {
         RaycastHit hit;
 
-        if (Physics.Raycast(transform.position + transform.up / 3, direction.normalized, out hit, 100f)) {
-            Debug.DrawRay(transform.position + transform.up / 3, direction, Color.red);
+        if (Physics.Raycast(enemyHeadPos.position , direction.normalized, out hit, 100f)) {
+            Debug.DrawRay(enemyHeadPos.position, direction * Vector3.Distance(enemyHeadPos.position, hit.point), Color.green);
             if (hit.collider.CompareTag(Tags.player)) {
                 Debug.Log("i shot u");
             }
