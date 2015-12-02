@@ -77,7 +77,7 @@ public class SceneChangeManager : MonoBehaviour {
                 GameManager.Instance.vendingMachine.DeActivateStation();
                 break;
             case GameState.InPauseMenu:
-                GameManager.Instance.pauseMenu.DeActivatePauseMenu();
+                GameManager.Instance.pauseMenu.DeactivatePauseMenu();
                 break;
             case GameState.PlayerDied:
                 break;
