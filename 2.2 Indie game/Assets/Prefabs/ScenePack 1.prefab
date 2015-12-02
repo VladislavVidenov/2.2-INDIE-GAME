@@ -994,6 +994,23 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!1 &119670
+GameObject:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 4
+  m_Component:
+  - 224: {fileID: 22480378}
+  - 222: {fileID: 22252006}
+  - 114: {fileID: 11443272}
+  m_Layer: 5
+  m_Name: 75Hp
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
 --- !u!1 &119730
 GameObject:
   m_ObjectHideFlags: 1
@@ -2298,6 +2315,23 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!1 &145578
+GameObject:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 4
+  m_Component:
+  - 224: {fileID: 22432190}
+  - 222: {fileID: 22256290}
+  - 114: {fileID: 11439750}
+  m_Layer: 5
+  m_Name: 25Hp
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
 --- !u!1 &145708
 GameObject:
   m_ObjectHideFlags: 0
@@ -3443,6 +3477,23 @@ GameObject:
   - 114: {fileID: 11476622}
   m_Layer: 5
   m_Name: WeaponUpgradesButton
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!1 &169592
+GameObject:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 4
+  m_Component:
+  - 224: {fileID: 22428904}
+  - 222: {fileID: 22209548}
+  - 114: {fileID: 11478266}
+  m_Layer: 5
+  m_Name: 50Hp
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -6233,7 +6284,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 192822}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 49.4000015, y: 4.63999987, z: 55.6199989}
+  m_LocalPosition: {x: 29.3700008, y: 9.98999977, z: 48.1100006}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 414208}
@@ -8506,6 +8557,7 @@ MonoBehaviour:
   maxAmmoInClip: 0
   totalAmmo: 0
   maxTotalAmmo: 0
+  shotgunPelletsPerShot: 5
   damage: 15
   fireRate: .5
   reloadTime: 2
@@ -8513,6 +8565,14 @@ MonoBehaviour:
   aimPosition: {x: -.0900000036, y: .0274999999, z: -.100000001}
   aimingFOV: 40
   normalFOV: 60
+  minInaccStandHip: 5
+  minInaccCrouchHip: 4.5
+  minInaccStandAim: 1.29999995
+  minInaccCrouchAim: 1
+  maxInaccStandHip: 6
+  maxInaccCrouchHip: 5
+  maxInaccStandAim: 3
+  maxInaccCrouchAim: 1.5
   dryFireSound: {fileID: 8300000, guid: cdfa13deb02ab7047a288843c8b51202, type: 3}
   reloadSound: {fileID: 8300000, guid: f5665b51f15a29f408f36094524c51aa, type: 3}
   fireSound: {fileID: 8300000, guid: ea8d17b9cab6bd54d96aa29f2114c9bf, type: 3}
@@ -8585,6 +8645,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6392295c164b25241b7c9f3eb699b4d2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  hp75: {fileID: 11443272}
+  hp50: {fileID: 11478266}
+  hp25: {fileID: 11439750}
+  hitIndicator: {fileID: 0}
   scrapHud: {fileID: 144310}
   inGameHud: {fileID: 11415774}
 --- !u!114 &11402098
@@ -9529,6 +9593,7 @@ MonoBehaviour:
   maxAmmoInClip: 0
   totalAmmo: 0
   maxTotalAmmo: 0
+  shotgunPelletsPerShot: 5
   damage: 15
   fireRate: .5
   reloadTime: 2
@@ -9536,6 +9601,14 @@ MonoBehaviour:
   aimPosition: {x: -.0900000036, y: .0274999999, z: -.100000001}
   aimingFOV: 40
   normalFOV: 60
+  minInaccStandHip: 5
+  minInaccCrouchHip: 4.5
+  minInaccStandAim: 1.29999995
+  minInaccCrouchAim: 1
+  maxInaccStandHip: 6
+  maxInaccCrouchHip: 5
+  maxInaccStandAim: 3
+  maxInaccCrouchAim: 1.5
   dryFireSound: {fileID: 8300000, guid: cdfa13deb02ab7047a288843c8b51202, type: 3}
   reloadSound: {fileID: 8300000, guid: f5665b51f15a29f408f36094524c51aa, type: 3}
   fireSound: {fileID: 8300000, guid: ea8d17b9cab6bd54d96aa29f2114c9bf, type: 3}
@@ -10339,6 +10412,33 @@ MonoBehaviour:
   m_FillAmount: 1
   m_FillClockwise: 1
   m_FillOrigin: 0
+--- !u!114 &11439750
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 145578}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: -765806418, guid: f5f67c52d1564df4a8936ccd202a3bd8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
+      Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+  m_Sprite: {fileID: 21300000, guid: 163a0eb5af5f3514d9053175e77a822f, type: 3}
+  m_Type: 0
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
 --- !u!114 &11440396
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -10399,6 +10499,33 @@ MonoBehaviour:
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_Sprite: {fileID: 0}
   m_Type: 1
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+--- !u!114 &11443272
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 119670}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: -765806418, guid: f5f67c52d1564df4a8936ccd202a3bd8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
+      Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+  m_Sprite: {fileID: 21300000, guid: 754060c1e3684e14997e9d1c62e979f4, type: 3}
+  m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 4
@@ -10510,13 +10637,22 @@ MonoBehaviour:
   maxAmmoInClip: 12
   totalAmmo: 36
   maxTotalAmmo: 52
-  damage: 15
+  shotgunPelletsPerShot: 5
+  damage: 30
   fireRate: .200000003
   reloadTime: 2
   pullOutWeaponTime: .5
   aimPosition: {x: -.0895000026, y: .0315000005, z: -.100000001}
   aimingFOV: 40
   normalFOV: 60
+  minInaccStandHip: 5
+  minInaccCrouchHip: 4.5
+  minInaccStandAim: 1.29999995
+  minInaccCrouchAim: 1
+  maxInaccStandHip: 6
+  maxInaccCrouchHip: 5
+  maxInaccStandAim: 3
+  maxInaccCrouchAim: 1.5
   dryFireSound: {fileID: 8300000, guid: cdfa13deb02ab7047a288843c8b51202, type: 3}
   reloadSound: {fileID: 8300000, guid: f5665b51f15a29f408f36094524c51aa, type: 3}
   fireSound: {fileID: 8300000, guid: ea8d17b9cab6bd54d96aa29f2114c9bf, type: 3}
@@ -11496,7 +11632,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   weaponPrefabs:
   - {fileID: 5491178, guid: cc629d93486c89048a999ed4751d8f33, type: 2}
-  - {fileID: 5491178, guid: 8c6f5943a7c003847ad4f20f0de6093e, type: 2}
+  - {fileID: 0}
   - {fileID: 5485166, guid: 3eb23c3e2a142154ea40cd0832959876, type: 2}
   weaponsOnPlayer:
   - {fileID: 162918}
@@ -11940,6 +12076,33 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 2560
   guiSkin: {fileID: 11400000, guid: 3fb136ef28a73474780f5f1367338ab1, type: 2}
+--- !u!114 &11478266
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 169592}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: -765806418, guid: f5f67c52d1564df4a8936ccd202a3bd8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
+      Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+  m_Sprite: {fileID: 21300000, guid: aed68663428403343a46ce92a623c95e, type: 3}
+  m_Type: 0
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
 --- !u!114 &11479670
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -12935,6 +13098,7 @@ MonoBehaviour:
   maxAmmoInClip: 0
   totalAmmo: 0
   maxTotalAmmo: 0
+  shotgunPelletsPerShot: 5
   damage: 15
   fireRate: .5
   reloadTime: 2
@@ -12942,6 +13106,14 @@ MonoBehaviour:
   aimPosition: {x: -.0900000036, y: .0274999999, z: -.100000001}
   aimingFOV: 40
   normalFOV: 60
+  minInaccStandHip: 5
+  minInaccCrouchHip: 4.5
+  minInaccStandAim: 1.29999995
+  minInaccCrouchAim: 1
+  maxInaccStandHip: 6
+  maxInaccCrouchHip: 5
+  maxInaccStandAim: 3
+  maxInaccCrouchAim: 1.5
   dryFireSound: {fileID: 8300000, guid: cdfa13deb02ab7047a288843c8b51202, type: 3}
   reloadSound: {fileID: 8300000, guid: f5665b51f15a29f408f36094524c51aa, type: 3}
   fireSound: {fileID: 8300000, guid: ea8d17b9cab6bd54d96aa29f2114c9bf, type: 3}
@@ -13348,6 +13520,12 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 140538}
+--- !u!222 &22209548
+CanvasRenderer:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 169592}
 --- !u!222 &22211138
 CanvasRenderer:
   m_ObjectHideFlags: 1
@@ -13492,6 +13670,12 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 173624}
+--- !u!222 &22252006
+CanvasRenderer:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 119670}
 --- !u!222 &22254778
 CanvasRenderer:
   m_ObjectHideFlags: 1
@@ -13504,6 +13688,12 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 165626}
+--- !u!222 &22256290
+CanvasRenderer:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 145578}
 --- !u!222 &22257636
 CanvasRenderer:
   m_ObjectHideFlags: 1
@@ -14355,6 +14545,23 @@ RectTransform:
   m_AnchoredPosition: {x: 217.600006, y: -143.699997}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: .5, y: .5}
+--- !u!224 &22428904
+RectTransform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 169592}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 22469170}
+  m_RootOrder: 6
+  m_AnchorMin: {x: .5, y: .5}
+  m_AnchorMax: {x: .5, y: .5}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 800, y: 452}
+  m_Pivot: {x: .5, y: .5}
 --- !u!224 &22430138
 RectTransform:
   m_ObjectHideFlags: 1
@@ -14406,6 +14613,23 @@ RectTransform:
   m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 10, y: 1}
+  m_Pivot: {x: .5, y: .5}
+--- !u!224 &22432190
+RectTransform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 145578}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 22469170}
+  m_RootOrder: 5
+  m_AnchorMin: {x: .5, y: .5}
+  m_AnchorMax: {x: .5, y: .5}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 800, y: 452}
   m_Pivot: {x: .5, y: .5}
 --- !u!224 &22432262
 RectTransform:
@@ -15098,6 +15322,9 @@ RectTransform:
   - {fileID: 22464260}
   - {fileID: 22408842}
   - {fileID: 22442324}
+  - {fileID: 22432190}
+  - {fileID: 22428904}
+  - {fileID: 22480378}
   m_Father: {fileID: 432684}
   m_RootOrder: 0
   m_AnchorMin: {x: 0, y: 0}
@@ -15329,6 +15556,23 @@ RectTransform:
   m_AnchorMax: {x: .5, y: .5}
   m_AnchoredPosition: {x: -258.899994, y: 87.2000351}
   m_SizeDelta: {x: 100, y: 100}
+  m_Pivot: {x: .5, y: .5}
+--- !u!224 &22480378
+RectTransform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 119670}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 22469170}
+  m_RootOrder: 7
+  m_AnchorMin: {x: .5, y: .5}
+  m_AnchorMax: {x: .5, y: .5}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 800, y: 452}
   m_Pivot: {x: .5, y: .5}
 --- !u!224 &22480520
 RectTransform:
