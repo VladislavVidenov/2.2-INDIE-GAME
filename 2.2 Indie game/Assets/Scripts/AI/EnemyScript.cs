@@ -37,7 +37,7 @@ public class EnemyScript : MonoBehaviour
     public virtual void Dying()
     {
         //DIE PLEASE!
-		spawner.KillEnemy ();
+        if (spawner != null) spawner.KillEnemy ();
         player.GetComponent<PlayerScript>().IncreasePlayerStats(0, 0, 20, 0);
         DropCredits();
         Destroy(gameObject);
