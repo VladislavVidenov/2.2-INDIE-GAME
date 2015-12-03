@@ -42,7 +42,7 @@ GameObject:
   m_Layer: 2
   m_Name: Spawning
   m_TagString: Untagged
-  m_Icon: {fileID: 0}
+  m_Icon: {fileID: 2800000, guid: abfbf5df61e075e479c630654ddb0e36, type: 3}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
@@ -57,7 +57,7 @@ GameObject:
   m_Layer: 2
   m_Name: Spawn1
   m_TagString: Untagged
-  m_Icon: {fileID: 0}
+  m_Icon: {fileID: 2800000, guid: 9540fe2bc0988fc4a868438d9445b679, type: 3}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
@@ -68,7 +68,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 178888}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: .899999976, y: 1.79999995, z: 0}
+  m_LocalPosition: {x: -24.8400002, y: .589999974, z: -1}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 467798}
@@ -80,7 +80,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 108058}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 16.7999992, y: 0, z: 2.4000001}
+  m_LocalPosition: {x: -.730000019, y: .25999999, z: 57.2999992}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 467798}
@@ -92,7 +92,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 176240}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -7.80000019, y: 0, z: 1}
+  m_LocalPosition: {x: -3.16000009, y: 0, z: -.949999988}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 467798}
@@ -104,7 +104,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 177690}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -22.8999996, y: 0, z: -37.4700012}
+  m_LocalPosition: {x: 43.3300018, y: 11.6599998, z: 18.9200001}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 417240}
@@ -125,11 +125,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   waves:
   - meleeEnemy: 3
-    rangedEnemy: 3
-    rangedRushEnemy: 3
-  - meleeEnemy: 2
-    rangedEnemy: 2
-    rangedRushEnemy: 2
+    rangedEnemy: 0
+    rangedRushEnemy: 6
+  - meleeEnemy: 3
+    rangedEnemy: 0
+    rangedRushEnemy: 6
   spawnPoints:
   - {fileID: 417240}
   - {fileID: 454218}
@@ -138,8 +138,7 @@ MonoBehaviour:
   rangedEnemyPrefab: {fileID: 115192, guid: a6f94ea2312f5e94c8bff7b5288c770e, type: 2}
   rangedRushEnemyPrefab: {fileID: 141104, guid: 9805f624e791877479bf75f6d0832107,
     type: 2}
-  totalEnemy: 10
-  spawn: 1
+  spawn: 0
   spawnType: 1
   waveTimer: 5
   timeBetweenWaves: 10
