@@ -9,14 +9,14 @@ GameObject:
   m_Component:
   - 4: {fileID: 462420}
   - 33: {fileID: 3337988}
-  - 65: {fileID: 6547312}
   - 23: {fileID: 2300226}
-  m_Layer: 9
+  - 65: {fileID: 6522060}
+  m_Layer: 11
   m_Name: VendorMachine
   m_TagString: VendingMachine
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 8
   m_IsActive: 1
 --- !u!4 &462420
 Transform:
@@ -25,8 +25,8 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 119724}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -6, y: 1.07000005, z: -.670000017}
-  m_LocalScale: {x: .999999881, y: 2.10423088, z: 1.85387194}
+  m_LocalPosition: {x: 1891.56409, y: 1372.30273, z: -231.113724}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -40,7 +40,7 @@ MeshRenderer:
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_Materials:
-  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: 3396b942a368fad43a463f4c1a97e95c, type: 2}
   m_SubsetIndices: 
   m_StaticBatchRoot: {fileID: 0}
   m_UseLightProbes: 1
@@ -60,8 +60,8 @@ MeshFilter:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 119724}
-  m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
---- !u!65 &6547312
+  m_Mesh: {fileID: 4300000, guid: 28ebcb2fb62c1d44ab58a16a956fd602, type: 3}
+--- !u!65 &6522060
 BoxCollider:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -71,8 +71,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Size: {x: 1.60339534, y: 2.66444945, z: 1.28255832}
+  m_Center: {x: 0, y: 0, z: .0852398276}
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1
