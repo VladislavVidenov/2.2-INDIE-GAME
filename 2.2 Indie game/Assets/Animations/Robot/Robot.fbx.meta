@@ -1,44 +1,44 @@
 fileFormatVersion: 2
-guid: 0c8ead19a125d804b8c01e989045ad6c
-timeCreated: 1449133597
+guid: 4fff97c30f7c04244af6372f282e40fd
+timeCreated: 1449148262
 licenseType: Free
 ModelImporter:
   serializedVersion: 18
   fileIDToRecycleName:
-    100000: //RootNode
-    100002: Chest_Controller_01
-    100004: ElbowRotateL_Controller_01
-    100006: ElbowRotateR_Controller_01
-    100008: ElbowTwistL_Controller_01
-    100010: ElbowTwistR_Controller_01
-    100012: Head_Controller_01
-    100014: Hip_Controller_01
-    100016: IndexL_Controller_01
-    100018: IndexL_Controller_02
-    100020: IndexL_Controller_03
-    100022: IndexL_Controller_04
-    100024: IndexR_Controller_01
-    100026: IndexR_Controller_02
-    100028: IndexR_Controller_03
-    100030: IndexR_Controller_04
-    100032: LegRotateL_Controller_01
-    100034: LegRotateR_Controller_01
-    100036: MidFingerL_Controller_01
-    100038: MidFingerL_Controller_02
-    100040: MidFIngerL_Controller_03
-    100042: MidFIngerL_Controller_04
-    100044: MidFingerR_Controller_01
-    100046: MidFingerR_Controller_02
-    100048: MidFIngerR_Controller_03
-    100050: MidFIngerR_Controller_04
-    100052: PinkL_Controller_01
-    100054: PinkL_Controller_02
-    100056: PinkR_Controller_01
-    100058: PinkR_Controller_02
-    100060: PinkR_Controller_03
-    100062: PinkR_Controller_03 1
-    100064: PinkR_Controller_04
-    100066: PinkR_Controller_04 1
+    100000: Chest_Controller_01
+    100002: ElbowRotateL_Controller_01
+    100004: ElbowRotateR_Controller_01
+    100006: ElbowTwistL_Controller_01
+    100008: ElbowTwistR_Controller_01
+    100010: Head_Controller_01
+    100012: Hip_Controller_01
+    100014: IndexL_Controller_01
+    100016: IndexL_Controller_02
+    100018: IndexL_Controller_03
+    100020: IndexL_Controller_04
+    100022: IndexR_Controller_01
+    100024: IndexR_Controller_02
+    100026: IndexR_Controller_03
+    100028: IndexR_Controller_04
+    100030: LegRotateL_Controller_01
+    100032: LegRotateR_Controller_01
+    100034: MidFingerL_Controller_01
+    100036: MidFingerL_Controller_02
+    100038: MidFIngerL_Controller_03
+    100040: MidFIngerL_Controller_04
+    100042: MidFingerR_Controller_01
+    100044: MidFingerR_Controller_02
+    100046: MidFIngerR_Controller_03
+    100048: MidFIngerR_Controller_04
+    100050: PinkL_Controller_01
+    100052: PinkL_Controller_02
+    100054: PinkR_Controller_01
+    100056: PinkR_Controller_02
+    100058: PinkR_Controller_03
+    100060: PinkR_Controller_03 1
+    100062: PinkR_Controller_04
+    100064: PinkR_Controller_04 1
+    100066: //RootNode
     100068: Robot
     100070: Robot_1_Head_01
     100072: Robot_1_Hips_01
@@ -115,40 +115,40 @@ ModelImporter:
     100214: ThumbR_Controller_03
     100216: WristL_Controller_01
     100218: WristR_Controller_01
-    400000: //RootNode
-    400002: Chest_Controller_01
-    400004: ElbowRotateL_Controller_01
-    400006: ElbowRotateR_Controller_01
-    400008: ElbowTwistL_Controller_01
-    400010: ElbowTwistR_Controller_01
-    400012: Head_Controller_01
-    400014: Hip_Controller_01
-    400016: IndexL_Controller_01
-    400018: IndexL_Controller_02
-    400020: IndexL_Controller_03
-    400022: IndexL_Controller_04
-    400024: IndexR_Controller_01
-    400026: IndexR_Controller_02
-    400028: IndexR_Controller_03
-    400030: IndexR_Controller_04
-    400032: LegRotateL_Controller_01
-    400034: LegRotateR_Controller_01
-    400036: MidFingerL_Controller_01
-    400038: MidFingerL_Controller_02
-    400040: MidFIngerL_Controller_03
-    400042: MidFIngerL_Controller_04
-    400044: MidFingerR_Controller_01
-    400046: MidFingerR_Controller_02
-    400048: MidFIngerR_Controller_03
-    400050: MidFIngerR_Controller_04
-    400052: PinkL_Controller_01
-    400054: PinkL_Controller_02
-    400056: PinkR_Controller_01
-    400058: PinkR_Controller_02
-    400060: PinkR_Controller_03
-    400062: PinkR_Controller_03 1
-    400064: PinkR_Controller_04
-    400066: PinkR_Controller_04 1
+    400000: Chest_Controller_01
+    400002: ElbowRotateL_Controller_01
+    400004: ElbowRotateR_Controller_01
+    400006: ElbowTwistL_Controller_01
+    400008: ElbowTwistR_Controller_01
+    400010: Head_Controller_01
+    400012: Hip_Controller_01
+    400014: IndexL_Controller_01
+    400016: IndexL_Controller_02
+    400018: IndexL_Controller_03
+    400020: IndexL_Controller_04
+    400022: IndexR_Controller_01
+    400024: IndexR_Controller_02
+    400026: IndexR_Controller_03
+    400028: IndexR_Controller_04
+    400030: LegRotateL_Controller_01
+    400032: LegRotateR_Controller_01
+    400034: MidFingerL_Controller_01
+    400036: MidFingerL_Controller_02
+    400038: MidFIngerL_Controller_03
+    400040: MidFIngerL_Controller_04
+    400042: MidFingerR_Controller_01
+    400044: MidFingerR_Controller_02
+    400046: MidFIngerR_Controller_03
+    400048: MidFIngerR_Controller_04
+    400050: PinkL_Controller_01
+    400052: PinkL_Controller_02
+    400054: PinkR_Controller_01
+    400056: PinkR_Controller_02
+    400058: PinkR_Controller_03
+    400060: PinkR_Controller_03 1
+    400062: PinkR_Controller_04
+    400064: PinkR_Controller_04 1
+    400066: //RootNode
     400068: Robot
     400070: Robot_1_Head_01
     400072: Robot_1_Hips_01
@@ -226,7 +226,6 @@ ModelImporter:
     400216: WristL_Controller_01
     400218: WristR_Controller_01
     4300000: Robot_Mesh_01
-    7400000: Take 001
     9500000: //RootNode
     13700000: Robot_Mesh_01
   materials:
@@ -242,7 +241,7 @@ ModelImporter:
     animationImportWarnings: 
     animationRetargetingWarnings: 
     animationDoRetargetingWarnings: 0
-    animationCompression: 1
+    animationCompression: 3
     animationRotationError: .5
     animationPositionError: .5
     animationScaleError: .5
@@ -284,7 +283,7 @@ ModelImporter:
     armStretch: .0500000007
     legStretch: .0500000007
     feetSpacing: 0
-    rootMotionBoneName: 
+    rootMotionBoneName: Root_Joint_01
     hasTranslationDoF: 0
   lastHumanDescriptionAvatarSource: {instanceID: 0}
   animationType: 2
