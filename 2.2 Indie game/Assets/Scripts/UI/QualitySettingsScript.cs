@@ -11,7 +11,7 @@ public class QualitySettingsScript : SettingsScript {
     [Tooltip("Add all quality toggles from the 'Lowest' to the 'Best' setting.")]
     public Toggle[] qualityToggles;
 
-    void Start() {
+    void Awake() {
         qualityLevels = QualitySettings.names;                                      //Check available quality settings and store them in an array;
         currentQualityLevel = QualitySettings.GetQualityLevel();                    //Check the current quality setting and store it in a variable;
 
