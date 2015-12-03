@@ -12,7 +12,6 @@ public class SceneChangeManager : MonoBehaviour {
 
     void Awake() {
         DontDestroyOnLoad(GameManager.Instance); //DIRTY FIX SO WE CAN START ANY SCENE.
-       
     }
 
     void Start() {
@@ -65,8 +64,9 @@ public class SceneChangeManager : MonoBehaviour {
             case GameState.PlayerDied:
                 Cursor.lockState = CursorLockMode.Locked;
                 SetSensitivity(0);
-                break;
                 Cursor.visible = true;
+                break;
+                
         }
         currentState = newGameState;
 

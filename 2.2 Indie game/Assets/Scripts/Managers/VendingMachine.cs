@@ -21,6 +21,8 @@ public class VendingMachine : MonoBehaviour {
 	Upgrade selectedUpgrade;
     Button selectedButton;
 
+    GameObject currentUpgrades;
+
 	//menuVisuals
     [SerializeField]
     GameObject buyscreen;
@@ -30,10 +32,6 @@ public class VendingMachine : MonoBehaviour {
     GameObject toolUpgrades;
     [SerializeField]
     GameObject weaponUpgrades;
-
-    GameObject currentUpgrades;
-
-
     [SerializeField]
     Button buyButton;
     [SerializeField]
@@ -53,8 +51,6 @@ public class VendingMachine : MonoBehaviour {
     PlayerScript player;
     int playerScrap;
     int playerElectronics;
-
-    bool AlreadyHave = false;
 
 	void Start(){
 
@@ -122,7 +118,6 @@ public class VendingMachine : MonoBehaviour {
         CheckUpgrade();
 	}
 
-
 	public void BuyUpgrade () {
 		selectedUpgrade.Apply ();
 		ownedUpgrades.Add (selectedUpgrade);
@@ -137,7 +132,6 @@ public class VendingMachine : MonoBehaviour {
         SetSelectedButtonImage();
         SetSelectedButtonColor(1, 1, 1);
 	}
-
 
     public void SelectButton(Button button) {
         if (selectedButton != null) {
@@ -231,7 +225,6 @@ public class VendingMachine : MonoBehaviour {
         }
     }
 
-
     public List<Upgrade> GetOwndedList() {
             return ownedUpgrades;
     }
@@ -257,7 +250,7 @@ public class VendingMachine : MonoBehaviour {
     }
 
     void GetPlayerStats() {
-        player.GetCurrencyStats( out playerScrap,out playerElectronics);
+        player.GetCurrencyStats(out playerScrap,out playerElectronics);
     }
 
     void SetPlayerStats() {
@@ -299,9 +292,9 @@ public class VendingMachine : MonoBehaviour {
     }
 
     public void ChangeBuyButtonTextColorDark(Text text) {
-
         if (buyButton.interactable) text.color = new Color(0, 51f / 255, 53f / 255);
     }
+
     public void ChangeBuyButtonTextColorLight(Text text) {
          text.color = new Color(9f / 255, 184f/255, 190f / 255);
     }

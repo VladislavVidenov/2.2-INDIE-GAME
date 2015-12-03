@@ -4,7 +4,12 @@ using System.Collections;
 public class MeleeEnemyScript : EnemyScript {
 
 	float attackTimer;
-	// Use this for initialization
+
+    [SerializeField]
+    float chargeSpeed;
+    [SerializeField]
+    float chargeAcceleration;
+
 	override public void Start () {
 		base.Start ();
 		state = AIState.Running;
@@ -31,14 +36,11 @@ public class MeleeEnemyScript : EnemyScript {
 	}
 
 	void Attacking () {
-		agent.acceleration = 8;
-		agent.speed = 3.5f;
-
 		attackTimer += Time.deltaTime;
 
         this.transform.rotation = Quaternion.RotateTowards(this.transform.rotation, Quaternion.LookRotation(player.transform.position - this.transform.position), 5);
 
-		if (attackTimer > 2f) {
+        if (attackTimer > attackTime) {
 			MeleeAttack ();
 			attackTimer = 0;
 		}
@@ -50,13 +52,14 @@ public class MeleeEnemyScript : EnemyScript {
 	}
 
 	void Charge () {
-		agent.acceleration = 100;
-		agent.speed = 20;
+		agent.acceleration = chargeAcceleration;
+		agent.speed = chargeSpeed;
 	}
 
 	void OnTriggerEnter (Collider other) {
 		if (other.CompareTag (Tags.player)) {
-			print ("IMATTACKING");
+            agent.acceleration = defaultAcceleration;
+            agent.speed = defaultSpeed;
 			state = AIState.Attacking;
 		}
 	}

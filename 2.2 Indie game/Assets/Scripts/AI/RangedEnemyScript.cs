@@ -6,7 +6,6 @@ public class RangedEnemyScript : EnemyScript {
     Vector3 fightingPosition;
     float attackTimer;
     float changeCoverTimer;
-    [SerializeField] float attackTime = 2f;
     [SerializeField] float attackRotationSpeed = 5f;
 
     CoverSpotScript[] coverSpots;

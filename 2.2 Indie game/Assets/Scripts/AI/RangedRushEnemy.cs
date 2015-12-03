@@ -7,8 +7,7 @@ public class RangedRushEnemy : EnemyScript {
     float attackTimer;
     float changeCoverTimer;
     float playerNotSeenTimer;
-    [SerializeField]
-    float attackTime = 3f;
+   
     [SerializeField]
     float attackRotationSpeed = 5f;
 

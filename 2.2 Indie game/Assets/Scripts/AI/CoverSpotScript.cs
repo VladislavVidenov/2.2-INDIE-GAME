@@ -3,10 +3,8 @@ using System.Collections;
 
 public class CoverSpotScript : MonoBehaviour {
 
-
 	public Transform player;
 
-	public bool isSafe = false;
 	public bool isTaken = false;
 
 	public LayerMask layer;
@@ -16,12 +14,6 @@ public class CoverSpotScript : MonoBehaviour {
 			return true;
 		} else {
 			return false;
-		}
-	}
-	void Update(){
-		if (Input.GetKeyDown (KeyCode.H)) {
-
-			Debug.Log(checkIftaken()) ;
 		}
 	}
 

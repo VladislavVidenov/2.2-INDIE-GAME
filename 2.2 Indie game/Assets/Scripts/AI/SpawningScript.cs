@@ -28,7 +28,6 @@ public class SpawningScript : MonoBehaviour {
 
 	//enemies created
 	private int remainingEnemy = 0;
-	private int spawnedEnemy = 0;
 
 	private int SpawnID;
 
@@ -43,13 +42,13 @@ public class SpawningScript : MonoBehaviour {
 	private int totalWaves;
 	private int numWaves = 0;
 
-	public float timeBetweenWaves;
+	[SerializeField] float timeBetweenWaves;
     private float betweenWavesTimer = 9;
+
 	AIManager manager;
 
 	void Start () {
 		manager = GameObject.FindGameObjectWithTag (Tags.aiManager).GetComponent<AIManager>();
-		SpawnID = Random.Range (1, 500);
 		totalWaves = waves.Length;
 	}
 
@@ -176,43 +175,9 @@ public class SpawningScript : MonoBehaviour {
 		}
 
 		remainingEnemy++;
-		spawnedEnemy++;
-	
 	}
-
-    void DropAmmoAndHealth() {
-
-
-    }
 
 	public void KillEnemy () {
 			remainingEnemy--;
-	}
-
-	public void EnableSpawner (int sID) {
-		
-		if (SpawnID == sID) {
-			spawn = true;
-		}
-	}
-
-	public void DisableSpawner (int sID) {
-		
-		if (SpawnID == sID) {
-			spawn = false;
-		}
-	}
-
-	public float TimeTillWave
-	{
-		get
-		{
-			return timeTillWave;
-		}
-	}
-
-	public void EnableTrigger()
-	{
-		spawn = true;
 	}
 }

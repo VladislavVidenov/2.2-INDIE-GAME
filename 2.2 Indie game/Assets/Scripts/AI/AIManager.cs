@@ -37,6 +37,7 @@ public class AIManager : MonoBehaviour {
 		rangedRushEnemyShooting = 0;
 		rangedRushEnemyInCover = 0;
         if (meleeEnemies.Count <= 0) return;
+
 		foreach (MeleeEnemyScript enemy in meleeEnemies) {
 	
 			switch (enemy.state) {
@@ -85,20 +86,8 @@ public class AIManager : MonoBehaviour {
         if (playerMovement.isCrouching) {
             rangedRushEnemies[Random.Range(0, rangedRushEnemies.Count - 1)].state = AIState.Flank;
         }
-
-        //if ()   {
-
-        //}
-
 	}
-
 }
-
-
-// charge no melee is attacking 
-// bolt after they are still alive after x seconds
-// laser
-
 
 
 

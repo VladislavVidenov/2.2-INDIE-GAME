@@ -14,7 +14,10 @@ public class EnemyScript : MonoBehaviour
     [Header("General")]
     public int health;
     [SerializeField] int creditsDropAmount = 5;
-	
+
+   
+    public float defaultSpeed = 3.5f;
+    public float defaultAcceleration = 8f;
 
     public NavMeshAgent agent;
 	[HideInInspector]
@@ -25,6 +28,8 @@ public class EnemyScript : MonoBehaviour
 
 	[HideInInspector]
 	public SpawningScript spawner;
+
+    public float attackTime = 3f;
 
     public LayerMask layer;
 

@@ -18,7 +18,6 @@ public class GameManager : MonoBehaviour {
                 _instance = new GameObject("Game Manager").AddComponent<GameManager>();
                 _instance.tag = Tags.gameController;
             }
-
             return _instance;
         }
     }
@@ -78,28 +77,23 @@ public class GameManager : MonoBehaviour {
     public int shotgunTotalAmmo;
 
 
-    void Awake()
-    {
-        if (Application.loadedLevel != 0)
-        {
+    void Awake() {
+        if (Application.loadedLevel != 0) {
             currentState = GameState.InGame;
             FindGameObjects();
         }
 
         ownedUpgrades = new List<Upgrade>();
-        Debug.Log("---State is set to " + CurrentState + " by default---");
     }
-
    
     void OnLevelWasLoaded()
     {
-        Debug.Log("SOME LEVEL WAS LOADED!" + Application.loadedLevel);
-
         if(currentState == GameState.InGame)
         {
             FindGameObjects();
         }
     }
+
     public GameState CurrentState
     {
         get { return currentState; }
@@ -124,7 +118,6 @@ public class GameManager : MonoBehaviour {
     }
 
     public void FindGameObjects() {
-
         vendingMachine = FindObjectOfType<VendingMachine>();
         pauseMenu = GameObject.Find("PauseMenuManager").GetComponent<PauseMenuScript>();
         coverSpots = FindObjectsOfType<CoverSpotScript>();
@@ -144,15 +137,11 @@ public class GameManager : MonoBehaviour {
             {
                 curr.ammoInClip = pistolCurrentClipAmmo;
                 curr.totalAmmo = pistolTotalAmmo;
-               
-
             }
             else if (curr.weapon == WeaponScript.Weapons.Shotgun)
             {
-
                 curr.ammoInClip = shotgunCurrentClipAmmo;
                 curr.totalAmmo = shotgunTotalAmmo;
-               
             }
         }
     }
