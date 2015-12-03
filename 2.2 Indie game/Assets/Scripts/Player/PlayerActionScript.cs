@@ -55,7 +55,7 @@ public class PlayerActionScript : MonoBehaviour {
                     break;
 
                 case "Engine":
-                    showGuiSkin = true;
+                    if (!hit.collider.gameObject.GetComponent<EngineScript>().activated) showGuiSkin = true;
                     if (Input.GetKeyDown(KeyCode.E)) {
                         hit.collider.gameObject.GetComponent<EngineScript>().StartEngine();
                     }

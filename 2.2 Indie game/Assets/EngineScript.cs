@@ -7,6 +7,8 @@ public class EngineScript : MonoBehaviour {
     [SerializeField]
     List<SpawningScript> spawners;
 
+    public bool activated = false;
+
     public void StartEngine() {
         foreach (SpawningScript spawn in spawners) {
             spawn.spawn = true;

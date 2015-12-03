@@ -8,7 +8,7 @@ public class RangedRushEnemy : EnemyScript {
     float changeCoverTimer;
     float playerNotSeenTimer;
     [SerializeField]
-    float attackTime = 2f;
+    float attackTime = 3f;
     [SerializeField]
     float attackRotationSpeed = 5f;
 
@@ -248,6 +248,7 @@ public class RangedRushEnemy : EnemyScript {
                 eyeLight.intensity = 4f;
                 Invoke("DisableEyeLight", 0.5f);
                 SpawnBullet();
+                hit.collider.gameObject.GetComponent<PlayerScript>().TakeDamage(5);
 
             }
             else {

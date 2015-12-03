@@ -52,7 +52,7 @@ public class GameManager : MonoBehaviour {
     [HideInInspector]
     public int maxHealth = 100;
     [HideInInspector]
-    public int health = 30;
+    public int health = 100;
     [HideInInspector]
     public int scrap = 50;
     [HideInInspector]

@@ -64,7 +64,7 @@ public class PlayerScript : MonoBehaviour {
     void RegenLife() {
         timeNotHit += Time.deltaTime;
 
-        if (timeNotHit > 2) {
+        if (timeNotHit > 10) {
             regenAmount += 0.2f;
             if (regenAmount >= 1f) {
                 ChangeHealth(1);
@@ -80,7 +80,7 @@ public class PlayerScript : MonoBehaviour {
 
         inGameHud.PlayerHealth = health;
 
-        //if (health <= 0) { health = 0; Died(); }
+        if (health <= 0) { health = 0; inGameHud.PlayerHealth = 0; Died(); }
     }
 
     public void ShowHitCircle(RaycastHit hit) {
@@ -106,8 +106,9 @@ public class PlayerScript : MonoBehaviour {
 	}
 
     public void Died() {
-        sceneManager.SetState(GameState.PlayerDied);
-        Invoke("Respawn", 2);
+        sceneManager.SetState(GameState.InMenu);
+        Application.LoadLevel(0);
+       // Invoke("Respawn", 2);
     }
 
     void Respawn() {

@@ -40,9 +40,11 @@ public class SceneChangeManager : MonoBehaviour {
         switch (newGameState) {
             case GameState.InMenu:
                 Cursor.lockState = CursorLockMode.None;
+                Cursor.visible = true;
                 break;
             case GameState.InGame:
                 Cursor.lockState = CursorLockMode.Locked;
+                Cursor.visible = false;
 				Time.timeScale = 1;
 				SetSensitivity(2);
                 break;
@@ -51,17 +53,20 @@ public class SceneChangeManager : MonoBehaviour {
                 Time.timeScale = 0;
                 GameManager.Instance.vendingMachine.ActivateStation();
                 SetSensitivity(0);
+                Cursor.visible = true;
                 break;
             case GameState.InPauseMenu:
                 Cursor.lockState = CursorLockMode.None;
                 Time.timeScale = 0;
                 GameManager.Instance.pauseMenu.ActivatePauseMenu();
                 SetSensitivity(0);
+                Cursor.visible = true;
                 break;
             case GameState.PlayerDied:
                 Cursor.lockState = CursorLockMode.Locked;
                 SetSensitivity(0);
                 break;
+                Cursor.visible = true;
         }
         currentState = newGameState;
 

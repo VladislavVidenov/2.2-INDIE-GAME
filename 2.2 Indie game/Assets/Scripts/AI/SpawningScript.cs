@@ -27,7 +27,6 @@ public class SpawningScript : MonoBehaviour {
     [SerializeField] GameObject rangedRushEnemyPrefab;
 
 	//enemies created
-	public int totalEnemy = 10;
 	private int remainingEnemy = 0;
 	private int spawnedEnemy = 0;
 
@@ -45,8 +44,7 @@ public class SpawningScript : MonoBehaviour {
 	private int numWaves = 0;
 
 	public float timeBetweenWaves;
-	private float betweenWavesTimer;
-
+    private float betweenWavesTimer = 9;
 	AIManager manager;
 
 	void Start () {
