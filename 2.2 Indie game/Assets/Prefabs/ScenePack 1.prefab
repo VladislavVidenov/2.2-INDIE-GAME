@@ -8807,7 +8807,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   expensiveChanges: 1
-  qualityToggles: []
+  qualityToggles:
+  - {fileID: 11438066}
+  - {fileID: 11472884}
+  - {fileID: 11419338}
+  - {fileID: 11444716}
+  - {fileID: 11492582}
+  - {fileID: 11455808}
 --- !u!114 &11456634
 MonoBehaviour:
   m_ObjectHideFlags: 1
