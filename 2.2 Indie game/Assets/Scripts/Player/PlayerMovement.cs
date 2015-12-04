@@ -47,10 +47,7 @@ public class PlayerMovement : MonoBehaviour {
     public bool isRunning = false;
     Vector3 standingCamHeight = new Vector3(0, 0.4f, 0);
     Vector3 crouchingCamHeight = new Vector3(0, -0.2f, 0);
-    
 
-   
-   
     // Use this for initialization
     void Start()
     {

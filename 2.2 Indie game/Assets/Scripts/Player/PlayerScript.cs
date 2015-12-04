@@ -84,14 +84,10 @@ public class PlayerScript : MonoBehaviour {
     }
 
     public void ShowHitCircle(RaycastHit hit) {
-    //    hit.no
-
         Vector3 direction = Camera.main.WorldToScreenPoint(hit.normal);
         print(direction);
         hitIndicator.transform.rotation = Quaternion.Euler(0,0,  Quaternion.LookRotation(hit.normal).z);
-        
     }
-
 
     void UpdateHealthHud() {
         inGameHud.PlayerHealth = health;
@@ -108,7 +104,6 @@ public class PlayerScript : MonoBehaviour {
     public void Died() {
         sceneManager.SetState(GameState.InMenu);
         Application.LoadLevel(0);
-       // Invoke("Respawn", 2);
     }
 
     void Respawn() {
@@ -169,11 +164,13 @@ public class PlayerScript : MonoBehaviour {
     void DeactiveScrapHud() {
         scrapHud.SetActive(false);
     }
+
     public void SetCurrentTool(Tool tool)
     {
         currentTool = tool;
         SetBoostUpgrades();
     }
+
     void SetBoostUpgrades()
     {
         switch (currentTool.Type)
@@ -192,6 +189,7 @@ public class PlayerScript : MonoBehaviour {
                 break;
         }
     }
+
     IEnumerator IncreaseHud(float text, float Amount) {
 
         float stepTime = 0.02f;
