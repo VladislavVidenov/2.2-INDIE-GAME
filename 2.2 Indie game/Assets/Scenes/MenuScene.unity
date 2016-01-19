@@ -13641,6 +13641,34 @@ Prefab:
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 023dfa95bf24286489fd52cc0ddc72f5, type: 2}
   m_IsPrefabParent: 0
+--- !u!1 &507813557 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 171912, guid: 023dfa95bf24286489fd52cc0ddc72f5, type: 2}
+  m_PrefabInternal: {fileID: 507813556}
+--- !u!114 &507813558
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 507813557}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e50e925fb93c78246bf995d9dc3a2330, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  type: 6
+  adaptiveTextureSize: 256
+  remapCurve:
+    serializedVersion: 2
+    m_Curve: []
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+  exposureAdjustment: 2
+  middleGrey: .200000003
+  white: 2
+  adaptionSpeed: 2
+  tonemapper: {fileID: 4800000, guid: 003377fc2620a44939dadde6fe3f8190, type: 3}
+  validRenderTextureFormat: 1
 --- !u!1 &507990028
 GameObject:
   m_ObjectHideFlags: 0
