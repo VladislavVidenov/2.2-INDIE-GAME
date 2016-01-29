@@ -4,7 +4,7 @@ using System.Collections;
 /// <summary>
 /// This is the General EnemyScript.
 /// </summary>
-public enum AIState { Running , Attacking, FindPlayerInSight , FindCover, InCover, MovingToCover, Shooting, Charge,Flank}
+public enum AIState { Running , Attacking, FindPlayerInSight , FindCover, InCover, MovingToCover, Shooting, Charge,Flank,HuntEnemy}
 
 public class EnemyScript : MonoBehaviour
 {
@@ -22,8 +22,10 @@ public class EnemyScript : MonoBehaviour
     public NavMeshAgent agent;
 	[HideInInspector]
     public Transform player; //target
-    public Transform playerHeadPos;
 
+    [HideInInspector]
+    public Transform playerHeadPos;
+    [HideInInspector]
     public Transform enemyHeadPos;
 
 	[HideInInspector]
@@ -43,7 +45,7 @@ public class EnemyScript : MonoBehaviour
     {
         //DIE PLEASE!
         if (spawner != null) spawner.KillEnemy ();
-        player.GetComponent<PlayerScript>().IncreasePlayerStats(0, 0, 20, 0);
+        player.GetComponent<PlayerScript>().IncreasePlayerStats(0, 0,0,0, 20, 0);
         DropCredits();
         Destroy(gameObject);
     }

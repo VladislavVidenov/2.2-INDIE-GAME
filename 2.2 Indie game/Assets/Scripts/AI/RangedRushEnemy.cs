@@ -43,7 +43,7 @@ public class RangedRushEnemy : EnemyScript {
 		Invoke ("StartFind", 0.1f);
     }
 	void StartFind () {
-		state = AIState.FindCover;
+		state = AIState.HuntEnemy;
 	}
 
     void Update() {
@@ -53,6 +53,9 @@ public class RangedRushEnemy : EnemyScript {
         }
 
         switch (state) {
+            case AIState.HuntEnemy:
+                Shooting();
+                break;
             case AIState.Shooting:
                 Shooting();
                 break;
@@ -72,7 +75,6 @@ public class RangedRushEnemy : EnemyScript {
     }
 
     void Shooting() {
-        
         agent.Stop();
         agent.updateRotation = false;
         this.transform.rotation = Quaternion.RotateTowards(this.transform.rotation, Quaternion.LookRotation(player.transform.position - this.transform.position), attackRotationSpeed);
