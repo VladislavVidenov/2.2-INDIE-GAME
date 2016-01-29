@@ -6,6 +6,8 @@ public class PlayerScript : MonoBehaviour {
 
     int maxHealth;
     int health;
+    float stamina;
+    int maxStamina;
     int scrap;
     int electronics;
 
@@ -16,16 +18,20 @@ public class PlayerScript : MonoBehaviour {
     int hammerUpgBoost;
     int wrenchUpgBoost;
 
-    int regenRate = 5;
-    float regenDelay = 10.0f;
+    int healthRegenRate = 5;
+    float healthRegenDelay = 10.0f;
     float timeNotHit;
-    float regenAmount;
+    float healthRegenAmount;
+
+    int staminaRegenRate = 5;
+    float staminaRegenDelay = 10.0f;
+    [HideInInspector] public float timeNotRun; //public to set it in PlayerMovement
+    float staminaRegenAmount;
 
     [SerializeField] Image hp75;
     [SerializeField] Image hp50;
     [SerializeField] Image hp25;
     [SerializeField] Image hitIndicator;
-
 
     Camera mainCamera;
 
@@ -41,18 +47,23 @@ public class PlayerScript : MonoBehaviour {
     Tool currentTool;
 
     float cutOffScrap;
-	// Use this for initialization
-	void Start () {
+
+
+
+    // Use this for initialization
+    void Start () {
         scrapText = scrapHud.GetComponentInChildren<Text>();
         DeactiveScrapHud();
         mainCamera = Camera.main;
         sceneManager = GameObject.Find("SceneManager").GetComponent<SceneChangeManager>();
         GetPlayerStatsFromGameManager();
         UpdateHealthHud();
+        UpdateStaminaHud();
     }
 
     void Update() {
-        RegenLife();
+        RegenHealth();
+        RegenStamina();
         DeathHud();
     }
 
@@ -62,17 +73,27 @@ public class PlayerScript : MonoBehaviour {
         hp25.color = new Color(1, 1, 1, ((float)50 - (float)health) / 25);
     }
 
-    void RegenLife() {
+    void RegenHealth() {
         timeNotHit += Time.deltaTime;
 
-        if (timeNotHit > regenDelay) {
-            regenAmount += 0.2f;
-            if (regenAmount >= 1f) {
+        if (timeNotHit > healthRegenDelay) {
+            healthRegenAmount += 0.2f;
+            if (healthRegenAmount >= 1f) {
                 ChangeHealth(1);
-                regenAmount = 0;
+                healthRegenAmount = 0;
             }
         }
+    }
 
+    void RegenStamina() {
+        timeNotRun += Time.deltaTime;
+        if (timeNotRun > staminaRegenDelay) {
+            staminaRegenAmount += 0.2f;
+            if (staminaRegenAmount >= 1f) {
+                ChangeStamina(1);
+                staminaRegenAmount = 0;
+            }
+        }
     }
 
     public void ChangeHealth(int amount) {
@@ -84,6 +105,16 @@ public class PlayerScript : MonoBehaviour {
         if (health <= 0) { health = 0; inGameHud.PlayerHealth = 0; Died(); }
     }
 
+    public void ChangeStamina(int amount) {
+        Debug.Log("STAMINA: " + stamina);
+        stamina += amount;
+        if (stamina > maxStamina) stamina = maxStamina;
+
+        inGameHud.PlayerStamina = stamina;
+
+        if (stamina <= 0) { stamina = 0; inGameHud.PlayerStamina = 0; }
+    }
+
     public void ShowHitCircle(RaycastHit hit) {
         Vector3 direction = Camera.main.WorldToScreenPoint(hit.normal);
         print(direction);
@@ -93,6 +124,11 @@ public class PlayerScript : MonoBehaviour {
     void UpdateHealthHud() {
         inGameHud.PlayerHealth = health;
         inGameHud.PlayerHealthCap = maxHealth;
+    }
+
+    void UpdateStaminaHud() {
+        inGameHud.PlayerStamina = stamina;
+        inGameHud.PlayerStaminaCap = maxStamina;
     }
 
     public void TakeDamage(int amount){
@@ -111,10 +147,16 @@ public class PlayerScript : MonoBehaviour {
         sceneManager.SetState(GameState.InGame);
     }
 
+    public bool HasStamina() {
+        if (stamina > 0) return true;
+        else return false;
+    }
   
     void GetPlayerStatsFromGameManager() {
         maxHealth = GameManager.Instance.maxHealth;
         health = GameManager.Instance.health;
+        stamina = GameManager.Instance.stamina;
+        maxStamina = GameManager.Instance.maxStamina;
         scrap = GameManager.Instance.scrap;
         electronics = GameManager.Instance.electronics;
     }
@@ -140,7 +182,15 @@ public class PlayerScript : MonoBehaviour {
         maxHealth = pMaxHealth;
     }
 
-    public void IncreasePlayerStats(int pHealth, int pMaxHealth, int pScrap, int pElectronics) {
+    public void GetStaminaStats(out float pStamina) {
+        pStamina = stamina;
+    }
+
+    public void SetStaminaStats(float pStamina) {
+        stamina = pStamina;
+    }
+
+    public void IncreasePlayerStats(int pHealth, int pMaxHealth, int pStamina, int pMaxStamina, int pScrap, int pElectronics) {
         if(pScrap>0) IncreaseScrapHud(pScrap);
         maxHealth += pMaxHealth;
         health += pHealth;
@@ -151,7 +201,7 @@ public class PlayerScript : MonoBehaviour {
     }
 
     public void SetRegenDelay(float newRegenDelay) {
-        regenDelay = newRegenDelay;
+        healthRegenDelay = newRegenDelay;
     }
 
     void IncreaseScrapHud(int Amount) {
@@ -213,4 +263,5 @@ public class PlayerScript : MonoBehaviour {
             if (i > 99) Invoke("DeactiveScrapHud", 5);
         }
     }
+
 }

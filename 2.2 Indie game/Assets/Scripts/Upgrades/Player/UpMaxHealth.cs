@@ -9,7 +9,7 @@ public class UpMaxHealth : Upgrade {
 	{
         Debug.Log ("MaxHealthUpgrade");
         PlayerScript player = FindObjectOfType<PlayerScript>();
-        player.IncreasePlayerStats(20, 20, 0, 0);
+        player.IncreasePlayerStats(20, 20, 0, 0, 0, 0);
         Debug.Log("Max Health Got Upgraded!");
     }
 }
