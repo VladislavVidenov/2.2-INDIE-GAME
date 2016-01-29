@@ -39,7 +39,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2e38f568ab2178d479cd1594e7688e9e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  upgradeName: MaxHealth Upgrade
+  upgradeName: MaxHealth
   descriptionImage: {fileID: 21300000, guid: 27d76c7f171d39e4481bf4340ca24298, type: 3}
   text: Increase Max Health by 20
   buttonSprite: {fileID: 21300000, guid: 27d76c7f171d39e4481bf4340ca24298, type: 3}
@@ -87,7 +87,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: upgradeName
-      value: MaxHealth Upgrade
+      value: MaxHealth
       objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: upgradeAmount

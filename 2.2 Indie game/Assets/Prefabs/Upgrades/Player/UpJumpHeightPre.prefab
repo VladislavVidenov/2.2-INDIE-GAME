@@ -1,50 +1,51 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &139040
+--- !u!1 &158994
 GameObject:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   serializedVersion: 4
   m_Component:
-  - 4: {fileID: 454800}
-  - 114: {fileID: 11484260}
+  - 4: {fileID: 424786}
+  - 114: {fileID: 11440616}
   m_Layer: 0
-  m_Name: UpRegen100Pre
+  m_Name: UpJumpHeightPre
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &454800
+--- !u!4 &424786
 Transform:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 139040}
+  m_GameObject: {fileID: 158994}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -22.3657646, y: -84.474411, z: 110.162064}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
---- !u!114 &11484260
+--- !u!114 &11440616
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 139040}
+  m_GameObject: {fileID: 158994}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4be7c5b7babd3864389b339f497c7891, type: 3}
+  m_Script: {fileID: 11500000, guid: 8cb127abac5095740a8a107c468c1df7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  descriptionImage: {fileID: 21300000, guid: 283a01aa779431e42a07808b9cbaea10, type: 3}
+  upgradeName: JumpHeight
+  descriptionImage: {fileID: 21300000, guid: bf1d285802ff1fd4b8ba6f41ec166313, type: 3}
   text: This needs to be changed.
-  buttonSprite: {fileID: 21300000, guid: 283a01aa779431e42a07808b9cbaea10, type: 3}
+  buttonSprite: {fileID: 21300000, guid: bf1d285802ff1fd4b8ba6f41ec166313, type: 3}
   ScrapCost: 20
   ElectronicsCost: 20
-  tier: 2
+  tier: 1
   upgradeType: 0
 --- !u!1001 &100100000
 Prefab:
@@ -56,12 +57,12 @@ Prefab:
     - target: {fileID: 0}
       propertyPath: descriptionImage
       value: 
-      objectReference: {fileID: 21300000, guid: 283a01aa779431e42a07808b9cbaea10,
+      objectReference: {fileID: 21300000, guid: bf1d285802ff1fd4b8ba6f41ec166313,
         type: 3}
     - target: {fileID: 0}
       propertyPath: buttonSprite
       value: 
-      objectReference: {fileID: 21300000, guid: 283a01aa779431e42a07808b9cbaea10,
+      objectReference: {fileID: 21300000, guid: bf1d285802ff1fd4b8ba6f41ec166313,
         type: 3}
     - target: {fileID: 0}
       propertyPath: text
@@ -77,9 +78,13 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: tier
-      value: 2
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: upgradeName
+      value: JumpHeight
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
-  m_RootGameObject: {fileID: 139040}
+  m_RootGameObject: {fileID: 158994}
   m_IsPrefabParent: 1

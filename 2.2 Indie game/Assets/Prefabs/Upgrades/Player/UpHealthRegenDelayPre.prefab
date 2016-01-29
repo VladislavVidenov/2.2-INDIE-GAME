@@ -27,13 +27,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e6dfe9735a3b71b459660ab8b2f96853, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  upgradeName: HealthRegenDelay Upgrade
+  upgradeName: HealthRegenDelay
   descriptionImage: {fileID: 21300000, guid: 283a01aa779431e42a07808b9cbaea10, type: 3}
   text: Decrease health regen delay to 7.5
   buttonSprite: {fileID: 21300000, guid: 5a11c971e7d624c48b2372925d10786b, type: 3}
   ScrapCost: 20
   ElectronicsCost: 20
-  tier: 1
+  tier: 2
   upgradeType: 0
   regenDelay: 7.5
 --- !u!224 &22463066
@@ -84,7 +84,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: tier
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: regenDelay
@@ -92,7 +92,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: upgradeName
-      value: HealthRegenDelay Upgrade
+      value: HealthRegenDelay
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
