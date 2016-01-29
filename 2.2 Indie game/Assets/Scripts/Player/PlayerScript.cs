@@ -17,6 +17,7 @@ public class PlayerScript : MonoBehaviour {
     int wrenchUpgBoost;
 
     int regenRate = 5;
+    float regenDelay = 10.0f;
     float timeNotHit;
     float regenAmount;
 
@@ -64,7 +65,7 @@ public class PlayerScript : MonoBehaviour {
     void RegenLife() {
         timeNotHit += Time.deltaTime;
 
-        if (timeNotHit > 10) {
+        if (timeNotHit > regenDelay) {
             regenAmount += 0.2f;
             if (regenAmount >= 1f) {
                 ChangeHealth(1);
@@ -147,6 +148,10 @@ public class PlayerScript : MonoBehaviour {
         Debug.Log(scrap);
         electronics += pElectronics + electronicsBoost;
         UpdateHealthHud();
+    }
+
+    public void SetRegenDelay(float newRegenDelay) {
+        regenDelay = newRegenDelay;
     }
 
     void IncreaseScrapHud(int Amount) {

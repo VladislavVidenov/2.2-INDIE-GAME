@@ -10,7 +10,7 @@ GameObject:
   - 224: {fileID: 22463066}
   - 114: {fileID: 11493912}
   m_Layer: 5
-  m_Name: UpHealthRegenDelay
+  m_Name: UpHealthRegenDelayPre
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -28,12 +28,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   descriptionImage: {fileID: 21300000, guid: 283a01aa779431e42a07808b9cbaea10, type: 3}
-  text: Inceases Health Regen
+  text: Decrease health regen delay to 7.5
   buttonSprite: {fileID: 21300000, guid: 5a11c971e7d624c48b2372925d10786b, type: 3}
   ScrapCost: 20
   ElectronicsCost: 20
   tier: 1
   upgradeType: 0
+  regenDelay: 7.5
 --- !u!224 &22463066
 RectTransform:
   m_ObjectHideFlags: 1
@@ -70,7 +71,7 @@ Prefab:
         type: 3}
     - target: {fileID: 0}
       propertyPath: text
-      value: Inceases Health Regen
+      value: Decrease health regen delay to 7.5
       objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: ScrapCost
@@ -83,6 +84,10 @@ Prefab:
     - target: {fileID: 0}
       propertyPath: tier
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: regenDelay
+      value: 7.5
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
