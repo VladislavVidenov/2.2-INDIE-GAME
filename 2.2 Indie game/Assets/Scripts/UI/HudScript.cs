@@ -109,7 +109,7 @@ public class HudScript : MonoBehaviour {
     }
 
     void UpdateHealthHud() {
-        currentHealthText.text = playerHealth.ToString();
+        currentHealthText.text = Mathf.Floor(playerHealth).ToString();
         healthCapText.text = "/" + playerHealthCap.ToString();
     }
 
@@ -122,7 +122,7 @@ public class HudScript : MonoBehaviour {
     }
 
     void UpdateStaminaHud() {
-        currentStaminaText.text = playerStamina.ToString();
+        currentStaminaText.text = Mathf.Floor(playerStamina).ToString();
         staminaCapText.text = "/" + playerStaminaCap.ToString();
     }
 

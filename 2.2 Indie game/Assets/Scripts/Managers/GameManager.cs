@@ -51,7 +51,7 @@ public class GameManager : MonoBehaviour {
     [HideInInspector]
     public int maxHealth = 100;
     [HideInInspector]
-    public int health = 100;
+    public float health = 100;
     [HideInInspector]
     public int maxStamina = 100;
     [HideInInspector]

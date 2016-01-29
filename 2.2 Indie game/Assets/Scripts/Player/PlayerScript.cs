@@ -5,7 +5,7 @@ using UnityEngine.UI;
 public class PlayerScript : MonoBehaviour {
 
     int maxHealth;
-    int health;
+    float health;
     float stamina;
     int maxStamina;
     int scrap;
@@ -18,13 +18,13 @@ public class PlayerScript : MonoBehaviour {
     int hammerUpgBoost;
     int wrenchUpgBoost;
 
-    int healthRegenRate = 5;
+    float healthRegenRate = 100f;
     float healthRegenDelay = 10.0f;
     float timeNotHit;
     float healthRegenAmount;
 
-    int staminaRegenRate = 5;
-    float staminaRegenDelay = 10.0f;
+    float staminaRegenRate = 100f;
+    float staminaRegenDelay = 5.0f;
     [HideInInspector] public float timeNotRun; //public to set it in PlayerMovement
     float staminaRegenAmount;
 
@@ -79,7 +79,7 @@ public class PlayerScript : MonoBehaviour {
         if (timeNotHit > healthRegenDelay) {
             healthRegenAmount += 0.2f;
             if (healthRegenAmount >= 1f) {
-                ChangeHealth(1);
+                ChangeHealth(1 * healthRegenRate * Time.deltaTime);
                 healthRegenAmount = 0;
             }
         }
@@ -90,13 +90,13 @@ public class PlayerScript : MonoBehaviour {
         if (timeNotRun > staminaRegenDelay) {
             staminaRegenAmount += 0.2f;
             if (staminaRegenAmount >= 1f) {
-                ChangeStamina(1);
+                ChangeStamina(1 * staminaRegenRate * Time.deltaTime);
                 staminaRegenAmount = 0;
             }
         }
     }
 
-    public void ChangeHealth(int amount) {
+    public void ChangeHealth(float amount) {
         health += amount;
         if (health > maxHealth) health = maxHealth;
 
@@ -105,7 +105,7 @@ public class PlayerScript : MonoBehaviour {
         if (health <= 0) { health = 0; inGameHud.PlayerHealth = 0; Died(); }
     }
 
-    public void ChangeStamina(int amount) {
+    public void ChangeStamina(float amount) {
         //Debug.Log("STAMINA: " + stamina);
         stamina += amount;
         if (stamina > maxStamina) stamina = maxStamina;
@@ -134,7 +134,7 @@ public class PlayerScript : MonoBehaviour {
     public void TakeDamage(int amount){
 		ChangeHealth (-amount);
         timeNotHit = 0;
-		// show direction
+		//show direction
 		//knockback?
 	}
 
@@ -172,12 +172,12 @@ public class PlayerScript : MonoBehaviour {
         electronics = pElectronics;
     }
 
-    public void GetHealthStats(out int pHealth, out int pMaxHealth) {
+    public void GetHealthStats(out float pHealth, out int pMaxHealth) {
         pHealth = health;
         pMaxHealth = maxHealth;
     }
 
-    public void SetHealthStats(int pHealth, int pMaxHealth) {
+    public void SetHealthStats(float pHealth, int pMaxHealth) {
         health = pHealth;
         maxHealth = pMaxHealth;
     }
@@ -192,7 +192,7 @@ public class PlayerScript : MonoBehaviour {
         maxStamina = pMaxStamina;
     }
 
-    public void IncreasePlayerStats(int pHealth, int pMaxHealth, int pStamina, int pMaxStamina, int pScrap, int pElectronics) {
+    public void IncreasePlayerStats(float pHealth, int pMaxHealth, float pStamina, int pMaxStamina, int pScrap, int pElectronics) {
         if(pScrap>0) IncreaseScrapHud(pScrap);
         maxHealth += pMaxHealth;
         health += pHealth;
