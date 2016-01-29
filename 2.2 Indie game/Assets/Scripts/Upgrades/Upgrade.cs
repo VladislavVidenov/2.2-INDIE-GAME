@@ -7,7 +7,8 @@ public enum UpgradeType {
 }
 
 public class Upgrade :MonoBehaviour {
-  
+    public string upgradeName = "NULL";
+
 	public Sprite descriptionImage;
 	public string text;
 

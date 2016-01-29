@@ -131,7 +131,7 @@ public class GameManager : MonoBehaviour {
     public void SavePlayerStats() {
         playerScript.GetCurrencyStats(out scrap, out electronics);
         playerScript.GetHealthStats(out health, out maxHealth);
-        playerScript.GetStaminaStats(out stamina);
+        playerScript.GetStaminaStats(out stamina, out maxStamina);
     }
     public void SetWeaponStats()
     {        

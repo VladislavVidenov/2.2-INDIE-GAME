@@ -3,13 +3,13 @@ using System.Collections;
 using UnityEngine.UI;
 
 public class UpMaxHealth : Upgrade {
-    
+    public int upgradeAmount = 20;  //Set through inspector!
 
-	public override void Apply ()
+    public override void Apply ()
 	{
-        Debug.Log ("MaxHealthUpgrade");
+        print(string.Format("UPGRADE UNLOCKED: '{0}'", upgradeName));
         PlayerScript player = FindObjectOfType<PlayerScript>();
-        player.IncreasePlayerStats(20, 20, 0, 0, 0, 0);
-        Debug.Log("Max Health Got Upgraded!");
+        player.IncreasePlayerStats(upgradeAmount, upgradeAmount, 0, 0, 0, 0);
+        print(string.Format("MaxHealth upgraded by {0}pts", upgradeAmount));
     }
 }

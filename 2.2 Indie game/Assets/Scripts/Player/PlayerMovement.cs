@@ -135,7 +135,7 @@ public class PlayerMovement : MonoBehaviour {
         }
         else if (Input.GetKey(KeyCode.LeftShift) && Input.GetKey(KeyCode.W) && releasedRun && !isWepAiming && player.HasStamina())
         {
-            Debug.Log("player.hasstamina: " + player.HasStamina());
+            //Debug.Log("player.hasstamina: " + player.HasStamina());
             isRunning = true;
             releasedRun = false;
         }

@@ -5,9 +5,9 @@ public class UpHealthRegenDelay : Upgrade {
     public float regenDelay = 7.5f;  //Set through inspector!
 
     public override void Apply() {
-        Debug.Log("Health Regen Delay Upgrade");
+        print(string.Format("UPGRADE UNLOCKED: '{0}'", upgradeName));
         PlayerScript player = FindObjectOfType<PlayerScript>();
         player.SetRegenDelay(regenDelay);
-        Debug.Log("New Regen Delay = " + regenDelay);
+        print(string.Format("New health regeneration delay: '{0}'", regenDelay));
     }
 }

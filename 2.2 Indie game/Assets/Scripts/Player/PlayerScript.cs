@@ -106,7 +106,7 @@ public class PlayerScript : MonoBehaviour {
     }
 
     public void ChangeStamina(int amount) {
-        Debug.Log("STAMINA: " + stamina);
+        //Debug.Log("STAMINA: " + stamina);
         stamina += amount;
         if (stamina > maxStamina) stamina = maxStamina;
 
@@ -182,22 +182,28 @@ public class PlayerScript : MonoBehaviour {
         maxHealth = pMaxHealth;
     }
 
-    public void GetStaminaStats(out float pStamina) {
+    public void GetStaminaStats(out float pStamina, out int pMaxStamina) {
         pStamina = stamina;
+        pMaxStamina = maxStamina;
     }
 
-    public void SetStaminaStats(float pStamina) {
+    public void SetStaminaStats(float pStamina, int pMaxStamina) {
         stamina = pStamina;
+        maxStamina = pMaxStamina;
     }
 
     public void IncreasePlayerStats(int pHealth, int pMaxHealth, int pStamina, int pMaxStamina, int pScrap, int pElectronics) {
         if(pScrap>0) IncreaseScrapHud(pScrap);
         maxHealth += pMaxHealth;
         health += pHealth;
+        stamina += pStamina;
+        maxStamina += pMaxStamina;
         scrap += pScrap + scrapBoost;
         Debug.Log(scrap);
         electronics += pElectronics + electronicsBoost;
+
         UpdateHealthHud();
+        UpdateStaminaHud();
     }
 
     public void SetRegenDelay(float newRegenDelay) {

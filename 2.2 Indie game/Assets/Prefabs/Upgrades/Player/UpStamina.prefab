@@ -39,6 +39,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1be9d0d8a7547aa49b5a37a8ab0bc35e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  upgradeName: Stamina Upgrade
   descriptionImage: {fileID: 21300000, guid: c875a414a65684a48b11e7cd37b32684, type: 3}
   text: Increases Stamina
   buttonSprite: {fileID: 21300000, guid: c875a414a65684a48b11e7cd37b32684, type: 3}
@@ -46,6 +47,7 @@ MonoBehaviour:
   ElectronicsCost: 10
   tier: 2
   upgradeType: 0
+  upgradeAmount: 50
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1
@@ -78,6 +80,10 @@ Prefab:
     - target: {fileID: 0}
       propertyPath: tier
       value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: upgradeName
+      value: Stamina Upgrade
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
