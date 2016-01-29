@@ -10,7 +10,7 @@ GameObject:
   - 224: {fileID: 22463066}
   - 114: {fileID: 11493912}
   m_Layer: 5
-  m_Name: UpHealthRegenRatePre
+  m_Name: UpHealthRegenDelay
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
