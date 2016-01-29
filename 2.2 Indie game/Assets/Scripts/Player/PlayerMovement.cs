@@ -119,6 +119,7 @@ public class PlayerMovement : MonoBehaviour {
             } else
                 if (isRunning) {
                 player.ChangeStamina(-1);
+                player.timeNotRun = 0;
                 playerAnimation.CrossFade("Run");
             } else
                 playerAnimation.CrossFade("IdleBreath");
