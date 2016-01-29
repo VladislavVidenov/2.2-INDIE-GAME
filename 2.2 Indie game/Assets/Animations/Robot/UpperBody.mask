@@ -1,0 +1,232 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1011 &101100000
+AvatarMask:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_Name: UpperBody
+  m_Mask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+  m_Elements:
+  - m_Path: 
+    m_Weight: 1
+  - m_Path: Robot
+    m_Weight: 1
+  - m_Path: Robot/Robot_Mesh_01
+    m_Weight: 1
+  - m_Path: Robot/Root_Joint_01
+    m_Weight: 1
+  - m_Path: Robot/Root_Joint_01/Robot_1_Hips_01
+    m_Weight: 1
+  - m_Path: Robot/Root_Joint_01/Robot_1_Hips_01/Robot_1_LeftUpLeg_01
+    m_Weight: 0
+  - m_Path: Robot/Root_Joint_01/Robot_1_Hips_01/Robot_1_LeftUpLeg_01/Robot_1_LeftLeg_01
+    m_Weight: 0
+  - m_Path: Robot/Root_Joint_01/Robot_1_Hips_01/Robot_1_LeftUpLeg_01/Robot_1_LeftLeg_01/Robot_1_LeftFoot_01
+    m_Weight: 0
+  - m_Path: Robot/Root_Joint_01/Robot_1_Hips_01/Robot_1_LeftUpLeg_01/Robot_1_LeftLeg_01/Robot_1_LeftFoot_01/Robot_1_LeftToeBase_01
+    m_Weight: 0
+  - m_Path: Robot/Root_Joint_01/Robot_1_Hips_01/Robot_1_RightUpLeg_01
+    m_Weight: 0
+  - m_Path: Robot/Root_Joint_01/Robot_1_Hips_01/Robot_1_RightUpLeg_01/Robot_1_RightLeg_01
+    m_Weight: 0
+  - m_Path: Robot/Root_Joint_01/Robot_1_Hips_01/Robot_1_RightUpLeg_01/Robot_1_RightLeg_01/Robot_1_RightFoot_01
+    m_Weight: 0
+  - m_Path: Robot/Root_Joint_01/Robot_1_Hips_01/Robot_1_RightUpLeg_01/Robot_1_RightLeg_01/Robot_1_RightFoot_01/Robot_1_RightToeBase_01
+    m_Weight: 0
+  - m_Path: Robot/Root_Joint_01/Robot_1_Hips_01/Robot_1_Spine_01
+    m_Weight: 1
+  - m_Path: Robot/Root_Joint_01/Robot_1_Hips_01/Robot_1_Spine_01/Robot_1_Spine1_01
+    m_Weight: 1
+  - m_Path: Robot/Root_Joint_01/Robot_1_Hips_01/Robot_1_Spine_01/Robot_1_Spine1_01/Robot_1_Spine2_01
+    m_Weight: 1
+  - m_Path: Robot/Root_Joint_01/Robot_1_Hips_01/Robot_1_Spine_01/Robot_1_Spine1_01/Robot_1_Spine2_01/Robot_1_LeftUpShoulder_01
+    m_Weight: 1
+  - m_Path: Robot/Root_Joint_01/Robot_1_Hips_01/Robot_1_Spine_01/Robot_1_Spine1_01/Robot_1_Spine2_01/Robot_1_LeftUpShoulder_01/Robot_1_LeftShoulder_01
+    m_Weight: 1
+  - m_Path: Robot/Root_Joint_01/Robot_1_Hips_01/Robot_1_Spine_01/Robot_1_Spine1_01/Robot_1_Spine2_01/Robot_1_LeftUpShoulder_01/Robot_1_LeftShoulder_01/Robot_1_LeftArm_01
+    m_Weight: 1
+  - m_Path: Robot/Root_Joint_01/Robot_1_Hips_01/Robot_1_Spine_01/Robot_1_Spine1_01/Robot_1_Spine2_01/Robot_1_LeftUpShoulder_01/Robot_1_LeftShoulder_01/Robot_1_LeftArm_01/Robot_1_LeftArm_02
+    m_Weight: 1
+  - m_Path: Robot/Root_Joint_01/Robot_1_Hips_01/Robot_1_Spine_01/Robot_1_Spine1_01/Robot_1_Spine2_01/Robot_1_LeftUpShoulder_01/Robot_1_LeftShoulder_01/Robot_1_LeftArm_01/Robot_1_LeftArm_02/Robot_1_LeftForeArm_01
+    m_Weight: 1
+  - m_Path: Robot/Root_Joint_01/Robot_1_Hips_01/Robot_1_Spine_01/Robot_1_Spine1_01/Robot_1_Spine2_01/Robot_1_LeftUpShoulder_01/Robot_1_LeftShoulder_01/Robot_1_LeftArm_01/Robot_1_LeftArm_02/Robot_1_LeftForeArm_01/Robot_1_LeftForeArm_02
+    m_Weight: 1
+  - m_Path: Robot/Root_Joint_01/Robot_1_Hips_01/Robot_1_Spine_01/Robot_1_Spine1_01/Robot_1_Spine2_01/Robot_1_LeftUpShoulder_01/Robot_1_LeftShoulder_01/Robot_1_LeftArm_01/Robot_1_LeftArm_02/Robot_1_LeftForeArm_01/Robot_1_LeftForeArm_02/Robot_1_LeftHand_01
+    m_Weight: 1
+  - m_Path: Robot/Root_Joint_01/Robot_1_Hips_01/Robot_1_Spine_01/Robot_1_Spine1_01/Robot_1_Spine2_01/Robot_1_LeftUpShoulder_01/Robot_1_LeftShoulder_01/Robot_1_LeftArm_01/Robot_1_LeftArm_02/Robot_1_LeftForeArm_01/Robot_1_LeftForeArm_02/Robot_1_LeftHand_01/Robot_1_LeftHandIndex1_01
+    m_Weight: 1
+  - m_Path: Robot/Root_Joint_01/Robot_1_Hips_01/Robot_1_Spine_01/Robot_1_Spine1_01/Robot_1_Spine2_01/Robot_1_LeftUpShoulder_01/Robot_1_LeftShoulder_01/Robot_1_LeftArm_01/Robot_1_LeftArm_02/Robot_1_LeftForeArm_01/Robot_1_LeftForeArm_02/Robot_1_LeftHand_01/Robot_1_LeftHandIndex1_01/Robot_1_LeftHandIndex2_01
+    m_Weight: 1
+  - m_Path: Robot/Root_Joint_01/Robot_1_Hips_01/Robot_1_Spine_01/Robot_1_Spine1_01/Robot_1_Spine2_01/Robot_1_LeftUpShoulder_01/Robot_1_LeftShoulder_01/Robot_1_LeftArm_01/Robot_1_LeftArm_02/Robot_1_LeftForeArm_01/Robot_1_LeftForeArm_02/Robot_1_LeftHand_01/Robot_1_LeftHandIndex1_01/Robot_1_LeftHandIndex2_01/Robot_1_LeftHandIndex3_01
+    m_Weight: 1
+  - m_Path: Robot/Root_Joint_01/Robot_1_Hips_01/Robot_1_Spine_01/Robot_1_Spine1_01/Robot_1_Spine2_01/Robot_1_LeftUpShoulder_01/Robot_1_LeftShoulder_01/Robot_1_LeftArm_01/Robot_1_LeftArm_02/Robot_1_LeftForeArm_01/Robot_1_LeftForeArm_02/Robot_1_LeftHand_01/Robot_1_LeftHandIndex1_01/Robot_1_LeftHandIndex2_01/Robot_1_LeftHandIndex3_01/Robot_1_LeftHandIndex4_01
+    m_Weight: 1
+  - m_Path: Robot/Root_Joint_01/Robot_1_Hips_01/Robot_1_Spine_01/Robot_1_Spine1_01/Robot_1_Spine2_01/Robot_1_LeftUpShoulder_01/Robot_1_LeftShoulder_01/Robot_1_LeftArm_01/Robot_1_LeftArm_02/Robot_1_LeftForeArm_01/Robot_1_LeftForeArm_02/Robot_1_LeftHand_01/Robot_1_LeftHandPinky1_01
+    m_Weight: 1
+  - m_Path: Robot/Root_Joint_01/Robot_1_Hips_01/Robot_1_Spine_01/Robot_1_Spine1_01/Robot_1_Spine2_01/Robot_1_LeftUpShoulder_01/Robot_1_LeftShoulder_01/Robot_1_LeftArm_01/Robot_1_LeftArm_02/Robot_1_LeftForeArm_01/Robot_1_LeftForeArm_02/Robot_1_LeftHand_01/Robot_1_LeftHandPinky1_01/Robot_1_LeftHandPinky2_01
+    m_Weight: 1
+  - m_Path: Robot/Root_Joint_01/Robot_1_Hips_01/Robot_1_Spine_01/Robot_1_Spine1_01/Robot_1_Spine2_01/Robot_1_LeftUpShoulder_01/Robot_1_LeftShoulder_01/Robot_1_LeftArm_01/Robot_1_LeftArm_02/Robot_1_LeftForeArm_01/Robot_1_LeftForeArm_02/Robot_1_LeftHand_01/Robot_1_LeftHandPinky1_01/Robot_1_LeftHandPinky2_01/Robot_1_LeftHandPinky3_01
+    m_Weight: 1
+  - m_Path: Robot/Root_Joint_01/Robot_1_Hips_01/Robot_1_Spine_01/Robot_1_Spine1_01/Robot_1_Spine2_01/Robot_1_LeftUpShoulder_01/Robot_1_LeftShoulder_01/Robot_1_LeftArm_01/Robot_1_LeftArm_02/Robot_1_LeftForeArm_01/Robot_1_LeftForeArm_02/Robot_1_LeftHand_01/Robot_1_LeftHandPinky1_01/Robot_1_LeftHandPinky2_01/Robot_1_LeftHandPinky3_01/Robot_1_LeftHandPinky4_01
+    m_Weight: 1
+  - m_Path: Robot/Root_Joint_01/Robot_1_Hips_01/Robot_1_Spine_01/Robot_1_Spine1_01/Robot_1_Spine2_01/Robot_1_LeftUpShoulder_01/Robot_1_LeftShoulder_01/Robot_1_LeftArm_01/Robot_1_LeftArm_02/Robot_1_LeftForeArm_01/Robot_1_LeftForeArm_02/Robot_1_LeftHand_01/Robot_1_LeftHandRing1_01
+    m_Weight: 1
+  - m_Path: Robot/Root_Joint_01/Robot_1_Hips_01/Robot_1_Spine_01/Robot_1_Spine1_01/Robot_1_Spine2_01/Robot_1_LeftUpShoulder_01/Robot_1_LeftShoulder_01/Robot_1_LeftArm_01/Robot_1_LeftArm_02/Robot_1_LeftForeArm_01/Robot_1_LeftForeArm_02/Robot_1_LeftHand_01/Robot_1_LeftHandRing1_01/Robot_1_LeftHandRing2_01
+    m_Weight: 1
+  - m_Path: Robot/Root_Joint_01/Robot_1_Hips_01/Robot_1_Spine_01/Robot_1_Spine1_01/Robot_1_Spine2_01/Robot_1_LeftUpShoulder_01/Robot_1_LeftShoulder_01/Robot_1_LeftArm_01/Robot_1_LeftArm_02/Robot_1_LeftForeArm_01/Robot_1_LeftForeArm_02/Robot_1_LeftHand_01/Robot_1_LeftHandRing1_01/Robot_1_LeftHandRing2_01/Robot_1_LeftHandRing3_01
+    m_Weight: 1
+  - m_Path: Robot/Root_Joint_01/Robot_1_Hips_01/Robot_1_Spine_01/Robot_1_Spine1_01/Robot_1_Spine2_01/Robot_1_LeftUpShoulder_01/Robot_1_LeftShoulder_01/Robot_1_LeftArm_01/Robot_1_LeftArm_02/Robot_1_LeftForeArm_01/Robot_1_LeftForeArm_02/Robot_1_LeftHand_01/Robot_1_LeftHandRing1_01/Robot_1_LeftHandRing2_01/Robot_1_LeftHandRing3_01/Robot_1_LeftHandRing4_01
+    m_Weight: 1
+  - m_Path: Robot/Root_Joint_01/Robot_1_Hips_01/Robot_1_Spine_01/Robot_1_Spine1_01/Robot_1_Spine2_01/Robot_1_LeftUpShoulder_01/Robot_1_LeftShoulder_01/Robot_1_LeftArm_01/Robot_1_LeftArm_02/Robot_1_LeftForeArm_01/Robot_1_LeftForeArm_02/Robot_1_LeftHand_01/Robot_1_LeftHandThumb1_01
+    m_Weight: 1
+  - m_Path: Robot/Root_Joint_01/Robot_1_Hips_01/Robot_1_Spine_01/Robot_1_Spine1_01/Robot_1_Spine2_01/Robot_1_LeftUpShoulder_01/Robot_1_LeftShoulder_01/Robot_1_LeftArm_01/Robot_1_LeftArm_02/Robot_1_LeftForeArm_01/Robot_1_LeftForeArm_02/Robot_1_LeftHand_01/Robot_1_LeftHandThumb1_01/Robot_1_LeftHandThumb2_01
+    m_Weight: 1
+  - m_Path: Robot/Root_Joint_01/Robot_1_Hips_01/Robot_1_Spine_01/Robot_1_Spine1_01/Robot_1_Spine2_01/Robot_1_LeftUpShoulder_01/Robot_1_LeftShoulder_01/Robot_1_LeftArm_01/Robot_1_LeftArm_02/Robot_1_LeftForeArm_01/Robot_1_LeftForeArm_02/Robot_1_LeftHand_01/Robot_1_LeftHandThumb1_01/Robot_1_LeftHandThumb2_01/Robot_1_LeftHandThumb3_01
+    m_Weight: 1
+  - m_Path: Robot/Root_Joint_01/Robot_1_Hips_01/Robot_1_Spine_01/Robot_1_Spine1_01/Robot_1_Spine2_01/Robot_1_Neck_01
+    m_Weight: 1
+  - m_Path: Robot/Root_Joint_01/Robot_1_Hips_01/Robot_1_Spine_01/Robot_1_Spine1_01/Robot_1_Spine2_01/Robot_1_Neck_01/Robot_1_Head_01
+    m_Weight: 1
+  - m_Path: Robot/Root_Joint_01/Robot_1_Hips_01/Robot_1_Spine_01/Robot_1_Spine1_01/Robot_1_Spine2_01/Robot_1_RightUpShoulder_01
+    m_Weight: 1
+  - m_Path: Robot/Root_Joint_01/Robot_1_Hips_01/Robot_1_Spine_01/Robot_1_Spine1_01/Robot_1_Spine2_01/Robot_1_RightUpShoulder_01/Robot_1_RightShoulder_01
+    m_Weight: 1
+  - m_Path: Robot/Root_Joint_01/Robot_1_Hips_01/Robot_1_Spine_01/Robot_1_Spine1_01/Robot_1_Spine2_01/Robot_1_RightUpShoulder_01/Robot_1_RightShoulder_01/Robot_1_RightArm_01
+    m_Weight: 1
+  - m_Path: Robot/Root_Joint_01/Robot_1_Hips_01/Robot_1_Spine_01/Robot_1_Spine1_01/Robot_1_Spine2_01/Robot_1_RightUpShoulder_01/Robot_1_RightShoulder_01/Robot_1_RightArm_01/Robot_1_RightArm_02
+    m_Weight: 1
+  - m_Path: Robot/Root_Joint_01/Robot_1_Hips_01/Robot_1_Spine_01/Robot_1_Spine1_01/Robot_1_Spine2_01/Robot_1_RightUpShoulder_01/Robot_1_RightShoulder_01/Robot_1_RightArm_01/Robot_1_RightArm_02/Robot_1_RightForeArm_01
+    m_Weight: 1
+  - m_Path: Robot/Root_Joint_01/Robot_1_Hips_01/Robot_1_Spine_01/Robot_1_Spine1_01/Robot_1_Spine2_01/Robot_1_RightUpShoulder_01/Robot_1_RightShoulder_01/Robot_1_RightArm_01/Robot_1_RightArm_02/Robot_1_RightForeArm_01/Robot_1_RightForeArm_02
+    m_Weight: 1
+  - m_Path: Robot/Root_Joint_01/Robot_1_Hips_01/Robot_1_Spine_01/Robot_1_Spine1_01/Robot_1_Spine2_01/Robot_1_RightUpShoulder_01/Robot_1_RightShoulder_01/Robot_1_RightArm_01/Robot_1_RightArm_02/Robot_1_RightForeArm_01/Robot_1_RightForeArm_02/Robot_1_RightHand_01
+    m_Weight: 1
+  - m_Path: Robot/Root_Joint_01/Robot_1_Hips_01/Robot_1_Spine_01/Robot_1_Spine1_01/Robot_1_Spine2_01/Robot_1_RightUpShoulder_01/Robot_1_RightShoulder_01/Robot_1_RightArm_01/Robot_1_RightArm_02/Robot_1_RightForeArm_01/Robot_1_RightForeArm_02/Robot_1_RightHand_01/Robot_1_RightHandIndex1_01
+    m_Weight: 1
+  - m_Path: Robot/Root_Joint_01/Robot_1_Hips_01/Robot_1_Spine_01/Robot_1_Spine1_01/Robot_1_Spine2_01/Robot_1_RightUpShoulder_01/Robot_1_RightShoulder_01/Robot_1_RightArm_01/Robot_1_RightArm_02/Robot_1_RightForeArm_01/Robot_1_RightForeArm_02/Robot_1_RightHand_01/Robot_1_RightHandIndex1_01/Robot_1_RightHandIndex2_01
+    m_Weight: 1
+  - m_Path: Robot/Root_Joint_01/Robot_1_Hips_01/Robot_1_Spine_01/Robot_1_Spine1_01/Robot_1_Spine2_01/Robot_1_RightUpShoulder_01/Robot_1_RightShoulder_01/Robot_1_RightArm_01/Robot_1_RightArm_02/Robot_1_RightForeArm_01/Robot_1_RightForeArm_02/Robot_1_RightHand_01/Robot_1_RightHandIndex1_01/Robot_1_RightHandIndex2_01/Robot_1_RightHandIndex3_01
+    m_Weight: 1
+  - m_Path: Robot/Root_Joint_01/Robot_1_Hips_01/Robot_1_Spine_01/Robot_1_Spine1_01/Robot_1_Spine2_01/Robot_1_RightUpShoulder_01/Robot_1_RightShoulder_01/Robot_1_RightArm_01/Robot_1_RightArm_02/Robot_1_RightForeArm_01/Robot_1_RightForeArm_02/Robot_1_RightHand_01/Robot_1_RightHandIndex1_01/Robot_1_RightHandIndex2_01/Robot_1_RightHandIndex3_01/Robot_1_RightHandIndex4_01
+    m_Weight: 1
+  - m_Path: Robot/Root_Joint_01/Robot_1_Hips_01/Robot_1_Spine_01/Robot_1_Spine1_01/Robot_1_Spine2_01/Robot_1_RightUpShoulder_01/Robot_1_RightShoulder_01/Robot_1_RightArm_01/Robot_1_RightArm_02/Robot_1_RightForeArm_01/Robot_1_RightForeArm_02/Robot_1_RightHand_01/Robot_1_RightHandPinky1_01
+    m_Weight: 1
+  - m_Path: Robot/Root_Joint_01/Robot_1_Hips_01/Robot_1_Spine_01/Robot_1_Spine1_01/Robot_1_Spine2_01/Robot_1_RightUpShoulder_01/Robot_1_RightShoulder_01/Robot_1_RightArm_01/Robot_1_RightArm_02/Robot_1_RightForeArm_01/Robot_1_RightForeArm_02/Robot_1_RightHand_01/Robot_1_RightHandPinky1_01/Robot_1_RightHandPinky2_01
+    m_Weight: 1
+  - m_Path: Robot/Root_Joint_01/Robot_1_Hips_01/Robot_1_Spine_01/Robot_1_Spine1_01/Robot_1_Spine2_01/Robot_1_RightUpShoulder_01/Robot_1_RightShoulder_01/Robot_1_RightArm_01/Robot_1_RightArm_02/Robot_1_RightForeArm_01/Robot_1_RightForeArm_02/Robot_1_RightHand_01/Robot_1_RightHandPinky1_01/Robot_1_RightHandPinky2_01/Robot_1_RightHandPinky3_01
+    m_Weight: 1
+  - m_Path: Robot/Root_Joint_01/Robot_1_Hips_01/Robot_1_Spine_01/Robot_1_Spine1_01/Robot_1_Spine2_01/Robot_1_RightUpShoulder_01/Robot_1_RightShoulder_01/Robot_1_RightArm_01/Robot_1_RightArm_02/Robot_1_RightForeArm_01/Robot_1_RightForeArm_02/Robot_1_RightHand_01/Robot_1_RightHandPinky1_01/Robot_1_RightHandPinky2_01/Robot_1_RightHandPinky3_01/Robot_1_RightHandPinky4_01
+    m_Weight: 1
+  - m_Path: Robot/Root_Joint_01/Robot_1_Hips_01/Robot_1_Spine_01/Robot_1_Spine1_01/Robot_1_Spine2_01/Robot_1_RightUpShoulder_01/Robot_1_RightShoulder_01/Robot_1_RightArm_01/Robot_1_RightArm_02/Robot_1_RightForeArm_01/Robot_1_RightForeArm_02/Robot_1_RightHand_01/Robot_1_RightHandRing1_01
+    m_Weight: 1
+  - m_Path: Robot/Root_Joint_01/Robot_1_Hips_01/Robot_1_Spine_01/Robot_1_Spine1_01/Robot_1_Spine2_01/Robot_1_RightUpShoulder_01/Robot_1_RightShoulder_01/Robot_1_RightArm_01/Robot_1_RightArm_02/Robot_1_RightForeArm_01/Robot_1_RightForeArm_02/Robot_1_RightHand_01/Robot_1_RightHandRing1_01/Robot_1_RightHandRing2_01
+    m_Weight: 1
+  - m_Path: Robot/Root_Joint_01/Robot_1_Hips_01/Robot_1_Spine_01/Robot_1_Spine1_01/Robot_1_Spine2_01/Robot_1_RightUpShoulder_01/Robot_1_RightShoulder_01/Robot_1_RightArm_01/Robot_1_RightArm_02/Robot_1_RightForeArm_01/Robot_1_RightForeArm_02/Robot_1_RightHand_01/Robot_1_RightHandRing1_01/Robot_1_RightHandRing2_01/Robot_1_RightHandRing3_01
+    m_Weight: 1
+  - m_Path: Robot/Root_Joint_01/Robot_1_Hips_01/Robot_1_Spine_01/Robot_1_Spine1_01/Robot_1_Spine2_01/Robot_1_RightUpShoulder_01/Robot_1_RightShoulder_01/Robot_1_RightArm_01/Robot_1_RightArm_02/Robot_1_RightForeArm_01/Robot_1_RightForeArm_02/Robot_1_RightHand_01/Robot_1_RightHandRing1_01/Robot_1_RightHandRing2_01/Robot_1_RightHandRing3_01/Robot_1_RightHandRing4_01
+    m_Weight: 1
+  - m_Path: Robot/Root_Joint_01/Robot_1_Hips_01/Robot_1_Spine_01/Robot_1_Spine1_01/Robot_1_Spine2_01/Robot_1_RightUpShoulder_01/Robot_1_RightShoulder_01/Robot_1_RightArm_01/Robot_1_RightArm_02/Robot_1_RightForeArm_01/Robot_1_RightForeArm_02/Robot_1_RightHand_01/Robot_1_RightHandThumb1_01
+    m_Weight: 1
+  - m_Path: Robot/Root_Joint_01/Robot_1_Hips_01/Robot_1_Spine_01/Robot_1_Spine1_01/Robot_1_Spine2_01/Robot_1_RightUpShoulder_01/Robot_1_RightShoulder_01/Robot_1_RightArm_01/Robot_1_RightArm_02/Robot_1_RightForeArm_01/Robot_1_RightForeArm_02/Robot_1_RightHand_01/Robot_1_RightHandThumb1_01/Robot_1_RightHandThumb2_01
+    m_Weight: 1
+  - m_Path: Robot/Root_Joint_01/Robot_1_Hips_01/Robot_1_Spine_01/Robot_1_Spine1_01/Robot_1_Spine2_01/Robot_1_RightUpShoulder_01/Robot_1_RightShoulder_01/Robot_1_RightArm_01/Robot_1_RightArm_02/Robot_1_RightForeArm_01/Robot_1_RightForeArm_02/Robot_1_RightHand_01/Robot_1_RightHandThumb1_01/Robot_1_RightHandThumb2_01/Robot_1_RightHandThumb3_01
+    m_Weight: 1
+  - m_Path: Root_Controller_01
+    m_Weight: 1
+  - m_Path: Root_Controller_01/Hip_Controller_01
+    m_Weight: 1
+  - m_Path: Root_Controller_01/Hip_Controller_01/Chest_Controller_01
+    m_Weight: 1
+  - m_Path: Root_Controller_01/Hip_Controller_01/Chest_Controller_01/Head_Controller_01
+    m_Weight: 1
+  - m_Path: Root_Controller_01/Hip_Controller_01/Chest_Controller_01/ShoulderRotateL_Top_Controller_01
+    m_Weight: 1
+  - m_Path: Root_Controller_01/Hip_Controller_01/Chest_Controller_01/ShoulderRotateL_Top_Controller_01/ShoulderRotateR_Controller_02
+    m_Weight: 1
+  - m_Path: Root_Controller_01/Hip_Controller_01/Chest_Controller_01/ShoulderRotateL_Top_Controller_01/ShoulderRotateR_Controller_02/ShoulderTwistr_Controller_01
+    m_Weight: 1
+  - m_Path: Root_Controller_01/Hip_Controller_01/Chest_Controller_01/ShoulderRotateL_Top_Controller_01/ShoulderRotateR_Controller_02/ShoulderTwistr_Controller_01/ElbowRotateL_Controller_01
+    m_Weight: 1
+  - m_Path: Root_Controller_01/Hip_Controller_01/Chest_Controller_01/ShoulderRotateL_Top_Controller_01/ShoulderRotateR_Controller_02/ShoulderTwistr_Controller_01/ElbowRotateL_Controller_01/ElbowTwistL_Controller_01
+    m_Weight: 1
+  - m_Path: Root_Controller_01/Hip_Controller_01/Chest_Controller_01/ShoulderRotateL_Top_Controller_01/ShoulderRotateR_Controller_02/ShoulderTwistr_Controller_01/ElbowRotateL_Controller_01/ElbowTwistL_Controller_01/WristL_Controller_01
+    m_Weight: 1
+  - m_Path: Root_Controller_01/Hip_Controller_01/Chest_Controller_01/ShoulderRotateL_Top_Controller_01/ShoulderRotateR_Controller_02/ShoulderTwistr_Controller_01/ElbowRotateL_Controller_01/ElbowTwistL_Controller_01/WristL_Controller_01/IndexL_Controller_01
+    m_Weight: 1
+  - m_Path: Root_Controller_01/Hip_Controller_01/Chest_Controller_01/ShoulderRotateL_Top_Controller_01/ShoulderRotateR_Controller_02/ShoulderTwistr_Controller_01/ElbowRotateL_Controller_01/ElbowTwistL_Controller_01/WristL_Controller_01/IndexL_Controller_01/IndexL_Controller_02
+    m_Weight: 1
+  - m_Path: Root_Controller_01/Hip_Controller_01/Chest_Controller_01/ShoulderRotateL_Top_Controller_01/ShoulderRotateR_Controller_02/ShoulderTwistr_Controller_01/ElbowRotateL_Controller_01/ElbowTwistL_Controller_01/WristL_Controller_01/IndexL_Controller_01/IndexL_Controller_02/IndexL_Controller_03
+    m_Weight: 1
+  - m_Path: Root_Controller_01/Hip_Controller_01/Chest_Controller_01/ShoulderRotateL_Top_Controller_01/ShoulderRotateR_Controller_02/ShoulderTwistr_Controller_01/ElbowRotateL_Controller_01/ElbowTwistL_Controller_01/WristL_Controller_01/IndexL_Controller_01/IndexL_Controller_02/IndexL_Controller_03/IndexL_Controller_04
+    m_Weight: 1
+  - m_Path: Root_Controller_01/Hip_Controller_01/Chest_Controller_01/ShoulderRotateL_Top_Controller_01/ShoulderRotateR_Controller_02/ShoulderTwistr_Controller_01/ElbowRotateL_Controller_01/ElbowTwistL_Controller_01/WristL_Controller_01/MidFingerL_Controller_01
+    m_Weight: 1
+  - m_Path: Root_Controller_01/Hip_Controller_01/Chest_Controller_01/ShoulderRotateL_Top_Controller_01/ShoulderRotateR_Controller_02/ShoulderTwistr_Controller_01/ElbowRotateL_Controller_01/ElbowTwistL_Controller_01/WristL_Controller_01/MidFingerL_Controller_01/MidFingerL_Controller_02
+    m_Weight: 1
+  - m_Path: Root_Controller_01/Hip_Controller_01/Chest_Controller_01/ShoulderRotateL_Top_Controller_01/ShoulderRotateR_Controller_02/ShoulderTwistr_Controller_01/ElbowRotateL_Controller_01/ElbowTwistL_Controller_01/WristL_Controller_01/MidFingerL_Controller_01/MidFingerL_Controller_02/MidFIngerL_Controller_03
+    m_Weight: 1
+  - m_Path: Root_Controller_01/Hip_Controller_01/Chest_Controller_01/ShoulderRotateL_Top_Controller_01/ShoulderRotateR_Controller_02/ShoulderTwistr_Controller_01/ElbowRotateL_Controller_01/ElbowTwistL_Controller_01/WristL_Controller_01/MidFingerL_Controller_01/MidFingerL_Controller_02/MidFIngerL_Controller_03/MidFIngerL_Controller_04
+    m_Weight: 1
+  - m_Path: Root_Controller_01/Hip_Controller_01/Chest_Controller_01/ShoulderRotateL_Top_Controller_01/ShoulderRotateR_Controller_02/ShoulderTwistr_Controller_01/ElbowRotateL_Controller_01/ElbowTwistL_Controller_01/WristL_Controller_01/PinkL_Controller_01
+    m_Weight: 1
+  - m_Path: Root_Controller_01/Hip_Controller_01/Chest_Controller_01/ShoulderRotateL_Top_Controller_01/ShoulderRotateR_Controller_02/ShoulderTwistr_Controller_01/ElbowRotateL_Controller_01/ElbowTwistL_Controller_01/WristL_Controller_01/PinkL_Controller_01/PinkL_Controller_02
+    m_Weight: 1
+  - m_Path: Root_Controller_01/Hip_Controller_01/Chest_Controller_01/ShoulderRotateL_Top_Controller_01/ShoulderRotateR_Controller_02/ShoulderTwistr_Controller_01/ElbowRotateL_Controller_01/ElbowTwistL_Controller_01/WristL_Controller_01/PinkL_Controller_01/PinkL_Controller_02/PinkR_Controller_03
+    m_Weight: 1
+  - m_Path: Root_Controller_01/Hip_Controller_01/Chest_Controller_01/ShoulderRotateL_Top_Controller_01/ShoulderRotateR_Controller_02/ShoulderTwistr_Controller_01/ElbowRotateL_Controller_01/ElbowTwistL_Controller_01/WristL_Controller_01/PinkL_Controller_01/PinkL_Controller_02/PinkR_Controller_03/PinkR_Controller_04
+    m_Weight: 1
+  - m_Path: Root_Controller_01/Hip_Controller_01/Chest_Controller_01/ShoulderRotateL_Top_Controller_01/ShoulderRotateR_Controller_02/ShoulderTwistr_Controller_01/ElbowRotateL_Controller_01/ElbowTwistL_Controller_01/WristL_Controller_01/ThumbL_Controller_01
+    m_Weight: 1
+  - m_Path: Root_Controller_01/Hip_Controller_01/Chest_Controller_01/ShoulderRotateL_Top_Controller_01/ShoulderRotateR_Controller_02/ShoulderTwistr_Controller_01/ElbowRotateL_Controller_01/ElbowTwistL_Controller_01/WristL_Controller_01/ThumbL_Controller_01/ThumbL_Controller_02
+    m_Weight: 1
+  - m_Path: Root_Controller_01/Hip_Controller_01/Chest_Controller_01/ShoulderRotateL_Top_Controller_01/ShoulderRotateR_Controller_02/ShoulderTwistr_Controller_01/ElbowRotateL_Controller_01/ElbowTwistL_Controller_01/WristL_Controller_01/ThumbL_Controller_01/ThumbL_Controller_02/ThumbL_Controller_03
+    m_Weight: 1
+  - m_Path: Root_Controller_01/Hip_Controller_01/Chest_Controller_01/ShoulderRotateR_Top_Controller_01
+    m_Weight: 1
+  - m_Path: Root_Controller_01/Hip_Controller_01/Chest_Controller_01/ShoulderRotateR_Top_Controller_01/ShoulderRotateR_Controller_01
+    m_Weight: 1
+  - m_Path: Root_Controller_01/Hip_Controller_01/Chest_Controller_01/ShoulderRotateR_Top_Controller_01/ShoulderRotateR_Controller_01/ShoulderTwistR_Controller_01
+    m_Weight: 1
+  - m_Path: Root_Controller_01/Hip_Controller_01/Chest_Controller_01/ShoulderRotateR_Top_Controller_01/ShoulderRotateR_Controller_01/ShoulderTwistR_Controller_01/ElbowRotateR_Controller_01
+    m_Weight: 1
+  - m_Path: Root_Controller_01/Hip_Controller_01/Chest_Controller_01/ShoulderRotateR_Top_Controller_01/ShoulderRotateR_Controller_01/ShoulderTwistR_Controller_01/ElbowRotateR_Controller_01/ElbowTwistR_Controller_01
+    m_Weight: 1
+  - m_Path: Root_Controller_01/Hip_Controller_01/Chest_Controller_01/ShoulderRotateR_Top_Controller_01/ShoulderRotateR_Controller_01/ShoulderTwistR_Controller_01/ElbowRotateR_Controller_01/ElbowTwistR_Controller_01/WristR_Controller_01
+    m_Weight: 1
+  - m_Path: Root_Controller_01/Hip_Controller_01/Chest_Controller_01/ShoulderRotateR_Top_Controller_01/ShoulderRotateR_Controller_01/ShoulderTwistR_Controller_01/ElbowRotateR_Controller_01/ElbowTwistR_Controller_01/WristR_Controller_01/IndexR_Controller_01
+    m_Weight: 1
+  - m_Path: Root_Controller_01/Hip_Controller_01/Chest_Controller_01/ShoulderRotateR_Top_Controller_01/ShoulderRotateR_Controller_01/ShoulderTwistR_Controller_01/ElbowRotateR_Controller_01/ElbowTwistR_Controller_01/WristR_Controller_01/IndexR_Controller_01/IndexR_Controller_02
+    m_Weight: 1
+  - m_Path: Root_Controller_01/Hip_Controller_01/Chest_Controller_01/ShoulderRotateR_Top_Controller_01/ShoulderRotateR_Controller_01/ShoulderTwistR_Controller_01/ElbowRotateR_Controller_01/ElbowTwistR_Controller_01/WristR_Controller_01/IndexR_Controller_01/IndexR_Controller_02/IndexR_Controller_03
+    m_Weight: 1
+  - m_Path: Root_Controller_01/Hip_Controller_01/Chest_Controller_01/ShoulderRotateR_Top_Controller_01/ShoulderRotateR_Controller_01/ShoulderTwistR_Controller_01/ElbowRotateR_Controller_01/ElbowTwistR_Controller_01/WristR_Controller_01/IndexR_Controller_01/IndexR_Controller_02/IndexR_Controller_03/IndexR_Controller_04
+    m_Weight: 1
+  - m_Path: Root_Controller_01/Hip_Controller_01/Chest_Controller_01/ShoulderRotateR_Top_Controller_01/ShoulderRotateR_Controller_01/ShoulderTwistR_Controller_01/ElbowRotateR_Controller_01/ElbowTwistR_Controller_01/WristR_Controller_01/MidFingerR_Controller_01
+    m_Weight: 1
+  - m_Path: Root_Controller_01/Hip_Controller_01/Chest_Controller_01/ShoulderRotateR_Top_Controller_01/ShoulderRotateR_Controller_01/ShoulderTwistR_Controller_01/ElbowRotateR_Controller_01/ElbowTwistR_Controller_01/WristR_Controller_01/MidFingerR_Controller_01/MidFingerR_Controller_02
+    m_Weight: 1
+  - m_Path: Root_Controller_01/Hip_Controller_01/Chest_Controller_01/ShoulderRotateR_Top_Controller_01/ShoulderRotateR_Controller_01/ShoulderTwistR_Controller_01/ElbowRotateR_Controller_01/ElbowTwistR_Controller_01/WristR_Controller_01/MidFingerR_Controller_01/MidFingerR_Controller_02/MidFIngerR_Controller_03
+    m_Weight: 1
+  - m_Path: Root_Controller_01/Hip_Controller_01/Chest_Controller_01/ShoulderRotateR_Top_Controller_01/ShoulderRotateR_Controller_01/ShoulderTwistR_Controller_01/ElbowRotateR_Controller_01/ElbowTwistR_Controller_01/WristR_Controller_01/MidFingerR_Controller_01/MidFingerR_Controller_02/MidFIngerR_Controller_03/MidFIngerR_Controller_04
+    m_Weight: 1
+  - m_Path: Root_Controller_01/Hip_Controller_01/Chest_Controller_01/ShoulderRotateR_Top_Controller_01/ShoulderRotateR_Controller_01/ShoulderTwistR_Controller_01/ElbowRotateR_Controller_01/ElbowTwistR_Controller_01/WristR_Controller_01/PinkR_Controller_01
+    m_Weight: 1
+  - m_Path: Root_Controller_01/Hip_Controller_01/Chest_Controller_01/ShoulderRotateR_Top_Controller_01/ShoulderRotateR_Controller_01/ShoulderTwistR_Controller_01/ElbowRotateR_Controller_01/ElbowTwistR_Controller_01/WristR_Controller_01/PinkR_Controller_01/PinkR_Controller_02
+    m_Weight: 1
+  - m_Path: Root_Controller_01/Hip_Controller_01/Chest_Controller_01/ShoulderRotateR_Top_Controller_01/ShoulderRotateR_Controller_01/ShoulderTwistR_Controller_01/ElbowRotateR_Controller_01/ElbowTwistR_Controller_01/WristR_Controller_01/PinkR_Controller_01/PinkR_Controller_02/PinkR_Controller_03
+      1
+    m_Weight: 1
+  - m_Path: Root_Controller_01/Hip_Controller_01/Chest_Controller_01/ShoulderRotateR_Top_Controller_01/ShoulderRotateR_Controller_01/ShoulderTwistR_Controller_01/ElbowRotateR_Controller_01/ElbowTwistR_Controller_01/WristR_Controller_01/PinkR_Controller_01/PinkR_Controller_02/PinkR_Controller_03
+      1/PinkR_Controller_04 1
+    m_Weight: 1
+  - m_Path: Root_Controller_01/Hip_Controller_01/Chest_Controller_01/ShoulderRotateR_Top_Controller_01/ShoulderRotateR_Controller_01/ShoulderTwistR_Controller_01/ElbowRotateR_Controller_01/ElbowTwistR_Controller_01/WristR_Controller_01/ThumbR_Controller_01
+    m_Weight: 1
+  - m_Path: Root_Controller_01/Hip_Controller_01/Chest_Controller_01/ShoulderRotateR_Top_Controller_01/ShoulderRotateR_Controller_01/ShoulderTwistR_Controller_01/ElbowRotateR_Controller_01/ElbowTwistR_Controller_01/WristR_Controller_01/ThumbR_Controller_01/ThumbR_Controller_02
+    m_Weight: 1
+  - m_Path: Root_Controller_01/Hip_Controller_01/Chest_Controller_01/ShoulderRotateR_Top_Controller_01/ShoulderRotateR_Controller_01/ShoulderTwistR_Controller_01/ElbowRotateR_Controller_01/ElbowTwistR_Controller_01/WristR_Controller_01/ThumbR_Controller_01/ThumbR_Controller_02/ThumbR_Controller_03
+    m_Weight: 1
+  - m_Path: Root_Controller_01/LegRotateL_Controller_01
+    m_Weight: 0
+  - m_Path: Root_Controller_01/LegRotateR_Controller_01
+    m_Weight: 0

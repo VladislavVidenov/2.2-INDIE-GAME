@@ -373,9 +373,7 @@ GameObject:
   - 33: {fileID: 3390460}
   - 23: {fileID: 2354464}
   - 195: {fileID: 19589106}
-  - 114: {fileID: 11469160}
   - 136: {fileID: 13647852}
-  - 114: {fileID: 11482808}
   - 114: {fileID: 11471840}
   - 54: {fileID: 5423622}
   m_Layer: 13
@@ -1724,7 +1722,7 @@ MeshRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 141104}
-  m_Enabled: 0
+  m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_Materials:
@@ -1813,17 +1811,6 @@ Light:
   m_ShadowRadius: 0
   m_ShadowAngle: 0
   m_AreaSize: {x: 1, y: 1}
---- !u!114 &11469160
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 141104}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ffbe3b98d338cf34da8b7afb67198c12, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &11471840
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1838,28 +1825,19 @@ MonoBehaviour:
   state: 3
   health: 100
   creditsDropAmount: 5
+  defaultSpeed: 3.5
+  defaultAcceleration: 8
   agent: {fileID: 19589106}
   player: {fileID: 0}
   playerHeadPos: {fileID: 0}
   enemyHeadPos: {fileID: 0}
   spawner: {fileID: 0}
+  attackTime: 2
   layer:
     serializedVersion: 2
     m_Bits: 4294959103
-  attackTime: 2
   attackRotationSpeed: 5
   bulletPrefab: {fileID: 184856, guid: 8182db3bab065334ba7303254504be7d, type: 2}
---- !u!114 &11482808
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 141104}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 230128768d210d34888404e1b9ec1e09, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!136 &13647852
 CapsuleCollider:
   m_ObjectHideFlags: 1
@@ -2036,6 +2014,10 @@ Prefab:
       propertyPath: bulletPrefab
       value: 
       objectReference: {fileID: 184856, guid: 8182db3bab065334ba7303254504be7d, type: 2}
+    - target: {fileID: 0}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
   m_RootGameObject: {fileID: 141104}
