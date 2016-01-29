@@ -11,7 +11,7 @@ public class EngineScript : MonoBehaviour {
 
     public void StartEngine() {
         foreach (SpawningScript spawn in spawners) {
-            spawn.spawn = true;
+            if (spawn != null) spawn.spawn = true;
         }
     }
 }

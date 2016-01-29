@@ -146,6 +146,7 @@ public class PlayerScript : MonoBehaviour {
         scrap += pScrap + scrapBoost;
         Debug.Log(scrap);
         electronics += pElectronics + electronicsBoost;
+        UpdateHealthHud();
     }
 
     void IncreaseScrapHud(int Amount) {
@@ -206,7 +207,5 @@ public class PlayerScript : MonoBehaviour {
 
             if (i > 99) Invoke("DeactiveScrapHud", 5);
         }
-
-        
     }
 }
