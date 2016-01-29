@@ -51,7 +51,6 @@ public class AIManager : MonoBehaviour {
 			case AIState.Charge:
 				meleeEnemyCharging++;
 				break;
-			
 			}
 		}
 

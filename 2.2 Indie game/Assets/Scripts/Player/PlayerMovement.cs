@@ -19,6 +19,7 @@ public class PlayerMovement : MonoBehaviour {
     GameObject recoilEffectGO;
     [SerializeField]
     Animation playerAnimation;
+    PlayerScript player; //used for stamina
 
     //Variables
     //[SerializeField]
@@ -56,6 +57,7 @@ public class PlayerMovement : MonoBehaviour {
         bodyCollider = GetComponent<CapsuleCollider>();
         mainCamera = Camera.main.gameObject;
         weaponCamera = GameObject.FindGameObjectWithTag(Tags.weaponCamera);
+        player = GetComponent<PlayerScript>();
     }
 
     // Update is called once per frame
@@ -68,7 +70,6 @@ public class PlayerMovement : MonoBehaviour {
 
         if (isGrounded)
         {
-
             Vector3 targetVel;
             targetVel = input;
             targetVel = transform.TransformDirection(targetVel);
@@ -108,19 +109,18 @@ public class PlayerMovement : MonoBehaviour {
         if (isGrounded && !isReloading)
         {
 
-            if (isWalking())
-            {
+            if (isWalking()) {
                 if (isCrouching || isWepAiming)
                     playerAnimation["Walk"].speed = 0.5f;
                 else
                     playerAnimation["Walk"].speed = 1;
 
                 playerAnimation.CrossFade("Walk");
-            }
-            else
-                if (isRunning)
+            } else
+                if (isRunning) {
+                player.ChangeStamina(-1);
                 playerAnimation.CrossFade("Run");
-            else
+            } else
                 playerAnimation.CrossFade("IdleBreath");
         }
 
@@ -132,19 +132,18 @@ public class PlayerMovement : MonoBehaviour {
             else if (stateID == 2)
                 state = PlayerStates.Stand;
         }
-        else if (Input.GetKey(KeyCode.LeftShift) && Input.GetKey(KeyCode.W) && releasedRun && !isWepAiming)
+        else if (Input.GetKey(KeyCode.LeftShift) && Input.GetKey(KeyCode.W) && releasedRun && !isWepAiming && player.HasStamina())
         {
+            Debug.Log("player.hasstamina: " + player.HasStamina());
             isRunning = true;
             releasedRun = false;
         }
-        if (Input.GetKeyUp(KeyCode.LeftShift) || Input.GetKeyUp(KeyCode.W))
+
+        if (Input.GetKeyUp(KeyCode.LeftShift) || Input.GetKeyUp(KeyCode.W) || !player.HasStamina())
         {
             isRunning = false;
             releasedRun = true;
         }
-
-
-
 
         switch (state)
         {

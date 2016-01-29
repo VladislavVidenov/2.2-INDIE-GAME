@@ -13,6 +13,9 @@ public class MeleeEnemyScript : EnemyScript {
 	override public void Start () {
 		base.Start ();
 		state = AIState.Running;
+        agent.SetAreaCost(3, (float)Random.RandomRange(0, 5));
+        agent.SetAreaCost(4, (float)Random.RandomRange(0, 5));
+        agent.SetAreaCost(5, (float)Random.RandomRange(0, 5));
 	}
 	
 	// Update is called once per frame

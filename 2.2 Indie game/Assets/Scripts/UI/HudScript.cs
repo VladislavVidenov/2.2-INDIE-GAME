@@ -11,6 +11,8 @@ public class HudScript : MonoBehaviour {
 
     int playerHealthCap;
     float playerHealth;
+    int playerStaminaCap;
+    float playerStamina;
 
     bool showCrosshair;
 
@@ -18,6 +20,10 @@ public class HudScript : MonoBehaviour {
     [Header("Health Texts")]
     [SerializeField] Text currentHealthText;
     [SerializeField] Text healthCapText;
+
+    [Header("Stamina Texts")]
+    [SerializeField] Text currentStaminaText;
+    [SerializeField] Text staminaCapText;
 
     [Header("Ammo Texts")]
     [SerializeField] Text ammoMagLeftText;
@@ -37,6 +43,8 @@ public class HudScript : MonoBehaviour {
             print("ammoMagLeft:     " + ammoMagLeft);
             print("playerHealthCap: " + playerHealthCap);
             print("playerHealth:    " + playerHealth);
+            print("playerStaminaCap: " + playerStaminaCap);
+            print("playerStamina:    " + playerStamina);
         }
     }
 
@@ -71,6 +79,16 @@ public class HudScript : MonoBehaviour {
         set { playerHealth = value; UpdateHealthHud(); }
     }
 
+    public int PlayerStaminaCap {
+        get { return playerStaminaCap; }
+        set { playerStaminaCap = value; UpdateStaminaHud(); }
+    }
+
+    public float PlayerStamina {
+        get { return playerStamina; }
+        set { playerStamina = value; UpdateStaminaHud(); }
+    }
+
     public bool ShowCrosshair {
         get { return showCrosshair; }
         set { showCrosshair = value; }
@@ -87,6 +105,7 @@ public class HudScript : MonoBehaviour {
     public void UpdateHud() {
         UpdateHealthHud();
         UpdateAmmoHud();
+        UpdateStaminaHud();
     }
 
     void UpdateHealthHud() {
@@ -94,13 +113,17 @@ public class HudScript : MonoBehaviour {
         healthCapText.text = "/" + playerHealthCap.ToString();
     }
 
-
     void UpdateAmmoHud() {
         ammoMagLeftText.text = ammoMagLeft.ToString();
         ammoMagCapText.text = "/" + ammoMagCap.ToString();
         
         ammoCarryLeftText.text = ammoCarryLeft.ToString();
         ammoCarryCapText.text = "/" + ammoCarryCap.ToString();
+    }
+
+    void UpdateStaminaHud() {
+        currentStaminaText.text = playerStamina.ToString();
+        staminaCapText.text = "/" + playerStaminaCap.ToString();
     }
 
 }

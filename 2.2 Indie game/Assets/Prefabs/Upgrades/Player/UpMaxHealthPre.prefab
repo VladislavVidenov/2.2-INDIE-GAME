@@ -40,7 +40,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   descriptionImage: {fileID: 21300000, guid: 27d76c7f171d39e4481bf4340ca24298, type: 3}
-  text: Increases MaxHealth by 20
+  text: Increase Max Health by 20
   buttonSprite: {fileID: 21300000, guid: 27d76c7f171d39e4481bf4340ca24298, type: 3}
   ScrapCost: 500
   ElectronicsCost: 100
@@ -59,7 +59,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: text
-      value: Inceases MaxHealth by 20
+      value: Increase Max Health by 20
       objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: ScrapCost

@@ -23,9 +23,10 @@ public class GraphicsSettingsScript : SettingsScript {
     
 
     void Awake() {
-        //Brightness
+        //Brightness -- make sure the main camera has this script attached!
         toneMappingScript = Camera.main.GetComponent<Tonemapping>();
-        toneMappingScript.middleGrey = middleGray;
+        if (toneMappingScript != null) toneMappingScript.middleGrey = middleGray;
+        else { print("Could not find ToneMappingScript. Make sure it is attached to the Main Camera"); }
         
         //Quality
         qualityLevels = QualitySettings.names;                                      //Check available quality settings and store them in an array;

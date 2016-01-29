@@ -53,6 +53,10 @@ public class GameManager : MonoBehaviour {
     [HideInInspector]
     public int health = 100;
     [HideInInspector]
+    public int maxStamina = 100;
+    [HideInInspector]
+    public float stamina = 100;
+    [HideInInspector]
     public int scrap = 50;
     [HideInInspector]
     public int electronics = 50;
@@ -127,6 +131,7 @@ public class GameManager : MonoBehaviour {
     public void SavePlayerStats() {
         playerScript.GetCurrencyStats(out scrap, out electronics);
         playerScript.GetHealthStats(out health, out maxHealth);
+        playerScript.GetStaminaStats(out stamina);
     }
     public void SetWeaponStats()
     {        

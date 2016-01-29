@@ -68,7 +68,7 @@ public class PauseMenuScript : MonoBehaviour {
         pauseMenu.SetActive(true);
         ownedUpgrades = vendingMachine.GetOwndedList();
         if (ownedUpgrades != null) {
-            DrawUpgrades();
+            //DrawUpgrades(); // disabled for now.
         }
 
     }
@@ -90,7 +90,7 @@ public class PauseMenuScript : MonoBehaviour {
     void DrawUpgrades() {
         foreach (Upgrade upgrade in ownedUpgrades) {
             GameObject go = Instantiate(upgradeImage, Vector3.zero, Quaternion.identity) as GameObject;
-            SetParent(go);
+            SetParent(go, upgradeCount);
             go.GetComponent<Image>().sprite = upgrade.descriptionImage;
             go.GetComponent<UpgradeImageScript>().text = upgrade.text;
             UpgadeList.Add(go);
@@ -98,13 +98,12 @@ public class PauseMenuScript : MonoBehaviour {
         }
     }
 
-    void SetParent(GameObject child) {
+    void SetParent(GameObject child, int upgradeNumber) {
+        print("upgr.Count:" + upgradeNumber);
         Vector2 upgradeField = pauseUpgrade.GetComponent<RectTransform>().sizeDelta;
-
         child.transform.SetParent(pauseUpgrade.transform);
         print(upgradeField.x + "   " + upgradeField.y);
-        //child.transform.position = pauseUpgrade.transform.position - pauseUpgrade.transform.position / 2 + new Vector3( 0 + upgradeCount * xOffset , pauseUpgrade.transform.position.y -5, 0);
-        child.transform.position = pauseUpgrade.transform.position + new Vector3(-upgradeField.x /2, upgradeField.y / 2, 0);
+        child.transform.position = pauseUpgrade.transform.position - new Vector3 (+120,-60);
 
     }
 
