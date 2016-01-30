@@ -41,12 +41,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   upgradeName: SprintSpeed
   descriptionImage: {fileID: 21300000, guid: 283a01aa779431e42a07808b9cbaea10, type: 3}
-  text: This needs to be changed.
+  text: Multiplies sprint speed by 1.25
   buttonSprite: {fileID: 21300000, guid: 283a01aa779431e42a07808b9cbaea10, type: 3}
   ScrapCost: 20
   ElectronicsCost: 20
   tier: 2
   upgradeType: 0
+  speedMultiplier: 1.25
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1
@@ -66,7 +67,7 @@ Prefab:
         type: 3}
     - target: {fileID: 0}
       propertyPath: text
-      value: This needs to be changed.
+      value: Multiplies sprint speed by 1.25
       objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: ScrapCost
@@ -83,6 +84,10 @@ Prefab:
     - target: {fileID: 0}
       propertyPath: upgradeName
       value: SprintSpeed
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: speedMultiplier
+      value: 1.25
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}

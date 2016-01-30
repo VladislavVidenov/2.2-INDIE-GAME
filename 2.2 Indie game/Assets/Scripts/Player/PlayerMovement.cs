@@ -29,8 +29,7 @@ public class PlayerMovement : MonoBehaviour {
     public float runSpeed;
     [SerializeField]
     float inAirSpeed;
-    [SerializeField]
-    float heightToJump;
+    public float heightToJump;  //set to public to access it with an upgrade
     float GetJumpHeight { get { return Mathf.Sqrt(heightToJump * gravity); } }
     float speed = 10;
     float maxVelocityClamp = 5f;
