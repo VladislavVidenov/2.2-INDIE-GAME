@@ -5,8 +5,7 @@ public class WeaponManager : MonoBehaviour {
 
     [SerializeField]
     Rigidbody[] weaponPrefabs;
-    [SerializeField]
-    GameObject[] weaponsOnPlayer; //all weapons WITH hands attached on the player gameObject!!
+    public GameObject[] weaponsOnPlayer; //all weapons WITH hands attached on the player gameObject!!  //-- set to public to access it with upgrades.
     [SerializeField]
     Transform dropWeaponPosition;
     RaycastHit hit;

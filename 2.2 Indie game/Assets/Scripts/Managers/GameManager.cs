@@ -24,8 +24,8 @@ public class GameManager : MonoBehaviour {
     
     // Player
     private GameObject _player;
-    [HideInInspector]
-    public GameObject Player
+
+    [HideInInspector] public GameObject Player
     {
         get
         {
@@ -40,7 +40,8 @@ public class GameManager : MonoBehaviour {
             return _player.GetComponent<PlayerScript>();
         }
     }
-    WeaponScript[] weapons
+
+    public WeaponScript[] weapons
     {
         get
         {
@@ -48,27 +49,19 @@ public class GameManager : MonoBehaviour {
         }
     }
 
-    [HideInInspector]
-    public int maxHealth = 100;
-    [HideInInspector]
-    public float health = 100;
-    [HideInInspector]
-    public int maxStamina = 100;
-    [HideInInspector]
-    public float stamina = 100;
-    [HideInInspector]
-    public int scrap = 50;
-    [HideInInspector]
-    public int electronics = 50;
+    [HideInInspector] public int maxHealth = 100;
+    [HideInInspector] public float health = 100;
+    [HideInInspector] public int maxStamina = 100;
+    [HideInInspector] public float stamina = 100;
+    [HideInInspector] public int scrap = 50;
+    [HideInInspector] public int electronics = 50;
 
     //endPlayer
 
     GameState currentState;
     List<Upgrade> ownedUpgrades;
-    [HideInInspector]
-    public VendingMachine vendingMachine;
-    [HideInInspector]
-    public PauseMenuScript pauseMenu;
+    [HideInInspector] public VendingMachine vendingMachine;
+    [HideInInspector] public PauseMenuScript pauseMenu;
 	public CoverSpotScript[] coverSpots;
     public WeaponManager weaponManager;
 

@@ -35,6 +35,7 @@ public class WeaponScript : MonoBehaviour
     public int maxAmmoInClip;
     public int totalAmmo;
     public int maxTotalAmmo;
+    
     //Used for shotgun
     public float shotgunPelletsPerShot = 5;
     public float weaponRange;
@@ -49,8 +50,6 @@ public class WeaponScript : MonoBehaviour
     bool outOfAmmoSoundPlaying = false;
     bool reloadInfo = false;
     bool reloadInfoStarted = false;
-
-
 
 
     #region Aiming
@@ -145,8 +144,6 @@ public class WeaponScript : MonoBehaviour
             print("maxAmmoInClip;" + maxAmmoInClip);
             print("totalAmmo;" + totalAmmo);
             print("maxTotalAmmo;" + maxTotalAmmo);
-
-
         }
 
 

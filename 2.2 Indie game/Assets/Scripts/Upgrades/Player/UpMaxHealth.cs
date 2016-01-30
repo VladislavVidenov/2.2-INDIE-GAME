@@ -3,7 +3,7 @@ using System.Collections;
 using UnityEngine.UI;
 
 public class UpMaxHealth : Upgrade {
-    public int upgradeAmount = 20;  //Set through inspector!
+    [SerializeField] int upgradeAmount = 20;  //Set through inspector!
 
     public override void Apply ()
 	{
