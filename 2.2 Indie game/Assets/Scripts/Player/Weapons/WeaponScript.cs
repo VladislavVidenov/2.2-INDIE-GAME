@@ -8,6 +8,9 @@ using System.Collections;
 [RequireComponent(typeof(AudioSource))]
 public class WeaponScript : MonoBehaviour
 {
+    public delegate void PistolShoot();
+
+    public static event PistolShoot OnPistolShoot;
 
     Camera mainCamera;
     Camera weaponCamera;
@@ -59,8 +62,8 @@ public class WeaponScript : MonoBehaviour
 
     #region Field of View
     private Vector3 velocityRef = Vector3.zero;
-    private float aimingDamp = 0.2f;
-    private float fovDamp = 0.1f;
+    public float aimingDamp = 0.2f; //made public for upgrades
+    public float fovDamp = 0.1f;    //made public for upgrades
     private float fovVel = 0;
     [SerializeField]
     float aimingFOV;
@@ -241,10 +244,7 @@ public class WeaponScript : MonoBehaviour
             if (transform.localPosition != aimPosition)
             {
                 AdjustFOV();
-                if (aimDistance < aimDistance / aimSpeed * aimingDamp)
-                {
-                    transform.localPosition = Vector3.SmoothDamp(transform.localPosition, aimPosition, ref velocityRef, aimingDamp);
-                }
+                transform.localPosition = Vector3.SmoothDamp(transform.localPosition, aimPosition, ref velocityRef, aimingDamp);
             }
         }
         else
@@ -260,10 +260,7 @@ public class WeaponScript : MonoBehaviour
             if (transform.localPosition != defaultPosition)
             {
                 AdjustFOV();
-                if (aimDistance < aimDistance / aimSpeed * aimingDamp)
-                {
-                    transform.localPosition = Vector3.SmoothDamp(transform.localPosition, defaultPosition, ref velocityRef, aimingDamp);
-                }
+                transform.localPosition = Vector3.SmoothDamp(transform.localPosition, defaultPosition, ref velocityRef, aimingDamp);
             }
         }
     }
@@ -363,6 +360,7 @@ public class WeaponScript : MonoBehaviour
 
     void FireOneBullet()
     {
+        if (OnPistolShoot != null) OnPistolShoot();
         playerMove.isRunning = false;
         isShooting = true;
         Vector3 shootDirection = mainCamera.transform.TransformDirection(new Vector3(Random.Range(-0.01f, 0.01f) * inaccuracy, Random.Range(-0.01f, 0.01f) * inaccuracy, 1));

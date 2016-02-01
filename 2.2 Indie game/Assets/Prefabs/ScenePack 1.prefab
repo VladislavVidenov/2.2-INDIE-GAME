@@ -2749,7 +2749,7 @@ GameObject:
   - 114: {fileID: 11474690}
   - 114: {fileID: 11494586}
   m_Layer: 5
-  m_Name: AmmoGreedy2
+  m_Name: AimDownSightsSpeed
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -8803,6 +8803,8 @@ MonoBehaviour:
   reloadTime: 2
   pullOutWeaponTime: .5
   aimPosition: {x: -.180000007, y: .050999999, z: -.100000001}
+  aimingDamp: .200000003
+  fovDamp: .100000001
   aimingFOV: 40
   normalFOV: 60
   minInaccStandHip: 6
@@ -9169,6 +9171,8 @@ MonoBehaviour:
   reloadTime: 2
   pullOutWeaponTime: .5
   aimPosition: {x: -.0895000026, y: .0315000005, z: -.100000001}
+  aimingDamp: .200000003
+  fovDamp: .100000001
   aimingFOV: 40
   normalFOV: 60
   minInaccStandHip: 5
