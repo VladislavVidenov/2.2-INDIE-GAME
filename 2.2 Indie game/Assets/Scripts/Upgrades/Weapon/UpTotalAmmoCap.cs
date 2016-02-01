@@ -8,6 +8,7 @@ using System.Collections;
 public class UpTotalAmmoCap : Upgrade {
 
     GameObject[] weapons;
+    WeaponScript weaponScript;
 
     [SerializeField]
     int upgradeMultiplier = 2; //Set through inspector!
@@ -18,9 +19,17 @@ public class UpTotalAmmoCap : Upgrade {
         weapons = GameManager.Instance.weaponManager.weaponsOnPlayer;
 
         for (int i = 0; i < weapons.Length; i++) {
-            if (weapons[i] != null) weapons[i].GetComponent<WeaponScript>().maxTotalAmmo *= upgradeMultiplier;
-        }
+            if (weapons[i] != null) {
+                weaponScript = weapons[i].GetComponent<WeaponScript>();
 
+                weaponScript.maxTotalAmmo *= upgradeMultiplier;
+
+                //Only do this for the weapon you are currently holding. Changed for upgrades to prevent the wrong info showing.
+                
+                if (weaponScript.gameObject.activeInHierarchy)
+                    weaponScript.UpdateHudValues();
+            }
+        }
         print(string.Format("Total ammocap multiplied by {0}", upgradeMultiplier));
     }
 }
