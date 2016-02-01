@@ -16,10 +16,10 @@ public class UpAimDownSightsSpeed : Upgrade {
         for (int i = 0; i < weapons.Length; i++) {
             if (weapons[i] != null) {
                 weaponScript = weapons[i].GetComponent<WeaponScript>();
-                print("Old aimDamp: " + weaponScript.aimingDamp + "   Old fovDamp: " + weaponScript.fovDamp);
+                print("OLD aimDamp: " + weaponScript.aimingDamp + "   fovDamp: " + weaponScript.fovDamp);
                 weaponScript.aimingDamp *= upgradeMultiplier;
                 weaponScript.fovDamp *= (upgradeMultiplier / 2);
-                print("New aimDamp: " + weaponScript.aimingDamp + "   Old fovDamp: " + weaponScript.fovDamp);
+                print("NEW aimDamp: " + weaponScript.aimingDamp + "   fovDamp: " + weaponScript.fovDamp);
             }
         }
         print(string.Format("AimDownSightSpeed multiplied by {0}", upgradeMultiplier));

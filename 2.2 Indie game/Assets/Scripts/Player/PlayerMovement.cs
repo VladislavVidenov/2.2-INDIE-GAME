@@ -32,7 +32,8 @@ public class PlayerMovement : MonoBehaviour {
     public float heightToJump;  //set to public to access it with an upgrade
     float GetJumpHeight { get { return Mathf.Sqrt(heightToJump * gravity); } }
     float speed = 10;
-    float maxVelocityClamp = 5f;
+    public float sprintCost = 50; //stamina usage per second sprint
+    float maxVelocityClamp = 0.5f;
     [SerializeField]
     float gravity;
     bool isReloading = false;
@@ -117,7 +118,7 @@ public class PlayerMovement : MonoBehaviour {
                 playerAnimation.CrossFade("Walk");
             } else
                 if (isRunning) {
-                player.ChangeStamina(-1);
+                player.ChangeStamina(-sprintCost * Time.deltaTime);
                 player.timeNotRun = 0;
                 playerAnimation.CrossFade("Run");
             } else
