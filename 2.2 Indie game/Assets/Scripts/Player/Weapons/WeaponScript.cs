@@ -12,15 +12,11 @@ public class WeaponScript : MonoBehaviour
     Camera mainCamera;
     Camera weaponCamera;
     PlayerMovement playerMove;
-    [SerializeField]
-    GameObject head;
-    [SerializeField]
-    Transform muzzleTransform;
-    [SerializeField]
-    HudScript hud;
+    [SerializeField] GameObject head;
+    [SerializeField] Transform muzzleTransform;
+    [SerializeField] HudScript hud;
 
-    [HideInInspector]
-    public Animator animator;
+    [HideInInspector] public Animator animator;
     Animation reloadAnimation;
 
     public enum Weapons { Pistol, Shotgun };
@@ -313,6 +309,7 @@ public class WeaponScript : MonoBehaviour
             audioSource.PlayOneShot(fireSound);
             RecoilEffect();
             ammoInClip--;
+            UpdateHudValues();
         }
     }
 
@@ -320,6 +317,7 @@ public class WeaponScript : MonoBehaviour
     {
         playerMove.isRunning = false;
         isShooting = true;
+
         Vector3 shootDirection = mainCamera.transform.TransformDirection(new Vector3(Random.Range(-0.01f, 0.01f) * inaccuracy, Random.Range(-0.01f, 0.01f) * inaccuracy, 1));
         RaycastHit hit;
         if (Physics.Raycast(mainCamera.transform.position, shootDirection, out hit, weaponRange))
@@ -341,7 +339,6 @@ public class WeaponScript : MonoBehaviour
             //go.transform.parent = hit.transform;
             GameObject go = Instantiate(normalDecal, hitPoint, Quaternion.identity) as GameObject;
             Destroy(go, 2);
-
         }
     }
 
