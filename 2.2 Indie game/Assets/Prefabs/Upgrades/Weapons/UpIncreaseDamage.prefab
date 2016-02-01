@@ -43,10 +43,11 @@ MonoBehaviour:
   descriptionImage: {fileID: 21300000, guid: ba3749e669f62684eb21af22a870fa49, type: 3}
   text: Multiply weapon damage by X
   buttonSprite: {fileID: 21300000, guid: ba3749e669f62684eb21af22a870fa49, type: 3}
-  ScrapCost: 12
+  BitsCost: 12
   ElectronicsCost: 12
   tier: 1
   upgradeType: 2
+  upgradeMultiplier: 2
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1
@@ -87,6 +88,10 @@ Prefab:
     - target: {fileID: 0}
       propertyPath: upgradeName
       value: IncreaseDamage
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: BitsCost
+      value: 12
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}

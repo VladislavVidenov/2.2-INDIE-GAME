@@ -17,7 +17,7 @@ public class ToolManager : MonoBehaviour
     bool isToolOwned = false;
     bool toolSlotTaken = false;
 
-    float scrapIncrease;
+    float bitsIncrease;
     float electronicIncrease;
 
     PlayerScript playerScript;
@@ -82,10 +82,10 @@ public class ToolManager : MonoBehaviour
     }
 
 
-    void StoreStats(float scrap,float electronics)
+    void StoreStats(float bits,float electronics)
     {
         electronicIncrease = electronics;
-        scrapIncrease = scrap;
+        bitsIncrease = bits;
     }
     public void AddTool(Tool tool)
     {

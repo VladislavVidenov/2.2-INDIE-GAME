@@ -8,10 +8,10 @@ public class PlayerScript : MonoBehaviour {
     float health;
     float stamina;
     int maxStamina;
-    int scrap;
+    int bits;
     int electronics;
 
-    int scrapBoost;
+    int bitsBoost;
     int electronicsBoost;
 
     int screwUpgBoost;
@@ -37,23 +37,23 @@ public class PlayerScript : MonoBehaviour {
 
     SceneChangeManager sceneManager;
 
-    [Tooltip("Reference to the Scrap HUD")]
-    [SerializeField] GameObject scrapHud;
-    Text scrapText;
+    [Tooltip("Reference to the Bits HUD")]
+    [SerializeField] GameObject bitsHud;
+    Text bitsText;
 
     [Tooltip("Reference to the Ingame HUD")]
     [SerializeField] HudScript inGameHud;
 
     Tool currentTool;
 
-    float cutOffScrap;
+    float cutOffBits;
 
 
 
     // Use this for initialization
     void Start () {
-        scrapText = scrapHud.GetComponentInChildren<Text>();
-        DeactiveScrapHud();
+        bitsText = bitsHud.GetComponentInChildren<Text>();
+        DeactiveBitsHud();
         mainCamera = Camera.main;
         sceneManager = GameObject.Find("SceneManager").GetComponent<SceneChangeManager>();
         GetPlayerStatsFromGameManager();
@@ -157,18 +157,18 @@ public class PlayerScript : MonoBehaviour {
         health = GameManager.Instance.health;
         stamina = GameManager.Instance.stamina;
         maxStamina = GameManager.Instance.maxStamina;
-        scrap = GameManager.Instance.scrap;
+        bits = GameManager.Instance.bits;
         electronics = GameManager.Instance.electronics;
     }
 
   
-    public void GetCurrencyStats( out int pScrap,out int pElectronics) {
-        pScrap = scrap;
+    public void GetCurrencyStats( out int pBits,out int pElectronics) {
+        pBits = bits;
         pElectronics = electronics;
     }
 
-    public void SetCurrencyStats( int pScrap, int pElectronics) {
-        scrap = pScrap;
+    public void SetCurrencyStats( int pBits, int pElectronics) {
+        bits = pBits;
         electronics = pElectronics;
     }
 
@@ -192,14 +192,14 @@ public class PlayerScript : MonoBehaviour {
         maxStamina = pMaxStamina;
     }
 
-    public void IncreasePlayerStats(float pHealth, int pMaxHealth, float pStamina, int pMaxStamina, int pScrap, int pElectronics) {
-        if(pScrap>0) IncreaseScrapHud(pScrap);
+    public void IncreasePlayerStats(float pHealth, int pMaxHealth, float pStamina, int pMaxStamina, int pBits, int pElectronics) {
+        if(pBits>0) IncreaseBitsHud(pBits);
         maxHealth += pMaxHealth;
         health += pHealth;
         stamina += pStamina;
         maxStamina += pMaxStamina;
-        scrap += pScrap + scrapBoost;
-        Debug.Log(scrap);
+        bits += pBits + bitsBoost;
+        Debug.Log(bits);
         electronics += pElectronics + electronicsBoost;
 
         UpdateHealthHud();
@@ -210,21 +210,21 @@ public class PlayerScript : MonoBehaviour {
         healthRegenDelay = newRegenDelay;
     }
 
-    void IncreaseScrapHud(int Amount) {
-        if (scrapHud.gameObject.activeInHierarchy) {
+    void IncreaseBitsHud(int Amount) {
+        if (bitsHud.gameObject.activeInHierarchy) {
             StopAllCoroutines();
-            CancelInvoke("DeactiveScrapHud");
-            StartCoroutine(IncreaseHud(cutOffScrap, Amount + (scrap - cutOffScrap)));
+            CancelInvoke("DeactiveBitsHud");
+            StartCoroutine(IncreaseHud(cutOffBits, Amount + (bits - cutOffBits)));
         }
         else {
-            scrapHud.SetActive(true);
-            StartCoroutine(IncreaseHud(scrap, Amount));
+            bitsHud.SetActive(true);
+            StartCoroutine(IncreaseHud(bits, Amount));
            
         }
     }
 
-    void DeactiveScrapHud() {
-        scrapHud.SetActive(false);
+    void DeactiveBitsHud() {
+        bitsHud.SetActive(false);
     }
 
     public void SetCurrentTool(Tool tool)
@@ -242,11 +242,11 @@ public class PlayerScript : MonoBehaviour {
                 break;
 
             case ToolTypes.Hammer:
-                scrapBoost = currentTool.scrapBoost + hammerUpgBoost;
+                bitsBoost = currentTool.bitsBoost + hammerUpgBoost;
                 break;
 
             case ToolTypes.Wrench:
-                scrapBoost = currentTool.scrapBoost + wrenchUpgBoost;
+                bitsBoost = currentTool.bitsBoost + wrenchUpgBoost;
                 electronicsBoost = currentTool.electronicsBoost + wrenchUpgBoost;
                 break;
         }
@@ -260,13 +260,13 @@ public class PlayerScript : MonoBehaviour {
         for (int i = 0; i < 100+1; i++) {
             yield return new WaitForSeconds(stepTime);
             float adding = addAmount * i;
-            cutOffScrap = (text + Mathf.Floor(adding));
-            scrapText.text = cutOffScrap.ToString();
+            cutOffBits = (text + Mathf.Floor(adding));
+            bitsText.text = cutOffBits.ToString();
             if (i > 60) stepTime = 0.03f;
             if (i > 70) stepTime = 0.04f;
             if (i > 80) stepTime = 0.05f;
 
-            if (i > 99) Invoke("DeactiveScrapHud", 5);
+            if (i > 99) Invoke("DeactiveBitsHud", 5);
         }
     }
 

@@ -11,7 +11,7 @@ GameObject:
   - 222: {fileID: 22266360}
   - 114: {fileID: 11467028}
   m_Layer: 5
-  m_Name: PlayerScrap
+  m_Name: PlayerBits
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1636,7 +1636,7 @@ GameObject:
   - 222: {fileID: 22213152}
   - 114: {fileID: 11486000}
   m_Layer: 5
-  m_Name: ScrapHud
+  m_Name: BitsHud
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2731,7 +2731,7 @@ GameObject:
   - 222: {fileID: 22207426}
   - 114: {fileID: 11472642}
   m_Layer: 5
-  m_Name: UpgradeScrap
+  m_Name: UpgradeBits
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -6197,6 +6197,7 @@ MonoBehaviour:
   runSpeed: 9
   inAirSpeed: .100000001
   heightToJump: 3
+  sprintCost: 50
   gravity: 5
   releasedRun: 1
   isCrouching: 0
@@ -6576,7 +6577,7 @@ MonoBehaviour:
   hp50: {fileID: 11478266}
   hp25: {fileID: 11439750}
   hitIndicator: {fileID: 0}
-  scrapHud: {fileID: 144310}
+  bitsHud: {fileID: 144310}
   inGameHud: {fileID: 11415774}
 --- !u!114 &11407798
 MonoBehaviour:
@@ -7254,9 +7255,9 @@ MonoBehaviour:
   UpgradeSprite: {fileID: 11407798}
   UpgradeDescriptionText: {fileID: 11447760}
   electronicsText: {fileID: 11469264}
-  scrapText: {fileID: 11467028}
+  bitsText: {fileID: 11467028}
   electronicsCostText: {fileID: 11402778}
-  scrapCostText: {fileID: 11472642}
+  bitsCostText: {fileID: 11472642}
 --- !u!114 &11422336
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -8880,7 +8881,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Scrap Hud
+  m_Text: Bits Hud
 --- !u!114 &11453032
 MonoBehaviour:
   m_ObjectHideFlags: 1

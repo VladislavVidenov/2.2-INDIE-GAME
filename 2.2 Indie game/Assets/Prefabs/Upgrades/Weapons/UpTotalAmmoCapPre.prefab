@@ -43,10 +43,11 @@ MonoBehaviour:
   descriptionImage: {fileID: 21300000, guid: a0907a31c5b3cb9488a4a7356a2fb0a6, type: 3}
   text: Doubles the amount of ammo you can carry.
   buttonSprite: {fileID: 21300000, guid: a0907a31c5b3cb9488a4a7356a2fb0a6, type: 3}
-  ScrapCost: 6
+  BitsCost: 16
   ElectronicsCost: 16
   tier: 1
   upgradeType: 2
+  upgradeMultiplier: 2
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1
@@ -87,6 +88,10 @@ Prefab:
     - target: {fileID: 0}
       propertyPath: upgradeName
       value: TotalAmmoCapacity
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: BitsCost
+      value: 16
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}

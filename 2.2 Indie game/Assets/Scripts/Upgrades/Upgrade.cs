@@ -14,7 +14,7 @@ public class Upgrade :MonoBehaviour {
 
     public Sprite buttonSprite;
 
-	public int ScrapCost;
+	public int BitsCost;
     public int ElectronicsCost;
 
     public  int tier;

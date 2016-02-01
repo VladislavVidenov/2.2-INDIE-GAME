@@ -10,7 +10,7 @@ public class Tool : MonoBehaviour {
     //select the coorect tooltype in inspector.
     public ToolTypes Type;
 
-    public int scrapBoost;
+    public int bitsBoost;
     public int electronicsBoost;
 
     [HideInInspector]

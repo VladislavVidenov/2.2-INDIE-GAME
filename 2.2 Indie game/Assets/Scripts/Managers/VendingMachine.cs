@@ -41,15 +41,15 @@ public class VendingMachine : MonoBehaviour {
     [SerializeField]
     Text electronicsText;
     [SerializeField]
-    Text scrapText;
+    Text bitsText;
     [SerializeField]
     Text electronicsCostText;
     [SerializeField]
-    Text scrapCostText;
+    Text bitsCostText;
  
     //player
     PlayerScript player;
-    int playerScrap;
+    int playerBits;
     int playerElectronics;
 
 	void Start(){
@@ -94,7 +94,7 @@ public class VendingMachine : MonoBehaviour {
         buyscreen.SetActive(true);
         buyButton.gameObject.SetActive(false);
         electronicsCostText.text = "";
-        scrapCostText.text = "";
+        bitsCostText.text = "";
 	}
 
 	public void DeActivateStation () {
@@ -125,7 +125,7 @@ public class VendingMachine : MonoBehaviour {
 
 		ChangeBuyButton("Purchased",false);
 
-        playerScrap -= selectedUpgrade.ScrapCost;
+        playerBits -= selectedUpgrade.BitsCost;
         playerElectronics -= selectedUpgrade.ElectronicsCost;
 
         ChangePlayerStatsText();
@@ -170,7 +170,7 @@ public class VendingMachine : MonoBehaviour {
 		if (ownedUpgrades.Contains (selectedUpgrade)) {
 			ChangeBuyButton("Purchased",false);
 		} else {
-			if (selectedUpgrade.ScrapCost > playerScrap || selectedUpgrade.ElectronicsCost >playerElectronics) {
+			if (selectedUpgrade.BitsCost > playerBits || selectedUpgrade.ElectronicsCost >playerElectronics) {
           
 				ChangeBuyButton("Not enough resources",false);
 			} else {
@@ -250,15 +250,15 @@ public class VendingMachine : MonoBehaviour {
     }
 
     void GetPlayerStats() {
-        player.GetCurrencyStats(out playerScrap,out playerElectronics);
+        player.GetCurrencyStats(out playerBits,out playerElectronics);
     }
 
     void SetPlayerStats() {
-        player.SetCurrencyStats(playerScrap,playerElectronics);
+        player.SetCurrencyStats(playerBits,playerElectronics);
     }
 
     void ChangePlayerStatsText() {
-        scrapText.text = playerScrap.ToString();
+        bitsText.text = playerBits.ToString();
         electronicsText.text = playerElectronics.ToString();
     }
 
@@ -287,7 +287,7 @@ public class VendingMachine : MonoBehaviour {
     }
 
     void UpdateUpgradeCosts() {
-        scrapCostText.text = selectedUpgrade.ScrapCost.ToString();
+        bitsCostText.text = selectedUpgrade.BitsCost.ToString();
         electronicsCostText.text = selectedUpgrade.ElectronicsCost.ToString();
     }
 
