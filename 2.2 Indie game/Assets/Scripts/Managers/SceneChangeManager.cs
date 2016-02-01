@@ -30,6 +30,9 @@ public class SceneChangeManager : MonoBehaviour {
                 case GameState.InPauseMenu:
                     SetState(GameState.InGame);
                     break;
+                default:
+                    print(string.Format("According to the game, our current state is '{0}'. Perhaps we should check the buildsettings if this was unexpected.", currentState));
+                    break;
             }
         }
     }

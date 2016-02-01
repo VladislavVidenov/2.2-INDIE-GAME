@@ -15,7 +15,6 @@ public class Upgrade :MonoBehaviour {
     public Sprite buttonSprite;
 
 	public int BitsCost;
-    public int ElectronicsCost;
 
     public  int tier;
     public UpgradeType upgradeType;

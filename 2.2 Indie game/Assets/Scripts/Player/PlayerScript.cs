@@ -9,10 +9,8 @@ public class PlayerScript : MonoBehaviour {
     float stamina;
     int maxStamina;
     int bits;
-    int electronics;
 
     int bitsBoost;
-    int electronicsBoost;
 
     int screwUpgBoost;
     int hammerUpgBoost;
@@ -158,18 +156,15 @@ public class PlayerScript : MonoBehaviour {
         stamina = GameManager.Instance.stamina;
         maxStamina = GameManager.Instance.maxStamina;
         bits = GameManager.Instance.bits;
-        electronics = GameManager.Instance.electronics;
     }
 
   
-    public void GetCurrencyStats( out int pBits,out int pElectronics) {
+    public void GetCurrencyStats( out int pBits) {
         pBits = bits;
-        pElectronics = electronics;
     }
 
-    public void SetCurrencyStats( int pBits, int pElectronics) {
+    public void SetCurrencyStats( int pBits) {
         bits = pBits;
-        electronics = pElectronics;
     }
 
     public void GetHealthStats(out float pHealth, out int pMaxHealth) {
@@ -192,7 +187,7 @@ public class PlayerScript : MonoBehaviour {
         maxStamina = pMaxStamina;
     }
 
-    public void IncreasePlayerStats(float pHealth, int pMaxHealth, float pStamina, int pMaxStamina, int pBits, int pElectronics) {
+    public void IncreasePlayerStats(float pHealth, int pMaxHealth, float pStamina, int pMaxStamina, int pBits) {
         if(pBits>0) IncreaseBitsHud(pBits);
         maxHealth += pMaxHealth;
         health += pHealth;
@@ -200,7 +195,6 @@ public class PlayerScript : MonoBehaviour {
         maxStamina += pMaxStamina;
         bits += pBits + bitsBoost;
         Debug.Log(bits);
-        electronics += pElectronics + electronicsBoost;
 
         UpdateHealthHud();
         UpdateStaminaHud();
@@ -238,7 +232,6 @@ public class PlayerScript : MonoBehaviour {
         switch (currentTool.Type)
         {
             case ToolTypes.Screwdriver:
-                electronicsBoost = currentTool.electronicsBoost + screwUpgBoost;
                 break;
 
             case ToolTypes.Hammer:
@@ -247,7 +240,6 @@ public class PlayerScript : MonoBehaviour {
 
             case ToolTypes.Wrench:
                 bitsBoost = currentTool.bitsBoost + wrenchUpgBoost;
-                electronicsBoost = currentTool.electronicsBoost + wrenchUpgBoost;
                 break;
         }
     }

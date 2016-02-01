@@ -82,9 +82,8 @@ public class ToolManager : MonoBehaviour
     }
 
 
-    void StoreStats(float bits,float electronics)
+    void StoreStats(float bits)
     {
-        electronicIncrease = electronics;
         bitsIncrease = bits;
     }
     public void AddTool(Tool tool)

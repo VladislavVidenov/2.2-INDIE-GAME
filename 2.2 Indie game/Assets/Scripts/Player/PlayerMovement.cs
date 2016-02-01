@@ -33,7 +33,7 @@ public class PlayerMovement : MonoBehaviour {
     float GetJumpHeight { get { return Mathf.Sqrt(heightToJump * gravity); } }
     float speed = 10;
     public float sprintCost = 50; //stamina usage per second sprint
-    float maxVelocityClamp = 0.5f;
+    float maxVelocityClamp = 5f;
     [SerializeField]
     float gravity;
     bool isReloading = false;

@@ -39,18 +39,13 @@ public class VendingMachine : MonoBehaviour {
 	[SerializeField]
 	Text UpgradeDescriptionText;
     [SerializeField]
-    Text electronicsText;
-    [SerializeField]
     Text bitsText;
-    [SerializeField]
-    Text electronicsCostText;
     [SerializeField]
     Text bitsCostText;
  
     //player
     PlayerScript player;
     int playerBits;
-    int playerElectronics;
 
 	void Start(){
 
@@ -93,7 +88,6 @@ public class VendingMachine : MonoBehaviour {
         ChangePlayerStatsText();
         buyscreen.SetActive(true);
         buyButton.gameObject.SetActive(false);
-        electronicsCostText.text = "";
         bitsCostText.text = "";
 	}
 
@@ -126,7 +120,6 @@ public class VendingMachine : MonoBehaviour {
 		ChangeBuyButton("Purchased",false);
 
         playerBits -= selectedUpgrade.BitsCost;
-        playerElectronics -= selectedUpgrade.ElectronicsCost;
 
         ChangePlayerStatsText();
         SetSelectedButtonImage();
@@ -170,7 +163,7 @@ public class VendingMachine : MonoBehaviour {
 		if (ownedUpgrades.Contains (selectedUpgrade)) {
 			ChangeBuyButton("Purchased",false);
 		} else {
-			if (selectedUpgrade.BitsCost > playerBits || selectedUpgrade.ElectronicsCost >playerElectronics) {
+			if (selectedUpgrade.BitsCost > playerBits) {
           
 				ChangeBuyButton("Not enough resources",false);
 			} else {
@@ -250,16 +243,15 @@ public class VendingMachine : MonoBehaviour {
     }
 
     void GetPlayerStats() {
-        player.GetCurrencyStats(out playerBits,out playerElectronics);
+        player.GetCurrencyStats(out playerBits);
     }
 
     void SetPlayerStats() {
-        player.SetCurrencyStats(playerBits,playerElectronics);
+        player.SetCurrencyStats(playerBits);
     }
 
     void ChangePlayerStatsText() {
         bitsText.text = playerBits.ToString();
-        electronicsText.text = playerElectronics.ToString();
     }
 
     public void SelectPlayer() {
@@ -288,7 +280,6 @@ public class VendingMachine : MonoBehaviour {
 
     void UpdateUpgradeCosts() {
         bitsCostText.text = selectedUpgrade.BitsCost.ToString();
-        electronicsCostText.text = selectedUpgrade.ElectronicsCost.ToString();
     }
 
     public void ChangeBuyButtonTextColorDark(Text text) {

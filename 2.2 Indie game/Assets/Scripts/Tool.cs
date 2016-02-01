@@ -11,7 +11,6 @@ public class Tool : MonoBehaviour {
     public ToolTypes Type;
 
     public int bitsBoost;
-    public int electronicsBoost;
 
     [HideInInspector]
     public int ID;

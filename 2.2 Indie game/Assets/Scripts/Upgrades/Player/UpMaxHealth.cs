@@ -9,7 +9,7 @@ public class UpMaxHealth : Upgrade {
 	{
         print(string.Format("UPGRADE UNLOCKED: '{0}'", upgradeName));
         PlayerScript player = FindObjectOfType<PlayerScript>();
-        player.IncreasePlayerStats(upgradeAmount, upgradeAmount, 0, 0, 0, 0);
+        player.IncreasePlayerStats(upgradeAmount, upgradeAmount, 0, 0, 0);
         print(string.Format("MaxHealth upgraded by {0}pts", upgradeAmount));
     }
 }
