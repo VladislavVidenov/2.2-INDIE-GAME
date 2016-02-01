@@ -97,11 +97,15 @@ Material:
       data:
         first:
           name: _Cutoff
-        second: .5
+        second: 0.5
+      data:
+        first:
+          name: _Exposure
+        second: 1
       data:
         first:
           name: _Parallax
-        second: .0199999996
+        second: 0.02
       data:
         first:
           name: _ZWrite
@@ -109,7 +113,7 @@ Material:
       data:
         first:
           name: _Glossiness
-        second: .5
+        second: 0.5
       data:
         first:
           name: _BumpScale
@@ -136,10 +140,6 @@ Material:
         second: 0
       data:
         first:
-          name: _Exposure
-        second: 1
-      data:
-        first:
           name: _Rotation
         second: 0
     m_Colors:
@@ -154,4 +154,4 @@ Material:
       data:
         first:
           name: _Tint
-        second: {r: .235294104, g: .198961928, b: .198961928, a: .5}
+        second: {r: 0.2352941, g: 0.19896193, b: 0.19896193, a: 0.5}
