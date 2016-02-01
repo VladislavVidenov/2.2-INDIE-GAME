@@ -2490,7 +2490,7 @@ GameObject:
   - 114: {fileID: 11438662}
   - 114: {fileID: 11464696}
   m_Layer: 5
-  m_Name: AmmoCapacity
+  m_Name: AmmoTotalCapacity
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

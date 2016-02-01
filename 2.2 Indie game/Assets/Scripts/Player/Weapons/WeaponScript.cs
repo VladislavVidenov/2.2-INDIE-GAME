@@ -170,24 +170,29 @@ public class WeaponScript : MonoBehaviour
                 Reload();
         }
     }
+
     public void UpgradeTotalAmmo(int amount)
     {
         maxTotalAmmo += amount;
     }
+
     public void UpgradeReloadTime(float amount)
     {
         reloadTime += amount;
     }
+
     public void UpgradeDamage(int amount)
     {
         damage += amount;
     }
+
     public void IncreaseTotalAmmo(int amount)
     {
         totalAmmo += amount;
         if (totalAmmo >= maxTotalAmmo)
             totalAmmo = maxTotalAmmo;
     }
+
     void CalculateInaccuracy()
     {
         inaccuracy = playerMove.isWalking() ? maxInaccuracy : minInaccuracy;
@@ -439,12 +444,13 @@ public class WeaponScript : MonoBehaviour
         reloadInfo = (totalAmmo <= 0) ? true : false;
         if (reloadInfo && !reloadInfoStarted) { reloadInfoStarted = true; StartCoroutine(shutReloadInfo()); }
 
+        float reloadSpeedFactor = 2.66666666f;  // This is the time the animation should play for a 1 second reloadTime.
         if (ammoInClip >= 0 && totalAmmo > 0)
         {
             isReloading = true;
             playerMove.SendMessage("SetIsReloading", isReloading); // tell the movement 
             playerMove.isRunning = false;//so we stop running if we run and reload.
-            reloadAnimation["AllReload"].speed = reloadTime / 1.5f;
+            reloadAnimation["AllReload"].speed = reloadSpeedFactor / reloadTime;
             reloadAnimation.CrossFade("AllReload");
             audioSource.PlayOneShot(reloadSound);
 

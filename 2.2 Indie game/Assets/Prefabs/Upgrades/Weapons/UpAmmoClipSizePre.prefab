@@ -1,49 +1,50 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &178444
+--- !u!1 &144982
 GameObject:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   serializedVersion: 4
   m_Component:
-  - 4: {fileID: 407448}
-  - 114: {fileID: 11433002}
+  - 4: {fileID: 484248}
+  - 114: {fileID: 11419982}
   m_Layer: 0
-  m_Name: UpEmpStun
+  m_Name: UpAmmoClipSizePre
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &407448
+--- !u!4 &484248
 Transform:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 178444}
+  m_GameObject: {fileID: 144982}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -22.3657646, y: -84.474411, z: 110.162064}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
---- !u!114 &11433002
+--- !u!114 &11419982
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 178444}
+  m_GameObject: {fileID: 144982}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2a45ab032b84acb44999c61634fe5b0e, type: 3}
+  m_Script: {fileID: 11500000, guid: eb5a991ff9565f544b4e2fa2cbf72582, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  descriptionImage: {fileID: 21300000, guid: ba3749e669f62684eb21af22a870fa49, type: 3}
-  text: Emp Stun Duration increase
-  buttonSprite: {fileID: 21300000, guid: ba3749e669f62684eb21af22a870fa49, type: 3}
-  ScrapCost: 12
-  ElectronicsCost: 12
+  upgradeName: AmmoClipSize
+  descriptionImage: {fileID: 21300000, guid: aadc8594507c56a42b3cddf54fa8f923, type: 3}
+  text: Increase the clipsize for all weapons.
+  buttonSprite: {fileID: 21300000, guid: aadc8594507c56a42b3cddf54fa8f923, type: 3}
+  ScrapCost: 6
+  ElectronicsCost: 6
   tier: 1
   upgradeType: 2
 --- !u!1001 &100100000
@@ -56,34 +57,38 @@ Prefab:
     - target: {fileID: 0}
       propertyPath: descriptionImage
       value: 
-      objectReference: {fileID: 21300000, guid: ba3749e669f62684eb21af22a870fa49,
+      objectReference: {fileID: 21300000, guid: aadc8594507c56a42b3cddf54fa8f923,
         type: 3}
     - target: {fileID: 0}
       propertyPath: buttonSprite
       value: 
-      objectReference: {fileID: 21300000, guid: ba3749e669f62684eb21af22a870fa49,
+      objectReference: {fileID: 21300000, guid: aadc8594507c56a42b3cddf54fa8f923,
         type: 3}
     - target: {fileID: 0}
       propertyPath: text
-      value: Emp Stun Duration increase
+      value: Increase the clipsize for all weapons.
       objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: ScrapCost
-      value: 12
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: ElectronicsCost
-      value: 12
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: tier
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: upgradeType
       value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 0}
-      propertyPath: tier
-      value: 1
+      propertyPath: upgradeName
+      value: AmmoClipSize
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
-  m_RootGameObject: {fileID: 178444}
+  m_RootGameObject: {fileID: 144982}
   m_IsPrefabParent: 1
