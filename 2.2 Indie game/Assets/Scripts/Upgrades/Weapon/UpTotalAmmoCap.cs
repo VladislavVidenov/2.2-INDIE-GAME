@@ -11,7 +11,7 @@ public class UpTotalAmmoCap : Upgrade {
     WeaponScript weaponScript;
 
     [SerializeField]
-    int upgradeMultiplier = 2; //Set through inspector!
+    float upgradeMultiplier = 2; //Set through inspector!
 
     public override void Apply() {
         print(string.Format("UPGRADE UNLOCKED: '{0}'", upgradeName));
@@ -22,7 +22,7 @@ public class UpTotalAmmoCap : Upgrade {
             if (weapons[i] != null) {
                 weaponScript = weapons[i].GetComponent<WeaponScript>();
 
-                weaponScript.maxTotalAmmo *= upgradeMultiplier;
+                weaponScript.maxTotalAmmo = Mathf.FloorToInt(weaponScript.maxTotalAmmo * upgradeMultiplier);
 
                 //Only do this for the weapon you are currently holding. Changed for upgrades to prevent the wrong info showing.
                 

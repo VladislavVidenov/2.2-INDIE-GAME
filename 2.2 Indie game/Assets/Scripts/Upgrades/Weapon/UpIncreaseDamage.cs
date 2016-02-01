@@ -6,7 +6,7 @@ public class UpIncreaseDamage : Upgrade {
     WeaponScript weaponScript;
 
     [SerializeField]
-    int upgradeMultiplier = 2; //Set through inspector!
+    float upgradeMultiplier = 2; //Set through inspector!
 
     public override void Apply() {
         print(string.Format("UPGRADE UNLOCKED: '{0}'", upgradeName));
@@ -17,7 +17,7 @@ public class UpIncreaseDamage : Upgrade {
             if (weapons[i] != null) {
                 weaponScript = weapons[i].GetComponent<WeaponScript>();
                 print("Old DAM: " + weaponScript.damage);
-                weaponScript.damage *= upgradeMultiplier;
+                weaponScript.damage = Mathf.FloorToInt(weaponScript.damage * upgradeMultiplier);
                 print("New DAM: " + weaponScript.damage);
             }
         }

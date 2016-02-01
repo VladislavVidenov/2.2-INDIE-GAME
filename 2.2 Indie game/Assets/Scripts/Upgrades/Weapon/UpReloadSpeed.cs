@@ -1,11 +1,12 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class UpAmmoClipSize : Upgrade {
+public class UpReloadSpeed : Upgrade {
     GameObject[] weapons;
     WeaponScript weaponScript;
 
-    [SerializeField] float upgradeMultiplier = 2; //Set through inspector!
+    [SerializeField]
+    float upgradeMultiplier = 0.5f; //Set through inspector!
 
     public override void Apply() {
         print(string.Format("UPGRADE UNLOCKED: '{0}'", upgradeName));
@@ -15,13 +16,11 @@ public class UpAmmoClipSize : Upgrade {
         for (int i = 0; i < weapons.Length; i++) {
             if (weapons[i] != null) {
                 weaponScript = weapons[i].GetComponent<WeaponScript>();
-
-                weaponScript.maxAmmoInClip = Mathf.FloorToInt(weaponScript.maxAmmoInClip * upgradeMultiplier);
-
-                if (weaponScript.gameObject.activeInHierarchy)
-                    weaponScript.UpdateHudValues();
+                print("Old RLDS: " + weaponScript.reloadTime);
+                weaponScript.reloadTime *= upgradeMultiplier;
+                print("New RLDS: " + weaponScript.reloadTime);
             }
         }
-        print(string.Format("AmmoClipSize multiplied by {0}", upgradeMultiplier));
+        print(string.Format("ReloadSpeed multiplied by {0}", upgradeMultiplier));
     }
 }

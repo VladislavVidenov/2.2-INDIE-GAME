@@ -459,7 +459,7 @@ GameObject:
   - 114: {fileID: 11495152}
   - 114: {fileID: 11432350}
   m_Layer: 5
-  m_Name: AmmoGreedy
+  m_Name: AmmoClipSize
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2618,7 +2618,7 @@ GameObject:
   - 114: {fileID: 11424262}
   - 114: {fileID: 11479670}
   m_Layer: 5
-  m_Name: EMPDuration
+  m_Name: IncreaseDamage
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2814,7 +2814,7 @@ GameObject:
   - 114: {fileID: 11424234}
   - 114: {fileID: 11415898}
   m_Layer: 5
-  m_Name: CoreHit
+  m_Name: ReloadSpeed
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
