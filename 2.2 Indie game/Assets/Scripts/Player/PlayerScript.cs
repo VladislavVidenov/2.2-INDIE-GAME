@@ -31,6 +31,12 @@ public class PlayerScript : MonoBehaviour {
     [SerializeField] Image hp25;
     [SerializeField] Image hitIndicator;
 
+    Vector3 originalPos;
+    [HideInInspector]
+    public float IndicatorAlpha = 0.01f;
+    [HideInInspector]
+    public GameObject hitter;
+
     Camera mainCamera;
 
     SceneChangeManager sceneManager;
@@ -46,14 +52,15 @@ public class PlayerScript : MonoBehaviour {
 
     float cutOffBits;
 
-
-
     // Use this for initialization
     void Start () {
+        originalPos = hitIndicator.transform.position;
+
         bitsText = bitsHud.GetComponentInChildren<Text>();
         DeactiveBitsHud();
         mainCamera = Camera.main;
         sceneManager = GameObject.Find("SceneManager").GetComponent<SceneChangeManager>();
+
         GetPlayerStatsFromGameManager();
         UpdateHealthHud();
         UpdateStaminaHud();
@@ -63,6 +70,20 @@ public class PlayerScript : MonoBehaviour {
         RegenHealth();
         RegenStamina();
         DeathHud();
+        UpdateIndicator();
+    }
+
+    void UpdateIndicator() {
+        if (hitter != null) {
+            ShowHitCircle(hitter);
+        }
+        if (IndicatorAlpha > 0) {
+
+            IndicatorAlpha -= 0.01f;
+            hitIndicator.color = new Color(1, 1, 1, IndicatorAlpha);
+        } else {
+            hitter = null;
+        }
     }
 
     void DeathHud() {
@@ -113,10 +134,20 @@ public class PlayerScript : MonoBehaviour {
         if (stamina <= 0) { stamina = 0; inGameHud.PlayerStamina = 0; }
     }
 
-    public void ShowHitCircle(RaycastHit hit) {
-        Vector3 direction = Camera.main.WorldToScreenPoint(hit.normal);
-        print(direction);
-        hitIndicator.transform.rotation = Quaternion.Euler(0,0,  Quaternion.LookRotation(hit.normal).z);
+    public void ShowHitCircle(GameObject hit) {
+        Vector3 difVector = hit.transform.position - this.transform.position;
+
+        difVector.y = 0;
+        float angleForward = Vector3.Angle(this.transform.forward, difVector);
+        float angelRight = Vector3.Angle(this.transform.right, difVector);
+        if (angelRight < 90) {
+            hitIndicator.gameObject.transform.eulerAngles = new Vector3(0, 0, -angleForward + 45);
+            hitIndicator.gameObject.transform.position = originalPos + (hitIndicator.gameObject.transform.up * 50 + hitIndicator.gameObject.transform.right * 50);
+        } else {
+            hitIndicator.gameObject.transform.eulerAngles = new Vector3(0, 0, angleForward + 45);
+            hitIndicator.gameObject.transform.position = originalPos - (-hitIndicator.gameObject.transform.up * 50 - hitIndicator.gameObject.transform.right * 50);
+        }
+
     }
 
     void UpdateHealthHud() {
@@ -194,7 +225,6 @@ public class PlayerScript : MonoBehaviour {
         stamina += pStamina;
         maxStamina += pMaxStamina;
         bits += pBits + bitsBoost;
-        Debug.Log(bits);
 
         UpdateHealthHud();
         UpdateStaminaHud();

@@ -6,36 +6,38 @@ using System.Collections;
 /// Public is used on some variables that are going to be upgraded throughout the game.
 /// </summary>
 [RequireComponent(typeof(AudioSource))]
-public class WeaponScript : MonoBehaviour
-{
+public class WeaponScript : MonoBehaviour { 
     public delegate void PistolShoot();
-
     public static event PistolShoot OnPistolShoot;
 
     Camera mainCamera;
     Camera weaponCamera;
     PlayerMovement playerMove;
+
+    [Header("References")]
     [SerializeField] GameObject head;
     [SerializeField] Transform muzzleTransform;
     [SerializeField] HudScript hud;
 
     [HideInInspector] public Animator animator;
     Animation reloadAnimation;
-
+        
     public enum Weapons { Pistol, Shotgun };
+
+    [Header("Type & Mode")]
     public Weapons weapon;
 
     public enum WeaponMode { None, SemiFire, Auto };
     public WeaponMode currentWeaponMode;
 
-    //Weapon properties.
+    [Header("Weapon Properties")]
     private Vector3 hitPoint;
     public int ammoInClip;
     public int maxAmmoInClip;
     public int totalAmmo;
     public int maxTotalAmmo;
-    
-    //Used for shotgun
+
+    [Header("Properties: General")]
     public float shotgunPelletsPerShot = 5;
     public float weaponRange;
     public int damage;
@@ -50,11 +52,10 @@ public class WeaponScript : MonoBehaviour
     bool reloadInfo = false;
     bool reloadInfoStarted = false;
 
-
     #region Aiming
     Vector3 defaultPosition = Vector3.zero;
-    [SerializeField]
-    Vector3 aimPosition;
+    [Header("Properties: Aiming")]
+    [SerializeField] Vector3 aimPosition;
     float aimDistance;
     bool isAiming = false;
     float aimSpeed = 0;
@@ -65,55 +66,43 @@ public class WeaponScript : MonoBehaviour
     public float aimingDamp = 0.2f; //made public for upgrades
     public float fovDamp = 0.1f;    //made public for upgrades
     private float fovVel = 0;
-    [SerializeField]
-    float aimingFOV;
-    [SerializeField]
-    float normalFOV;
+    [Header("Properties: FOV")]
+    [SerializeField] float aimingFOV;
+    [SerializeField] float normalFOV;
     #endregion
 
     #region INACCURACY
     float inaccuracy = 0.05f;
     float minInaccuracy;
-    [SerializeField]
-    float minInaccStandHip = 5f;     //STAND + HIP 
-    [SerializeField]
-    float minInaccCrouchHip = 4.5f;    //CROUCH + HIP
-    [SerializeField]
-    float minInaccStandAim = 1.3f;    //STAND + AIM  
-    [SerializeField]
-    float minInaccCrouchAim = 1f;  //CROUCH +AIM
+    [Header("Properties: Accuracy")]
+    [SerializeField] float minInaccStandHip = 5f;     //STAND + HIP 
+    [SerializeField] float minInaccCrouchHip = 4.5f;    //CROUCH + HIP
+    [SerializeField] float minInaccStandAim = 1.3f;    //STAND + AIM  
+    [SerializeField] float minInaccCrouchAim = 1f;  //CROUCH +AIM
 
     float maxInaccuracy;
-    [SerializeField]
-    float maxInaccStandHip = 6f; //STAND + WALK + HIP
-    [SerializeField]
-    float maxInaccCrouchHip = 5.0f;//CROUCH + WALK + HIP
-    [SerializeField]
-    float maxInaccStandAim = 3f; //STAND + AIM+ WALK
-    [SerializeField]
-    float maxInaccCrouchAim = 1.5f; //CROUCH + AIM + WALK
+    [SerializeField] float maxInaccStandHip = 6f; //STAND + WALK + HIP
+    [SerializeField] float maxInaccCrouchHip = 5.0f;//CROUCH + WALK + HIP
+    [SerializeField] float maxInaccStandAim = 3f; //STAND + AIM+ WALK
+    [SerializeField] float maxInaccCrouchAim = 1.5f; //CROUCH + AIM + WALK
     #endregion
 
     #region Sounds
     AudioSource audioSource;
-    [SerializeField]
-    AudioClip dryFireSound;
-    [SerializeField]
-    AudioClip reloadSound;
-    [SerializeField]
-    AudioClip fireSound;
-    [SerializeField]
-    AudioClip pullOutSound;
+    [Header("Sound")]
+    [SerializeField] AudioClip dryFireSound;
+    [SerializeField] AudioClip reloadSound;
+    [SerializeField] AudioClip fireSound;
+    [SerializeField] AudioClip pullOutSound;
     #endregion
 
     #region Shoot Decals
-    [SerializeField]
-    GameObject normalDecal;
-    [SerializeField]
-    GameObject muzzleParticlePistol;
+    [Header("Decals")]
+    [SerializeField] GameObject normalDecal;
+    [SerializeField] GameObject muzzleParticlePistol;
     #endregion
 
-    //temp crosshair
+    [Header("Crosshair (temp)")]
     public Texture2D crosshairTexture;
     Rect crosshairPos;
     static bool showCrosshair = true;
@@ -377,7 +366,6 @@ public class WeaponScript : MonoBehaviour
             {
                 case Tags.enemy:
                     hit.transform.GetComponent<EnemyScript>().TakeDamage(damage);
-                    Debug.Log("Hit");
                     break;
             }
 

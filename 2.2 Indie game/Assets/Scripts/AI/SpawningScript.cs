@@ -53,9 +53,6 @@ public class SpawningScript : MonoBehaviour {
 	}
 
 	void Update () {
-        Debug.Log(spawn);
-        
-
 		if (spawn) {
 			switch(spawnType) {
 
@@ -131,7 +128,6 @@ public class SpawningScript : MonoBehaviour {
                         }
 						//spawns an enemy
 						
-						Debug.Log("SPWANWNIF");
 						waveSpawn = false;
 					}
 					// checks if the time is equal to the time required for a new wave
