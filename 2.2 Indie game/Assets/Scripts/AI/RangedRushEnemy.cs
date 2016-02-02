@@ -45,6 +45,15 @@ public class RangedRushEnemy : EnemyScript {
 	}
 
     void Update() {
+
+        float velocity = agent.velocity.magnitude;
+        if (velocity > 0.1f) {
+            myAnimator.SetBool("Moving", true);
+        }
+        else {
+            myAnimator.SetBool("Moving", false);
+        }
+
         if (health < 30 && !inDanger) {
             inDanger = true;
             state = AIState.FindCover;
@@ -234,6 +243,7 @@ public class RangedRushEnemy : EnemyScript {
     }
 
     void ChargeBullet(float Accuracy) {
+        myAnimator.SetTrigger("Charge");
         StartCoroutine("IShootRaycast", Accuracy);
     }
 
@@ -249,7 +259,7 @@ public class RangedRushEnemy : EnemyScript {
 
         Vector3 direction = playerHeadPos.position - enemyHeadPos.position;
         //direction += new Vector3(Random.Range(-Accuracy, Accuracy), Random.Range(-Accuracy, Accuracy), Random.Range(-Accuracy, Accuracy));
-        
+        myAnimator.SetTrigger("Shoot");
 
         if (Physics.Raycast(enemyHeadPos.position , direction.normalized, out hit, 100f)) {
             Debug.DrawRay(enemyHeadPos.position, direction * Vector3.Distance(enemyHeadPos.position, hit.point), Color.green);
