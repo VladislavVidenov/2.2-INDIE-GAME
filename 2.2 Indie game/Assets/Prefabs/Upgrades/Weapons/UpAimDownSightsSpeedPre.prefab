@@ -44,9 +44,8 @@ MonoBehaviour:
   text: Increase aiming down the sights speed
   buttonSprite: {fileID: 21300000, guid: d2b47b748dcdd3540b787b0216572eb2, type: 3}
   BitsCost: 90
-  ElectronicsCost: 90
   tier: 2
-  upgradeType: 2
+  upgradeType: 1
   upgradeMultiplier: .5
 --- !u!1001 &100100000
 Prefab:
@@ -83,7 +82,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: upgradeType
-      value: 2
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: upgradeName

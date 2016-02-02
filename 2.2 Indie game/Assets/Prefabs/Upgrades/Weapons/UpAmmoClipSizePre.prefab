@@ -44,9 +44,8 @@ MonoBehaviour:
   text: Increase the clipsize for all weapons.
   buttonSprite: {fileID: 21300000, guid: aadc8594507c56a42b3cddf54fa8f923, type: 3}
   BitsCost: 6
-  ElectronicsCost: 6
   tier: 1
-  upgradeType: 2
+  upgradeType: 1
   upgradeMultiplier: 2
 --- !u!1001 &100100000
 Prefab:
@@ -83,7 +82,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: upgradeType
-      value: 2
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: upgradeName
