@@ -106,7 +106,7 @@ public class SpawningScript : MonoBehaviour {
 
                         }
                     }
-                }
+				}else{spawn = false;}
 				break;
 
 			case SpawnTypes.TimedWave:
@@ -127,7 +127,6 @@ public class SpawningScript : MonoBehaviour {
                             SpawnEnemy(rangedRushEnemyPrefab);
                         }
 						//spawns an enemy
-						
 						waveSpawn = false;
 					}
 					// checks if the time is equal to the time required for a new wave
@@ -160,7 +159,7 @@ public class SpawningScript : MonoBehaviour {
 		}
 		GameObject enemy = Instantiate (pEnemy, spawnPos, Quaternion.identity) as GameObject;
 
-		enemy.GetComponent<EnemyScript> ().spawner = this.GetComponent<SpawningScript> ();
+		//enemy.GetComponent<EnemyScript> ().spawner = this.GetComponent<SpawningScript> ();
 
 		if (enemy.GetComponent<MeleeEnemyScript> () != null) {
 			manager.meleeEnemies.Add (enemy.GetComponent<MeleeEnemyScript>());
@@ -173,7 +172,15 @@ public class SpawningScript : MonoBehaviour {
 		remainingEnemy++;
 	}
 
-	public void KillEnemy () {
+    void KillEnemy () {
 			remainingEnemy--;
 	}
+
+	void OnEnable(){
+		EnemyScript.OnEnemyDeath += KillEnemy;
+	}
+	void OnDisable(){
+		EnemyScript.OnEnemyDeath -= KillEnemy;
+	}
+
 }
