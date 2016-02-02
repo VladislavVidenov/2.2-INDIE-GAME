@@ -11,11 +11,9 @@ public class VendingMachine : MonoBehaviour {
     List<Upgrade> ownedUpgrades;
 
     List<Upgrade> playerUpgradesOwnedList;
-    List<Upgrade> toolsUpgradesOwnedList;
     List<Upgrade> weaponUpgradesOwnedList;
 
     int playerUpgradesCount = 0;
-    int toolsUpgradesCount = 0;
     int weaponUpgradesCount = 0;
 
 	Upgrade selectedUpgrade;
@@ -50,7 +48,6 @@ public class VendingMachine : MonoBehaviour {
 	void Start(){
 
         playerUpgradesOwnedList = new List<Upgrade>();
-        toolsUpgradesOwnedList = new List<Upgrade>();
         weaponUpgradesOwnedList = new List<Upgrade>();
 
         player = GameObject.FindGameObjectWithTag(Tags.player).GetComponent<PlayerScript>() ;
@@ -69,11 +66,6 @@ public class VendingMachine : MonoBehaviour {
                     case UpgradeType.Player:
                         playerUpgradesCount++;
                         break;
-
-                    case UpgradeType.Tools:
-                        toolsUpgradesCount++;
-                        break;
-
                     case UpgradeType.Weapon:
                         weaponUpgradesCount++;
                         break;
@@ -148,11 +140,6 @@ public class VendingMachine : MonoBehaviour {
             case UpgradeType.Player:
                 playerUpgradesOwnedList.Add(selectedUpgrade);
                 break;
-
-            case UpgradeType.Tools:
-                toolsUpgradesOwnedList.Add(selectedUpgrade);
-                break;
-
             case UpgradeType.Weapon:
                 weaponUpgradesOwnedList.Add(selectedUpgrade);
                 break;
@@ -178,13 +165,6 @@ public class VendingMachine : MonoBehaviour {
                             ChangeBuyButton("Unlock Tier 1", false);
                         }
                         break;
-
-                    case UpgradeType.Tools:
-                        if (toolsUpgradesOwnedList.Count < toolsUpgradesCount) {
-                            ChangeBuyButton("Unlock Tier 1", false);
-                        }
-                        break;
-
                     case UpgradeType.Weapon:
                         if (weaponUpgradesOwnedList.Count < weaponUpgradesCount) {
                             ChangeBuyButton("Unlock Tier 1", false);
@@ -256,10 +236,6 @@ public class VendingMachine : MonoBehaviour {
 
     public void SelectPlayer() {
         SetGameObjectActive(playerUpgrades,true);
-    }
-
-    public void SelectTools() {
-        SetGameObjectActive(toolUpgrades, true);
     }
 
     public void SelectWeapons() {

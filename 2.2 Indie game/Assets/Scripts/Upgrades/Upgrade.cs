@@ -3,7 +3,7 @@ using System.Collections;
 using UnityEngine.UI;
 
 public enum UpgradeType {
-    Player, Tools, Weapon
+    Player, Weapon
 }
 
 public class Upgrade :MonoBehaviour {
