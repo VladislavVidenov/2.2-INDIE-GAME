@@ -45,8 +45,6 @@ public class RangedRushEnemy : EnemyScript {
 	}
 
     void Update() {
-
-        print(state);
         if (health < 30 && !inDanger) {
             inDanger = true;
             state = AIState.FindCover;
@@ -250,7 +248,7 @@ public class RangedRushEnemy : EnemyScript {
         RaycastHit hit;
 
         Vector3 direction = playerHeadPos.position - enemyHeadPos.position;
-        direction += new Vector3(Random.Range(-Accuracy, Accuracy), Random.Range(-Accuracy, Accuracy), Random.Range(-Accuracy, Accuracy));
+        //direction += new Vector3(Random.Range(-Accuracy, Accuracy), Random.Range(-Accuracy, Accuracy), Random.Range(-Accuracy, Accuracy));
         
 
         if (Physics.Raycast(enemyHeadPos.position , direction.normalized, out hit, 100f)) {
@@ -260,7 +258,8 @@ public class RangedRushEnemy : EnemyScript {
                 Invoke("DisableEyeLight", 0.5f);
                
                 hit.collider.gameObject.GetComponent<PlayerScript>().TakeDamage(5);
-
+                hit.collider.gameObject.GetComponent<PlayerScript>().hitter = this.gameObject ;
+                hit.collider.gameObject.GetComponent<PlayerScript>().IndicatorAlpha = 1;
             }
             else {
             }
