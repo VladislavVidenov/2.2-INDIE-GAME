@@ -22,24 +22,14 @@ public class VendingMachine : MonoBehaviour {
     GameObject currentUpgrades;
 
 	//menuVisuals
-    [SerializeField]
-    GameObject buyscreen;
-    [SerializeField]
-    GameObject playerUpgrades;
-    [SerializeField]
-    GameObject toolUpgrades;
-    [SerializeField]
-    GameObject weaponUpgrades;
-    [SerializeField]
-    Button buyButton;
-    [SerializeField]
-	Image UpgradeSprite;
-	[SerializeField]
-	Text UpgradeDescriptionText;
-    [SerializeField]
-    Text bitsText;
-    [SerializeField]
-    Text bitsCostText;
+    [SerializeField] GameObject buyscreen;
+    [SerializeField] GameObject playerUpgrades;
+    [SerializeField] GameObject weaponUpgrades;
+    [SerializeField] Button buyButton;
+    [SerializeField] Image UpgradeSprite;
+	[SerializeField] Text UpgradeDescriptionText;
+    [SerializeField] Text bitsText;
+    [SerializeField] Text bitsCostText;
  
     //player
     PlayerScript player;
