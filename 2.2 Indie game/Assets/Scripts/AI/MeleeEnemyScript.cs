@@ -3,16 +3,28 @@ using System.Collections;
 
 public class MeleeEnemyScript : EnemyScript {
 
-	float attackTimer;
-
+	[Header("MeleeStats")]
     [SerializeField]
     float chargeSpeed;
     [SerializeField]
     float chargeAcceleration;
+	[SerializeField]
+	float chargeRange;
+
+	public float attackRate;
+	[HideInInspector]
+	public float nextAttackTime;
+
+	//Charge
+	bool charged = false;
+	float robotPlayerDelta;
+	//Light
+	Light eyeLight;
 
 	override public void Start () {
 		base.Start ();
-		state = AIState.Running;
+		eyeLight = GetComponentInChildren<Light> ();
+		state = AIState.Charge;
         agent.SetAreaCost(3, (float)Random.RandomRange(0, 5));
         agent.SetAreaCost(4, (float)Random.RandomRange(0, 5));
         agent.SetAreaCost(5, (float)Random.RandomRange(0, 5));
@@ -20,49 +32,80 @@ public class MeleeEnemyScript : EnemyScript {
 	
 	// Update is called once per frame
 	void Update () {
+		SetMovingAnimation ();
+		
 	  switch (state) {
 		case AIState.Attacking:
 			Attacking ();
 			break;
 
 		case AIState.Running:
+			robotPlayerDelta = Vector3.Distance (agent.transform.position, player.transform.position);
+			if(robotPlayerDelta < agent.stoppingDistance + 3.0f) 
+				this.transform.rotation = Quaternion.RotateTowards(this.transform.rotation, Quaternion.LookRotation(player.transform.position - this.transform.position), 5);
+
 			agent.SetDestination (player.position);
 			break;
 
 		case AIState.Charge:
 			agent.SetDestination (player.position);
-			if (Vector3.Distance (agent.transform.position, player.transform.position) < 10) {
+			robotPlayerDelta = Vector3.Distance (agent.transform.position, player.transform.position);
+			if (robotPlayerDelta < chargeRange) {
 				Charge();
 			}
 			break;
 		}
+	
 	}
+	void SetMovingAnimation()
+	{
+		float velocity = agent.velocity.magnitude;
+		if (velocity > 0.1f) 
+			myAnimator.SetBool("Moving",true);
+		 else 
+			myAnimator.SetBool("Moving",false);
 
+	}
 	void Attacking () {
-		attackTimer += Time.deltaTime;
 
         this.transform.rotation = Quaternion.RotateTowards(this.transform.rotation, Quaternion.LookRotation(player.transform.position - this.transform.position), 5);
-
-        if (attackTimer > attackTime) {
+		if (CanFire ())
 			MeleeAttack ();
-			attackTimer = 0;
-		}
 	}
 
 	void MeleeAttack () {
-		//play anim
-		player.GetComponent<PlayerScript> ().TakeDamage (10);
+		myAnimator.SetTrigger ("Punch");
+		eyeLight.intensity = 4f;
+		Invoke ("DisableEyeLight", 0.8f);
+		Invoke ("Hit", 0.3f);
+	}
+	void Hit(){
+		Debug.Log ("NEW HIT Hit");
+		player.GetComponent<PlayerScript> ().TakeDamage (damage);
+	}
+	void DisableEyeLight() {
+		eyeLight.intensity = 0f;
 	}
 
 	void Charge () {
+		//For smooth animation, not setting the trigger dozen of times.
+		if (!charged) {
+			myAnimator.SetTrigger ("Charge");
+			charged = true;
+		}
 		agent.acceleration = chargeAcceleration;
 		agent.speed = chargeSpeed;
+		//Stop charging when near player
+		if (robotPlayerDelta < agent.stoppingDistance + 2f) {
+			charged = false;
+			agent.acceleration = defaultAcceleration;
+			agent.speed = defaultSpeed;
+		}
+		
 	}
 
 	void OnTriggerEnter (Collider other) {
 		if (other.CompareTag (Tags.player)) {
-            agent.acceleration = defaultAcceleration;
-            agent.speed = defaultSpeed;
 			state = AIState.Attacking;
 		}
 	}
@@ -71,6 +114,19 @@ public class MeleeEnemyScript : EnemyScript {
 		if (other.CompareTag (Tags.player)) {
 			state = AIState.Running;
 		}
+	}
+
+     bool CanFire()
+	{
+		if (Time.time - attackRate > nextAttackTime)
+			nextAttackTime = Time.time - Time.deltaTime;
+		
+		while (nextAttackTime < Time.time)
+		{
+			nextAttackTime = Time.time + attackRate;
+			return true;
+		}
+		return false;
 	}
 
 

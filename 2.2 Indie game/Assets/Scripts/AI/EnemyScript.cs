@@ -8,12 +8,15 @@ public enum AIState { Running , Attacking, FindPlayerInSight , FindCover, InCove
 
 public class EnemyScript : MonoBehaviour
 {
-
+	public delegate void EnemyDied ();
+	public static event EnemyDied OnEnemyDeath;
     public AIState state;
 
     [Header("General")]
     public int health;
-    [SerializeField] int creditsDropAmount = 5;
+	public int damage;
+    [SerializeField] 
+	int creditsDropAmount = 5;
 
    
     public float defaultSpeed = 3.5f;
@@ -28,14 +31,19 @@ public class EnemyScript : MonoBehaviour
     [HideInInspector]
     public Transform enemyHeadPos;
 
-	[HideInInspector]
-	public SpawningScript spawner;
+	//[HideInInspector]
+	//public SpawningScript spawner;
 
     public float attackTime = 3f;
 
     public LayerMask layer;
 
+	//Animation part
+	[HideInInspector]
+	public Animator myAnimator;
+
 	public virtual void Start () {
+		myAnimator = GetComponentInChildren<Animator> ();
 		player = GameObject.FindGameObjectWithTag (Tags.player).transform;
         playerHeadPos = player.GetChild(0).transform;
         enemyHeadPos = agent.gameObject.transform.GetChild(0).transform;
@@ -44,8 +52,10 @@ public class EnemyScript : MonoBehaviour
     public virtual void Dying()
     {
         //DIE PLEASE!
-        if (spawner != null) spawner.KillEnemy ();
-        player.GetComponent<PlayerScript>().IncreasePlayerStats(0, 0, 0, 0, 20);
+		if (OnEnemyDeath != null)
+			OnEnemyDeath ();
+        //if (spawner != null) spawner.KillEnemy (); //Event ! -vladimir.:D
+        player.GetComponent<PlayerScript>().IncreasePlayerStats(0, 0, 0, 0, 20); //maybe also?
         DropCredits();
         Destroy(gameObject);
     }
@@ -74,4 +84,6 @@ public class EnemyScript : MonoBehaviour
             }
         }
     }
+
+
 }
