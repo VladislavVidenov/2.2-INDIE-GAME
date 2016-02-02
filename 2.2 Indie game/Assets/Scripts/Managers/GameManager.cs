@@ -37,7 +37,7 @@ public class GameManager : MonoBehaviour {
 
     PlayerScript playerScript {
         get {
-            return _player.GetComponent<PlayerScript>();
+            return Player.GetComponent<PlayerScript>();
         }
     }
 
@@ -117,6 +117,10 @@ public class GameManager : MonoBehaviour {
         pauseMenu = GameObject.Find("PauseMenuManager").GetComponent<PauseMenuScript>();
         coverSpots = FindObjectsOfType<CoverSpotScript>();
         weaponManager = FindObjectOfType<WeaponManager>();
+    }
+
+    public void SaveUpgrades() {
+        OwnedUpgrades = vendingMachine.GetComponent<VendingMachine>().GetOwndedList();
     }
 
     public void SavePlayerStats() {
