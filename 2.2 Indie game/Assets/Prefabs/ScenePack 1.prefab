@@ -80,6 +80,22 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!1 &102248
+GameObject:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 470904}
+  - 114: {fileID: 11462276}
+  m_Layer: 0
+  m_Name: UpAmmoClipSizePre
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
 --- !u!1 &102680
 GameObject:
   m_ObjectHideFlags: 1
@@ -107,6 +123,22 @@ GameObject:
   - 114: {fileID: 11423952}
   m_Layer: 8
   m_Name: WeaponCamera-root
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!1 &103018
+GameObject:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 447762}
+  - 114: {fileID: 11482300}
+  m_Layer: 0
+  m_Name: UpTotalAmmoCapPre
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -458,6 +490,37 @@ GameObject:
   - 224: {fileID: 22449034}
   m_Layer: 5
   m_Name: Upgrade (4)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!1 &111474
+GameObject:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 4
+  m_Component:
+  - 224: {fileID: 22428332}
+  m_Layer: 5
+  m_Name: Bloodscreens
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!1 &111636
+GameObject:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 407410}
+  - 114: {fileID: 11411126}
+  m_Layer: 0
+  m_Name: UpJumpHeightPre
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1069,6 +1132,22 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!1 &126676
+GameObject:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 491114}
+  - 114: {fileID: 11416820}
+  m_Layer: 0
+  m_Name: UpReloadSpeedPre
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
 --- !u!1 &126938
 GameObject:
   m_ObjectHideFlags: 1
@@ -1204,6 +1283,22 @@ GameObject:
   - 4: {fileID: 422566}
   m_Layer: 0
   m_Name: Character1_RightHandThumb2
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!1 &130178
+GameObject:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 484548}
+  - 114: {fileID: 11432534}
+  m_Layer: 5
+  m_Name: UpHealthRegenDelayPre
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1375,6 +1470,22 @@ GameObject:
   - 4: {fileID: 400012}
   m_Layer: 0
   m_Name: FPS_Joints_01
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!1 &133692
+GameObject:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 415422}
+  - 114: {fileID: 11472176}
+  m_Layer: 0
+  m_Name: UpStaminaPre
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1649,7 +1760,7 @@ GameObject:
   m_Component:
   - 224: {fileID: 22465946}
   m_Layer: 5
-  m_Name: DescriptionMenu
+  m_Name: PurchaseBar
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2635,6 +2746,22 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!1 &162692
+GameObject:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 418140}
+  - 114: {fileID: 11421378}
+  m_Layer: 0
+  m_Name: UpIncreaseDamage
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
 --- !u!1 &162892
 GameObject:
   m_ObjectHideFlags: 1
@@ -2816,21 +2943,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!1 &166186
-GameObject:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  serializedVersion: 4
-  m_Component:
-  - 224: {fileID: 22479530}
-  m_Layer: 5
-  m_Name: BloodScreens
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
 --- !u!1 &166524
 GameObject:
   m_ObjectHideFlags: 1
@@ -2873,6 +2985,22 @@ GameObject:
   - 4: {fileID: 426580}
   m_Layer: 0
   m_Name: Character1_LeftHandMiddle3
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!1 &167334
+GameObject:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 422028}
+  - 114: {fileID: 11402896}
+  m_Layer: 0
+  m_Name: UpAimDownSightsSpeedPre
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3070,23 +3198,6 @@ GameObject:
   - 4: {fileID: 407220}
   m_Layer: 0
   m_Name: Character1_RightHandMiddle3
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!1 &171114
-GameObject:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  serializedVersion: 4
-  m_Component:
-  - 224: {fileID: 22402098}
-  - 222: {fileID: 22265518}
-  - 114: {fileID: 11447760}
-  m_Layer: 5
-  m_Name: DescriptionText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3373,6 +3484,22 @@ GameObject:
   - 224: {fileID: 22451494}
   m_Layer: 5
   m_Name: Upgrade (3)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!1 &178048
+GameObject:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 413610}
+  - 114: {fileID: 11475740}
+  m_Layer: 0
+  m_Name: UpSprintSpeedPre
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3880,6 +4007,22 @@ GameObject:
   - 4: {fileID: 499596}
   m_Layer: 0
   m_Name: Character1_RightHandThumb1
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!1 &186588
+GameObject:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 457360}
+  - 114: {fileID: 11429312}
+  m_Layer: 5
+  m_Name: UpMaxHealthPre
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4761,6 +4904,18 @@ Transform:
   m_Children: []
   m_Father: {fileID: 448482}
   m_RootOrder: 0
+--- !u!4 &407410
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 111636}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 22424178}
+  m_RootOrder: 0
 --- !u!4 &407554
 Transform:
   m_ObjectHideFlags: 1
@@ -4878,6 +5033,18 @@ Transform:
   - {fileID: 450104}
   m_Father: {fileID: 427264}
   m_RootOrder: 0
+--- !u!4 &413610
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 178048}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 22428876}
+  m_RootOrder: 0
 --- !u!4 &414750
 Transform:
   m_ObjectHideFlags: 1
@@ -4890,6 +5057,18 @@ Transform:
   m_Children:
   - {fileID: 416206}
   m_Father: {fileID: 460552}
+  m_RootOrder: 0
+--- !u!4 &415422
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 133692}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 22476024}
   m_RootOrder: 0
 --- !u!4 &415948
 Transform:
@@ -4972,6 +5151,18 @@ Transform:
   - {fileID: 420460}
   m_Father: {fileID: 473552}
   m_RootOrder: 0
+--- !u!4 &418140
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 162692}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 22495406}
+  m_RootOrder: 0
 --- !u!4 &419266
 Transform:
   m_ObjectHideFlags: 1
@@ -5051,6 +5242,18 @@ Transform:
   m_Children:
   - {fileID: 492456}
   m_Father: {fileID: 432216}
+  m_RootOrder: 0
+--- !u!4 &422028
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 167334}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 22464066}
   m_RootOrder: 0
 --- !u!4 &422566
 Transform:
@@ -5430,6 +5633,18 @@ Transform:
   - {fileID: 409444}
   m_Father: {fileID: 483380}
   m_RootOrder: 0
+--- !u!4 &447762
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 103018}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 22430232}
+  m_RootOrder: 0
 --- !u!4 &448476
 Transform:
   m_ObjectHideFlags: 1
@@ -5574,6 +5789,18 @@ Transform:
   - {fileID: 471496}
   - {fileID: 427264}
   m_Father: {fileID: 400012}
+  m_RootOrder: 0
+--- !u!4 &457360
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 186588}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 22491388}
   m_RootOrder: 0
 --- !u!4 &457800
 Transform:
@@ -5753,6 +5980,18 @@ Transform:
   m_Children:
   - {fileID: 415948}
   m_Father: {fileID: 417184}
+  m_RootOrder: 0
+--- !u!4 &470904
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 102248}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 22416712}
   m_RootOrder: 0
 --- !u!4 &471496
 Transform:
@@ -5950,6 +6189,18 @@ Transform:
   - {fileID: 477092}
   m_Father: {fileID: 497662}
   m_RootOrder: 4
+--- !u!4 &484548
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 130178}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 22425862}
+  m_RootOrder: 0
 --- !u!4 &485510
 Transform:
   m_ObjectHideFlags: 1
@@ -5998,6 +6249,18 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 458862}
+  m_RootOrder: 0
+--- !u!4 &491114
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 126676}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 22402812}
   m_RootOrder: 0
 --- !u!4 &491140
 Transform:
@@ -6734,6 +6997,26 @@ MonoBehaviour:
   releasedRun: 1
   isCrouching: 0
   isRunning: 0
+--- !u!114 &11402896
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 167334}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 76c7fb98fb57c0e4dab10489a2aea6d8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  upgradeName: AimDownSightsSpeed
+  descriptionImage: {fileID: 21300000, guid: d2b47b748dcdd3540b787b0216572eb2, type: 3}
+  descriptionTextObj: {fileID: 11400900}
+  text: Increase aiming down the sights speed
+  buttonSprite: {fileID: 21300000, guid: d2b47b748dcdd3540b787b0216572eb2, type: 3}
+  BitsCost: 90
+  tier: 2
+  upgradeType: 1
+  upgradeMultiplier: .5
 --- !u!114 &11403634
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -6949,8 +7232,7 @@ MonoBehaviour:
         m_MethodName: SelectUpgrade
         m_Mode: 2
         m_Arguments:
-          m_ObjectArgument: {fileID: 11460166, guid: b19f399410598eb4bbad5d0159b8968d,
-            type: 2}
+          m_ObjectArgument: {fileID: 11472176}
           m_ObjectArgumentAssemblyTypeName: Upgrade, Assembly-CSharp
           m_IntArgument: 0
           m_FloatArgument: 0
@@ -7142,6 +7424,26 @@ MonoBehaviour:
   m_FillAmount: 1
   m_FillClockwise: 1
   m_FillOrigin: 0
+--- !u!114 &11411126
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 111636}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8cb127abac5095740a8a107c468c1df7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  upgradeName: JumpHeight
+  descriptionImage: {fileID: 21300000, guid: bf1d285802ff1fd4b8ba6f41ec166313, type: 3}
+  descriptionTextObj: {fileID: 11456004}
+  text: Increases jump height
+  buttonSprite: {fileID: 21300000, guid: bf1d285802ff1fd4b8ba6f41ec166313, type: 3}
+  BitsCost: 20
+  tier: 1
+  upgradeType: 0
+  jumpHeightMultiplier: 3
 --- !u!114 &11411352
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -7423,8 +7725,7 @@ MonoBehaviour:
         m_MethodName: SelectUpgrade
         m_Mode: 2
         m_Arguments:
-          m_ObjectArgument: {fileID: 11444268, guid: 5edbd9252c140cd4abe026c88f388b30,
-            type: 2}
+          m_ObjectArgument: {fileID: 11416820}
           m_ObjectArgumentAssemblyTypeName: Upgrade, Assembly-CSharp
           m_IntArgument: 0
           m_FloatArgument: 0
@@ -7444,6 +7745,26 @@ MonoBehaviour:
         m_CallState: 2
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
+--- !u!114 &11416820
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 126676}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a63a1e4fe429dfa4db2e651af7f44f7a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  upgradeName: ReloadSpeed
+  descriptionImage: {fileID: 21300000, guid: 355a94a047941024c9dc86a3fda7cd81, type: 3}
+  descriptionTextObj: {fileID: 11406442}
+  text: Decreases reload speed.
+  buttonSprite: {fileID: 21300000, guid: 355a94a047941024c9dc86a3fda7cd81, type: 3}
+  BitsCost: 40
+  tier: 2
+  upgradeType: 1
+  upgradeMultiplier: .5
 --- !u!114 &11416954
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -7662,9 +7983,28 @@ MonoBehaviour:
   weaponUpgrades: {fileID: 177360}
   buyButton: {fileID: 11468154}
   UpgradeSprite: {fileID: 11407798}
-  UpgradeDescriptionText: {fileID: 11447760}
   bitsText: {fileID: 11467028}
   bitsCostText: {fileID: 11472642}
+--- !u!114 &11421378
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 162692}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2a45ab032b84acb44999c61634fe5b0e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  upgradeName: IncreaseDamage
+  descriptionImage: {fileID: 21300000, guid: ba3749e669f62684eb21af22a870fa49, type: 3}
+  descriptionTextObj: {fileID: 11425610}
+  text: Multiply weapon damage by X
+  buttonSprite: {fileID: 21300000, guid: ba3749e669f62684eb21af22a870fa49, type: 3}
+  BitsCost: 12
+  tier: 1
+  upgradeType: 1
+  upgradeMultiplier: 2
 --- !u!114 &11422336
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -8085,8 +8425,7 @@ MonoBehaviour:
         m_MethodName: SelectUpgrade
         m_Mode: 2
         m_Arguments:
-          m_ObjectArgument: {fileID: 11493912, guid: 4ca3a18af1ecc944bb422602ed09b2ca,
-            type: 2}
+          m_ObjectArgument: {fileID: 11432534}
           m_ObjectArgumentAssemblyTypeName: Upgrade, Assembly-CSharp
           m_IntArgument: 0
           m_FloatArgument: 0
@@ -8150,8 +8489,7 @@ MonoBehaviour:
         m_MethodName: SelectUpgrade
         m_Mode: 2
         m_Arguments:
-          m_ObjectArgument: {fileID: 11464300, guid: 2e4e5d1f22b86004f835fb8f400529d2,
-            type: 2}
+          m_ObjectArgument: {fileID: 11429312}
           m_ObjectArgumentAssemblyTypeName: Upgrade, Assembly-CSharp
           m_IntArgument: 0
           m_FloatArgument: 0
@@ -8236,6 +8574,26 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 53f5f5994880b69409bcaa3f2925b5db, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &11429312
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 186588}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2e38f568ab2178d479cd1594e7688e9e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  upgradeName: MaxHealth
+  descriptionImage: {fileID: 21300000, guid: 27d76c7f171d39e4481bf4340ca24298, type: 3}
+  descriptionTextObj: {fileID: 11458412}
+  text: Increase Max Health by 20
+  buttonSprite: {fileID: 21300000, guid: 27d76c7f171d39e4481bf4340ca24298, type: 3}
+  BitsCost: 100
+  tier: 1
+  upgradeType: 0
+  upgradeAmount: 20
 --- !u!114 &11429912
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -8356,8 +8714,7 @@ MonoBehaviour:
         m_MethodName: SelectUpgrade
         m_Mode: 2
         m_Arguments:
-          m_ObjectArgument: {fileID: 11419982, guid: 92912be61c7e777488d2dc6c98a5a964,
-            type: 2}
+          m_ObjectArgument: {fileID: 11462276}
           m_ObjectArgumentAssemblyTypeName: Upgrade, Assembly-CSharp
           m_IntArgument: 0
           m_FloatArgument: 0
@@ -8377,6 +8734,26 @@ MonoBehaviour:
         m_CallState: 2
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
+--- !u!114 &11432534
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 130178}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e6dfe9735a3b71b459660ab8b2f96853, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  upgradeName: HealthRegenDelay
+  descriptionImage: {fileID: 21300000, guid: 283a01aa779431e42a07808b9cbaea10, type: 3}
+  descriptionTextObj: {fileID: 11495300}
+  text: Decrease health regen delay to 7.5
+  buttonSprite: {fileID: 21300000, guid: 5a11c971e7d624c48b2372925d10786b, type: 3}
+  BitsCost: 20
+  tier: 2
+  upgradeType: 0
+  regenDelay: 7.5
 --- !u!114 &11433342
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -9367,38 +9744,6 @@ MonoBehaviour:
   m_FillAmount: 1
   m_FillClockwise: 1
   m_FillOrigin: 0
---- !u!114 &11447760
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 171114}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 708705254, guid: f5f67c52d1564df4a8936ccd202a3bd8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Material: {fileID: 0}
-  m_Color: {r: 0, g: .741176486, b: .764705956, a: 1}
-  m_RaycastTarget: 1
-  m_OnCullStateChanged:
-    m_PersistentCalls:
-      m_Calls: []
-    m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
-      Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_FontData:
-    m_Font: {fileID: 12800000, guid: c59ceaac152b315409c69af8d500c488, type: 3}
-    m_FontSize: 14
-    m_FontStyle: 0
-    m_BestFit: 0
-    m_MinSize: 10
-    m_MaxSize: 40
-    m_Alignment: 0
-    m_RichText: 1
-    m_HorizontalOverflow: 0
-    m_VerticalOverflow: 1
-    m_LineSpacing: .600000024
-  m_Text: 
 --- !u!114 &11448428
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -10011,8 +10356,7 @@ MonoBehaviour:
         m_MethodName: SelectUpgrade
         m_Mode: 2
         m_Arguments:
-          m_ObjectArgument: {fileID: 11484260, guid: 3e8de823cb5f0d5409abb82563ed10fa,
-            type: 2}
+          m_ObjectArgument: {fileID: 11475740}
           m_ObjectArgumentAssemblyTypeName: Upgrade, Assembly-CSharp
           m_IntArgument: 0
           m_FloatArgument: 0
@@ -10128,6 +10472,26 @@ MonoBehaviour:
   upgradeText: {fileID: 11486870}
   toggleGroupOne: {fileID: 11480548}
   toggleGroupTwo: {fileID: 11405178}
+--- !u!114 &11462276
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 102248}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eb5a991ff9565f544b4e2fa2cbf72582, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  upgradeName: AmmoClipSize
+  descriptionImage: {fileID: 21300000, guid: aadc8594507c56a42b3cddf54fa8f923, type: 3}
+  descriptionTextObj: {fileID: 11487478}
+  text: Increase the clipsize for all weapons.
+  buttonSprite: {fileID: 21300000, guid: aadc8594507c56a42b3cddf54fa8f923, type: 3}
+  BitsCost: 6
+  tier: 1
+  upgradeType: 1
+  upgradeMultiplier: 2
 --- !u!114 &11463950
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -10312,8 +10676,7 @@ MonoBehaviour:
         m_MethodName: SelectUpgrade
         m_Mode: 2
         m_Arguments:
-          m_ObjectArgument: {fileID: 11458604, guid: c36494dbf3536b642ac944b59c5dbe6d,
-            type: 2}
+          m_ObjectArgument: {fileID: 11482300}
           m_ObjectArgumentAssemblyTypeName: Upgrade, Assembly-CSharp
           m_IntArgument: 0
           m_FloatArgument: 0
@@ -10446,8 +10809,7 @@ MonoBehaviour:
         m_MethodName: SelectUpgrade
         m_Mode: 2
         m_Arguments:
-          m_ObjectArgument: {fileID: 11440616, guid: 19b57405ea34e5645a049510d1121d6e,
-            type: 2}
+          m_ObjectArgument: {fileID: 11411126}
           m_ObjectArgumentAssemblyTypeName: Upgrade, Assembly-CSharp
           m_IntArgument: 0
           m_FloatArgument: 0
@@ -10835,6 +11197,26 @@ MonoBehaviour:
   m_FillAmount: 1
   m_FillClockwise: 1
   m_FillOrigin: 0
+--- !u!114 &11472176
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 133692}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1be9d0d8a7547aa49b5a37a8ab0bc35e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  upgradeName: MaxStamina
+  descriptionImage: {fileID: 21300000, guid: c875a414a65684a48b11e7cd37b32684, type: 3}
+  descriptionTextObj: {fileID: 11438934}
+  text: Increase Stamina by 50.
+  buttonSprite: {fileID: 21300000, guid: c875a414a65684a48b11e7cd37b32684, type: 3}
+  BitsCost: 20
+  tier: 1
+  upgradeType: 0
+  upgradeAmount: 50
 --- !u!114 &11472414
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -11106,6 +11488,26 @@ MonoBehaviour:
   m_FillAmount: 1
   m_FillClockwise: 1
   m_FillOrigin: 0
+--- !u!114 &11475740
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 178048}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4be7c5b7babd3864389b339f497c7891, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  upgradeName: SprintSpeed
+  descriptionImage: {fileID: 21300000, guid: 283a01aa779431e42a07808b9cbaea10, type: 3}
+  descriptionTextObj: {fileID: 11444182}
+  text: Multiplies sprint speed by 1.25
+  buttonSprite: {fileID: 21300000, guid: 283a01aa779431e42a07808b9cbaea10, type: 3}
+  BitsCost: 20
+  tier: 2
+  upgradeType: 0
+  speedMultiplier: 1.25
 --- !u!114 &11476622
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -11251,8 +11653,7 @@ MonoBehaviour:
         m_MethodName: SelectUpgrade
         m_Mode: 2
         m_Arguments:
-          m_ObjectArgument: {fileID: 11433002, guid: 9d3d4e5ad49e2674796f8ef321be34fe,
-            type: 2}
+          m_ObjectArgument: {fileID: 11421378}
           m_ObjectArgumentAssemblyTypeName: Upgrade, Assembly-CSharp
           m_IntArgument: 0
           m_FloatArgument: 0
@@ -11422,6 +11823,26 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_ShowMaskGraphic: 0
+--- !u!114 &11482300
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 103018}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a0382df2096e1db45afe938a973e2ba2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  upgradeName: TotalAmmoCapacity
+  descriptionImage: {fileID: 21300000, guid: a0907a31c5b3cb9488a4a7356a2fb0a6, type: 3}
+  descriptionTextObj: {fileID: 11445584}
+  text: Doubles the amount of ammo you can carry.
+  buttonSprite: {fileID: 21300000, guid: a0907a31c5b3cb9488a4a7356a2fb0a6, type: 3}
+  BitsCost: 16
+  tier: 1
+  upgradeType: 1
+  upgradeMultiplier: 2
 --- !u!114 &11482590
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -12152,8 +12573,7 @@ MonoBehaviour:
         m_MethodName: SelectUpgrade
         m_Mode: 2
         m_Arguments:
-          m_ObjectArgument: {fileID: 11445828, guid: 5c8888aa61f44a44aab2cea3f894628e,
-            type: 2}
+          m_ObjectArgument: {fileID: 11402896}
           m_ObjectArgumentAssemblyTypeName: Upgrade, Assembly-CSharp
           m_IntArgument: 0
           m_FloatArgument: 0
@@ -13027,12 +13447,6 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 174226}
---- !u!222 &22265518
-CanvasRenderer:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 171114}
 --- !u!222 &22265576
 CanvasRenderer:
   m_ObjectHideFlags: 1
@@ -13366,23 +13780,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 200, y: 40}
   m_Pivot: {x: .5, y: .5}
---- !u!224 &22402098
-RectTransform:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 171114}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 22465946}
-  m_RootOrder: 1
-  m_AnchorMin: {x: .5, y: .5}
-  m_AnchorMax: {x: .5, y: .5}
-  m_AnchoredPosition: {x: 267, y: 32.8000069}
-  m_SizeDelta: {x: 133.800003, y: 65.5999985}
-  m_Pivot: {x: .5, y: .5}
 --- !u!224 &22402812
 RectTransform:
   m_ObjectHideFlags: 1
@@ -13392,7 +13789,8 @@ RectTransform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: .349999994, y: .349999994, z: 1}
-  m_Children: []
+  m_Children:
+  - {fileID: 491114}
   m_Father: {fileID: 22401726}
   m_RootOrder: 1
   m_AnchorMin: {x: .5, y: .5}
@@ -13762,7 +14160,8 @@ RectTransform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: .349999994, y: .349999994, z: 1}
-  m_Children: []
+  m_Children:
+  - {fileID: 470904}
   m_Father: {fileID: 22446252}
   m_RootOrder: 1
   m_AnchorMin: {x: .5, y: .5}
@@ -14032,7 +14431,8 @@ RectTransform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: .349999994, y: .349999994, z: 1}
-  m_Children: []
+  m_Children:
+  - {fileID: 407410}
   m_Father: {fileID: 22474380}
   m_RootOrder: 1
   m_AnchorMin: {x: .5, y: .5}
@@ -14117,7 +14517,8 @@ RectTransform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: .349999994, y: .349999994, z: 1}
-  m_Children: []
+  m_Children:
+  - {fileID: 484548}
   m_Father: {fileID: 22497392}
   m_RootOrder: 1
   m_AnchorMin: {x: .5, y: .5}
@@ -14177,6 +14578,27 @@ RectTransform:
   m_AnchoredPosition: {x: 227.699997, y: 56.25}
   m_SizeDelta: {x: 754.400024, y: 112.5}
   m_Pivot: {x: .5, y: .5}
+--- !u!224 &22428332
+RectTransform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 111474}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 22432190}
+  - {fileID: 22428904}
+  - {fileID: 22480378}
+  - {fileID: 22462218}
+  m_Father: {fileID: 22469170}
+  m_RootOrder: 0
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 2}
+  m_Pivot: {x: .5, y: .5}
 --- !u!224 &22428876
 RectTransform:
   m_ObjectHideFlags: 1
@@ -14186,7 +14608,8 @@ RectTransform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: .349999994, y: .349999994, z: 1}
-  m_Children: []
+  m_Children:
+  - {fileID: 413610}
   m_Father: {fileID: 22449034}
   m_RootOrder: 1
   m_AnchorMin: {x: .5, y: .5}
@@ -14204,12 +14627,12 @@ RectTransform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 22479530}
+  m_Father: {fileID: 22428332}
   m_RootOrder: 1
-  m_AnchorMin: {x: .5, y: .5}
-  m_AnchorMax: {x: .5, y: .5}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 800, y: 452}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: .5, y: .5}
 --- !u!224 &22430138
 RectTransform:
@@ -14238,7 +14661,8 @@ RectTransform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: .349999994, y: .349999994, z: 1}
-  m_Children: []
+  m_Children:
+  - {fileID: 447762}
   m_Father: {fileID: 22460524}
   m_RootOrder: 1
   m_AnchorMin: {x: .5, y: .5}
@@ -14310,12 +14734,12 @@ RectTransform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 22479530}
+  m_Father: {fileID: 22428332}
   m_RootOrder: 0
-  m_AnchorMin: {x: .5, y: .5}
-  m_AnchorMax: {x: .5, y: .5}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 800, y: 452}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: .5, y: .5}
 --- !u!224 &22432262
 RectTransform:
@@ -14840,13 +15264,13 @@ RectTransform:
   m_GameObject: {fileID: 124508}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: .413431704, y: .413431525, z: .413431525}
+  m_LocalScale: {x: .400000006, y: .400000006, z: 1}
   m_Children: []
   m_Father: {fileID: 22465946}
   m_RootOrder: 0
   m_AnchorMin: {x: .5, y: .5}
   m_AnchorMax: {x: .5, y: .5}
-  m_AnchoredPosition: {x: 175.5, y: 45.2999992}
+  m_AnchoredPosition: {x: 240.100006, y: 52.4000015}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: .5, y: .5}
 --- !u!224 &22451894
@@ -15033,12 +15457,12 @@ RectTransform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 22479530}
+  m_Father: {fileID: 22428332}
   m_RootOrder: 3
-  m_AnchorMin: {x: .5, y: .5}
-  m_AnchorMax: {x: .5, y: .5}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 100, y: 100}
+  m_SizeDelta: {x: -700, y: -352}
   m_Pivot: {x: .5, y: .5}
 --- !u!224 &22462456
 RectTransform:
@@ -15155,7 +15579,8 @@ RectTransform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: .349999994, y: .349999994, z: 1}
-  m_Children: []
+  m_Children:
+  - {fileID: 422028}
   m_Father: {fileID: 22437224}
   m_RootOrder: 1
   m_AnchorMin: {x: .5, y: .5}
@@ -15246,7 +15671,6 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 22451504}
-  - {fileID: 22402098}
   m_Father: {fileID: 22406326}
   m_RootOrder: 6
   m_AnchorMin: {x: .5, y: .5}
@@ -15332,7 +15756,7 @@ RectTransform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0, y: 0, z: 0}
   m_Children:
-  - {fileID: 22479530}
+  - {fileID: 22428332}
   - {fileID: 22404410}
   - {fileID: 22406326}
   - {fileID: 22464260}
@@ -15574,7 +15998,8 @@ RectTransform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: .349999994, y: .349999994, z: 1}
-  m_Children: []
+  m_Children:
+  - {fileID: 415422}
   m_Father: {fileID: 22478436}
   m_RootOrder: 1
   m_AnchorMin: {x: .5, y: .5}
@@ -15677,27 +16102,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: .5, y: .5}
---- !u!224 &22479530
-RectTransform:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 166186}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children:
-  - {fileID: 22432190}
-  - {fileID: 22428904}
-  - {fileID: 22480378}
-  - {fileID: 22462218}
-  m_Father: {fileID: 22469170}
-  m_RootOrder: 0
-  m_AnchorMin: {x: .5, y: .5}
-  m_AnchorMax: {x: .5, y: .5}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 100, y: 100}
-  m_Pivot: {x: .5, y: .5}
 --- !u!224 &22479636
 RectTransform:
   m_ObjectHideFlags: 1
@@ -15726,12 +16130,12 @@ RectTransform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 22479530}
+  m_Father: {fileID: 22428332}
   m_RootOrder: 2
-  m_AnchorMin: {x: .5, y: .5}
-  m_AnchorMax: {x: .5, y: .5}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 800, y: 452}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: .5, y: .5}
 --- !u!224 &22480520
 RectTransform:
@@ -16065,7 +16469,8 @@ RectTransform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: .349999994, y: .349999994, z: 1}
-  m_Children: []
+  m_Children:
+  - {fileID: 457360}
   m_Father: {fileID: 22499002}
   m_RootOrder: 1
   m_AnchorMin: {x: .5, y: .5}
@@ -16185,7 +16590,8 @@ RectTransform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: .349999994, y: .349999994, z: 1}
-  m_Children: []
+  m_Children:
+  - {fileID: 418140}
   m_Father: {fileID: 22451494}
   m_RootOrder: 1
   m_AnchorMin: {x: .5, y: .5}

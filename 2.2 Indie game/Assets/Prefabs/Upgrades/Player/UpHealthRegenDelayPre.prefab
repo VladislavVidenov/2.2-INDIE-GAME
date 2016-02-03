@@ -29,10 +29,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   upgradeName: HealthRegenDelay
   descriptionImage: {fileID: 21300000, guid: 283a01aa779431e42a07808b9cbaea10, type: 3}
+  descriptionTextObj: {fileID: 0}
   text: Decrease health regen delay to 7.5
   buttonSprite: {fileID: 21300000, guid: 5a11c971e7d624c48b2372925d10786b, type: 3}
   BitsCost: 20
-  ElectronicsCost: 20
   tier: 2
   upgradeType: 0
   regenDelay: 7.5

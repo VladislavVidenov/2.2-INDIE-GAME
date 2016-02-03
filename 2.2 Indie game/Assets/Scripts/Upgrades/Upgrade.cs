@@ -10,6 +10,8 @@ public class Upgrade :MonoBehaviour {
     public string upgradeName = "NULL";
 
 	public Sprite descriptionImage;
+    public Text descriptionTextObj;
+
 	public string text;
 
     public Sprite buttonSprite;
@@ -21,6 +23,7 @@ public class Upgrade :MonoBehaviour {
 
 	//public Image buttonImage;
     public virtual void Start() {
+        descriptionTextObj.text = text;
     }
 
 	public virtual void Apply (){

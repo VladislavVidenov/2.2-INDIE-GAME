@@ -27,7 +27,7 @@ public class VendingMachine : MonoBehaviour {
     [SerializeField] GameObject weaponUpgrades;
     [SerializeField] Button buyButton;
     [SerializeField] Image UpgradeSprite;
-	[SerializeField] Text UpgradeDescriptionText;
+	//[SerializeField] Text UpgradeDescriptionText;
     [SerializeField] Text bitsText;
     [SerializeField] Text bitsCostText;
  
@@ -199,10 +199,10 @@ public class VendingMachine : MonoBehaviour {
 
 		if (upgrade == null) {
 			UpgradeSprite.sprite = null;
-			UpgradeDescriptionText.text = null;
+			//UpgradeDescriptionText.text = null;
 		} else {
 			UpgradeSprite.sprite = selectedButton.image.sprite;
-			UpgradeDescriptionText.text = upgrade.text;
+			//UpgradeDescriptionText.text = upgrade.text;
 		}
 	}
 
