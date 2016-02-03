@@ -3,6 +3,13 @@ using System.Collections;
 
 public class MeleeEnemyScript : EnemyScript {
 
+
+	public delegate void RobotCharging();
+	public delegate void RobotStopCharging();
+	public static event RobotCharging OnRobotCharging;
+	public static event RobotStopCharging OnRobotStopCharging;
+
+
 	[Header("MeleeStats")]
     [SerializeField]
     float chargeSpeed;
@@ -24,7 +31,11 @@ public class MeleeEnemyScript : EnemyScript {
 	override public void Start () {
 		base.Start ();
 		eyeLight = GetComponentInChildren<Light> ();
+
+
 		state = AIState.Charge;
+		if(OnRobotCharging != null) 
+			OnRobotCharging();
         agent.SetAreaCost(3, (float)Random.RandomRange(0, 5));
         agent.SetAreaCost(4, (float)Random.RandomRange(0, 5));
         agent.SetAreaCost(5, (float)Random.RandomRange(0, 5));
@@ -74,7 +85,12 @@ public class MeleeEnemyScript : EnemyScript {
 	}
 
 	void MeleeAttack () {
-		myAnimator.SetTrigger ("Punch");
+		int random = Random.Range (0,2);
+		if(random == 1)
+			myAnimator.SetTrigger ("Punch");
+		else
+			myAnimator.SetTrigger("Spin");
+
 		eyeLight.intensity = 4f;
 		Invoke ("DisableEyeLight", 0.8f);
 		Invoke ("Hit", 0.3f);
@@ -97,6 +113,7 @@ public class MeleeEnemyScript : EnemyScript {
 		agent.speed = chargeSpeed;
 		//Stop charging when near player
 		if (robotPlayerDelta < agent.stoppingDistance + 2f) {
+			if(OnRobotStopCharging != null) OnRobotStopCharging();
 			charged = false;
 			agent.acceleration = defaultAcceleration;
 			agent.speed = defaultSpeed;

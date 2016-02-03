@@ -360,6 +360,23 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!1 &125178
+GameObject:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 471080}
+  - 108: {fileID: 10816062}
+  - 114: {fileID: 11484416}
+  m_Layer: 0
+  m_Name: ChargeLight
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
 --- !u!1 &127088
 GameObject:
   m_ObjectHideFlags: 1
@@ -1950,6 +1967,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 446588}
+  - {fileID: 471080}
   m_Father: {fileID: 433508}
   m_RootOrder: 0
 --- !u!4 &417500
@@ -2669,6 +2687,18 @@ Transform:
   - {fileID: 497716}
   m_Father: {fileID: 453852}
   m_RootOrder: 0
+--- !u!4 &471080
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 125178}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: .0289999992, y: -.234999999, z: .254999995}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 417272}
+  m_RootOrder: 1
 --- !u!4 &472100
 Transform:
   m_ObjectHideFlags: 1
@@ -2969,8 +2999,8 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 182354}
-  m_LocalRotation: {x: .0174524076, y: 0, z: 0, w: .99984771}
-  m_LocalPosition: {x: 100.25, y: 80.1999969, z: 102.669998}
+  m_LocalRotation: {x: .0174502116, y: .0158653688, z: .000276931067, w: .999721885}
+  m_LocalPosition: {x: 100.454971, y: 81.1299973, z: 102.800003}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 480990}
@@ -3223,6 +3253,38 @@ Animator:
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
+--- !u!108 &10816062
+Light:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 125178}
+  m_Enabled: 1
+  serializedVersion: 6
+  m_Type: 2
+  m_Color: {r: 1, g: 0, b: 0, a: 1}
+  m_Intensity: 4
+  m_Range: 3
+  m_SpotAngle: 30
+  m_CookieSize: 10
+  m_Shadows:
+    m_Type: 0
+    m_Resolution: -1
+    m_Strength: 1
+    m_Bias: .0500000007
+    m_NormalBias: .400000006
+  m_Cookie: {fileID: 0}
+  m_DrawHalo: 0
+  m_Flare: {fileID: 0}
+  m_RenderMode: 0
+  m_CullingMask:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_Lightmapping: 4
+  m_BounceIntensity: 0
+  m_ShadowRadius: 0
+  m_ShadowAngle: 0
+  m_AreaSize: {x: 1, y: 1}
 --- !u!108 &10833650
 Light:
   m_ObjectHideFlags: 1
@@ -3255,6 +3317,22 @@ Light:
   m_ShadowRadius: 0
   m_ShadowAngle: 0
   m_AreaSize: {x: 1, y: 1}
+--- !u!114 &11484416
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 125178}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d0cb7b792236ec04e9d2af04b7a093d6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  lerpSpeed: 8
+  maxIntensity: 7
+  minIntensity: 2
+  targetIntensity: 0
+  switchTreshold: .300000012
 --- !u!114 &11489050
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -3270,8 +3348,6 @@ MonoBehaviour:
   health: 100
   damage: 0
   creditsDropAmount: 5
-  attackRate: 3
-  nextAttackTime: 0
   defaultSpeed: 3.5
   defaultAcceleration: 8
   agent: {fileID: 19542586}
@@ -3286,6 +3362,8 @@ MonoBehaviour:
   chargeSpeed: 45
   chargeAcceleration: 25
   chargeRange: 10
+  attackRate: 3
+  nextAttackTime: 0
 --- !u!136 &13677772
 CapsuleCollider:
   m_ObjectHideFlags: 1
