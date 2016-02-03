@@ -1,6 +1,6 @@
 fileFormatVersion: 2
-guid: 58fefa7b6160f6546a34ad5d7404f376
-timeCreated: 1453213760
+guid: 8e0936ce4ce8ae044bd2d708da03356b
+timeCreated: 1454490650
 licenseType: Free
 ModelImporter:
   serializedVersion: 18
@@ -227,7 +227,6 @@ ModelImporter:
     400218: WristR_Controller_01
     4300000: Robot_Mesh_01
     7400000: Walking
-    7400002: Walking
     9500000: //RootNode
     13700000: Robot_Mesh_01
   materials:
