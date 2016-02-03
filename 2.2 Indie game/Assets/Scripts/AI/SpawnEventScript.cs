@@ -13,8 +13,9 @@ public class SpawnEventScript : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
         spawner.spawn = true;
-        Normal = new Color(195f / 255f, 139f / 255f, 139f / 255f, 255 / 255f);
-        Alarm = new Color(201f / 255f, 15f / 255f, 15f / 255f, 255 / 255f);
+		Normal = new Color(0f / 255f, 0f / 255f, 0f / 255f, 0 / 255f);
+		Alarm = new Color(255f / 255f, 0f / 255f, 0f / 255f, 255 / 255f);
+
 	}
 	
 	// Update is called once per frame
