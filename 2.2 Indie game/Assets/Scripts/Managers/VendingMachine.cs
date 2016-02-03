@@ -30,7 +30,9 @@ public class VendingMachine : MonoBehaviour {
 	//[SerializeField] Text UpgradeDescriptionText;
     [SerializeField] Text bitsText;
     [SerializeField] Text bitsCostText;
- 
+
+    [SerializeField] Image pageOne, pageTwo;
+
     //player
     PlayerScript player;
     int playerBits;
@@ -254,5 +256,24 @@ public class VendingMachine : MonoBehaviour {
 
     public void ChangeBuyButtonTextColorLight(Text text) {
          text.color = new Color(9f / 255, 184f/255, 190f / 255);
+    }
+
+
+
+    string frontColour = "BBBDC0FF";
+    string backColour = "939597FF";
+    public void MoveOnTopHierarchy(Transform trans1) {
+        trans1.SetSiblingIndex(3);
+
+        //change colour:
+        if (trans1.name == pageOne.name) { pageOne.color = HexToColor(frontColour); pageTwo.color = HexToColor(backColour); } //pageOne is on top
+        else { pageOne.color = HexToColor(backColour); pageTwo.color = HexToColor(frontColour); } //pageTwo is on top
+    }
+
+    Color HexToColor(string hex) {
+        byte r = byte.Parse(hex.Substring(0, 2), System.Globalization.NumberStyles.HexNumber);
+        byte g = byte.Parse(hex.Substring(2, 2), System.Globalization.NumberStyles.HexNumber);
+        byte b = byte.Parse(hex.Substring(4, 2), System.Globalization.NumberStyles.HexNumber);
+        return new Color32(r, g, b, 255);
     }
 }

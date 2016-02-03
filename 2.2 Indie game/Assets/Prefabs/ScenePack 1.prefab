@@ -3648,7 +3648,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!1 &180696
 GameObject:
   m_ObjectHideFlags: 1
@@ -7985,6 +7985,8 @@ MonoBehaviour:
   UpgradeSprite: {fileID: 11407798}
   bitsText: {fileID: 11467028}
   bitsCostText: {fileID: 11472642}
+  pageOne: {fileID: 11490418}
+  pageTwo: {fileID: 11413150}
 --- !u!114 &11421378
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -8282,6 +8284,17 @@ MonoBehaviour:
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 11420964}
+        m_MethodName: MoveOnTopHierarchy
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 22425028}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Transform, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
@@ -11562,6 +11575,17 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 11420964}
+        m_MethodName: MoveOnTopHierarchy
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 22498696}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Transform, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_TypeName: UnityEngine.UI.Toggle+ToggleEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
   m_IsOn: 0
@@ -14292,7 +14316,7 @@ RectTransform:
   m_Father: {fileID: 22497456}
   m_RootOrder: 0
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 1}
   m_AnchoredPosition: {x: .600000024, y: 0}
   m_SizeDelta: {x: 14, y: 10}
   m_Pivot: {x: .5, y: .5}
@@ -14326,7 +14350,7 @@ RectTransform:
   m_Father: {fileID: 22462634}
   m_RootOrder: 0
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 1}
   m_AnchoredPosition: {x: .600000024, y: 0}
   m_SizeDelta: {x: 14, y: 10}
   m_Pivot: {x: .5, y: .5}
@@ -14557,7 +14581,7 @@ RectTransform:
   m_Father: {fileID: 22430138}
   m_RootOrder: 0
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 10, y: 1}
   m_Pivot: {x: .5, y: .5}
@@ -14683,7 +14707,7 @@ RectTransform:
   m_Father: {fileID: 22420956}
   m_RootOrder: 0
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 10, y: 1}
   m_Pivot: {x: .5, y: .5}
@@ -15286,7 +15310,7 @@ RectTransform:
   m_Father: {fileID: 22475630}
   m_RootOrder: 0
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 1}
   m_AnchoredPosition: {x: .600000024, y: 0}
   m_SizeDelta: {x: 14, y: 10}
   m_Pivot: {x: .5, y: .5}
@@ -15372,7 +15396,7 @@ RectTransform:
   m_Father: {fileID: 22470626}
   m_RootOrder: 0
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 1}
   m_AnchoredPosition: {x: .600000024, y: 0}
   m_SizeDelta: {x: 14, y: 10}
   m_Pivot: {x: .5, y: .5}
@@ -15622,7 +15646,7 @@ RectTransform:
   m_Father: {fileID: 22423936}
   m_RootOrder: 0
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 10, y: 1}
   m_Pivot: {x: .5, y: .5}
@@ -15656,7 +15680,7 @@ RectTransform:
   m_Father: {fileID: 22463966}
   m_RootOrder: 0
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 10, y: 1}
   m_Pivot: {x: .5, y: .5}
@@ -16525,7 +16549,7 @@ RectTransform:
   m_Father: {fileID: 22435232}
   m_RootOrder: 0
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 10, y: 1}
   m_Pivot: {x: .5, y: .5}
@@ -16577,7 +16601,7 @@ RectTransform:
   m_Father: {fileID: 22447276}
   m_RootOrder: 0
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 1}
   m_AnchoredPosition: {x: .600000024, y: 0}
   m_SizeDelta: {x: 14, y: 10}
   m_Pivot: {x: .5, y: .5}
