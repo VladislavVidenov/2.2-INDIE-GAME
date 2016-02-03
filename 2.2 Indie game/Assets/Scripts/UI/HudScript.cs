@@ -10,22 +10,24 @@ public class HudScript : MonoBehaviour {
     int ammoMagLeft;
 
     int playerHealthCap;
-    float playerHealth;
+    float playerHealth, previousHealth;
     int playerStaminaCap;
     float playerStamina;
 
     bool showCrosshair;
 
     //references to own onscreen items
-    [Header("Health Texts")]
+    [Header("Health")]
     [SerializeField] Text currentHealthText;
     [SerializeField] Text healthCapText;
+    [SerializeField] Image hBarBg, hBarBorder, hBarFill;
 
-    [Header("Stamina Texts")]
+    [Header("Stamina")]
     [SerializeField] Text currentStaminaText;
     [SerializeField] Text staminaCapText;
+    [SerializeField] Image sBarBg, sBarBorder, sBarFill;
 
-    [Header("Ammo Texts")]
+    [Header("Ammo")]
     [SerializeField] Text ammoMagLeftText;
     [SerializeField] Text ammoMagCapText;
     [SerializeField] Text ammoCarryLeftText;
@@ -76,7 +78,7 @@ public class HudScript : MonoBehaviour {
 
     public float PlayerHealth {
         get { return playerHealth; }
-        set { playerHealth = value; UpdateHealthHud(); }
+        set { previousHealth = playerHealth; playerHealth = value; UpdateHealthHud(); }
     }
 
     public int PlayerStaminaCap {
@@ -95,13 +97,6 @@ public class HudScript : MonoBehaviour {
     }
     #endregion "Getters & Setters"
 
-    //if (showCrosshair) {
-    //        if (!isAiming) {
-    //            GUI.DrawTexture(crosshairPos, crosshairTexture);
-    //        }
-    //    }
-
-
     public void UpdateHud() {
         UpdateHealthHud();
         UpdateAmmoHud();
@@ -111,6 +106,10 @@ public class HudScript : MonoBehaviour {
     void UpdateHealthHud() {
         currentHealthText.text = Mathf.Floor(playerHealth).ToString();
         healthCapText.text = "/" + playerHealthCap.ToString();
+
+        //update the bars
+        hBarFill.fillAmount = (playerHealth / playerHealthCap);
+
     }
 
     void UpdateAmmoHud() {
@@ -124,6 +123,8 @@ public class HudScript : MonoBehaviour {
     void UpdateStaminaHud() {
         currentStaminaText.text = Mathf.Floor(playerStamina).ToString();
         staminaCapText.text = "/" + playerStaminaCap.ToString();
-    }
 
+        //update the bars
+        sBarFill.fillAmount = (playerStamina / playerStaminaCap);
+    }
 }
