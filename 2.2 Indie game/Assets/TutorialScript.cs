@@ -39,7 +39,6 @@ public class TutorialScript : MonoBehaviour {
                 screen.transform.Translate(screen.transform.up);
                 Destroy(tutorialImage, 5f);
                 Destroy(this.gameObject,5f);
-               // Invoke("ExitTutorial", 5f);
 
                
                 break;
@@ -136,11 +135,22 @@ public class TutorialScript : MonoBehaviour {
 
     IEnumerator NextTask(string TextToShow,float WaitTime, Task pTask) {
         task = Task.None;
-        text.text = TextToShow;
+        //text.text = TextToShow;
+        StartCoroutine(AnimateText(TextToShow));
         yield return new WaitForSeconds(WaitTime);
         if (pTask == Task.KillEnemy) {
             go = GameObject.Instantiate(meleeEnemy, spawnPos.transform.position, Quaternion.identity) as GameObject;
         }
         task = pTask;
+    }
+
+
+    IEnumerator AnimateText(string strComplete) {
+        int i = 0;
+        text.text = "";
+        while (i < strComplete.Length) {
+            text.text += strComplete[i++];
+            yield return new WaitForSeconds(0.02F);
+        }
     }
 }
