@@ -43,6 +43,19 @@ public class PlayerActionScript : MonoBehaviour {
                         showGuiSkin = false;
                     }
                     break;
+
+                case "Spawner":
+                    SpawnEventScript spawnEvent = hit.collider.gameObject.GetComponent<SpawnEventScript>();
+                    if (!spawnEvent.hasSpawned && spawnEvent.allowedToSpawn)
+                    {
+                        showGuiSkin = true;
+                        if (Input.GetKeyDown(KeyCode.E))
+                            spawnEvent.Spawn();
+                    }
+                    else {
+                        showGuiSkin = false;
+                    }
+                    break;
                 case "Tool":
                     toolManager.CheckTool(hit.transform.GetComponent<Tool>());
                     break;

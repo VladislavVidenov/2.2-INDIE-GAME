@@ -32,7 +32,7 @@ public class SpawningScript : MonoBehaviour {
 	private int SpawnID;
 
 	//wave types
-	private bool waveSpawn = false;
+	private bool waveSpawn = true;
 	public bool spawn = false;
 	public SpawnTypes spawnType = SpawnTypes.TimedWave;
 	//timed waves
@@ -40,7 +40,7 @@ public class SpawningScript : MonoBehaviour {
 	private float timeTillWave = 0f;
 	//wave controls
 	private int totalWaves;
-	private int numWaves = 0;
+	private int numWaves = 1;
 
 	[SerializeField] float timeBetweenWaves;
     private float betweenWavesTimer = 9;
@@ -75,39 +75,51 @@ public class SpawningScript : MonoBehaviour {
 
 			case SpawnTypes.Wave:
 
-                if (numWaves < totalWaves + 1) {
-                    if (waveSpawn) {
-                        GameManager.Instance.isWaving = true;
-                        for (int i = 0; i < waves[numWaves - 1].meleeEnemy; i++) {
-                            SpawnEnemy(meleeEnemyPrefab);
+                    
+                    if (numWaves < totalWaves + 1)
+                    {
+                        //print(waveSpawn + "<--- wavespanw");
+                        if (waveSpawn)
+                        {
+                            //print(numWaves + "<-- numwaves" + totalWaves + "<-- totalwaves");
+                            GameManager.Instance.isWaving = true;
+                            for (int i = 0; i < waves[numWaves - 1].meleeEnemy; i++)
+                            {
+                               
+                                SpawnEnemy(meleeEnemyPrefab);
+                            }
+                            for (int j = 0; j < waves[numWaves - 1].rangedEnemy; j++)
+                            {
+                                SpawnEnemy(rangedEnemyPrefab);
+                            }
+                            for (int k = 0; k < waves[numWaves - 1].rangedRushEnemy; k++)
+                            {
+                                SpawnEnemy(rangedRushEnemyPrefab);
+                            }
+                            //spawns an enemy
+                            waveSpawn = false;
                         }
-                        for (int j = 0; j < waves[numWaves - 1].rangedEnemy; j++) {
-                            SpawnEnemy(rangedEnemyPrefab);
+
+                        if (remainingEnemy == 0)
+                        {
+                            GameManager.Instance.isWaving = false;
+                            //start the betweenWavesTimer
+                            betweenWavesTimer += Time.deltaTime;
+
+                            if (betweenWavesTimer >= timeBetweenWaves)
+                            {
+                                print("new waveee");
+                                // enables the wave spawner
+                                betweenWavesTimer = 0;
+                                waveSpawn = true;
+                                //increase the number of waves
+                                numWaves++;
+
+                            }
                         }
-                        for (int k = 0; k < waves[numWaves - 1].rangedRushEnemy; k++) {
-                            SpawnEnemy(rangedRushEnemyPrefab);
-                        }
-                        //spawns an enemy
-                        waveSpawn = false;
                     }
-
-                    if (remainingEnemy == 0) {
-                        GameManager.Instance.isWaving = false;
-                        //start the betweenWavesTimer
-                        betweenWavesTimer += Time.deltaTime;
-
-                        if (betweenWavesTimer >= timeBetweenWaves) {
-
-                            // enables the wave spawner
-                            betweenWavesTimer = 0;
-                            waveSpawn = true;
-                            //increase the number of waves
-                            numWaves++;
-
-                        }
-                    }
-				}else{spawn = false;}
-				break;
+                    else { spawn = false; }
+                    break;
 
 			case SpawnTypes.TimedWave:
 				// checks if the number of waves is bigger than the total waves
@@ -159,7 +171,7 @@ public class SpawningScript : MonoBehaviour {
 		}
 		GameObject enemy = Instantiate (pEnemy, spawnPos, Quaternion.identity) as GameObject;
 
-		//enemy.GetComponent<EnemyScript> ().spawner = this.GetComponent<SpawningScript> ();
+		enemy.GetComponent<EnemyScript> ().spawner = this.GetComponent<SpawningScript> ();
 
 		if (enemy.GetComponent<MeleeEnemyScript> () != null) {
 			manager.meleeEnemies.Add (enemy.GetComponent<MeleeEnemyScript>());
@@ -172,15 +184,8 @@ public class SpawningScript : MonoBehaviour {
 		remainingEnemy++;
 	}
 
-    void KillEnemy () {
+    public void KillEnemy () {
 			remainingEnemy--;
-	}
-
-	void OnEnable(){
-		EnemyScript.OnEnemyDeath += KillEnemy;
-	}
-	void OnDisable(){
-		EnemyScript.OnEnemyDeath -= KillEnemy;
 	}
 
 }

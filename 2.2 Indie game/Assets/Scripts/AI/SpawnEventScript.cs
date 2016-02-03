@@ -10,9 +10,12 @@ public class SpawnEventScript : MonoBehaviour {
     [SerializeField]
     Light dirLight;
 
+    [HideInInspector]
+    public bool hasSpawned = false;
+    public bool allowedToSpawn = false;
+
 	// Use this for initialization
 	void Start () {
-        spawner.spawn = true;
 		Normal = new Color(0f / 255f, 0f / 255f, 0f / 255f, 0 / 255f);
 		Alarm = new Color(255f / 255f, 0f / 255f, 0f / 255f, 255 / 255f);
 
@@ -30,4 +33,14 @@ public class SpawnEventScript : MonoBehaviour {
         }
 	
 	}
+
+    public void Spawn()
+    {
+        if (!hasSpawned && allowedToSpawn)
+        {
+            print("hello");
+            spawner.spawn = true;
+            hasSpawned = true;
+        }
+    }
 }

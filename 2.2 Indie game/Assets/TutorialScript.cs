@@ -15,11 +15,17 @@ public class TutorialScript : MonoBehaviour {
     GameObject player;
 
     [SerializeField]
+    float waitTime;
+
+    [SerializeField]
     GameObject meleeEnemy;
     [SerializeField]
     GameObject spawnPos;
 
     GameObject go;
+
+    [SerializeField]
+    SpawnEventScript spawnEvent;
 	// Use this for initialization
 	void Start () {
         player = GameObject.FindGameObjectWithTag(Tags.player);
@@ -36,6 +42,7 @@ public class TutorialScript : MonoBehaviour {
             case Task.Finished:
                 tutorialImage.gameObject.SetActive(true);
                 text.text = "";
+                spawnEvent.allowedToSpawn = true;
                 screen.transform.Translate(screen.transform.up);
                 Destroy(tutorialImage, 5f);
                 Destroy(this.gameObject,5f);
@@ -46,28 +53,28 @@ public class TutorialScript : MonoBehaviour {
                 tutorialImage.gameObject.SetActive(true);
                 text.text = "WASD To walk!";
                 if (player.GetComponent<PlayerMovement>().isWalking()) {
-                    StartCoroutine(NextTask("Now let us move on to sprinting", 3f, Task.Sprint));
+                    StartCoroutine(NextTask("Now let us move on to sprinting", waitTime, Task.Sprint));
                 }
                 break;
             case Task.Sprint:
                 tutorialImage.gameObject.SetActive(true);
                 text.text = "Shift To SPRINT!";
                 if (player.GetComponent<PlayerMovement>().isRunning) {
-                    StartCoroutine(NextTask("And now crouching", 3f, Task.Crouch));
+                    StartCoroutine(NextTask("And now crouching", waitTime, Task.Crouch));
                 }
                 break;
             case Task.Crouch:
                 tutorialImage.gameObject.SetActive(true);
                 text.text = "Press C to crouch!";
                 if (player.GetComponent<PlayerMovement>().isCrouching) {
-                    StartCoroutine(NextTask("let me show how you weapon works, right mouse click to  aim", 3f, Task.AimDownSight));
+                    StartCoroutine(NextTask("let me show how you weapon works, right mouse click to  aim", waitTime, Task.AimDownSight));
                 }
                 break;
             case Task.AimDownSight:
                 tutorialImage.gameObject.SetActive(true);
                 text.text = "left Mouse to Aim Down Sight!";
                 if (player.GetComponent<PlayerMovement>().isWepAiming) {
-                    StartCoroutine(NextTask("And left Mouse to shoot", 3f, Task.Shoot));
+                    StartCoroutine(NextTask("And left Mouse to shoot", waitTime, Task.Shoot));
                 }
                 break;
             case Task.Shoot:
@@ -75,7 +82,7 @@ public class TutorialScript : MonoBehaviour {
                 text.text = "Right Mouse to Shoot!";
 
                 if (playerShot) {
-                    StartCoroutine(NextTask("Lets kill an enemy, be casrefull", 3f, Task.KillEnemy));
+                    StartCoroutine(NextTask("Lets kill an enemy, be casrefull", waitTime, Task.KillEnemy));
                 }
                 break;
 
@@ -84,7 +91,7 @@ public class TutorialScript : MonoBehaviour {
                 text.text = "Kill the Enemy!";
 
                 if (go == null) {
-                    StartCoroutine(NextTask("lets go to the shop", 3f, Task.EnterShop));
+                    StartCoroutine(NextTask("lets go to the shop", waitTime, Task.EnterShop));
                 }
                 break;
             case Task.EnterShop:
@@ -106,19 +113,19 @@ public class TutorialScript : MonoBehaviour {
 
     void StartTutorial() {
         tutorialImage.gameObject.SetActive(true);
-        StartCoroutine(NextTask("Thanks for helping me, first let me show you how to walk",3f,Task.Walk));
+        StartCoroutine(NextTask("Thanks for helping me, first let me show you how to walk", waitTime, Task.Walk));
     }
 
     void SetShot() {
         if (task == Task.Shoot) playerShot = true;
     }
     void SetShop() {
-        if (task == Task.EnterShop) StartCoroutine(NextTask("Now buy an upgrade", 3f, Task.BuyUpgrade));
+        if (task == Task.EnterShop) StartCoroutine(NextTask("Now buy an upgrade", waitTime, Task.BuyUpgrade));
         print("entered shop");
     }
 
     void BuyUpgrade() {
-        if (task == Task.BuyUpgrade) StartCoroutine(NextTask("Your now ready to go", 3f, Task.Finished));
+        if (task == Task.BuyUpgrade) StartCoroutine(NextTask("Your now ready to go", waitTime, Task.Finished));
         print("boughtUpgrade");
     }
     void OnEnable() {

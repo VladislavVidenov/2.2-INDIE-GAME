@@ -15,6 +15,7 @@ TagManager:
   - AIManager
   - Engine
   - Quality Toggle
+  - Spawner
   layers:
   - Default
   - TransparentFX
