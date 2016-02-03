@@ -37,7 +37,8 @@ public class PlayerMovement : MonoBehaviour {
     [SerializeField]
     float gravity;
     bool isReloading = false;
-    bool isWepAiming = false;
+    [HideInInspector]
+    public bool isWepAiming = false;
     [HideInInspector]
     public bool releasedRun = true;
     bool isGrounded = false;

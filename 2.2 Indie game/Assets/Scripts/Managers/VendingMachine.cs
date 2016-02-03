@@ -5,6 +5,13 @@ using UnityEngine.UI;
 
 public class VendingMachine : MonoBehaviour {
 
+
+    public delegate void EnterShop();
+    public static event EnterShop OnEnterShop;
+
+    public delegate void BuysUpgrade();
+    public static event BuysUpgrade OnBuysUpgrade;
+
 	//functionality
 	[SerializeField]
 	List<Upgrade> allUpgrades;
@@ -68,6 +75,7 @@ public class VendingMachine : MonoBehaviour {
 	}
 
 	public void ActivateStation (){
+        if (OnEnterShop != null) OnEnterShop();
         GetPlayerStats();
         ChangePlayerStatsText();
         buyscreen.SetActive(true);
@@ -97,6 +105,7 @@ public class VendingMachine : MonoBehaviour {
 	}
 
 	public void BuyUpgrade () {
+        if (OnBuysUpgrade != null) OnBuysUpgrade();
 		selectedUpgrade.Apply ();
 		ownedUpgrades.Add (selectedUpgrade);
         AddToTypeList();

@@ -46,7 +46,8 @@ public class WeaponScript : MonoBehaviour {
     public float pullOutWeaponTime;
     float nextFireTime;
     bool isReloading = false;
-    bool isShooting = false;
+    [HideInInspector]
+    public bool isShooting = false;
     bool weaponSelected = false;
     bool outOfAmmoSoundPlaying = false;
     bool reloadInfo = false;
@@ -301,6 +302,7 @@ public class WeaponScript : MonoBehaviour {
             RecoilEffect();
             ammoInClip--;
             UpdateHudValues();
+            isShooting = false;
         }
     }
 
@@ -344,7 +346,7 @@ public class WeaponScript : MonoBehaviour {
             return;
         }
 
-        if (CanFire()) FireOneBullet();
+        if (CanFire()) { FireOneBullet(); }
     }
 
     void FireOneBullet()
