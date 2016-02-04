@@ -5,10 +5,6 @@ using UnityEngine.UI;
 
 public class VendingMachine : MonoBehaviour {
 
-
-    public delegate void EnterShop();
-    public static event EnterShop OnEnterShop;
-
     public delegate void BuysUpgrade();
     public static event BuysUpgrade OnBuysUpgrade;
 
@@ -78,7 +74,6 @@ public class VendingMachine : MonoBehaviour {
 	}
 
 	public void ActivateStation (){
-        if (OnEnterShop != null) OnEnterShop();
         GetPlayerStats();
         ChangePlayerStatsText();
         buyscreen.SetActive(true);

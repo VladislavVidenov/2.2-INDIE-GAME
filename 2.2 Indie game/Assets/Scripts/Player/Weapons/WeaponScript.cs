@@ -10,6 +10,9 @@ public class WeaponScript : MonoBehaviour {
     public delegate void PistolShoot();
     public static event PistolShoot OnPistolShoot;
 
+    public delegate void PistolReload();
+    public static event PistolReload OnPistolReload;
+
     Camera mainCamera;
     Camera weaponCamera;
     PlayerMovement playerMove;
@@ -395,6 +398,7 @@ public class WeaponScript : MonoBehaviour {
     #region Reloading 
     IEnumerator ReloadTime(float time)
     {
+        if (OnPistolReload != null) OnPistolReload();
         yield return new WaitForSeconds(time);
         isReloading = false;
         playerMove.SendMessage("SetIsReloading", isReloading);

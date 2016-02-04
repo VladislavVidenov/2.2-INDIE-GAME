@@ -4,7 +4,7 @@ using UnityEngine.UI;
 
 public class TutorialScript : MonoBehaviour {
     //TASK
-    public enum Task {None, Start, Walk, Jump, Sprint, Crouch, AimDownSight, Shoot, EnterShop, KillEnemy, BuyUpgrade, Finished
+    public enum Task {None, Start, Walk, Jump, Sprint, Crouch, AimDownSight, Shoot, Reload, KillEnemy, BuyUpgrade, Finished
     }
     Task task;
 
@@ -31,6 +31,8 @@ public class TutorialScript : MonoBehaviour {
 
     bool playerShot = false;
     bool enterShop = false;
+
+    bool playerReload = false;
     [HideInInspector]
     public bool hasWalked = false;
     [HideInInspector]
@@ -83,7 +85,7 @@ public class TutorialScript : MonoBehaviour {
                 tutorialImage.gameObject.SetActive(true);
 			text.text = "B.R.A.I.N: Press C to crouch!";
                 if (hasCrouched) {
-				StartCoroutine(NextTask("B.R.A.I.N: There is a ghap, Jump over it!", waitTime, Task.Jump));
+				StartCoroutine(NextTask("B.R.A.I.N: There is a gap, Jump over it!", waitTime, Task.Jump));
                 }
                 break;
 
@@ -107,7 +109,16 @@ public class TutorialScript : MonoBehaviour {
 			text.text = "B.R.A.I.N: Use LMB to shoot!";
 
                 if (playerShot) {
-				StartCoroutine(NextTask("B.R.A.I.N: I'll make a dummy virus for you to shoot at!", waitTime, Task.KillEnemy));
+				StartCoroutine(NextTask("B.R.A.I.N: You need to reload your gun!", waitTime, Task.Reload));
+                }
+                break;
+
+            case Task.Reload:
+                tutorialImage.gameObject.SetActive(true);
+                text.text = "B.R.A.I.N: Use R to reload!";
+
+                if (playerReload) {
+                    StartCoroutine(NextTask("B.R.A.I.N: I'll make a dummy virus for you to shoot at!", waitTime, Task.KillEnemy));
                 }
                 break;
 
@@ -141,19 +152,23 @@ public class TutorialScript : MonoBehaviour {
         if (task == Task.Shoot) playerShot = true;
     }
 
+    void SetReload() {
+        if (task == Task.Reload) playerReload = true;
+    }
+
     void BuyUpgrade() {
-        if (task == Task.BuyUpgrade) StartCoroutine(NextTask("Your now ready to go", waitTime, Task.Finished));
+        if (task == Task.BuyUpgrade) StartCoroutine(NextTask("Your now ready to go, head over to the desk to proceed", waitTime, Task.Finished));
         print("boughtUpgrade");
     }
     void OnEnable() {
         WeaponScript.OnPistolShoot += SetShot;
-        //VendingMachine.OnEnterShop += SetShop;
+        WeaponScript.OnPistolReload += SetReload;
         VendingMachine.OnBuysUpgrade += BuyUpgrade;
 
     }
     void OnDisable() {
         WeaponScript.OnPistolShoot -= SetShot;
-        //VendingMachine.OnEnterShop -= SetShop;
+        WeaponScript.OnPistolReload -= SetReload;
         VendingMachine.OnBuysUpgrade -= BuyUpgrade;
     }
 
