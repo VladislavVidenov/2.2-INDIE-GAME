@@ -21,11 +21,14 @@ public class PlayerActionScript : MonoBehaviour {
         Raycasting();
 	}
 
-    void Raycasting() {
+    void Raycasting()
+    {
         Ray ray = Camera.main.ViewportPointToRay(new Vector3(0.5f, 0.5f, 0));
 
-        if (Physics.Raycast(ray, out hit, maxRayDistance, layerMask.value)) {
-            switch (hit.collider.tag) {
+        if (Physics.Raycast(ray, out hit, maxRayDistance, layerMask.value))
+        {
+            switch (hit.collider.tag)
+            {
                 case "VendingMachine":
                     showGuiSkin = true;
                     if (Input.GetKeyDown(KeyCode.E) && !GameManager.Instance.isWaving)
@@ -34,7 +37,8 @@ public class PlayerActionScript : MonoBehaviour {
 
                 case "LootableBox":
                     LootableBoxScript lootBox = hit.collider.gameObject.GetComponent<LootableBoxScript>();
-                    if (!lootBox.isLooted) {
+                    if (!lootBox.isLooted)
+                    {
                         showGuiSkin = true;
                         if (Input.GetKeyDown(KeyCode.E))
                             lootBox.Loot();
@@ -59,9 +63,11 @@ public class PlayerActionScript : MonoBehaviour {
 
                 case "TutDesk":
                     //SpawnEventScript spawnEvent = hit.collider.gameObject.GetComponent<SpawnEventScript>();
-                    if (GameObject.Find("TutorialManager").GetComponent<TutorialScript>().finishedTutorial) {
+                    if (GameObject.Find("TutorialManager").GetComponent<TutorialScript>().finishedTutorial)
+                    {
                         showGuiSkin = true;
-                        if (Input.GetKeyDown(KeyCode.E)) {
+                        if (Input.GetKeyDown(KeyCode.E))
+                        {
                             Application.LoadLevel("CubeWorld");
                         }
                     }
@@ -69,14 +75,26 @@ public class PlayerActionScript : MonoBehaviour {
                         showGuiSkin = false;
                     }
                     break;
+
+                case "LevelSwitcher":
+                    showGuiSkin = true;
+                    if (Input.GetKeyDown(KeyCode.E))
+                    {
+                        hit.collider.gameObject.GetComponent<SceneSwitcher>().SwitchScene();
+                    }
+
+
+                    break;
                 case "Tool":
                     toolManager.CheckTool(hit.transform.GetComponent<Tool>());
                     break;
 
                 case "Engine":
-                    if (!hit.collider.gameObject.GetComponent<EngineScript>().activated) {
+                    if (!hit.collider.gameObject.GetComponent<EngineScript>().activated)
+                    {
                         showGuiSkin = true;
-                        if (Input.GetKeyDown(KeyCode.E)) {
+                        if (Input.GetKeyDown(KeyCode.E))
+                        {
                             hit.collider.gameObject.GetComponent<EngineScript>().StartEngine();
                         }
                     }

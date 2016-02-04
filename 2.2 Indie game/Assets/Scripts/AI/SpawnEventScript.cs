@@ -12,6 +12,8 @@ public class SpawnEventScript : MonoBehaviour {
 
     [HideInInspector]
     public bool hasSpawned = false;
+    [HideInInspector]
+    public bool completed = false;
     public bool allowedToSpawn = false;
 
     AudioSource audioSource;
@@ -45,7 +47,13 @@ public class SpawnEventScript : MonoBehaviour {
             if (audioSource.isPlaying) {
                 audioSource.Stop();
                 GameObject.Find("SoundManager").GetComponent<AudioManagerScript>().FadeOutIn(0);
+                print("back");
             }
+        }
+
+        if (hasSpawned && !spawner.spawn)
+        {
+            completed = true;
         }
 
 

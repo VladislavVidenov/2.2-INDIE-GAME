@@ -108,7 +108,6 @@ public class SpawningScript : MonoBehaviour {
 
                             if (betweenWavesTimer >= timeBetweenWaves)
                             {
-                                print("new waveee");
                                 // enables the wave spawner
                                 betweenWavesTimer = 0;
                                 waveSpawn = true;

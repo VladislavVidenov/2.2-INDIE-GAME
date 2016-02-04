@@ -17,6 +17,7 @@ TagManager:
   - Quality Toggle
   - Spawner
   - TutDesk
+  - LevelSwitcher
   layers:
   - Default
   - TransparentFX
