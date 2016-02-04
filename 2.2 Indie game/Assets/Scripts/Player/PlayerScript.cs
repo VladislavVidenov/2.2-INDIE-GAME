@@ -52,6 +52,12 @@ public class PlayerScript : MonoBehaviour {
 
     float cutOffBits;
 
+    [SerializeField]
+    Transform respawnTransform;
+
+    [SerializeField]
+    string levelName = "";
+
     // Use this for initialization
     void Start () {
         originalPos = hitIndicator.transform.position;
@@ -169,7 +175,7 @@ public class PlayerScript : MonoBehaviour {
 
     public void Died() {
         sceneManager.SetState(GameState.InMenu);
-        Application.LoadLevel(0);
+        Application.LoadLevel(levelName);
     }
 
     void Respawn() {
@@ -272,6 +278,10 @@ public class PlayerScript : MonoBehaviour {
                 bitsBoost = currentTool.bitsBoost + wrenchUpgBoost;
                 break;
         }
+    }
+
+    public void Respawning() {
+        this.transform.position = respawnTransform.position;
     }
 
     IEnumerator IncreaseHud(float text, float Amount) {
