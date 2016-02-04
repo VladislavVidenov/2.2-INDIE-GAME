@@ -1,17 +1,13 @@
 fileFormatVersion: 2
-guid: bf1d285802ff1fd4b8ba6f41ec166313
-timeCreated: 1454537055
+guid: 204f285a008c53c469286d66841cca0e
+timeCreated: 1454538546
 licenseType: Free
 TextureImporter:
-  fileIDToRecycleName:
-    21300000: GUI_Sprite_Sneakspeed_1K_0
-    21300002: GUI_Sprite_Sneakspeed_1K_1
-    21300004: GUI_Sprite_JumpHeight_1K_0
-    21300006: GUI_Sprite_JumpHeight_1K_1
+  fileIDToRecycleName: {}
   serializedVersion: 2
   mipmaps:
     mipMapMode: 0
-    enableMipMap: 1
+    enableMipMap: 0
     linearTexture: 0
     correctGamma: 0
     fadeOut: 0
@@ -34,7 +30,7 @@ TextureImporter:
   maxTextureSize: 2048
   textureSettings:
     filterMode: -1
-    aniso: 16
+    aniso: 1
     mipBias: -1
     wrapMode: 1
   nPOTScale: 0
@@ -42,7 +38,7 @@ TextureImporter:
   rGBM: 0
   compressionQuality: 50
   allowsAlphaSplitting: 0
-  spriteMode: 2
+  spriteMode: 1
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
@@ -53,27 +49,7 @@ TextureImporter:
   textureType: 8
   buildTargetSettings: []
   spriteSheet:
-    sprites:
-    - name: GUI_Sprite_JumpHeight_1K_0
-      rect:
-        serializedVersion: 2
-        x: 0
-        y: 0
-        width: 654
-        height: 654
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-    - name: GUI_Sprite_JumpHeight_1K_1
-      rect:
-        serializedVersion: 2
-        x: 654
-        y: 0
-        width: 654
-        height: 654
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
+    sprites: []
   spritePackingTag: 
   userData: 
   assetBundleName: 

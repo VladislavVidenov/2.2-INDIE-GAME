@@ -1,13 +1,11 @@
 fileFormatVersion: 2
-guid: bf1d285802ff1fd4b8ba6f41ec166313
-timeCreated: 1454537055
+guid: 2e85e3f2a3c59fd4f8bdf1b554b3e812
+timeCreated: 1454538223
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
-    21300000: GUI_Sprite_Sneakspeed_1K_0
-    21300002: GUI_Sprite_Sneakspeed_1K_1
-    21300004: GUI_Sprite_JumpHeight_1K_0
-    21300006: GUI_Sprite_JumpHeight_1K_1
+    21300000: GUI_Sprite_IncreaseDamage_1K_0
+    21300002: GUI_Sprite_IncreaseDamage_1K_1
   serializedVersion: 2
   mipmaps:
     mipMapMode: 0
@@ -54,7 +52,7 @@ TextureImporter:
   buildTargetSettings: []
   spriteSheet:
     sprites:
-    - name: GUI_Sprite_JumpHeight_1K_0
+    - name: GUI_Sprite_IncreaseDamage_1K_0
       rect:
         serializedVersion: 2
         x: 0
@@ -64,7 +62,7 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: GUI_Sprite_JumpHeight_1K_1
+    - name: GUI_Sprite_IncreaseDamage_1K_1
       rect:
         serializedVersion: 2
         x: 654
