@@ -3,29 +3,43 @@ using System.Collections;
 using UnityEngine.UI;
 
 public class TutorialScript : MonoBehaviour {
-    public enum Task {None, STart, Walk, Jump, Sprint, Crouch, AimDownSight, Shoot, EnterShop, KillEnemy, BuyUpgrade, Finished
+    //TASK
+    public enum Task {None, Start, Walk, Jump, Sprint, Crouch, AimDownSight, Shoot, EnterShop, KillEnemy, BuyUpgrade, Finished
     }
+    Task task;
+
+    //HUD
     [SerializeField]
     GameObject tutorialImage;
     GameObject screen;
     Text text;
-    bool playerShot = false;
-    bool enterShop = false;
-    Task task;
-    GameObject player;
-
     [SerializeField]
     float waitTime;
+   
+   //player
+    GameObject player;
 
+
+    //killenemy
     [SerializeField]
     GameObject meleeEnemy;
     [SerializeField]
     GameObject spawnPos;
-
     GameObject go;
 
-    [SerializeField]
-    SpawnEventScript spawnEvent;
+    //Booleans
+
+    bool playerShot = false;
+    bool enterShop = false;
+    [HideInInspector]
+    public bool hasWalked = false;
+    [HideInInspector]
+    public bool hasCrouched = false;
+    [HideInInspector]
+    public bool hasJumped = false;
+    [HideInInspector]
+    public bool finishedTutorial = false;
+
 	// Use this for initialization
 	void Start () {
         player = GameObject.FindGameObjectWithTag(Tags.player);
@@ -40,19 +54,21 @@ public class TutorialScript : MonoBehaviour {
         switch (task) {
 
             case Task.Finished:
+                finishedTutorial = true;
                 tutorialImage.gameObject.SetActive(true);
                 text.text = "";
-                spawnEvent.allowedToSpawn = true;
                 screen.transform.Translate(screen.transform.up);
-                Destroy(tutorialImage, 5f);
-                Destroy(this.gameObject,5f);
+                if (tutorialImage != null) {
+                    Destroy(tutorialImage, 5f);
+                }
+                //Destroy(this.gameObject,5f);
 
                
                 break;
             case Task.Walk:
                 tutorialImage.gameObject.SetActive(true);
                 text.text = "WASD To walk!";
-                if (player.GetComponent<PlayerMovement>().isWalking()) {
+                if (hasWalked) {
                     StartCoroutine(NextTask("Now let us move on to sprinting", waitTime, Task.Sprint));
                 }
                 break;
@@ -66,10 +82,19 @@ public class TutorialScript : MonoBehaviour {
             case Task.Crouch:
                 tutorialImage.gameObject.SetActive(true);
                 text.text = "Press C to crouch!";
-                if (player.GetComponent<PlayerMovement>().isCrouching) {
+                if (hasCrouched) {
+                    StartCoroutine(NextTask("let me show how you weapon works, right mouse click to  aim", waitTime, Task.Jump));
+                }
+                break;
+
+            case Task.Jump:
+                tutorialImage.gameObject.SetActive(true);
+                text.text = "Press Space To Jump!";
+                if (hasJumped) {
                     StartCoroutine(NextTask("let me show how you weapon works, right mouse click to  aim", waitTime, Task.AimDownSight));
                 }
                 break;
+
             case Task.AimDownSight:
                 tutorialImage.gameObject.SetActive(true);
                 text.text = "left Mouse to Aim Down Sight!";
@@ -91,12 +116,8 @@ public class TutorialScript : MonoBehaviour {
                 text.text = "Kill the Enemy!";
 
                 if (go == null) {
-                    StartCoroutine(NextTask("lets go to the shop", waitTime, Task.EnterShop));
+                    StartCoroutine(NextTask("lets go to the shop", waitTime, Task.BuyUpgrade));
                 }
-                break;
-            case Task.EnterShop:
-                tutorialImage.gameObject.SetActive(true);
-                text.text = "Enter the Shop!";
                 break;
 
             case Task.BuyUpgrade:
@@ -113,15 +134,11 @@ public class TutorialScript : MonoBehaviour {
 
     void StartTutorial() {
         tutorialImage.gameObject.SetActive(true);
-        StartCoroutine(NextTask("Thanks for helping me, first let me show you how to walk", waitTime, Task.Walk));
+        StartCoroutine(NextTask("B.R.A.I.N: Thanks for helping me, first let me show you how to walk", waitTime, Task.Walk));
     }
 
     void SetShot() {
         if (task == Task.Shoot) playerShot = true;
-    }
-    void SetShop() {
-        if (task == Task.EnterShop) StartCoroutine(NextTask("Now buy an upgrade", waitTime, Task.BuyUpgrade));
-        print("entered shop");
     }
 
     void BuyUpgrade() {
@@ -130,13 +147,13 @@ public class TutorialScript : MonoBehaviour {
     }
     void OnEnable() {
         WeaponScript.OnPistolShoot += SetShot;
-        VendingMachine.OnEnterShop += SetShop;
+        //VendingMachine.OnEnterShop += SetShop;
         VendingMachine.OnBuysUpgrade += BuyUpgrade;
 
     }
     void OnDisable() {
         WeaponScript.OnPistolShoot -= SetShot;
-        VendingMachine.OnEnterShop -= SetShop;
+        //VendingMachine.OnEnterShop -= SetShop;
         VendingMachine.OnBuysUpgrade -= BuyUpgrade;
     }
 
@@ -146,7 +163,7 @@ public class TutorialScript : MonoBehaviour {
         StartCoroutine(AnimateText(TextToShow));
         yield return new WaitForSeconds(WaitTime);
         if (pTask == Task.KillEnemy) {
-            go = GameObject.Instantiate(meleeEnemy, spawnPos.transform.position, Quaternion.identity) as GameObject;
+            go = GameObject.Instantiate(meleeEnemy, spawnPos.transform.position,spawnPos.transform.rotation) as GameObject;
         }
         task = pTask;
     }

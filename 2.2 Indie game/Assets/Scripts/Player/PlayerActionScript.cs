@@ -56,6 +56,19 @@ public class PlayerActionScript : MonoBehaviour {
                         showGuiSkin = false;
                     }
                     break;
+
+                case "TutDesk":
+                    //SpawnEventScript spawnEvent = hit.collider.gameObject.GetComponent<SpawnEventScript>();
+                    if (GameObject.Find("TutorialManager").GetComponent<TutorialScript>().finishedTutorial) {
+                        showGuiSkin = true;
+                        if (Input.GetKeyDown(KeyCode.E)) {
+                            Application.LoadLevel("CubeWorld");
+                        }
+                    }
+                    else {
+                        showGuiSkin = false;
+                    }
+                    break;
                 case "Tool":
                     toolManager.CheckTool(hit.transform.GetComponent<Tool>());
                     break;

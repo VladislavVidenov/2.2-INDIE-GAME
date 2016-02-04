@@ -16,6 +16,7 @@ TagManager:
   - Engine
   - Quality Toggle
   - Spawner
+  - TutDesk
   layers:
   - Default
   - TransparentFX
