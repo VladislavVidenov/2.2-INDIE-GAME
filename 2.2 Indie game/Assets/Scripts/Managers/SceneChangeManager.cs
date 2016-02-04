@@ -19,6 +19,11 @@ public class SceneChangeManager : MonoBehaviour {
     }
 
     void Update() {
+        if (currentState == GameState.InGame)
+        {
+            Cursor.lockState = CursorLockMode.Locked;
+            Cursor.visible = false;
+        }
         if (Input.GetKeyDown(KeyCode.Escape)) {
             switch(currentState){
                 case GameState.InBuyScreen:
