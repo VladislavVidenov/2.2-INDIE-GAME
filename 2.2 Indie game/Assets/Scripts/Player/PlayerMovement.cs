@@ -82,7 +82,7 @@ public class PlayerMovement : MonoBehaviour {
             Vector3 newVelocity = targetVel - currentVel;
 
             newVelocity.x = Mathf.Clamp(newVelocity.x, -maxVelocityClamp, maxVelocityClamp);
-            newVelocity.y = 0;
+            newVelocity.y = -0.75f;
             newVelocity.z = Mathf.Clamp(newVelocity.z, -maxVelocityClamp, maxVelocityClamp);
 
             rigidBody.AddForce(newVelocity, ForceMode.VelocityChange);
