@@ -67,62 +67,62 @@ public class TutorialScript : MonoBehaviour {
                 break;
             case Task.Walk:
                 tutorialImage.gameObject.SetActive(true);
-                text.text = "WASD To walk!";
+			text.text = "B.R.A.I.N: Use WASD to move!";
                 if (hasWalked) {
-                    StartCoroutine(NextTask("Now let us move on to sprinting", waitTime, Task.Sprint));
+				StartCoroutine(NextTask("B.R.A.I.N: Lets hurry up!", waitTime, Task.Sprint));
                 }
                 break;
             case Task.Sprint:
                 tutorialImage.gameObject.SetActive(true);
-                text.text = "Shift To SPRINT!";
+			text.text = "B.R.A.I.N: Press Shift to SPRINT!";
                 if (player.GetComponent<PlayerMovement>().isRunning) {
-                    StartCoroutine(NextTask("And now crouching", waitTime, Task.Crouch));
+				StartCoroutine(NextTask("B.R.A.I.N: You have to crouch to continue", waitTime, Task.Crouch));
                 }
                 break;
             case Task.Crouch:
                 tutorialImage.gameObject.SetActive(true);
-                text.text = "Press C to crouch!";
+			text.text = "B.R.A.I.N: Press C to crouch!";
                 if (hasCrouched) {
-                    StartCoroutine(NextTask("let me show how you weapon works, right mouse click to  aim", waitTime, Task.Jump));
+				StartCoroutine(NextTask("B.R.A.I.N: There is a ghap, Jump over it!", waitTime, Task.Jump));
                 }
                 break;
 
             case Task.Jump:
                 tutorialImage.gameObject.SetActive(true);
-                text.text = "Press Space To Jump!";
+			text.text = "B.R.A.I.N: Press Space To Jump!";
                 if (hasJumped) {
-                    StartCoroutine(NextTask("let me show how you weapon works, right mouse click to  aim", waitTime, Task.AimDownSight));
+				StartCoroutine(NextTask("B.R.A.I.N: Lets try aiming your weapon!", waitTime, Task.AimDownSight));
                 }
                 break;
 
             case Task.AimDownSight:
                 tutorialImage.gameObject.SetActive(true);
-                text.text = "left Mouse to Aim Down Sight!";
+			text.text = "B.R.A.I.N: Use RMB to aim!";
                 if (player.GetComponent<PlayerMovement>().isWepAiming) {
-                    StartCoroutine(NextTask("And left Mouse to shoot", waitTime, Task.Shoot));
+				StartCoroutine(NextTask("B.R.A.I.N: Lets try shooting!", waitTime, Task.Shoot));
                 }
                 break;
             case Task.Shoot:
                 tutorialImage.gameObject.SetActive(true);
-                text.text = "Right Mouse to Shoot!";
+			text.text = "B.R.A.I.N: Use LMB to shoot!";
 
                 if (playerShot) {
-                    StartCoroutine(NextTask("Lets kill an enemy, be casrefull", waitTime, Task.KillEnemy));
+				StartCoroutine(NextTask("B.R.A.I.N: I'll make a dummy virus for you to shoot at!", waitTime, Task.KillEnemy));
                 }
                 break;
 
             case Task.KillEnemy:
                 tutorialImage.gameObject.SetActive(true);
-                text.text = "Kill the Enemy!";
+			text.text = "B.R.A.I.N: Shoot the virus untill it is destroyed!";
 
                 if (go == null) {
-                    StartCoroutine(NextTask("lets go to the shop", waitTime, Task.BuyUpgrade));
+				StartCoroutine(NextTask("B.R.A.I.N: Next I will show you how you can use bits to become stronger!", waitTime, Task.BuyUpgrade));
                 }
                 break;
 
             case Task.BuyUpgrade:
                 tutorialImage.gameObject.SetActive(true);
-                text.text = "Buy An Upgrade!!";
+			text.text = "B.R.A.I.N: Interact with the vendor machine and buy an upgrade!!!";
                 break;
         }
 	
@@ -174,7 +174,7 @@ public class TutorialScript : MonoBehaviour {
         text.text = "";
         while (i < strComplete.Length) {
             text.text += strComplete[i++];
-            yield return new WaitForSeconds(0.02F);
+            yield return new WaitForSeconds(0.01F);
         }
     }
 }
