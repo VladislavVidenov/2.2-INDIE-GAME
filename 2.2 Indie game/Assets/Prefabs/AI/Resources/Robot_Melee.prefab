@@ -3464,9 +3464,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   state: 0
   health: 100
-  damage: 15
-  creditsDropAmount: 5
-  defaultSpeed: 3.5
+  damage: 10
+  creditsDropAmount: 20
+  defaultSpeed: 5
   defaultAcceleration: 8
   agent: {fileID: 19542586}
   player: {fileID: 0}
@@ -3762,7 +3762,15 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: damage
-      value: 15
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: defaultSpeed
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: creditsDropAmount
+      value: 20
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}

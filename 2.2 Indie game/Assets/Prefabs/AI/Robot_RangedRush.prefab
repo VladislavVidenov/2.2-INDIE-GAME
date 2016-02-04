@@ -3305,7 +3305,7 @@ MonoBehaviour:
   state: 9
   health: 100
   damage: 10
-  creditsDropAmount: 5
+  creditsDropAmount: 20
   defaultSpeed: 3.5
   defaultAcceleration: 8
   agent: {fileID: 19589106}
@@ -3515,6 +3515,10 @@ Prefab:
     - target: {fileID: 0}
       propertyPath: damage
       value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: creditsDropAmount
+      value: 20
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}

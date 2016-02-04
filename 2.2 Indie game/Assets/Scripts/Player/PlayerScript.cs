@@ -96,9 +96,9 @@ public class PlayerScript : MonoBehaviour {
     }
 
     void DeathHud() {
-        hp75.color = new Color(1, 1, 1, ((float)maxHealth - (float)health) / 25);
-        hp50.color = new Color(1, 1, 1, ((float)75 - (float)health) / 25);
-        hp25.color = new Color(1, 1, 1, ((float)50 - (float)health) / 25);
+        hp75.color = new Color(1, 1, 1, ((float)maxHealth - (float)health) / 25/2);
+        hp50.color = new Color(1, 1, 1, ((float)60 - (float)health) / 25/2);
+        hp25.color = new Color(1, 1, 1, ((float)30 - (float)health) / 25 / 10);
     }
 
     void RegenHealth() {

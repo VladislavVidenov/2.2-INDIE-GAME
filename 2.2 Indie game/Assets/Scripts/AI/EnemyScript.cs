@@ -63,7 +63,7 @@ public class EnemyScript : MonoBehaviour
 		//	OnEnemyDeath ();
         AudioSource.PlayClipAtPoint(enemySounds[0], gameObject.transform.position,0.1f);
         if (spawner != null) spawner.KillEnemy (); //Event ! -vladimir.:D
-        player.GetComponent<PlayerScript>().IncreasePlayerStats(0, 0, 0, 0, 20); //maybe also?
+        player.GetComponent<PlayerScript>().IncreasePlayerStats(0, 0, 0, 0, creditsDropAmount); //maybe also?
         DropCredits();
         Destroy(gameObject);
     }
