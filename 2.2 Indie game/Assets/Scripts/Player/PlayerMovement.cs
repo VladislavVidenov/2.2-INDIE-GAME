@@ -22,16 +22,16 @@ public class PlayerMovement : MonoBehaviour {
     PlayerScript player; //used for stamina
 
     //Variables
-    //[SerializeField]
+    float speed = 10;
     public float walkSpeed;
     public float crouchSpeed;
-    //[SerializeField]
     public float runSpeed;
-    [SerializeField]
     float inAirSpeed;
+
+    //Jumping
     public float heightToJump;  //set to public to access it with an upgrade
     float GetJumpHeight { get { return Mathf.Sqrt(heightToJump * gravity); } }
-    float speed = 10;
+
     public float sprintCost = 50; //stamina usage per second sprint
     float maxVelocityClamp = 5f;
     [SerializeField]
@@ -69,39 +69,65 @@ public class PlayerMovement : MonoBehaviour {
         Vector3 input = new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical"));
         input.Normalize();
 
+
         if (isGrounded)
         {
             Vector3 targetVel;
-            targetVel = input;
-            targetVel = transform.TransformDirection(targetVel);
+            targetVel = StopInertia() ? Vector3.zero : input;
             targetVel *= speed;
+            targetVel = transform.TransformDirection(targetVel);
+
 
             Vector3 currentVel = rigidBody.velocity;
-            Vector3 newVel = targetVel - currentVel;
+            Vector3 newVelocity = targetVel - currentVel;
 
-            newVel.x = Mathf.Clamp(newVel.x, -maxVelocityClamp, maxVelocityClamp);
-            newVel.y = 0;
-            newVel.z = Mathf.Clamp(newVel.z, -maxVelocityClamp, maxVelocityClamp);
+            newVelocity.x = Mathf.Clamp(newVelocity.x, -maxVelocityClamp, maxVelocityClamp);
+            newVelocity.y = 0;
+            newVelocity.z = Mathf.Clamp(newVelocity.z, -maxVelocityClamp, maxVelocityClamp);
 
-            rigidBody.AddForce(newVel, ForceMode.VelocityChange);
+           
+            rigidBody.AddForce(newVelocity, ForceMode.VelocityChange);
+
             if (stateID == 1 && canJump)
             {
                 rigidBody.velocity = new Vector3(currentVel.x, GetJumpHeight, currentVel.z);
+                inAirSpeed = speed / 3;
             }
         }
         else
         {
-            Vector3 targetVel;
-            targetVel = input;
-            targetVel = transform.TransformDirection(targetVel) * inAirSpeed;
-            rigidBody.AddForce(targetVel, ForceMode.VelocityChange);
+            //air control
+
+            Vector3 targetVel = Vector3.zero;
+            targetVel.x = (input.x * inAirSpeed);
+            targetVel.z = (input.z * inAirSpeed);
+            targetVel = transform.TransformDirection(targetVel);
+
+            Vector3 currentVel = rigidBody.velocity;
+            Vector3 newVelocity = targetVel - currentVel;
+
+            newVelocity.x = Mathf.Clamp(newVelocity.x, -maxVelocityClamp, maxVelocityClamp);
+            newVelocity.y = 0;
+            newVelocity.z = Mathf.Clamp(newVelocity.z, -maxVelocityClamp, maxVelocityClamp);
+
+            rigidBody.AddForce(newVelocity, ForceMode.VelocityChange);
         }
 
-        //apply gravity
+        //apply gravity 
         rigidBody.AddForce(new Vector3(0, (-gravity * rigidBody.mass), 0));
 
         isGrounded = false;
         canJump = false;
+    }
+
+    bool StopInertia()
+    {
+        if (Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.D) || Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.S)
+            || (Input.GetKey(KeyCode.A) && Input.GetKey(KeyCode.W)) || ((Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.S)))
+            || (Input.GetKey(KeyCode.D) && Input.GetKey(KeyCode.S)) || ((Input.GetKey(KeyCode.D) || Input.GetKey(KeyCode.W))))
+            return false;
+        else
+            return true;
     }
 
     void Update()
