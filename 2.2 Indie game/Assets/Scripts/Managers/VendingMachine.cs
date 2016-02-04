@@ -152,8 +152,8 @@ public class VendingMachine : MonoBehaviour {
 			ChangeBuyButton("Purchased",false);
 		} else {
 			if (selectedUpgrade.BitsCost > playerBits) {
-          
-				ChangeBuyButton("Not enough resources",false);
+
+                ChangeBuyButton("Missing Bits", false);
 			} else {
 				ChangeBuyButton("Buy Upgrade",true);
 			}
