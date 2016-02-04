@@ -79,6 +79,7 @@ public class VendingMachine : MonoBehaviour {
         buyscreen.SetActive(true);
         buyButton.gameObject.SetActive(false);
         bitsCostText.text = "";
+        GameManager.Instance.playerScript.ActivateBitsHud();
 	}
 
 	public void DeActivateStation () {
@@ -88,7 +89,8 @@ public class VendingMachine : MonoBehaviour {
 		selectedUpgrade = null;
         UpgradeSprite.GetComponent<Mask>().showMaskGraphic = false;
         SetSelectedButtonColor(1, 1, 1);
-	}
+        GameManager.Instance.playerScript.DeactiveBitsHud();
+    }
 
 	public void SelectUpgrade (Upgrade upgrade) {
         if (!buyButton.gameObject.activeInHierarchy) {

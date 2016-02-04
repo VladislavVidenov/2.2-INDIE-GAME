@@ -67,15 +67,14 @@ public class PauseMenuScript : MonoBehaviour {
     public void ActivatePauseMenu() {
         pauseMenu.SetActive(true);
         ownedUpgrades = vendingMachine.GetOwndedList();
-        if (ownedUpgrades != null) {
-            //DrawUpgrades(); // disabled for now.
-        }
-
+        GameManager.Instance.playerScript.ActivateBitsHud();
     }
 
     public void DeactivatePauseMenu() {
         if (toggleGroupOne.GetActive() != null) toggleGroupOne.GetActive().isOn = false;
         if (toggleGroupTwo.GetActive() != null) toggleGroupTwo.GetActive().isOn = false;
+        
+        GameManager.Instance.playerScript.DeactiveBitsHud();
 
         DisableCurrent_2_Buttons();
         DisableCurrent_3_Buttons();

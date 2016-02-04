@@ -35,7 +35,7 @@ public class GameManager : MonoBehaviour {
         }
     }
 
-    PlayerScript playerScript {
+    public PlayerScript playerScript {
         get {
             return Player.GetComponent<PlayerScript>();
         }
