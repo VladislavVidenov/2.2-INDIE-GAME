@@ -28,6 +28,8 @@ public class MeleeEnemyScript : EnemyScript {
 	//Light
 	Light eyeLight;
 
+   
+
 	override public void Start () {
 		base.Start ();
 		eyeLight = GetComponentInChildren<Light> ();
@@ -59,6 +61,10 @@ public class MeleeEnemyScript : EnemyScript {
 			break;
 
 		case AIState.Charge:
+            if (!audioSource.isPlaying) {
+                audioSource.volume = 1;
+                audioSource.PlayOneShot(enemySounds[2]);
+            }
 			agent.SetDestination (player.position);
 			robotPlayerDelta = Vector3.Distance (agent.transform.position, player.transform.position);
 			if (robotPlayerDelta < chargeRange) {

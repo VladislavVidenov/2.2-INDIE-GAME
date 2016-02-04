@@ -2,7 +2,10 @@
 using System.Collections;
 
 public class RangedRushEnemy : EnemyScript {
-   
+
+   // public delegate void HitPlayer();
+   // public static event HitPlayer OnHitPlayer;
+
     Vector3 fightingPosition;
     float attackTimer;
     float changeCoverTimer;
@@ -34,7 +37,7 @@ public class RangedRushEnemy : EnemyScript {
     }
 
     // Use this for initialization
-    void Start() {
+    override public void Start() {
         base.Start(); 
         coverSpots = GameManager.Instance.coverSpots;
       
@@ -255,10 +258,13 @@ public class RangedRushEnemy : EnemyScript {
     }
 
     void ShootRaycast(float Accuracy) {
+        audioSource.volume = 1f;
+        audioSource.PlayOneShot(enemySounds[1]);
+        
         RaycastHit hit;
 
         Vector3 direction = playerHeadPos.position - enemyHeadPos.position;
-        //direction += new Vector3(Random.Range(-Accuracy, Accuracy), Random.Range(-Accuracy, Accuracy), Random.Range(-Accuracy, Accuracy));
+        direction += new Vector3(Random.Range(-Accuracy, Accuracy), Random.Range(-Accuracy, Accuracy), Random.Range(-Accuracy, Accuracy));
         myAnimator.SetTrigger("Shoot");
 
         if (Physics.Raycast(enemyHeadPos.position , direction.normalized, out hit, 100f)) {
@@ -266,10 +272,13 @@ public class RangedRushEnemy : EnemyScript {
             if (hit.collider.CompareTag(Tags.player)) {
                 eyeLight.intensity = 4f;
                 Invoke("DisableEyeLight", 0.5f);
-               
-                hit.collider.gameObject.GetComponent<PlayerScript>().TakeDamage(5);
-                hit.collider.gameObject.GetComponent<PlayerScript>().hitter = this.gameObject ;
-                hit.collider.gameObject.GetComponent<PlayerScript>().IndicatorAlpha = 1;
+                PlayerScript ps = hit.collider.gameObject.GetComponent<PlayerScript>();
+                //if (OnHitPlayer != null) { OnHitPlayer(); }
+                ps.PlayGotHitSound();
+                ps.TakeDamage(10);
+                ps.hitter = this.gameObject;
+                ps.IndicatorAlpha = 1;
+            
             }
             else {
             }

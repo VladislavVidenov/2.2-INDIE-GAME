@@ -41,8 +41,15 @@ public class EnemyScript : MonoBehaviour
 	//Animation part
 	[HideInInspector]
 	public Animator myAnimator;
+    [HideInInspector]
+    public AudioSource audioSource;
+    public AudioClip[] enemySounds;
 
 	public virtual void Start () {
+
+        audioSource = GetComponent<AudioSource>();
+
+
 		myAnimator = GetComponentInChildren<Animator> ();
 		player = GameObject.FindGameObjectWithTag (Tags.player).transform;
         playerHeadPos = player.GetChild(0).transform;
@@ -54,6 +61,7 @@ public class EnemyScript : MonoBehaviour
         //DIE PLEASE!
 		//if (OnEnemyDeath != null)
 		//	OnEnemyDeath ();
+        AudioSource.PlayClipAtPoint(enemySounds[0], gameObject.transform.position,0.1f);
         if (spawner != null) spawner.KillEnemy (); //Event ! -vladimir.:D
         player.GetComponent<PlayerScript>().IncreasePlayerStats(0, 0, 0, 0, 20); //maybe also?
         DropCredits();

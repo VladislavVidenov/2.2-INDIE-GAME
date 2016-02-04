@@ -58,9 +58,14 @@ public class PlayerScript : MonoBehaviour {
     [SerializeField]
     string levelName = "";
 
+    AudioSource audioSource;
+    [SerializeField]AudioClip[] playerSounds;
+
     // Use this for initialization
     void Start () {
         originalPos = hitIndicator.transform.position;
+
+        audioSource = GetComponent<AudioSource>();
 
         bitsText = bitsHud.GetComponentInChildren<Text>();
         DeactiveBitsHud();
@@ -174,6 +179,11 @@ public class PlayerScript : MonoBehaviour {
 	}
 
     public void Died() {
+        PlayDeathSound();
+        Invoke("Restart", 1f);
+    }
+
+    void Restart() {
         sceneManager.SetState(GameState.InMenu);
         Application.LoadLevel(levelName);
     }
@@ -253,8 +263,14 @@ public class PlayerScript : MonoBehaviour {
         }
     }
 
-    void DeactiveBitsHud() {
+    public void DeactiveBitsHud() {
         bitsHud.SetActive(false);
+    }
+
+    public void ActivateBitsHud() {  //activates the bits hud with up2date amount
+        StopAllCoroutines();
+        bitsText.text = bits.ToString();
+        bitsHud.SetActive(true);
     }
 
     public void SetCurrentTool(Tool tool)
@@ -262,7 +278,18 @@ public class PlayerScript : MonoBehaviour {
         currentTool = tool;
         SetBoostUpgrades();
     }
-
+    public void PlayGotHitSound() {
+        if(!audioSource.isPlaying){
+            audioSource.volume = 0.2f;
+            audioSource.PlayOneShot(playerSounds[0]);
+        }
+    }
+    public void PlayDeathSound() {
+        if (audioSource.isPlaying)
+            audioSource.volume = 0.6f;
+            audioSource.Stop();
+        audioSource.PlayOneShot(playerSounds[1]);
+    }
     void SetBoostUpgrades()
     {
         switch (currentTool.Type)
