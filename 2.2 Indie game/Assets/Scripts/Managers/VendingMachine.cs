@@ -39,12 +39,15 @@ public class VendingMachine : MonoBehaviour {
     [SerializeField] Text bitsCostText;
 
     [SerializeField] Image pageOne, pageTwo;
+    int topHierarchyIndex = 0;
 
     //player
     PlayerScript player;
     int playerBits;
 
 	void Start(){
+
+        if(pageOne !=null ) { topHierarchyIndex = pageOne.transform.GetSiblingIndex(); }
 
         playerUpgradesOwnedList = new List<Upgrade>();
         weaponUpgradesOwnedList = new List<Upgrade>();
@@ -272,7 +275,7 @@ public class VendingMachine : MonoBehaviour {
     string frontColour = "BBBDC0FF";
     string backColour = "939597FF";
     public void MoveOnTopHierarchy(Transform trans1) {
-        trans1.SetSiblingIndex(3);
+        trans1.SetSiblingIndex(topHierarchyIndex);
 
         //change colour:
         if (trans1.name == pageOne.name) { pageOne.color = HexToColor(frontColour); pageTwo.color = HexToColor(backColour); } //pageOne is on top
