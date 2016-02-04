@@ -45359,11 +45359,19 @@ Prefab:
       propertyPath: m_RootOrder
       value: 11
       objectReference: {fileID: 0}
-    - target: {fileID: 22427758, guid: 4a514241311b2c84db5a167234c6c85b, type: 2}
+    - target: {fileID: 22430392, guid: 4a514241311b2c84db5a167234c6c85b, type: 2}
       propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 22460254, guid: 4a514241311b2c84db5a167234c6c85b, type: 2}
+    - target: {fileID: 22422074, guid: 4a514241311b2c84db5a167234c6c85b, type: 2}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 22465838, guid: 4a514241311b2c84db5a167234c6c85b, type: 2}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 22494516, guid: 4a514241311b2c84db5a167234c6c85b, type: 2}
       propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
@@ -45383,69 +45391,13 @@ Prefab:
       propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 22430392, guid: 4a514241311b2c84db5a167234c6c85b, type: 2}
+    - target: {fileID: 22427758, guid: 4a514241311b2c84db5a167234c6c85b, type: 2}
       propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 22422074, guid: 4a514241311b2c84db5a167234c6c85b, type: 2}
+    - target: {fileID: 22460254, guid: 4a514241311b2c84db5a167234c6c85b, type: 2}
       propertyPath: m_AnchorMax.y
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 22465838, guid: 4a514241311b2c84db5a167234c6c85b, type: 2}
-      propertyPath: m_AnchorMax.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 22494516, guid: 4a514241311b2c84db5a167234c6c85b, type: 2}
-      propertyPath: m_AnchorMax.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 11451986, guid: 4a514241311b2c84db5a167234c6c85b, type: 2}
-      propertyPath: m_Color.r
-      value: .551470578
-      objectReference: {fileID: 0}
-    - target: {fileID: 11451986, guid: 4a514241311b2c84db5a167234c6c85b, type: 2}
-      propertyPath: m_Color.g
-      value: .551470578
-      objectReference: {fileID: 0}
-    - target: {fileID: 11451986, guid: 4a514241311b2c84db5a167234c6c85b, type: 2}
-      propertyPath: m_Color.b
-      value: .551470578
-      objectReference: {fileID: 0}
-    - target: {fileID: 11434886, guid: 4a514241311b2c84db5a167234c6c85b, type: 2}
-      propertyPath: m_Color.r
-      value: .308823526
-      objectReference: {fileID: 0}
-    - target: {fileID: 11434886, guid: 4a514241311b2c84db5a167234c6c85b, type: 2}
-      propertyPath: m_Color.g
-      value: .308823526
-      objectReference: {fileID: 0}
-    - target: {fileID: 11434886, guid: 4a514241311b2c84db5a167234c6c85b, type: 2}
-      propertyPath: m_Color.b
-      value: .308823526
-      objectReference: {fileID: 0}
-    - target: {fileID: 11467894, guid: 4a514241311b2c84db5a167234c6c85b, type: 2}
-      propertyPath: m_Color.r
-      value: .382352948
-      objectReference: {fileID: 0}
-    - target: {fileID: 11467894, guid: 4a514241311b2c84db5a167234c6c85b, type: 2}
-      propertyPath: m_Color.g
-      value: .382352948
-      objectReference: {fileID: 0}
-    - target: {fileID: 11467894, guid: 4a514241311b2c84db5a167234c6c85b, type: 2}
-      propertyPath: m_Color.b
-      value: .382352948
-      objectReference: {fileID: 0}
-    - target: {fileID: 11491974, guid: 4a514241311b2c84db5a167234c6c85b, type: 2}
-      propertyPath: m_Color.r
-      value: .514705896
-      objectReference: {fileID: 0}
-    - target: {fileID: 11491974, guid: 4a514241311b2c84db5a167234c6c85b, type: 2}
-      propertyPath: m_Color.g
-      value: .514705896
-      objectReference: {fileID: 0}
-    - target: {fileID: 11491974, guid: 4a514241311b2c84db5a167234c6c85b, type: 2}
-      propertyPath: m_Color.b
-      value: .514705896
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 4a514241311b2c84db5a167234c6c85b, type: 2}
