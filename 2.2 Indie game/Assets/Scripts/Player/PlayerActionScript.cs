@@ -62,7 +62,7 @@ public class PlayerActionScript : MonoBehaviour {
                     if (GameObject.Find("TutorialManager").GetComponent<TutorialScript>().finishedTutorial) {
                         showGuiSkin = true;
                         if (Input.GetKeyDown(KeyCode.E)) {
-                            Application.LoadLevel("CubeWorld");
+                            Application.LoadLevel("Tutorial");
                         }
                     }
                     else {
