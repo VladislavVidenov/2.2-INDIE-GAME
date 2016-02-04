@@ -4424,7 +4424,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!1 &188002
 GameObject:
   m_ObjectHideFlags: 1
@@ -7837,6 +7837,8 @@ MonoBehaviour:
   hitter: {fileID: 0}
   bitsHud: {fileID: 144310}
   inGameHud: {fileID: 11415774}
+  respawnTransform: {fileID: 0}
+  levelName: 
 --- !u!114 &11407692
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -15262,7 +15264,7 @@ RectTransform:
   m_RootOrder: 2
   m_AnchorMin: {x: .5, y: .5}
   m_AnchorMax: {x: .5, y: .5}
-  m_AnchoredPosition: {x: -952, y: 160}
+  m_AnchoredPosition: {x: -996, y: 160}
   m_SizeDelta: {x: 1181, y: 1714}
   m_Pivot: {x: .5, y: .5}
 --- !u!224 &22416100
@@ -15549,14 +15551,14 @@ RectTransform:
   m_GameObject: {fileID: 162718}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: .899999976, y: .899999976, z: 1}
   m_Children:
   - {fileID: 22446748}
   m_Father: {fileID: 22473142}
   m_RootOrder: 4
   m_AnchorMin: {x: .5, y: .5}
   m_AnchorMax: {x: .5, y: .5}
-  m_AnchoredPosition: {x: -45, y: 25}
+  m_AnchoredPosition: {x: -133, y: 73}
   m_SizeDelta: {x: 3542, y: 2005}
   m_Pivot: {x: .5, y: .5}
 --- !u!224 &22423936
@@ -15982,7 +15984,7 @@ RectTransform:
   m_RootOrder: 0
   m_AnchorMin: {x: .5, y: .5}
   m_AnchorMax: {x: .5, y: .5}
-  m_AnchoredPosition: {x: 891, y: 244}
+  m_AnchoredPosition: {x: 856, y: 244}
   m_SizeDelta: {x: 1181, y: 1523}
   m_Pivot: {x: .5, y: .5}
 --- !u!224 &22434334
@@ -16092,7 +16094,7 @@ RectTransform:
   m_RootOrder: 2
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 7, y: 32}
+  m_AnchoredPosition: {x: -2.70000005, y: 32}
   m_SizeDelta: {x: -700, y: -350}
   m_Pivot: {x: .5, y: .5}
 --- !u!224 &22438870
@@ -16344,7 +16346,7 @@ RectTransform:
   m_RootOrder: 3
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -9, y: 30}
+  m_AnchoredPosition: {x: -15.1000004, y: 30}
   m_SizeDelta: {x: -700, y: -350}
   m_Pivot: {x: .5, y: .5}
 --- !u!224 &22446748
@@ -16618,7 +16620,7 @@ RectTransform:
   m_RootOrder: 1
   m_AnchorMin: {x: .5, y: .5}
   m_AnchorMax: {x: .5, y: .5}
-  m_AnchoredPosition: {x: -3.05175781e-05, y: 201}
+  m_AnchoredPosition: {x: -48, y: 201}
   m_SizeDelta: {x: 1181, y: 1598}
   m_Pivot: {x: .5, y: .5}
 --- !u!224 &22459670
