@@ -4,17 +4,12 @@ using UnityEngine.UI;
 
 public class PlayerScript : MonoBehaviour {
 
+    [Header("Player Stats")]
     int maxHealth;
     float health;
     float stamina;
     int maxStamina;
     int bits;
-
-    int bitsBoost;
-
-    int screwUpgBoost;
-    int hammerUpgBoost;
-    int wrenchUpgBoost;
 
     float healthRegenRate = 100f;
     float healthRegenDelay = 10.0f;
@@ -30,6 +25,8 @@ public class PlayerScript : MonoBehaviour {
     [SerializeField] Image hp50;
     [SerializeField] Image hp25;
     [SerializeField] Image hitIndicator;
+    [SerializeField] float indicatorDistance = 125f;
+
 
     Vector3 originalPos;
     [HideInInspector]
@@ -64,6 +61,7 @@ public class PlayerScript : MonoBehaviour {
     // Use this for initialization
     void Start () {
         originalPos = hitIndicator.transform.position;
+        indicatorDistance = (Screen.width / indicatorDistance) * 10;
 
         audioSource = GetComponent<AudioSource>();
 
@@ -153,10 +151,10 @@ public class PlayerScript : MonoBehaviour {
         float angelRight = Vector3.Angle(this.transform.right, difVector);
         if (angelRight < 90) {
             hitIndicator.gameObject.transform.eulerAngles = new Vector3(0, 0, -angleForward + 45);
-            hitIndicator.gameObject.transform.position = originalPos + (hitIndicator.gameObject.transform.up * 50 + hitIndicator.gameObject.transform.right * 50);
+            hitIndicator.gameObject.transform.position = originalPos + (hitIndicator.gameObject.transform.up * indicatorDistance + hitIndicator.gameObject.transform.right * indicatorDistance);
         } else {
             hitIndicator.gameObject.transform.eulerAngles = new Vector3(0, 0, angleForward + 45);
-            hitIndicator.gameObject.transform.position = originalPos - (-hitIndicator.gameObject.transform.up * 50 - hitIndicator.gameObject.transform.right * 50);
+            hitIndicator.gameObject.transform.position = originalPos - (-hitIndicator.gameObject.transform.up * indicatorDistance - hitIndicator.gameObject.transform.right * indicatorDistance);
         }
 
     }
@@ -240,7 +238,7 @@ public class PlayerScript : MonoBehaviour {
         health += pHealth;
         stamina += pStamina;
         maxStamina += pMaxStamina;
-        bits += pBits + bitsBoost;
+        bits += pBits;
 
         UpdateHealthHud();
         UpdateStaminaHud();
@@ -298,11 +296,9 @@ public class PlayerScript : MonoBehaviour {
                 break;
 
             case ToolTypes.Hammer:
-                bitsBoost = currentTool.bitsBoost + hammerUpgBoost;
                 break;
 
             case ToolTypes.Wrench:
-                bitsBoost = currentTool.bitsBoost + wrenchUpgBoost;
                 break;
         }
     }
