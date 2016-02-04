@@ -357,11 +357,11 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 69742487}
   m_LocalRotation: {x: 0, y: -0.7071068, z: 0, w: 0.7071067}
-  m_LocalPosition: {x: -14.31, y: 1.11, z: -17.18}
-  m_LocalScale: {x: 6.3561716, y: 2.0187626, z: 6.2109756}
+  m_LocalPosition: {x: -159.81226, y: -76.65537, z: -123.25686}
+  m_LocalScale: {x: 6.356172, y: 2.0187626, z: 6.210976}
   m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 20
+  m_Father: {fileID: 1648306981}
+  m_RootOrder: 4
 --- !u!1001 &77899980
 Prefab:
   m_ObjectHideFlags: 0
@@ -1885,11 +1885,11 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 619088550}
   m_LocalRotation: {x: 0, y: -0.7071068, z: 0, w: 0.7071067}
-  m_LocalPosition: {x: -15.89, y: 1.11, z: -7.95}
-  m_LocalScale: {x: 3.7346694, y: 2.0187626, z: 2.9670403}
+  m_LocalPosition: {x: -161.39226, y: -76.65537, z: -114.026855}
+  m_LocalScale: {x: 3.7346697, y: 2.0187626, z: 2.9670403}
   m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 19
+  m_Father: {fileID: 1648306981}
+  m_RootOrder: 3
 --- !u!1001 &645795479
 Prefab:
   m_ObjectHideFlags: 0
@@ -2824,7 +2824,7 @@ GameObject:
   - 114: {fileID: 1266576754}
   - 114: {fileID: 1266576753}
   m_Layer: 5
-  m_Name: MainCanvas (1)
+  m_Name: TutorialCanvas
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2901,7 +2901,7 @@ RectTransform:
   m_Children:
   - {fileID: 170028748}
   m_Father: {fileID: 0}
-  m_RootOrder: 6
+  m_RootOrder: 4
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
@@ -4845,7 +4845,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 475448, guid: a67c5cec4f7bd4f419302d35752908be, type: 2}
       propertyPath: m_RootOrder
-      value: 4
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 475448, guid: a67c5cec4f7bd4f419302d35752908be, type: 2}
       propertyPath: m_LocalScale.x
@@ -5095,6 +5095,10 @@ Prefab:
 Transform:
   m_PrefabParentObject: {fileID: 400000, guid: df5b77aa818de9a438231b6c08a92789, type: 3}
   m_PrefabInternal: {fileID: 1608784244}
+--- !u!4 &1648306981 stripped
+Transform:
+  m_PrefabParentObject: {fileID: 475448, guid: a67c5cec4f7bd4f419302d35752908be, type: 2}
+  m_PrefabInternal: {fileID: 1483905434}
 --- !u!1 &1680357802
 GameObject:
   m_ObjectHideFlags: 0
@@ -7389,11 +7393,11 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1891659884}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -1.45, y: 1.11, z: 6.19}
+  m_LocalPosition: {x: -146.95226, y: -76.65537, z: -99.886856}
   m_LocalScale: {x: 5.847526, y: 2.0187626, z: 2.9670403}
   m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 18
+  m_Father: {fileID: 1648306981}
+  m_RootOrder: 2
 --- !u!114 &1891659889
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7492,7 +7496,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 432684, guid: 4a514241311b2c84db5a167234c6c85b, type: 2}
       propertyPath: m_RootOrder
-      value: 2
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 22427758, guid: 4a514241311b2c84db5a167234c6c85b, type: 2}
       propertyPath: m_AnchorMax.y
@@ -7606,6 +7610,10 @@ Prefab:
       propertyPath: respawnTransform
       value: 
       objectReference: {fileID: 2142224923}
+    - target: {fileID: 22310418, guid: 4a514241311b2c84db5a167234c6c85b, type: 2}
+      propertyPath: m_SortingOrder
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 4a514241311b2c84db5a167234c6c85b, type: 2}
   m_IsPrefabParent: 0
@@ -7767,7 +7775,7 @@ Transform:
   m_LocalScale: {x: 7.235784, y: 7.2357802, z: 7.2357755}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_RootOrder: 6
 --- !u!1 &1937243450
 GameObject:
   m_ObjectHideFlags: 0
@@ -9581,7 +9589,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 21
+  m_RootOrder: 18
 --- !u!4 &2142776161 stripped
 Transform:
   m_PrefabParentObject: {fileID: 400000, guid: ddffeb6e8aa68ed42966ec390403e755, type: 3}
