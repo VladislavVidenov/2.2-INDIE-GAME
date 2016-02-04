@@ -275,7 +275,7 @@ public class RangedRushEnemy : EnemyScript {
                 PlayerScript ps = hit.collider.gameObject.GetComponent<PlayerScript>();
                 //if (OnHitPlayer != null) { OnHitPlayer(); }
                 ps.PlayGotHitSound();
-                ps.TakeDamage(10);
+                ps.TakeDamage(damage);
                 ps.hitter = this.gameObject;
                 ps.IndicatorAlpha = 1;
             
