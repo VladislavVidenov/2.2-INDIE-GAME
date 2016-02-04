@@ -82,7 +82,7 @@ public class PlayerMovement : MonoBehaviour {
             Vector3 newVelocity = targetVel - currentVel;
 
             newVelocity.x = Mathf.Clamp(newVelocity.x, -maxVelocityClamp, maxVelocityClamp);
-            newVelocity.y = -0.75f;
+            newVelocity.y = -0.55f;
             newVelocity.z = Mathf.Clamp(newVelocity.z, -maxVelocityClamp, maxVelocityClamp);
 
             rigidBody.AddForce(newVelocity, ForceMode.VelocityChange);
@@ -187,11 +187,20 @@ public class PlayerMovement : MonoBehaviour {
             {
 
                 if (isWalking())
-                    inAirSpeed = speed / 1.5f;
+                {
+                    print("WORK WORK ");
+                    inAirSpeed = speed;
+                }
                 else if (isRunning)
+                {
+                    print("WORK WORK2 ");
                     inAirSpeed = speed / 1.5f;
+                }
                 else
+                {
+                    print("WORK WORK3 ");
                     inAirSpeed = speed / 3f;
+                }
 
                 rigidBody.velocity = new Vector3(rigidBody.velocity.x, GetJumpHeight, rigidBody.velocity.z);
 
@@ -256,7 +265,7 @@ public class PlayerMovement : MonoBehaviour {
     }
     public bool isWalking()
     {
-        if (rigidBody.velocity.magnitude > (speed - 0.3f) && rigidBody.velocity.magnitude < (runSpeed - 1))
+        if (rigidBody.velocity.magnitude > (speed - 0.6f) && rigidBody.velocity.magnitude < (runSpeed - 0.7f))
             return true;
         else
             return false;
