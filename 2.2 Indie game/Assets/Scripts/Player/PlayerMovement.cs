@@ -132,7 +132,7 @@ public class PlayerMovement : MonoBehaviour {
 
     void Update()
     {
-
+       
         if (isGrounded && !isReloading)
         {
 
@@ -157,7 +157,7 @@ public class PlayerMovement : MonoBehaviour {
         {
             if (stateID == 1)
                 state = PlayerStates.Crouch;
-            else if (stateID == 2)
+            else if (stateID == 2 && CanStandUp())
                 state = PlayerStates.Stand;
         }
         else if (Input.GetKey(KeyCode.LeftShift) && Input.GetKey(KeyCode.W) && releasedRun && !isWepAiming && player.HasStamina())
@@ -249,5 +249,20 @@ public class PlayerMovement : MonoBehaviour {
             return true;
         else
             return false;
+    }
+
+    bool CanStandUp()
+    {                       //standing position height + radius.
+        float rayDistance = 1.07f;
+        RaycastHit hit;
+        Debug.DrawRay(transform.position, transform.up * rayDistance, Color.red, 5f);
+        if(Physics.Raycast(transform.position,transform.up,out hit, rayDistance))
+        {
+            return false;
+        }else
+        {
+            return true;
+        }
+
     }
 }
