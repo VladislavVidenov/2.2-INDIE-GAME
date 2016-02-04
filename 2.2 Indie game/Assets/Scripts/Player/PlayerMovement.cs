@@ -85,19 +85,11 @@ public class PlayerMovement : MonoBehaviour {
             newVelocity.y = 0;
             newVelocity.z = Mathf.Clamp(newVelocity.z, -maxVelocityClamp, maxVelocityClamp);
 
-           
             rigidBody.AddForce(newVelocity, ForceMode.VelocityChange);
-
-            if (stateID == 1 && canJump)
-            {
-                rigidBody.velocity = new Vector3(currentVel.x, GetJumpHeight, currentVel.z);
-                inAirSpeed = speed / 3;
-            }
         }
         else
         {
             //air control
-
             Vector3 targetVel = Vector3.zero;
             targetVel.x = (input.x * inAirSpeed);
             targetVel.z = (input.z * inAirSpeed);
@@ -117,9 +109,9 @@ public class PlayerMovement : MonoBehaviour {
         rigidBody.AddForce(new Vector3(0, (-gravity * rigidBody.mass), 0));
 
         isGrounded = false;
-        canJump = false;
     }
 
+    //dirty way :<
     bool StopInertia()
     {
         if (Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.D) || Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.S)
@@ -132,7 +124,7 @@ public class PlayerMovement : MonoBehaviour {
 
     void Update()
     {
-       
+      
         if (isGrounded && !isReloading)
         {
 
@@ -183,11 +175,30 @@ public class PlayerMovement : MonoBehaviour {
                 break;
         }
         weaponCamera.transform.localPosition = mainCamera.transform.localPosition; //sync wep cam with main cam.
-        //Debug.Log("State ->  " + state.ToString());
-        //Debug.Log("Speed ->  " + speed);
-        //Debug.Log("Grounded -> " + isGrounded);
+
+        Jump();
     }
 
+    void Jump()
+    {
+        if (isGrounded)
+        {
+            if (stateID == 1 && canJump)
+            {
+
+                if (isWalking())
+                    inAirSpeed = speed / 1.5f;
+                else if (isRunning)
+                    inAirSpeed = speed / 1.5f;
+                else
+                    inAirSpeed = speed / 3f;
+
+                rigidBody.velocity = new Vector3(rigidBody.velocity.x, GetJumpHeight, rigidBody.velocity.z);
+
+            }
+        }
+        canJump = false;
+    }
 
     void PlayerStand()
     {
@@ -215,7 +226,7 @@ public class PlayerMovement : MonoBehaviour {
         {
             mainCamera.transform.localPosition = Vector3.Lerp(mainCamera.transform.localPosition, crouchingCamHeight, Time.deltaTime * 5);
         }
-        if (Input.GetKeyDown(KeyCode.Space)|| Input.GetKeyDown(KeyCode.LeftShift))
+        if ((Input.GetKeyDown(KeyCode.Space)|| Input.GetKeyDown(KeyCode.LeftShift)) && CanStandUp())
             state = PlayerStates.Stand;
     }
 
@@ -252,7 +263,7 @@ public class PlayerMovement : MonoBehaviour {
     }
 
     bool CanStandUp()
-    {                       //standing position height + radius.
+    {                       //standing position half height + small amount so is above collider.
         float rayDistance = 1.07f;
         RaycastHit hit;
         Debug.DrawRay(transform.position, transform.up * rayDistance, Color.red, 5f);
