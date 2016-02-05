@@ -34,7 +34,7 @@ TagManager:
   - WallCorners
   - Enemy
   - NonVisible
-  - 
+  - NonReflectedLights
   - 
   - 
   - 
