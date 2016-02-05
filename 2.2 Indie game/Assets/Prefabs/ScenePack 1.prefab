@@ -8140,9 +8140,9 @@ MonoBehaviour:
   upgradeName: AimDownSightsSpeed
   descriptionImage: {fileID: 21300000, guid: 142f0ec4425fa814487f50cce9dea843, type: 3}
   descriptionTextObj: {fileID: 11400900}
-  text: Increase aiming down the sights speed
+  text: Halfs the time it take to aim down the sights.
   buttonSprite: {fileID: 21300000, guid: 142f0ec4425fa814487f50cce9dea843, type: 3}
-  BitsCost: 90
+  BitsCost: 200
   tier: 2
   upgradeType: 1
   upgradeMultiplier: .5
@@ -8682,9 +8682,9 @@ MonoBehaviour:
   upgradeName: JumpHeight
   descriptionImage: {fileID: 21300004, guid: bf1d285802ff1fd4b8ba6f41ec166313, type: 3}
   descriptionTextObj: {fileID: 11456004}
-  text: Increases jump height
+  text: Upgrade your jumping processor to be able to jump 50% higher.
   buttonSprite: {fileID: 21300004, guid: bf1d285802ff1fd4b8ba6f41ec166313, type: 3}
-  BitsCost: 20
+  BitsCost: 100
   tier: 1
   upgradeType: 0
   jumpHeightMultiplier: 1.5
@@ -9063,9 +9063,9 @@ MonoBehaviour:
   upgradeName: ReloadSpeed
   descriptionImage: {fileID: 21300000, guid: ff2e0cbcff6920f42acfc42dcf91aa49, type: 3}
   descriptionTextObj: {fileID: 11406442}
-  text: Decreases reload speed.
+  text: Half the time it take to reload each weapon.
   buttonSprite: {fileID: 21300000, guid: ff2e0cbcff6920f42acfc42dcf91aa49, type: 3}
-  BitsCost: 40
+  BitsCost: 200
   tier: 2
   upgradeType: 1
   upgradeMultiplier: .5
@@ -9472,9 +9472,9 @@ MonoBehaviour:
   upgradeName: IncreaseDamage
   descriptionImage: {fileID: 21300000, guid: 2e85e3f2a3c59fd4f8bdf1b554b3e812, type: 3}
   descriptionTextObj: {fileID: 11425610}
-  text: Multiply weapon damage by X
+  text: Multiply weapon damage by 2.
   buttonSprite: {fileID: 21300000, guid: 2e85e3f2a3c59fd4f8bdf1b554b3e812, type: 3}
-  BitsCost: 12
+  BitsCost: 200
   tier: 1
   upgradeType: 1
   upgradeMultiplier: 2
@@ -10180,9 +10180,9 @@ MonoBehaviour:
   upgradeName: MaxHealth
   descriptionImage: {fileID: 21300004, guid: 27d76c7f171d39e4481bf4340ca24298, type: 3}
   descriptionTextObj: {fileID: 11458412}
-  text: Increase Max Health by 20
+  text: Upgrade your anti virus, gaining 20 health points.
   buttonSprite: {fileID: 21300004, guid: 27d76c7f171d39e4481bf4340ca24298, type: 3}
-  BitsCost: 100
+  BitsCost: 50
   tier: 1
   upgradeType: 0
   upgradeAmount: 20
@@ -10394,9 +10394,10 @@ MonoBehaviour:
   upgradeName: HealthRegenDelay
   descriptionImage: {fileID: 21300004, guid: 5a11c971e7d624c48b2372925d10786b, type: 3}
   descriptionTextObj: {fileID: 11495300}
-  text: Decrease health regen delay to 7.5
+  text: 'Relay processing power. While damaged, some power gets relayed for lower
+    health regeneration delay. Resulting in a delay of 7.5s (Previous: 10s)'
   buttonSprite: {fileID: 21300004, guid: 5a11c971e7d624c48b2372925d10786b, type: 3}
-  BitsCost: 20
+  BitsCost: 200
   tier: 2
   upgradeType: 0
   regenDelay: 7.5
@@ -12515,12 +12516,12 @@ MonoBehaviour:
   upgradeName: AmmoClipSize
   descriptionImage: {fileID: 21300000, guid: 7fb89c5c1baf450459bd2e8a1c3975c5, type: 3}
   descriptionTextObj: {fileID: 11487478}
-  text: Increase the clipsize for all weapons.
+  text: Increase the clipsize for all weapons (x1.5).
   buttonSprite: {fileID: 21300000, guid: 7fb89c5c1baf450459bd2e8a1c3975c5, type: 3}
-  BitsCost: 6
+  BitsCost: 100
   tier: 1
   upgradeType: 1
-  upgradeMultiplier: 2
+  upgradeMultiplier: 1.5
 --- !u!114 &11463612
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -13432,9 +13433,9 @@ MonoBehaviour:
   upgradeName: MaxStamina
   descriptionImage: {fileID: 21300004, guid: c875a414a65684a48b11e7cd37b32684, type: 3}
   descriptionTextObj: {fileID: 11438934}
-  text: Increase Stamina by 50.
+  text: Upgrade your stamina by 50.
   buttonSprite: {fileID: 21300004, guid: c875a414a65684a48b11e7cd37b32684, type: 3}
-  BitsCost: 20
+  BitsCost: 100
   tier: 1
   upgradeType: 0
   upgradeAmount: 50
@@ -13723,9 +13724,9 @@ MonoBehaviour:
   upgradeName: SprintSpeed
   descriptionImage: {fileID: 21300004, guid: 283a01aa779431e42a07808b9cbaea10, type: 3}
   descriptionTextObj: {fileID: 11444182}
-  text: Multiplies sprint speed by 1.25
+  text: Increase processing power, making you able to sprint about 25% faster.
   buttonSprite: {fileID: 21300004, guid: 283a01aa779431e42a07808b9cbaea10, type: 3}
-  BitsCost: 20
+  BitsCost: 200
   tier: 2
   upgradeType: 0
   speedMultiplier: 1.25
@@ -14141,7 +14142,7 @@ MonoBehaviour:
   descriptionTextObj: {fileID: 11445584}
   text: Doubles the amount of ammo you can carry.
   buttonSprite: {fileID: 21300000, guid: 0ebf4898842b096499f510b13a484f0d, type: 3}
-  BitsCost: 16
+  BitsCost: 20
   tier: 1
   upgradeType: 1
   upgradeMultiplier: 2
@@ -16327,7 +16328,7 @@ Canvas:
   m_OverrideSorting: 0
   m_OverridePixelPerfect: 0
   m_SortingLayerID: 0
-  m_SortingOrder: 0
+  m_SortingOrder: -1
 --- !u!223 &22310418
 Canvas:
   m_ObjectHideFlags: 1
@@ -16648,7 +16649,7 @@ RectTransform:
   - {fileID: 22474750}
   - {fileID: 22465946}
   m_Father: {fileID: 22469170}
-  m_RootOrder: 2
+  m_RootOrder: 4
   m_AnchorMin: {x: .5, y: .5}
   m_AnchorMax: {x: .5, y: .5}
   m_AnchoredPosition: {x: 0, y: 0}
@@ -16740,7 +16741,7 @@ RectTransform:
   - {fileID: 22409002}
   - {fileID: 22467454}
   m_Father: {fileID: 22469170}
-  m_RootOrder: 3
+  m_RootOrder: 2
   m_AnchorMin: {x: 1, y: 0}
   m_AnchorMax: {x: 1, y: 0}
   m_AnchoredPosition: {x: -79, y: 89}
@@ -16808,7 +16809,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 22469170}
-  m_RootOrder: 4
+  m_RootOrder: 3
   m_AnchorMin: {x: .5, y: .5}
   m_AnchorMax: {x: .5, y: .5}
   m_AnchoredPosition: {x: 5, y: 1}
@@ -19063,9 +19064,9 @@ RectTransform:
   m_Children:
   - {fileID: 22428332}
   - {fileID: 22404410}
-  - {fileID: 22406326}
   - {fileID: 22408842}
   - {fileID: 22411940}
+  - {fileID: 22406326}
   - {fileID: 22464260}
   - {fileID: 22442324}
   m_Father: {fileID: 432684}
