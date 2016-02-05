@@ -3305,7 +3305,7 @@ MonoBehaviour:
   state: 9
   health: 100
   damage: 10
-  creditsDropAmount: 20
+  bitsDropAmount: 20
   defaultSpeed: 3.5
   defaultAcceleration: 8
   agent: {fileID: 19589106}
@@ -3347,7 +3347,7 @@ SkinnedMeshRenderer:
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_Materials:
-  - {fileID: 2100000, guid: e802cc535f397224abac1d59edd87211, type: 2}
+  - {fileID: 2100000, guid: 9a86a050c04307e4fbcc8af9ad46db7f, type: 2}
   m_SubsetIndices: 
   m_StaticBatchRoot: {fileID: 0}
   m_UseLightProbes: 1

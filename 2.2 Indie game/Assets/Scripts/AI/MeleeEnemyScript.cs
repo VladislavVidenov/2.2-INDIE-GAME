@@ -99,7 +99,6 @@ public class MeleeEnemyScript : EnemyScript {
 		Invoke ("Hit", 0.3f);
 	}
 	void Hit(){
-		Debug.Log ("NEW HIT Hit");
 		player.GetComponent<PlayerScript> ().TakeDamage (damage);
 	}
 	void DisableEyeLight() {
@@ -109,25 +108,39 @@ public class MeleeEnemyScript : EnemyScript {
 	void Charge () {
 		//For smooth animation, not setting the trigger dozen of times.
 		if (!charged) {
-			myAnimator.SetTrigger ("Charge");
-			charged = true;
+            charged = true;
+            myAnimator.SetTrigger ("Charge");
+            Invoke("StopCharge", 0.75f);
 		}
-		agent.acceleration = chargeAcceleration;
+      
+        agent.acceleration = chargeAcceleration;
 		agent.speed = chargeSpeed;
-		//Stop charging when near player
-		if (robotPlayerDelta < agent.stoppingDistance + 2f) {
-			if(OnRobotStopCharging != null) OnRobotStopCharging();
-			charged = false;
-			agent.acceleration = defaultAcceleration;
-			agent.speed = defaultSpeed;
-		}
+
 		
 	}
+    void StopCharge()
+    {
+        Debug.Log("STOPPED CHARGE");
+
+       
+        agent.velocity = Vector3.zero;
+        if (OnRobotStopCharging != null) OnRobotStopCharging();
+        charged = false;
+        agent.acceleration = defaultAcceleration;
+        agent.speed = defaultSpeed;
+        state = AIState.Running;
+    }
 
 	void OnTriggerEnter (Collider other) {
 		if (other.CompareTag (Tags.player)) {
-			state = AIState.Attacking;
-		}
+            if (state == AIState.Charge)
+            {
+                Debug.Log("Knock knock");
+                player.GetComponent<Rigidbody>().AddForce(-player.transform.forward*35 ,ForceMode.VelocityChange);
+            }
+            state = AIState.Attacking;
+        }
+
 	}
 	
 	void OnTriggerExit (Collider other) {
