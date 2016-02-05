@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.UI;
 using System.Collections;
 
 public class PlayerActionScript : MonoBehaviour {
@@ -11,6 +12,8 @@ public class PlayerActionScript : MonoBehaviour {
     bool showGuiSkin = false;
 
     RaycastHit hit;
+
+    public Image interactionImage;
 
     void Start()
     {
@@ -123,9 +126,13 @@ public class PlayerActionScript : MonoBehaviour {
 
     void OnGUI() {
         GUI.skin = guiSkin;
+
+        if (interactionImage == null) { print("Please attach an interactionImage to the PlayerActionScript");  return; }
+        
         if (showGuiSkin) {
-            Rect rect = new Rect(Screen.width - (Screen.width / 1.7f),Screen.height - (Screen.height / 1.4f), 800f, 100f);
-            GUI.Label(rect, "Press key >>E<< to Use"); 
+            interactionImage.enabled = true;
+        } else {
+            interactionImage.enabled = false;
         }
     }
 

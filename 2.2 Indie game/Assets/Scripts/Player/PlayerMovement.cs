@@ -188,17 +188,14 @@ public class PlayerMovement : MonoBehaviour {
 
                 if (isWalking())
                 {
-                    print("WORK WORK ");
                     inAirSpeed = speed;
                 }
                 else if (isRunning)
                 {
-                    print("WORK WORK2 ");
                     inAirSpeed = speed / 1.5f;
                 }
                 else
                 {
-                    print("WORK WORK3 ");
                     inAirSpeed = speed / 3f;
                 }
 

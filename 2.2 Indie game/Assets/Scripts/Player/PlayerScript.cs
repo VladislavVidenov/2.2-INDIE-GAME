@@ -56,6 +56,8 @@ public class PlayerScript : MonoBehaviour {
     AudioSource audioSource;
     [SerializeField]AudioClip[] playerSounds;
 
+    public Image reloadImage;
+
     // Use this for initialization
     void Start () {
         originalPos = hitIndicator.transform.position;

@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.UI;
 using System.Collections;
 /// <summary>
 /// This script is attached to the main gameobject of the gun.
@@ -55,6 +56,8 @@ public class WeaponScript : MonoBehaviour {
     bool outOfAmmoSoundPlaying = false;
     bool reloadInfo = false;
     bool reloadInfoStarted = false;
+
+    Image reloadImage;
 
     #region Aiming
     Vector3 defaultPosition = Vector3.zero;
@@ -119,6 +122,9 @@ public class WeaponScript : MonoBehaviour {
 
     void Start()
     {
+        reloadImage = GameManager.Instance.playerScript.reloadImage;
+        DisableReloadImage();
+
         audioSource = GetComponent<AudioSource>();
         mainCamera = Camera.main;
         weaponCamera = GameObject.FindGameObjectWithTag(Tags.weaponCamera).GetComponent<Camera>();
@@ -288,6 +294,10 @@ public class WeaponScript : MonoBehaviour {
             if (ammoInClip <= 0)
             {
                 DryFire();
+
+                if (reloadImage != null && !isReloading) EnableReloadImage();
+                else print("Attach ReloadImage to PlayerScript!");
+
             }
             return;
         }
@@ -345,11 +355,22 @@ public class WeaponScript : MonoBehaviour {
             if (ammoInClip <= 0)
             {
                 DryFire();
+                if (reloadImage != null && !isReloading) EnableReloadImage();
+                else print("Attach ReloadImage to PlayerScript!");
             }
             return;
         }
 
         if (CanFire()) { FireOneBullet(); }
+    }
+
+    void EnableReloadImage() {
+        reloadImage.enabled = true;
+        Invoke("DisableReloadImage", 1);
+    }
+
+    void DisableReloadImage() {
+        reloadImage.enabled = false;
     }
 
     void FireOneBullet()
