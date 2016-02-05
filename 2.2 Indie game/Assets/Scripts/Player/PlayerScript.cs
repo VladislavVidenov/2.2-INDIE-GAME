@@ -58,6 +58,9 @@ public class PlayerScript : MonoBehaviour {
 
     public Image reloadImage;
 
+    [SerializeField]
+    FadeInout fadeScript;
+
     // Use this for initialization
     void Start () {
         originalPos = hitIndicator.transform.position;
@@ -190,6 +193,11 @@ public class PlayerScript : MonoBehaviour {
         sceneManager.SetState(GameState.InGame);
     }
 
+    void SetSpawn() {
+        fadeScript.fade = false;
+        this.transform.position = respawnTransform.position;
+    }
+
     public bool HasStamina() {
         if (stamina > 0) return true;
         else return false;
@@ -291,7 +299,8 @@ public class PlayerScript : MonoBehaviour {
     }
 
     public void Respawning() {
-        this.transform.position = respawnTransform.position;
+        fadeScript.fade = true;
+        Invoke("SetSpawn", 2f);
     }
 
     IEnumerator IncreaseHud(float text, float Amount) {
