@@ -57,11 +57,11 @@ public class Dialog2Script : MonoBehaviour {
     IEnumerator DialogTalk()
     {
         yield return new WaitForSeconds(waitTime);
-        StartCoroutine(AnimateText("We made it to the first Core, Good job"));
+		StartCoroutine(AnimateText("B.R.A.I.N: This is the Core of my systems!"));
         yield return new WaitForSeconds(waitTime);
-        StartCoroutine(AnimateText("We need to upload the antivirus here to get rid of them for good"));
+		StartCoroutine(AnimateText("B.R.A.I.N: If we manage to upload the anti-virus we will beat em for good!"));
         yield return new WaitForSeconds(waitTime);
-        StartCoroutine(AnimateText("When you are ready, head to the desk to upload the files"));
+		StartCoroutine(AnimateText("B.R.A.I.N: They are starting to tear down my back up system! Upload the anti-virus!"));
         yield return new WaitForSeconds(waitTime);
         spawnEvent.allowedToSpawn = true;
         canTalk = true;
@@ -70,11 +70,11 @@ public class Dialog2Script : MonoBehaviour {
     IEnumerator EndTalk()
     {
         yield return new WaitForSeconds(waitTime);
-        StartCoroutine(AnimateText("You did it"));
+		StartCoroutine(AnimateText("B.R.A.I.N: You did it!"));
         yield return new WaitForSeconds(waitTime);
-        StartCoroutine(AnimateText("You saved my live"));
+		StartCoroutine(AnimateText("B.R.A.I.N: You defeated them and saved my program!"));
         yield return new WaitForSeconds(waitTime);
-        StartCoroutine(AnimateText("Lets celebrate and have some cake, oh wait there is no cake"));
+        StartCoroutine(AnimateText("B.R.A.I.N: Lets celebrate! and have some cake, oh wait the cake is a lie!"));
         yield return new WaitForSeconds(waitTime);
         spawnEvent.gameObject.tag = "LevelSwitcher";
 

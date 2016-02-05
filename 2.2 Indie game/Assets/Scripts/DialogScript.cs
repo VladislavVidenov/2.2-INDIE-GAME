@@ -56,11 +56,11 @@ public class DialogScript : MonoBehaviour {
     IEnumerator DialogTalk ()
     {
         yield return new WaitForSeconds(waitTime);
-        StartCoroutine( AnimateText("Welcome to the 2nd core"));
+		StartCoroutine( AnimateText("B.R.A.I.N: This is the first firewall, its been corrupted, we need to upload the anti-virus!"));
         yield return new WaitForSeconds(waitTime);
-        StartCoroutine(AnimateText("In order to get to the first core we have to upload the anti-virus here first"));
+		StartCoroutine(AnimateText("B.R.A.I.N: Only if we get this first fire wall back online can we continue!"));
         yield return new WaitForSeconds(waitTime);
-        StartCoroutine(AnimateText("When you are ready, head to the desk to upload the files"));
+		StartCoroutine(AnimateText("B.R.A.I.N: To start uploading interact with the desk!"));
         yield return new WaitForSeconds(waitTime);
         spawnEvent.allowedToSpawn = true;
         canTalk = true;
@@ -69,11 +69,11 @@ public class DialogScript : MonoBehaviour {
     IEnumerator EndTalk()
     {
         yield return new WaitForSeconds(waitTime);
-        StartCoroutine(AnimateText("GJ"));
+		StartCoroutine(AnimateText("B.R.A.I.N: Great job!"));
         yield return new WaitForSeconds(waitTime);
-        StartCoroutine(AnimateText("Thanks for doing this"));
+		StartCoroutine(AnimateText("B.R.A.I.N: Thanks for doing this"));
         yield return new WaitForSeconds(waitTime);
-        StartCoroutine(AnimateText("Now we can go to 1st core, head back to the desk"));
+		StartCoroutine(AnimateText("B.R.A.I.N: Now we can proceed to the next area! Use the desk again to continue!"));
         yield return new WaitForSeconds(waitTime);
         spawnEvent.gameObject.tag = "LevelSwitcher";
 
