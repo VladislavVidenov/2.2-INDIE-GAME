@@ -118,13 +118,13 @@ public class WeaponScript : MonoBehaviour {
     {
         animator = GetComponentInChildren<Animator>();
         playerMove = head.GetComponentInParent<PlayerMovement>();
+
+        reloadImage = GameManager.Instance.playerScript.reloadImage;
+        DisableReloadImage();
     }
 
     void Start()
     {
-        reloadImage = GameManager.Instance.playerScript.reloadImage;
-        DisableReloadImage();
-
         audioSource = GetComponent<AudioSource>();
         mainCamera = Camera.main;
         weaponCamera = GameObject.FindGameObjectWithTag(Tags.weaponCamera).GetComponent<Camera>();

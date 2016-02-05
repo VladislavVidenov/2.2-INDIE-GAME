@@ -15,6 +15,10 @@ public class PlayerActionScript : MonoBehaviour {
 
     public Image interactionImage;
 
+    void Awake() {
+        interactionImage.enabled = false;
+    }
+
     void Start()
     {
         toolManager = FindObjectOfType<ToolManager>();

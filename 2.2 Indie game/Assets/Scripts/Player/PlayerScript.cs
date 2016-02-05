@@ -178,7 +178,7 @@ public class PlayerScript : MonoBehaviour {
 
     public void Died() {
         PlayDeathSound();
-        Invoke("Restart", 1f);
+        Invoke("Restart", 1.5f);
     }
 
     void Restart() {
