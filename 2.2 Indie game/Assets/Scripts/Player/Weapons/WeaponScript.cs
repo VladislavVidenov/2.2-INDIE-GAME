@@ -378,6 +378,8 @@ public class WeaponScript : MonoBehaviour {
         if (OnPistolShoot != null) OnPistolShoot();
         playerMove.isRunning = false;
         isShooting = true;
+        GameObject muzzle = Instantiate(muzzleParticlePistol, muzzleTransform.position, Quaternion.identity) as GameObject;
+        Destroy(muzzle, 1);
         Vector3 shootDirection = mainCamera.transform.TransformDirection(new Vector3(Random.Range(-0.01f, 0.01f) * inaccuracy, Random.Range(-0.01f, 0.01f) * inaccuracy, 1));
         RaycastHit hit;
         // Debug.DrawRay(mainCamera.transform.position, shootDirection * 100f, Color.green, 5);
@@ -385,8 +387,7 @@ public class WeaponScript : MonoBehaviour {
         {
             Debug.DrawRay(mainCamera.transform.position, shootDirection * Vector3.Distance(mainCamera.transform.position, hit.point), Color.red, 5f);
             hitPoint = hit.point;
-            GameObject muzzle = Instantiate(muzzleParticlePistol, muzzleTransform.position, Quaternion.identity) as GameObject;
-            Destroy(muzzle, 1);
+           
 
             switch (hit.transform.gameObject.tag)
             {
