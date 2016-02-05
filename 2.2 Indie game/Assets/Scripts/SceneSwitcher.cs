@@ -7,7 +7,13 @@ public class SceneSwitcher : MonoBehaviour {
 
 	public void SwitchScene()
     {
-        Application.LoadLevel(levelName);
-
+        if (levelName == "MenuScene")
+        {
+            GameObject.Find("SceneManager").GetComponent<SceneChangeManager>().SwitchToMainMenu();
+        }
+        else
+        {
+            Application.LoadLevel(levelName);
+        }
     }
 }

@@ -24,6 +24,11 @@ public class SceneChangeManager : MonoBehaviour {
             Cursor.lockState = CursorLockMode.Locked;
             Cursor.visible = false;
         }
+        if (currentState == GameState.InMenu)
+        {
+            Cursor.lockState = CursorLockMode.None;
+            Cursor.visible = true;
+        }
         if (Input.GetKeyDown(KeyCode.Escape)) {
             switch(currentState){
                 case GameState.InBuyScreen:
@@ -114,7 +119,7 @@ public class SceneChangeManager : MonoBehaviour {
     public void SwitchToMainMenu() {
         GameManager.Instance.CurrentState = GameState.InMenu;
         GameManager.Instance.ResetGameManager();
-        Application.LoadLevel(0);
+        Application.LoadLevel("MenuScene");
     }
 
     public void CloseApllication() {
