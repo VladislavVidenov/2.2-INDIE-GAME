@@ -74,13 +74,15 @@ public class SpawningScript : MonoBehaviour {
 				break;
 
 			case SpawnTypes.Wave:
+                  //  print(remainingEnemy);
 
-                    
                     if (numWaves < totalWaves + 1)
                     {
+                        
                         //print(waveSpawn + "<--- wavespanw");
                         if (waveSpawn)
                         {
+                            print("waved");
                             //print(numWaves + "<-- numwaves" + totalWaves + "<-- totalwaves");
                             GameManager.Instance.isWaving = true;
                             for (int i = 0; i < waves[numWaves - 1].meleeEnemy; i++)

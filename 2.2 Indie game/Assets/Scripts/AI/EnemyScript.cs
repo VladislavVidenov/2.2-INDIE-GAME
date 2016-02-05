@@ -45,6 +45,8 @@ public class EnemyScript : MonoBehaviour
     public AudioSource audioSource;
     public AudioClip[] enemySounds;
 
+    bool hasDied = false;
+
 	public virtual void Start () {
 
         audioSource = GetComponent<AudioSource>();
@@ -58,14 +60,18 @@ public class EnemyScript : MonoBehaviour
 
     public virtual void Dying()
     {
-        //DIE PLEASE!
-		//if (OnEnemyDeath != null)
-		//	OnEnemyDeath ();
-        AudioSource.PlayClipAtPoint(enemySounds[0], gameObject.transform.position,0.1f);
-        if (spawner != null) spawner.KillEnemy (); //Event ! -vladimir.:D
-        player.GetComponent<PlayerScript>().IncreasePlayerStats(0, 0, 0, 0, creditsDropAmount); //maybe also?
-        DropCredits();
-        Destroy(gameObject);
+        print("dieieied");
+
+        if (!hasDied)
+        {
+            hasDied = true;
+            print("yo mama");
+            AudioSource.PlayClipAtPoint(enemySounds[0], gameObject.transform.position, 0.1f);
+            if (spawner != null) spawner.KillEnemy(); //Event ! -vladimir.:D
+            player.GetComponent<PlayerScript>().IncreasePlayerStats(0, 0, 0, 0, creditsDropAmount); //maybe also?
+            DropCredits();
+            Destroy(gameObject);
+        }
     }
 
     public virtual void TakeDamage(int amount)

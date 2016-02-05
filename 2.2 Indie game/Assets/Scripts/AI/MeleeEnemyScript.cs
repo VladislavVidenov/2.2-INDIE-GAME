@@ -38,9 +38,6 @@ public class MeleeEnemyScript : EnemyScript {
 		state = AIState.Charge;
 		if(OnRobotCharging != null) 
 			OnRobotCharging();
-        agent.SetAreaCost(3, (float)Random.RandomRange(0, 5));
-        agent.SetAreaCost(4, (float)Random.RandomRange(0, 5));
-        agent.SetAreaCost(5, (float)Random.RandomRange(0, 5));
 	}
 	
 	// Update is called once per frame
