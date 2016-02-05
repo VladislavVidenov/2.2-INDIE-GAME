@@ -4440,6 +4440,8 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 436214}
+  - 114: {fileID: 11447274}
+  - 114: {fileID: 11486926}
   m_Layer: 8
   m_Name: MainCamera-root
   m_TagString: Untagged
@@ -5739,7 +5741,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 165428}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 122, y: 84.61, z: 110.05}
+  m_LocalPosition: {x: 122, y: 81.03, z: 110.05}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 492232}
@@ -7807,7 +7809,7 @@ AudioSource:
       tangentMode: 0
     m_PreInfinity: 2
     m_PostInfinity: 2
-    m_RotationOrder: 4
+    m_RotationOrder: 0
   spreadCustomCurve:
     serializedVersion: 2
     m_Curve:
@@ -7818,7 +7820,7 @@ AudioSource:
       tangentMode: 0
     m_PreInfinity: 2
     m_PostInfinity: 2
-    m_RotationOrder: 4
+    m_RotationOrder: 0
   reverbZoneMixCustomCurve:
     serializedVersion: 2
     m_Curve:
@@ -7829,7 +7831,7 @@ AudioSource:
       tangentMode: 0
     m_PreInfinity: 2
     m_PostInfinity: 2
-    m_RotationOrder: 4
+    m_RotationOrder: 0
 --- !u!82 &8293396
 AudioSource:
   m_ObjectHideFlags: 1
@@ -8565,6 +8567,7 @@ MonoBehaviour:
   playerSounds:
   - {fileID: 8300000, guid: 16ae6facccd9d7f4ca6934cd2622802c, type: 3}
   - {fileID: 8300000, guid: 4f6cc0f13baf53a48857e3684df1d876, type: 3}
+  reloadImage: {fileID: 0}
 --- !u!114 &11407692
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -11500,6 +11503,17 @@ MonoBehaviour:
   m_FillAmount: 1
   m_FillClockwise: 1
   m_FillOrigin: 0
+--- !u!114 &11447274
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 181546}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8b5869a79d11e7e4b84e1be925d26614, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &11448428
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -12843,6 +12857,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 2560
   guiSkin: {fileID: 11400000, guid: 3fb136ef28a73474780f5f1367338ab1, type: 2}
+  interactionImage: {fileID: 0}
 --- !u!114 &11466960
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -14202,6 +14217,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_AllowSwitchOff: 0
+--- !u!114 &11486926
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 181546}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8b5869a79d11e7e4b84e1be925d26614, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &11487246
 MonoBehaviour:
   m_ObjectHideFlags: 1

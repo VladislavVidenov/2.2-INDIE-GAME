@@ -283,6 +283,7 @@ public class PlayerScript : MonoBehaviour {
         }
     }
     public void PlayDeathSound() {
+        GetComponentInChildren<DeathAnimation>().Die();
         if (audioSource.isPlaying)
             audioSource.volume = 0.6f;
             audioSource.Stop();
