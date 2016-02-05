@@ -35,7 +35,7 @@ public class FadeInout : MonoBehaviour {
     }
 
     void FadeToClear() {
-        texture.color = Color.Lerp(texture.color, Color.clear, .5f * Time.deltaTime);
+        texture.color = Color.Lerp(texture.color, Color.clear, fadeSpeed * Time.deltaTime);
     }
 
     void FadeToBlack() {
