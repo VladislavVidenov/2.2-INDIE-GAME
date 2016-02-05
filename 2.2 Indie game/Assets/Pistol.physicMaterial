@@ -8,6 +8,6 @@ PhysicMaterial:
   m_Name: Pistol
   dynamicFriction: 0
   staticFriction: 0
-  bounciness: .600000024
+  bounciness: 0
   frictionCombine: 1
-  bounceCombine: 3
+  bounceCombine: 1
