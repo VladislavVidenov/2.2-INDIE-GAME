@@ -76,8 +76,6 @@ public class DialogScript : MonoBehaviour {
 		StartCoroutine(AnimateText("B.R.A.I.N: Now we can proceed to the next area! Use the desk again to continue!"));
         yield return new WaitForSeconds(waitTime);
         spawnEvent.gameObject.tag = "LevelSwitcher";
-
-
     }
 
     IEnumerator AnimateText(string strComplete)

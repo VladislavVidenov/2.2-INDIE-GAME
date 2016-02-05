@@ -62,13 +62,13 @@ public class PlayerActionScript : MonoBehaviour {
                     break;
 
                 case "TutDesk":
-                    //SpawnEventScript spawnEvent = hit.collider.gameObject.GetComponent<SpawnEventScript>();
                     if (GameObject.Find("TutorialManager").GetComponent<TutorialScript>().finishedTutorial)
                     {
                         showGuiSkin = true;
                         if (Input.GetKeyDown(KeyCode.E))
                         {
-                            Application.LoadLevel("CubeWorld");
+                            GameObject.Find("ScreenFader").GetComponent<FadeInout>().fade = true;
+                            Invoke("LoadLevel", 4);
                         }
                     }
                     else {
@@ -80,7 +80,8 @@ public class PlayerActionScript : MonoBehaviour {
                     showGuiSkin = true;
                     if (Input.GetKeyDown(KeyCode.E))
                     {
-                        hit.collider.gameObject.GetComponent<SceneSwitcher>().SwitchScene();
+                        GameObject.Find("ScreenFader").GetComponent<FadeInout>().fade = true;
+                        StartCoroutine(SwitchScene(hit));
                     }
 
 
@@ -109,6 +110,15 @@ public class PlayerActionScript : MonoBehaviour {
             if (toolManager.showToolGuiText) toolManager.showToolGuiText = false;
             showGuiSkin = false;
         }
+    }
+
+    void LoadLevel() {
+        Application.LoadLevel("CubeWorld");
+    }
+
+    IEnumerator SwitchScene(RaycastHit hitIn) {
+        yield return new WaitForSeconds(4);
+        hitIn.collider.gameObject.GetComponent<SceneSwitcher>().SwitchScene();
     }
 
     void OnGUI() {
