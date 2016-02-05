@@ -3323,6 +3323,8 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 1d446e6ab5f7d094da2192566211e213, type: 3}
   - {fileID: 8300000, guid: e1863f6ddc3ada748983beea6cb5db5e, type: 3}
   - {fileID: 8300000, guid: 776c7380243120048b51c3fbdd675b6b, type: 3}
+  meleeDeathParticle: {fileID: 173364, guid: 039c6f4efbc77ff4eb8050fd38fd5c02, type: 2}
+  rangedDeathParticle: {fileID: 132150, guid: 006b92b3f93c85049a7e4931642a9171, type: 2}
   attackRotationSpeed: 5
 --- !u!136 &13647852
 CapsuleCollider:
@@ -3520,6 +3522,14 @@ Prefab:
       propertyPath: creditsDropAmount
       value: 20
       objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: meleeDeathParticle
+      value: 
+      objectReference: {fileID: 173364, guid: 039c6f4efbc77ff4eb8050fd38fd5c02, type: 2}
+    - target: {fileID: 0}
+      propertyPath: rangedDeathParticle
+      value: 
+      objectReference: {fileID: 132150, guid: 006b92b3f93c85049a7e4931642a9171, type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
   m_RootGameObject: {fileID: 141104}

@@ -47,7 +47,12 @@ public class EnemyScript : MonoBehaviour
 
     bool hasDied = false;
 
-	public virtual void Start () {
+    [SerializeField]
+    GameObject meleeDeathParticle;
+    [SerializeField]
+    GameObject rangedDeathParticle;
+
+    public virtual void Start () {
 
         audioSource = GetComponent<AudioSource>();
 
@@ -64,6 +69,16 @@ public class EnemyScript : MonoBehaviour
 
         if (!hasDied)
         {
+            if (this.gameObject.name == "Robot_Melee(Clone)")
+            {
+                GameObject go = (GameObject)Instantiate(meleeDeathParticle, transform.position, Quaternion.identity);
+                Destroy(go, 1f);
+            }
+            else {
+                GameObject go = (GameObject)Instantiate(rangedDeathParticle, transform.position, Quaternion.identity);
+                Destroy(go, 1f);
+            }
+
             hasDied = true;
             print("yo mama");
             AudioSource.PlayClipAtPoint(enemySounds[0], gameObject.transform.position, 0.1f);
