@@ -7670,7 +7670,7 @@ AudioSource:
       tangentMode: 0
     m_PreInfinity: 2
     m_PostInfinity: 2
-    m_RotationOrder: 4
+    m_RotationOrder: 0
   reverbZoneMixCustomCurve:
     serializedVersion: 2
     m_Curve:
@@ -7744,7 +7744,7 @@ AudioSource:
       tangentMode: 0
     m_PreInfinity: 2
     m_PostInfinity: 2
-    m_RotationOrder: 4
+    m_RotationOrder: 0
   reverbZoneMixCustomCurve:
     serializedVersion: 2
     m_Curve:
@@ -7892,7 +7892,7 @@ AudioSource:
       tangentMode: 0
     m_PreInfinity: 2
     m_PostInfinity: 2
-    m_RotationOrder: 4
+    m_RotationOrder: 0
   reverbZoneMixCustomCurve:
     serializedVersion: 2
     m_Curve:
@@ -8092,10 +8092,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rigidBody: {fileID: 0}
   playerAnimation: {fileID: 11120832}
-  walkSpeed: 5
+  walkSpeed: 6
   crouchSpeed: 2
-  runSpeed: 7
-  heightToJump: 3.5
+  runSpeed: 8
+  heightToJump: 9
   sprintCost: 15
   gravity: 7
   isWepAiming: 0
@@ -8665,7 +8665,7 @@ MonoBehaviour:
   BitsCost: 20
   tier: 1
   upgradeType: 0
-  jumpHeightMultiplier: 3
+  jumpHeightMultiplier: 1.5
 --- !u!114 &11411352
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -16622,7 +16622,7 @@ RectTransform:
   - {fileID: 22409002}
   - {fileID: 22467454}
   m_Father: {fileID: 22469170}
-  m_RootOrder: 4
+  m_RootOrder: 3
   m_AnchorMin: {x: 1, y: 0}
   m_AnchorMax: {x: 1, y: 0}
   m_AnchoredPosition: {x: -79, y: 89}
@@ -16690,7 +16690,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 22469170}
-  m_RootOrder: 5
+  m_RootOrder: 4
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 5, y: 1}
@@ -18700,7 +18700,7 @@ RectTransform:
   - {fileID: 22437762}
   - {fileID: 22446380}
   m_Father: {fileID: 22469170}
-  m_RootOrder: 3
+  m_RootOrder: 5
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 0}
@@ -18910,9 +18910,9 @@ RectTransform:
   - {fileID: 22428332}
   - {fileID: 22404410}
   - {fileID: 22406326}
-  - {fileID: 22464260}
   - {fileID: 22408842}
   - {fileID: 22411940}
+  - {fileID: 22464260}
   - {fileID: 22442324}
   m_Father: {fileID: 432684}
   m_RootOrder: 0
