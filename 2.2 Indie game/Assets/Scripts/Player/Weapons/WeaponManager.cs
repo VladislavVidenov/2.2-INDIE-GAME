@@ -148,6 +148,7 @@ public class WeaponManager : MonoBehaviour {
 
     void SetSlot(int newSlotID, int newWeaponID, bool swapWeapons = false)
     {
+        
         if (currentWeapon != null && newSlotID == currentWeapon.slotID && !swapWeapons)
         {
             // Debug.Log("Weapon already selected !!!!");
@@ -219,8 +220,9 @@ public class WeaponManager : MonoBehaviour {
                 currentWeapon = temp;
                 inventory[slot - 1] = currentWeapon;
                 temp.gameObject.SendMessage("PullOutWeapon", SendMessageOptions.DontRequireReceiver);
-             //   Debug.Log("ENABLE WEAPON --> " + temp.slotID + " - " + temp.weaponID);
+                //   Debug.Log("ENABLE WEAPON --> " + temp.slotID + " - " + temp.weaponID);
                 //  Debug.Log("------ENABLE HAPPENED ------ !");
+                weaponsOnPlayer[i].GetComponent<WeaponScript>().UpdateHudValues();
                 break;
             }
         }

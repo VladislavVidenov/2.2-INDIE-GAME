@@ -16,7 +16,7 @@ public class EnemyScript : MonoBehaviour
     public int health;
 	public int damage;
     [SerializeField] 
-	int creditsDropAmount = 5;
+	int bitsDropAmount = 20;
 
    
     public float defaultSpeed = 3.5f;
@@ -68,8 +68,8 @@ public class EnemyScript : MonoBehaviour
             print("yo mama");
             AudioSource.PlayClipAtPoint(enemySounds[0], gameObject.transform.position, 0.1f);
             if (spawner != null) spawner.KillEnemy(); //Event ! -vladimir.:D
-            player.GetComponent<PlayerScript>().IncreasePlayerStats(0, 0, 0, 0, creditsDropAmount); //maybe also?
-            DropCredits();
+            player.GetComponent<PlayerScript>().IncreasePlayerStats(0, 0, 0, 0, bitsDropAmount); //maybe also?
+            DropPackage();
             Destroy(gameObject);
         }
     }
@@ -84,7 +84,7 @@ public class EnemyScript : MonoBehaviour
         }
     }
 
-    void DropCredits()
+    void DropPackage()
     {
         if (Random.Range(0, 2) == 1)
         {

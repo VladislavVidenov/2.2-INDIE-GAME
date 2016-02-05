@@ -45,8 +45,6 @@ public class PlayerScript : MonoBehaviour {
     [Tooltip("Reference to the Ingame HUD")]
     [SerializeField] HudScript inGameHud;
 
-    Tool currentTool;
-
     float cutOffBits;
 
     [SerializeField]
@@ -276,11 +274,6 @@ public class PlayerScript : MonoBehaviour {
         bitsHud.SetActive(true);
     }
 
-    public void SetCurrentTool(Tool tool)
-    {
-        currentTool = tool;
-        SetBoostUpgrades();
-    }
     public void PlayGotHitSound() {
         if(!audioSource.isPlaying){
             audioSource.volume = 0.2f;
@@ -292,20 +285,6 @@ public class PlayerScript : MonoBehaviour {
             audioSource.volume = 0.6f;
             audioSource.Stop();
         audioSource.PlayOneShot(playerSounds[1]);
-    }
-    void SetBoostUpgrades()
-    {
-        switch (currentTool.Type)
-        {
-            case ToolTypes.Screwdriver:
-                break;
-
-            case ToolTypes.Hammer:
-                break;
-
-            case ToolTypes.Wrench:
-                break;
-        }
     }
 
     public void Respawning() {

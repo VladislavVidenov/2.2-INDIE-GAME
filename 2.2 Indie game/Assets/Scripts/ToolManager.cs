@@ -86,6 +86,7 @@ public class ToolManager : MonoBehaviour
     {
         bitsIncrease = bits;
     }
+
     public void AddTool(Tool tool)
     {
         tools.Add(tool);
@@ -93,7 +94,7 @@ public class ToolManager : MonoBehaviour
         currentTool.transform.position = toolHolder.position;
         currentTool.transform.rotation = toolHolder.rotation;
         currentTool.transform.parent = toolHolder;
-        playerScript.SetCurrentTool(currentTool);
+        //playerScript.SetCurrentTool(currentTool);
         currentTool.gameObject.SetActive(false);
       
 

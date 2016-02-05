@@ -3,6 +3,8 @@ using System.Collections;
 
 public class AmmoPickable : MonoBehaviour {
     WeaponManager wepManager;
+    WeaponScript weapon;
+
     public enum AmmoType
     {
         Pistol, Shotgun
@@ -23,12 +25,18 @@ public class AmmoPickable : MonoBehaviour {
         {
             if(typeOfAmmo == AmmoType.Pistol)
             {
-                wepManager.inventory[0].GetComponent<WeaponScript>().IncreaseTotalAmmo(AmmoGiveAmount);
+                weapon = wepManager.inventory[0].GetComponent<WeaponScript>();
+                weapon.IncreaseTotalAmmo(AmmoGiveAmount);
             }
             else if (typeOfAmmo == AmmoType.Shotgun)
             {
-                wepManager.inventory[1].GetComponent<WeaponScript>().IncreaseTotalAmmo(AmmoGiveAmount);
+                weapon = wepManager.inventory[1].GetComponent<WeaponScript>();
+                weapon.IncreaseTotalAmmo(AmmoGiveAmount);
             }
+
+            if (weapon.gameObject.activeInHierarchy)
+                weapon.UpdateHudValues();
+
             Destroy(gameObject);
         }
       
