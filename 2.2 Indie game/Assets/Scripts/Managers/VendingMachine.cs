@@ -48,7 +48,7 @@ public class VendingMachine : MonoBehaviour {
         playerUpgradesOwnedList = new List<Upgrade>();
         weaponUpgradesOwnedList = new List<Upgrade>();
 
-        player = GameObject.FindGameObjectWithTag(Tags.player).GetComponent<PlayerScript>() ;
+        player = GameManager.Instance.playerScript;
 
 		ownedUpgrades = GameManager.Instance.OwnedUpgrades;
         ApplyUpgrades();
@@ -79,7 +79,7 @@ public class VendingMachine : MonoBehaviour {
         buyscreen.SetActive(true);
         buyButton.gameObject.SetActive(false);
         bitsCostText.text = "";
-        GameManager.Instance.playerScript.ActivateBitsHud();
+        player.ActivateBitsHud();
 	}
 
 	public void DeActivateStation () {
@@ -89,7 +89,7 @@ public class VendingMachine : MonoBehaviour {
 		selectedUpgrade = null;
         UpgradeSprite.GetComponent<Mask>().showMaskGraphic = false;
         SetSelectedButtonColor(1, 1, 1);
-        GameManager.Instance.playerScript.DeactiveBitsHud();
+        player.DeactiveBitsHud();
     }
 
 	public void SelectUpgrade (Upgrade upgrade) {
@@ -113,6 +113,7 @@ public class VendingMachine : MonoBehaviour {
 		ChangeBuyButton("Purchased",false);
 
         playerBits -= selectedUpgrade.BitsCost;
+        player.ActivateBitsHud(playerBits);
 
         ChangePlayerStatsText();
         SetSelectedButtonImage();

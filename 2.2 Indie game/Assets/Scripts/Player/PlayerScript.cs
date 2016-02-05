@@ -265,9 +265,14 @@ public class PlayerScript : MonoBehaviour {
         bitsHud.SetActive(false);
     }
 
-    public void ActivateBitsHud() {  //activates the bits hud with up2date amount
+    /// <summary>
+    /// Dont give a param while using from inside its own class.
+    /// </summary>
+    /// <param name="pBits"></param>
+    public void ActivateBitsHud(int pBits = -1) {  //activates the bits hud with up2date amount
         StopAllCoroutines();
-        bitsText.text = bits.ToString();
+        if (pBits == -1) bitsText.text = bits.ToString();
+        else bitsText.text = pBits.ToString();
         bitsHud.SetActive(true);
     }
 
