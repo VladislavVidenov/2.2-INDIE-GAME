@@ -247,6 +247,7 @@ public class RangedRushEnemy : EnemyScript {
 
     void ChargeBullet(float Accuracy) {
         myAnimator.SetTrigger("Charge");
+		eyeLight.intensity = 4f;
         StartCoroutine("IShootRaycast", Accuracy);
     }
 
@@ -270,7 +271,7 @@ public class RangedRushEnemy : EnemyScript {
         if (Physics.Raycast(enemyHeadPos.position , direction.normalized, out hit, 100f)) {
             Debug.DrawRay(enemyHeadPos.position, direction * Vector3.Distance(enemyHeadPos.position, hit.point), Color.green);
             if (hit.collider.CompareTag(Tags.player)) {
-                eyeLight.intensity = 4f;
+            
                 Invoke("DisableEyeLight", 0.5f);
                 PlayerScript ps = hit.collider.gameObject.GetComponent<PlayerScript>();
                 //if (OnHitPlayer != null) { OnHitPlayer(); }

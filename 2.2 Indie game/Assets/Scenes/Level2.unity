@@ -12363,6 +12363,42 @@ Prefab:
       propertyPath: weaponPrefabs.Array.data[2]
       value: 
       objectReference: {fileID: 0}
+    - target: {fileID: 11406946, guid: 4a514241311b2c84db5a167234c6c85b, type: 2}
+      propertyPath: levelName
+      value: Level2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8293114, guid: 4a514241311b2c84db5a167234c6c85b, type: 2}
+      propertyPath: panLevelCustomCurve.m_RotationOrder
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8293114, guid: 4a514241311b2c84db5a167234c6c85b, type: 2}
+      propertyPath: reverbZoneMixCustomCurve.m_RotationOrder
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8218428, guid: 4a514241311b2c84db5a167234c6c85b, type: 2}
+      propertyPath: panLevelCustomCurve.m_RotationOrder
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8218428, guid: 4a514241311b2c84db5a167234c6c85b, type: 2}
+      propertyPath: reverbZoneMixCustomCurve.m_RotationOrder
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 11449308, guid: 4a514241311b2c84db5a167234c6c85b, type: 2}
+      propertyPath: totalAmmo
+      value: 24
+      objectReference: {fileID: 0}
+    - target: {fileID: 11449308, guid: 4a514241311b2c84db5a167234c6c85b, type: 2}
+      propertyPath: maxTotalAmmo
+      value: 48
+      objectReference: {fileID: 0}
+    - target: {fileID: 11449308, guid: 4a514241311b2c84db5a167234c6c85b, type: 2}
+      propertyPath: ammoInClip
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 11449308, guid: 4a514241311b2c84db5a167234c6c85b, type: 2}
+      propertyPath: maxAmmoInClip
+      value: 8
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 4a514241311b2c84db5a167234c6c85b, type: 2}
   m_IsPrefabParent: 0
